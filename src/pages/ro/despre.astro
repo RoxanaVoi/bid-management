@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getLocaleFromUrl, t } from '../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const values = locale === 'ro' ? [
+  { title: 'Experiență', desc: 'Peste 15 ani în domeniul achizițiilor publice, cu sute de proceduri gestionate.', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { title: 'Inovație', desc: 'Combinăm expertiza tradițională cu instrumente digitale și inteligență artificială.', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+  { title: 'Rezultate', desc: 'Măsurăm succesul prin rezultatele concrete ale clienților noștri.', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+] : [
+  { title: 'Experience', desc: 'Over 15 years in public procurement, with hundreds of managed procedures.', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { title: 'Innovation', desc: 'We combine traditional expertise with digital tools and artificial intelligence.', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+  { title: 'Results', desc: 'We measure success through the concrete results of our clients.', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+];
+
+const team = [
+  { name: 'Roxana Voicu', role: locale === 'ro' ? 'Managing Partner & Consultant Senior' : 'Managing Partner & Senior Consultant', specialty: locale === 'ro' ? 'Achiziții publice, PAAP, documentații de atribuire' : 'Public procurement, PAAP, award documentation' },
+  { name: 'Expert Consultant', role: locale === 'ro' ? 'Consultant Achiziții' : 'Procurement Consultant', specialty: locale === 'ro' ? 'Evaluare oferte, contestații, suport procedural' : 'Bid evaluation, complaints, procedural support' },
+  { name: 'Expert Tehnic', role: locale === 'ro' ? 'Specialist Tehnologie' : 'Technology Specialist', specialty: locale === 'ro' ? 'ePaap, AI, digitalizare procese' : 'ePaap, AI, process digitization' },
+];
+---
+
+<Layout title={t(locale, 'aboutPage.title')}>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl font-heading font-bold mb-6">{t(locale, 'aboutPage.title')}</h1>
+        <p class="text-xl text-gray-300 leading-relaxed">{t(locale, 'aboutPage.missionText')}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Values -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 data-animate class="text-3xl font-heading font-bold text-navy mb-12 text-center">
+        {t(locale, 'aboutPage.missionTitle')}
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {values.map((val, i) => (
+          <div data-animate data-animate-delay={String(i + 1)} class="text-center">
+            <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={val.icon} />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-navy mb-3">{val.title}</h3>
+            <p class="text-text-light leading-relaxed">{val.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 data-animate class="text-3xl font-heading font-bold text-navy mb-12 text-center">
+        {t(locale, 'aboutPage.teamTitle')}
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {team.map((member, i) => (
+          <div data-animate data-animate-delay={String(i + 1)} class="bg-white rounded-2xl p-6 border border-gray-100 text-center hover:shadow-lg transition-all">
+            <div class="w-20 h-20 bg-gradient-to-br from-accent to-accent-dark rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-white text-2xl font-heading font-bold">{member.name.split(' ').map(n => n[0]).join('')}</span>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-navy mb-1">{member.name}</h3>
+            <p class="text-accent text-sm font-medium mb-3">{member.role}</p>
+            <p class="text-text-light text-sm">{member.specialty}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>

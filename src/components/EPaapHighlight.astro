@@ -1,0 +1,111 @@
+---
+import { getLocaleFromUrl, t, getLocalizedPath } from '../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const features = ['feature1', 'feature2', 'feature3', 'feature4', 'feature5'];
+---
+
+<section class="py-24 bg-gradient-to-br from-navy via-navy-800 to-navy text-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Left: Content -->
+      <div data-animate>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-full mb-6">
+          <span class="text-accent text-sm font-medium">ePaap Platform</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-6">
+          {t(locale, 'epaap.title')}
+        </h2>
+
+        <ul class="space-y-4 mb-8">
+          {features.map((key) => (
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-accent/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span class="text-gray-300 leading-relaxed">{t(locale, `epaap.${key}`)}</span>
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href={getLocalizedPath(locale, '/solutii/autoritati')}
+          class="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25"
+        >
+          {t(locale, 'epaap.cta')}
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Right: App mockup -->
+      <div data-animate data-animate-delay="2" class="relative">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+          <!-- Header bar -->
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                <span class="text-white font-bold text-sm">e</span>
+              </div>
+              <span class="text-white font-heading font-semibold">ePaap Dashboard</span>
+            </div>
+            <div class="flex gap-2">
+              <div class="w-20 h-6 bg-white/10 rounded-md"></div>
+              <div class="w-6 h-6 bg-white/10 rounded-md"></div>
+            </div>
+          </div>
+
+          <!-- Flow diagram -->
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-32 bg-accent/20 rounded-lg p-3 text-center">
+                <div class="text-accent text-xs font-medium">Nevoi</div>
+                <div class="text-white text-lg font-bold">234</div>
+              </div>
+              <svg class="w-6 h-6 text-accent/50 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              <div class="w-32 bg-warning/20 rounded-lg p-3 text-center">
+                <div class="text-warning text-xs font-medium">PAAP</div>
+                <div class="text-white text-lg font-bold">45</div>
+              </div>
+              <svg class="w-6 h-6 text-accent/50 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              <div class="w-32 bg-success/20 rounded-lg p-3 text-center">
+                <div class="text-success text-xs font-medium">Referate</div>
+                <div class="text-white text-lg font-bold">147</div>
+              </div>
+            </div>
+
+            <!-- Progress bars -->
+            <div class="bg-white/5 rounded-lg p-4 mt-4">
+              <div class="flex justify-between text-xs text-gray-400 mb-2">
+                <span>Proceduri finalizate</span>
+                <span>78%</span>
+              </div>
+              <div class="w-full bg-white/10 rounded-full h-2">
+                <div class="bg-gradient-to-r from-accent to-success h-2 rounded-full" style="width: 78%"></div>
+              </div>
+            </div>
+
+            <!-- Status indicators -->
+            <div class="grid grid-cols-3 gap-2">
+              <div class="bg-success/10 rounded-lg p-2 text-center">
+                <div class="text-success text-xs">Aprobate</div>
+                <div class="text-white font-bold">89</div>
+              </div>
+              <div class="bg-warning/10 rounded-lg p-2 text-center">
+                <div class="text-warning text-xs">In curs</div>
+                <div class="text-white font-bold">34</div>
+              </div>
+              <div class="bg-accent/10 rounded-lg p-2 text-center">
+                <div class="text-accent text-xs">Draft</div>
+                <div class="text-white font-bold">24</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

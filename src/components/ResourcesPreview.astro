@@ -1,0 +1,78 @@
+---
+import { getLocaleFromUrl, t, getLocalizedPath } from '../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const articles = [
+  {
+    title: locale === 'ro' ? 'Ghid complet PAAP 2026: Ce trebuie să știi' : 'Complete PAAP 2026 Guide: What You Need to Know',
+    category: locale === 'ro' ? 'Ghiduri' : 'Guides',
+    date: '15 Mar 2026',
+  },
+  {
+    title: locale === 'ro' ? 'Noutăți SEAP: Modificări importante în procedura simplificată' : 'SEAP News: Important Changes in Simplified Procedure',
+    category: locale === 'ro' ? 'Noutăți' : 'News',
+    date: '10 Mar 2026',
+  },
+  {
+    title: locale === 'ro' ? 'Cum eviți cele mai frecvente greșeli la depunerea DUAE' : 'How to Avoid the Most Common ESPD Submission Mistakes',
+    category: locale === 'ro' ? 'Bune practici' : 'Best Practices',
+    date: '5 Mar 2026',
+  },
+];
+---
+
+<section class="py-24 bg-surface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16" data-animate>
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy">
+        {t(locale, 'resources.title')}
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {articles.map((article, i) => (
+        <div data-animate data-animate-delay={String(i + 1)} class="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-all hover:-translate-y-0.5">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="px-2.5 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">
+              {article.category}
+            </span>
+            <span class="text-text-light text-xs">{article.date}</span>
+          </div>
+          <h3 class="font-heading font-bold text-navy text-sm leading-snug hover:text-accent transition-colors cursor-pointer">
+            {article.title}
+          </h3>
+        </div>
+      ))}
+
+      <!-- Download card -->
+      <div data-animate data-animate-delay="4" class="bg-gradient-to-br from-accent to-accent-dark rounded-2xl p-6 text-white flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-sm mb-2">
+            {locale === 'ro' ? 'Checklist pregătire ofertă' : 'Bid preparation checklist'}
+          </h3>
+          <p class="text-white/70 text-xs leading-relaxed">
+            {locale === 'ro' ? 'Lista completă de verificare pentru depunerea unei oferte fără erori.' : 'Complete verification checklist for error-free bid submission.'}
+          </p>
+        </div>
+        <a href="#" class="inline-flex items-center gap-2 text-white text-sm font-semibold mt-4 hover:gap-3 transition-all">
+          {t(locale, 'resources.downloadGuide')}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center mt-12" data-animate>
+      <a
+        href={getLocalizedPath(locale, '/resurse')}
+        class="inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all"
+      >
+        {t(locale, 'resources.viewAll')}
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

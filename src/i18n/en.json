@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "home": "Home",
+    "solutiiAutoritati": "Solutions for Authorities",
+    "solutiiCompanii": "Solutions for Companies",
+    "analizeaza": "Analyze Documentation",
+    "studiiDeCaz": "Case Studies",
+    "resurse": "Resources",
+    "despre": "About Us",
+    "contact": "Contact / Demo"
+  },
+  "hero": {
+    "title": "We transform public procurement into controllable and predictable processes.",
+    "subtitle": "Specialized consulting for authorities and companies. ePaap — dedicated platform for planning and PAAP for contracting authorities.",
+    "ctaPrimary": "Analyze my documentation",
+    "ctaSecondary": "See solutions"
+  },
+  "roleSelector": {
+    "title": "How can we help?",
+    "authority": {
+      "title": "I am a contracting authority",
+      "bullet1": "Error-free procurement planning and PAAP generation",
+      "bullet2": "Necessity reports with signature workflow",
+      "bullet3": "Compliant and complete award documentation",
+      "cta": "See solutions for authorities"
+    },
+    "company": {
+      "title": "I am a bidding company",
+      "bullet1": "Understanding requirements from complex documentation",
+      "bullet2": "Competitive technical and financial bid preparation",
+      "bullet3": "Support for clarifications and complaints",
+      "cta": "See solutions for companies"
+    }
+  },
+  "howWeWork": {
+    "title": "How we work",
+    "step1": { "title": "Understand", "desc": "We analyze the procedure, context and existing documents." },
+    "step2": { "title": "Identify", "desc": "Risks, blockers and optimization opportunities." },
+    "step3": { "title": "Optimize", "desc": "Documentation, steps and decisions — all aligned with legislation." },
+    "step4": { "title": "Monitor", "desc": "Results and adjust the approach in real time." }
+  },
+  "epaap": {
+    "title": "ePaap — platform for needs, PAAP and reports in a single workflow",
+    "feature1": "Needs collection correlated with budget items",
+    "feature2": "CPV code grouping and PAAP generation",
+    "feature3": "Necessity reports with signature workflow",
+    "feature4": "Supporting documents and procurement archive",
+    "feature5": "Dynamic PAAP update for new items",
+    "cta": "Learn more about ePaap"
+  },
+  "results": {
+    "title": "Results that matter",
+    "metric1": { "value": "500+", "label": "procedures analyzed annually" },
+    "metric2": { "value": "95%", "label": "reduction in upheld complaints" },
+    "metric3": { "value": "120+", "label": "authorities and companies supported" },
+    "metric4": { "value": "15+", "label": "years of procurement experience" },
+    "clients": "Local authorities · Hospitals · Central institutions · Private companies"
+  },
+  "caseStudies": {
+    "title": "Case Studies",
+    "viewAll": "View all case studies",
+    "filters": {
+      "all": "All",
+      "authority": "Authorities",
+      "company": "Companies"
+    }
+  },
+  "resources": {
+    "title": "Resources & News",
+    "downloadGuide": "Download free guide",
+    "viewAll": "View all resources"
+  },
+  "ctaFinal": {
+    "title": "Have a critical procedure or an important bid?",
+    "ctaPrimary": "Submit documentation for analysis",
+    "ctaSecondary": "Schedule a discussion"
+  },
+  "footer": {
+    "description": "Specialized public procurement consulting, powered by technology.",
+    "quickLinks": "Quick Links",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms and Conditions",
+    "cookies": "Cookie Policy",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  },
+  "authoritiesPage": {
+    "title": "Solutions for Contracting Authorities",
+    "subtitle": "From planning and PAAP to supporting documents and procedures, with ePaap + consulting.",
+    "epaapTitle": "ePaap — Digitizing PAAP and necessity reports",
+    "epaapBenefits": "Error reduction · Full traceability · Audit readiness · Time savings",
+    "epaapCta": "Request ePaap demo for your institution",
+    "consultingTitle": "Consulting for Authorities",
+    "service1": { "title": "PAAP Audit & Optimization", "desc": "We review and correct the annual program, identify inconsistencies and propose solutions." },
+    "service2": { "title": "Award Documentation Support", "desc": "We prepare complete documentation: data sheet, specifications, contract templates." },
+    "service3": { "title": "Evaluation Committee Assistance", "desc": "Qualification documents and bid analysis, without legal representation." },
+    "service4": { "title": "Completed Procedures Audit", "desc": "Concrete recommendations for future procedures based on lessons learned." },
+    "ctaTitle": "Tell us about your procurement year",
+    "ctaSubtitle": "We'll propose a combination of ePaap + consulting tailored to your needs.",
+    "ctaButton": "Contact us for a discussion"
+  },
+  "companiesPage": {
+    "title": "Solutions for Bidding Companies",
+    "subtitle": "Consulting and training for more effective participation in public procurement.",
+    "consultingTitle": "Consulting",
+    "service1": { "title": "Documentation Analysis", "desc": "Identifying critical and restrictive requirements from data sheets and specifications." },
+    "service2": { "title": "Participation Strategy", "desc": "Action plan adapted to each procedure to maximize chances." },
+    "service3": { "title": "ESPD & Bid Preparation", "desc": "Complete assistance for technical, financial bids and ESPD." },
+    "service4": { "title": "Clarifications & Complaints Support", "desc": "Document analysis and drafting of well-founded clarifications or complaints." },
+    "coursesTitle": "Courses & Training",
+    "course1": { "title": "Practical Introduction to Public Procurement", "format": "Online / Live", "duration": "8 hours", "level": "Beginner" },
+    "course2": { "title": "How to Read the Data Sheet and Specifications", "format": "Online / Live", "duration": "6 hours", "level": "Beginner" },
+    "course3": { "title": "How to Prepare ESPD and Bid", "format": "Online / Live", "duration": "8 hours", "level": "Intermediate" },
+    "course4": { "title": "Clarifications, Complaints and Lessons Learned", "format": "Online / Live", "duration": "6 hours", "level": "Intermediate" },
+    "courseCta": "Request course quote",
+    "ctaTitle": "Submit your procedure documentation",
+    "ctaSubtitle": "Or talk to us about a training plan for your team.",
+    "ctaButton": "Contact us"
+  },
+  "analyzePage": {
+    "title": "Quick Procurement Documentation Analysis",
+    "subtitle": "Upload the data sheet or specifications and receive a procedure summary and attention areas.",
+    "disclaimer": "This is an automated indicative analysis, not a legal opinion or professional advice.",
+    "step1Title": "Basic Information",
+    "iAm": "I am",
+    "authority": "Contracting authority",
+    "company": "Bidding company",
+    "institution": "Institution / Company name",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "step2Title": "Upload Documentation",
+    "uploadLabel": "Upload data sheet / award documentation (PDF)",
+    "uploadHint": "Maximum 10 MB · PDF format",
+    "extraField": "Additional clarifications or observations (optional)",
+    "privacyCheck": "I have read and accept the",
+    "privacyLink": "Privacy Policy",
+    "step3Title": "What interests you?",
+    "pref1": "Highlight critical qualification requirements",
+    "pref2": "Flag potential complaint risks",
+    "pref3": "Summarize evaluation criteria",
+    "analyzeButton": "Analyze documentation",
+    "analyzing": "Analyzing documentation...",
+    "resultTitle": "Procedure Summary",
+    "attentionTitle": "Attention Areas",
+    "riskLevel": "Risk Level",
+    "riskLow": "Low",
+    "riskMedium": "Medium",
+    "riskHigh": "High",
+    "ctaDetailed": "I want a detailed analysis and concrete recommendations",
+    "ctaDiscussion": "Schedule a discussion about this procedure",
+    "epaapHint": "For recurring procedures, we can integrate planning and PAAP into ePaap — request a demo.",
+    "next": "Continue",
+    "back": "Back"
+  },
+  "aboutPage": {
+    "title": "About Us",
+    "missionTitle": "Mission & Approach",
+    "missionText": "We help contracting authorities and companies navigate public procurement with confidence, through specialized consulting and modern digital tools.",
+    "teamTitle": "The Team"
+  },
+  "contactPage": {
+    "title": "Contact",
+    "generalTab": "General Contact",
+    "demoTab": "Request ePaap Demo",
+    "nameField": "Full name",
+    "emailField": "Email",
+    "phoneField": "Phone",
+    "companyField": "Institution / Company",
+    "messageField": "Message",
+    "sendButton": "Send message",
+    "demoType": "Authority type",
+    "demoProcs": "Nr. of procedures / year (estimate)",
+    "demoChallenges": "Main challenges",
+    "demoButton": "Request demo",
+    "successMessage": "Message sent successfully! We will contact you as soon as possible."
+  }
+}

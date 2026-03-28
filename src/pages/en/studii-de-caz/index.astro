@@ -1,0 +1,103 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CTASection from '../../../components/CTASection.astro';
+import { getLocaleFromUrl, t } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const caseStudies = locale === 'ro' ? [
+  { title: 'Procedură lucrări reabilitare clădire publică', client: 'Autoritate — UAT municipiu', type: 'Lucrări', context: 'Reabilitare completă a unei clădiri administrative, buget 3.2M RON, procedură licitație deschisă.', approach: 'Elaborare caiet de sarcini tehnic, stabilire criterii mixte calitate-preț, asistență în etapa de evaluare.', result: 'Contestații respinse, 5 ofertanți calificați', tag: 'authority' },
+  { title: 'Achiziție echipamente medicale — spital regional', client: 'Autoritate — Spital regional', type: 'Furnizare', context: 'Procedură cu loturi pentru echipamente de diagnostic și laborator, valoare 2.1M RON.', approach: 'Specificații tehnice neutre, criterii cost-calitate per lot, pregătire model contract cadru.', result: 'Economie de 12% față de estimare, fără contestații', tag: 'authority' },
+  { title: 'Pregătire ofertă servicii IT — dialog competitiv', client: 'Companie — Integrator IT', type: 'Servicii', context: 'Participare la dialog competitiv pentru un proiect de digitalizare a unei instituții publice.', approach: 'Analiză cerințe, pregătire propunere tehnică și financiară, suport la rundele de dialog.', result: 'Ofertă câștigătoare, punctaj maxim tehnic', tag: 'company' },
+  { title: 'Contestație respinsă — furnizare echipamente', client: 'Companie — Distribuitor', type: 'Furnizare', context: 'Compania a fost exclusă de la procedură pe baza unor cerințe de calificare interpretate diferit.', approach: 'Analiză detaliată a documentației, pregătire contestație cu argumente juridice solide.', result: 'Contestația admisă de CNSC, reluare evaluare', tag: 'company' },
+  { title: 'Audit PAAP — primărie municipiu', client: 'Autoritate — UAT', type: 'Servicii', context: 'Identificarea neconcordanțelor din PAAP-ul existent și alinierea la bugetul aprobat.', approach: 'Audit complet PAAP, reconciliere cu referatele de necesitate, propunere PAAP actualizat.', result: 'PAAP corectat și aprobat în 2 săptămâni', tag: 'authority' },
+] : [
+  { title: 'Public building rehabilitation works procedure', client: 'Authority — Municipal UAT', type: 'Works', context: 'Complete rehabilitation of an administrative building, budget 3.2M RON, open tender procedure.', approach: 'Technical specifications drafting, mixed quality-price criteria, evaluation stage assistance.', result: 'Complaints rejected, 5 qualified bidders', tag: 'authority' },
+  { title: 'Medical equipment procurement — regional hospital', client: 'Authority — Regional hospital', type: 'Supply', context: 'Lots procedure for diagnostic and laboratory equipment, value 2.1M RON.', approach: 'Neutral technical specifications, quality-cost criteria per lot, framework contract template.', result: '12% savings vs estimate, no complaints', tag: 'authority' },
+  { title: 'IT services bid preparation — competitive dialogue', client: 'Company — IT Integrator', type: 'Services', context: 'Participation in competitive dialogue for a public institution digitization project.', approach: 'Requirements analysis, technical and financial proposal, dialogue round support.', result: 'Winning bid, maximum technical score', tag: 'company' },
+  { title: 'Rejected complaint — equipment supply', client: 'Company — Distributor', type: 'Supply', context: 'The company was excluded from the procedure based on differently interpreted qualification requirements.', approach: 'Detailed documentation analysis, complaint with solid legal arguments.', result: 'Complaint upheld by CNSC, evaluation resumed', tag: 'company' },
+  { title: 'PAAP Audit — municipal town hall', client: 'Authority — UAT', type: 'Services', context: 'Identifying inconsistencies in the existing PAAP and aligning it with the approved budget.', approach: 'Complete PAAP audit, reconciliation with necessity reports, updated PAAP proposal.', result: 'PAAP corrected and approved in 2 weeks', tag: 'authority' },
+];
+---
+
+<Layout title={t(locale, 'caseStudies.title')}>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-heading font-bold mb-4">{t(locale, 'caseStudies.title')}</h1>
+      <p class="text-xl text-gray-300">
+        {locale === 'ro' ? 'Exemple concrete din experiența noastră cu autorități și companii.' : 'Concrete examples from our experience with authorities and companies.'}
+      </p>
+    </div>
+  </section>
+
+  <!-- Filters + List -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Filter tabs -->
+      <div class="flex gap-2 mb-12 flex-wrap">
+        <button class="filter-btn active px-4 py-2 text-sm font-medium rounded-full bg-navy text-white" data-filter="all">
+          {t(locale, 'caseStudies.filters.all')}
+        </button>
+        <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full bg-gray-100 text-text-light hover:bg-gray-200 transition-colors" data-filter="authority">
+          {t(locale, 'caseStudies.filters.authority')}
+        </button>
+        <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full bg-gray-100 text-text-light hover:bg-gray-200 transition-colors" data-filter="company">
+          {t(locale, 'caseStudies.filters.company')}
+        </button>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid md:grid-cols-2 gap-6">
+        {caseStudies.map((cs, i) => (
+          <div data-animate data-animate-delay={String((i % 4) + 1)} data-tag={cs.tag} class="case-study-card bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">{cs.type}</span>
+              <span class="text-text-light text-xs">{cs.client}</span>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-navy mb-4">{cs.title}</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <span class="font-medium text-navy">{locale === 'ro' ? 'Context' : 'Context'}:</span>
+                <span class="text-text-light"> {cs.context}</span>
+              </div>
+              <div>
+                <span class="font-medium text-navy">{locale === 'ro' ? 'Abordare' : 'Approach'}:</span>
+                <span class="text-text-light"> {cs.approach}</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-gray-100">
+              <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-sm font-medium text-success">{cs.result}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach((b) => {
+        b.classList.remove('active', 'bg-navy', 'text-white');
+        b.classList.add('bg-gray-100', 'text-text-light');
+      });
+      btn.classList.add('active', 'bg-navy', 'text-white');
+      btn.classList.remove('bg-gray-100', 'text-text-light');
+
+      const filter = (btn as HTMLElement).dataset.filter;
+      document.querySelectorAll('.case-study-card').forEach((card) => {
+        const tag = (card as HTMLElement).dataset.tag;
+        if (filter === 'all' || tag === filter) {
+          (card as HTMLElement).style.display = '';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

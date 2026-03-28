@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLocaleFromUrl } from '../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const isRo = locale === 'ro';
+---
+
+<Layout title={isRo ? 'Termeni și condiții' : 'Terms and Conditions'}>
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-heading font-bold">{isRo ? 'Termeni și condiții' : 'Terms and Conditions'}</h1>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none">
+      <p class="text-text-light">{isRo ? 'Ultima actualizare: Martie 2026' : 'Last updated: March 2026'}</p>
+
+      <h2>{isRo ? '1. Acceptarea termenilor' : '1. Acceptance of Terms'}</h2>
+      <p>{isRo
+        ? 'Prin accesarea site-ului bid-management.ro, acceptați acești termeni și condiții.'
+        : 'By accessing bid-management.ro, you accept these terms and conditions.'}</p>
+
+      <h2>{isRo ? '2. Servicii' : '2. Services'}</h2>
+      <p>{isRo
+        ? 'Oferim servicii de consultanță în achiziții publice și instrumente digitale (ePaap). Serviciile detaliate sunt descrise pe paginile dedicate.'
+        : 'We offer public procurement consulting services and digital tools (ePaap). Detailed services are described on dedicated pages.'}</p>
+
+      <h2>{isRo ? '3. Analiza automată a documentelor' : '3. Automatic Document Analysis'}</h2>
+      <p>{isRo
+        ? 'Funcționalitatea de analiză automată oferă un screening orientativ. Nu constituie opinie juridică sau consultanță profesională. Pentru recomandări concrete, este necesară o consultare cu echipa noastră.'
+        : 'The automatic analysis feature provides an indicative screening. It does not constitute legal opinion or professional advice. For concrete recommendations, consultation with our team is necessary.'}</p>
+
+      <h2>{isRo ? '4. Proprietate intelectuală' : '4. Intellectual Property'}</h2>
+      <p>{isRo
+        ? 'Conținutul site-ului, inclusiv texte, design și funcționalități, este proprietatea Equalys Services SRL.'
+        : 'The website content, including text, design and functionalities, is the property of Equalys Services SRL.'}</p>
+
+      <h2>{isRo ? '5. Limitarea răspunderii' : '5. Limitation of Liability'}</h2>
+      <p>{isRo
+        ? 'Nu suntem responsabili pentru decizii luate exclusiv pe baza analizei automate. Recomandăm consultarea unui specialist pentru decizii importante.'
+        : 'We are not responsible for decisions made solely based on automated analysis. We recommend consulting a specialist for important decisions.'}</p>
+
+      <h2>{isRo ? '6. Contact' : '6. Contact'}</h2>
+      <p>contact@bid-management.ro</p>
+    </div>
+  </section>
+</Layout>

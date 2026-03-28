@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLocaleFromUrl } from '../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const isRo = locale === 'ro';
+---
+
+<Layout title={isRo ? 'Politica cookies' : 'Cookie Policy'}>
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-heading font-bold">{isRo ? 'Politica cookies' : 'Cookie Policy'}</h1>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none">
+      <p class="text-text-light">{isRo ? 'Ultima actualizare: Martie 2026' : 'Last updated: March 2026'}</p>
+
+      <h2>{isRo ? '1. Ce sunt cookie-urile?' : '1. What are cookies?'}</h2>
+      <p>{isRo
+        ? 'Cookie-urile sunt fișiere text mici stocate pe dispozitivul dumneavoastră atunci când vizitați un site web.'
+        : 'Cookies are small text files stored on your device when you visit a website.'}</p>
+
+      <h2>{isRo ? '2. Cookie-uri utilizate' : '2. Cookies Used'}</h2>
+      <p>{isRo
+        ? 'Utilizăm cookie-uri esențiale pentru funcționarea site-ului și cookie-uri analitice pentru îmbunătățirea experienței (cu consimțământul dumneavoastră).'
+        : 'We use essential cookies for site functionality and analytics cookies for experience improvement (with your consent).'}</p>
+
+      <h2>{isRo ? '3. Gestionarea cookie-urilor' : '3. Managing Cookies'}</h2>
+      <p>{isRo
+        ? 'Puteți gestiona preferințele cookie prin bannerul de consimțământ sau prin setările browserului dumneavoastră.'
+        : 'You can manage cookie preferences through the consent banner or through your browser settings.'}</p>
+    </div>
+  </section>
+</Layout>

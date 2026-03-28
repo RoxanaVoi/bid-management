@@ -1,0 +1,93 @@
+---
+import { getLocaleFromUrl, t, getLocalizedPath } from '../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<section id="role-selector" class="py-24 bg-surface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16" data-animate>
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-4">
+        {t(locale, 'roleSelector.title')}
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <!-- Authority card -->
+      <div data-animate data-animate-delay="1" class="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-accent/20 transition-all duration-300 hover:-translate-y-1">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent to-accent-light rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+        <div class="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-heading font-bold text-navy mb-4">
+          {t(locale, 'roleSelector.authority.title')}
+        </h3>
+
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-3 text-text">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+            {t(locale, 'roleSelector.authority.bullet1')}
+          </li>
+          <li class="flex items-start gap-3 text-text">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+            {t(locale, 'roleSelector.authority.bullet2')}
+          </li>
+          <li class="flex items-start gap-3 text-text">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+            {t(locale, 'roleSelector.authority.bullet3')}
+          </li>
+        </ul>
+
+        <a
+          href={getLocalizedPath(locale, '/solutii/autoritati')}
+          class="inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all"
+        >
+          {t(locale, 'roleSelector.authority.cta')}
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Company card -->
+      <div data-animate data-animate-delay="2" class="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-accent/20 transition-all duration-300 hover:-translate-y-1">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent to-accent-light rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+        <div class="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-heading font-bold text-navy mb-4">
+          {t(locale, 'roleSelector.company.title')}
+        </h3>
+
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-3 text-text">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+            {t(locale, 'roleSelector.company.bullet1')}
+          </li>
+          <li class="flex items-start gap-3 text-text">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+            {t(locale, 'roleSelector.company.bullet2')}
+          </li>
+          <li class="flex items-start gap-3 text-text">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+            {t(locale, 'roleSelector.company.bullet3')}
+          </li>
+        </ul>
+
+        <a
+          href={getLocalizedPath(locale, '/solutii/companii')}
+          class="inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all"
+        >
+          {t(locale, 'roleSelector.company.cta')}
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

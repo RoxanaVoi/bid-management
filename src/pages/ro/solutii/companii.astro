@@ -1,0 +1,101 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ServiceCard from '../../../components/ServiceCard.astro';
+import CourseCard from '../../../components/CourseCard.astro';
+import { getLocaleFromUrl, t, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const services = [
+  { key: 'service1', icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' },
+  { key: 'service2', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z' },
+  { key: 'service3', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+  { key: 'service4', icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z' },
+];
+
+const courses = ['course1', 'course2', 'course3', 'course4'];
+---
+
+<Layout title={t(locale, 'companiesPage.title')}>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-full mb-6">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span class="text-accent text-sm font-medium">{locale === 'ro' ? 'Pentru companii ofertante' : 'For bidding companies'}</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-heading font-bold mb-6">{t(locale, 'companiesPage.title')}</h1>
+        <p class="text-xl text-gray-300 leading-relaxed">{t(locale, 'companiesPage.subtitle')}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consulting -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 data-animate class="text-3xl font-heading font-bold text-navy mb-12 text-center">
+        {t(locale, 'companiesPage.consultingTitle')}
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {services.map((svc, i) => (
+          <ServiceCard
+            title={t(locale, `companiesPage.${svc.key}.title`)}
+            description={t(locale, `companiesPage.${svc.key}.desc`)}
+            icon={svc.icon}
+            delay={String(i + 1)}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses & Training -->
+  <section class="py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 data-animate class="text-3xl font-heading font-bold text-navy mb-4 text-center">
+        {t(locale, 'companiesPage.coursesTitle')}
+      </h2>
+      <p data-animate class="text-text-light text-center mb-12 max-w-2xl mx-auto">
+        {locale === 'ro'
+          ? 'Programe de formare adaptate nevoilor echipei tale, disponibile online sau la sediul companiei.'
+          : 'Training programs tailored to your team\'s needs, available online or on-site.'}
+      </p>
+      <div class="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {courses.map((key, i) => (
+          <CourseCard
+            title={t(locale, `companiesPage.${key}.title`)}
+            format={t(locale, `companiesPage.${key}.format`)}
+            duration={t(locale, `companiesPage.${key}.duration`)}
+            level={t(locale, `companiesPage.${key}.level`)}
+            cta={t(locale, 'companiesPage.courseCta')}
+            delay={String(i + 1)}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 data-animate class="text-3xl font-heading font-bold mb-4">{t(locale, 'companiesPage.ctaTitle')}</h2>
+      <p data-animate data-animate-delay="1" class="text-gray-300 text-lg mb-8">{t(locale, 'companiesPage.ctaSubtitle')}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center" data-animate data-animate-delay="2">
+        <a
+          href={getLocalizedPath(locale, '/analizeaza-documentatia')}
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          {t(locale, 'ctaFinal.ctaPrimary')}
+        </a>
+        <a
+          href={getLocalizedPath(locale, '/contact')}
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all"
+        >
+          {t(locale, 'companiesPage.ctaButton')}
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

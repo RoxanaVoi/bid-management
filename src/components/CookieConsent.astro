@@ -1,0 +1,51 @@
+---
+import { getLocaleFromUrl } from '../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const isRo = locale === 'ro';
+---
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+    <div class="bg-navy text-white rounded-2xl p-6 shadow-2xl border border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <div class="flex-1">
+        <p class="text-sm leading-relaxed">
+          {isRo
+            ? 'Folosim cookie-uri esențiale pentru funcționarea site-ului. Cookie-urile analitice sunt activate doar cu acordul tău.'
+            : 'We use essential cookies for site functionality. Analytics cookies are only enabled with your consent.'}
+          <a href={`/${locale}/cookies`} class="text-accent underline ml-1">
+            {isRo ? 'Detalii' : 'Details'}
+          </a>
+        </p>
+      </div>
+      <div class="flex gap-3 shrink-0">
+        <button id="cookie-reject" class="px-4 py-2 text-sm font-medium border border-white/20 rounded-lg hover:bg-white/10 transition-colors">
+          {isRo ? 'Doar esențiale' : 'Essential only'}
+        </button>
+        <button id="cookie-accept" class="px-4 py-2 text-sm font-medium bg-accent hover:bg-accent-dark rounded-lg transition-colors">
+          {isRo ? 'Accept toate' : 'Accept all'}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner')!;
+  const acceptBtn = document.getElementById('cookie-accept')!;
+  const rejectBtn = document.getElementById('cookie-reject')!;
+
+  if (!localStorage.getItem('cookie-consent')) {
+    banner.classList.remove('hidden');
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'all');
+    banner.classList.add('hidden');
+  });
+
+  rejectBtn.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'essential');
+    banner.classList.add('hidden');
+  });
+</script>

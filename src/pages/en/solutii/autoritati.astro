@@ -1,0 +1,130 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ServiceCard from '../../../components/ServiceCard.astro';
+import { getLocaleFromUrl, t, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const epaapFeatures = [
+  { key: 'feature1', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
+  { key: 'feature2', icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10' },
+  { key: 'feature3', icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z' },
+  { key: 'feature4', icon: 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4' },
+  { key: 'feature5', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' },
+];
+
+const services = [
+  { key: 'service1', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4' },
+  { key: 'service2', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+  { key: 'service3', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
+  { key: 'service4', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z' },
+];
+---
+
+<Layout title={t(locale, 'authoritiesPage.title')}>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-full mb-6">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span class="text-accent text-sm font-medium">{locale === 'ro' ? 'Pentru autorități contractante' : 'For contracting authorities'}</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-heading font-bold mb-6">{t(locale, 'authoritiesPage.title')}</h1>
+        <p class="text-xl text-gray-300 leading-relaxed">{t(locale, 'authoritiesPage.subtitle')}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ePaap Main Block -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div data-animate>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 rounded-full mb-6">
+            <span class="text-accent text-sm font-medium">ePaap Platform</span>
+          </div>
+          <h2 class="text-3xl font-heading font-bold text-navy mb-6">{t(locale, 'authoritiesPage.epaapTitle')}</h2>
+
+          <ul class="space-y-4 mb-6">
+            {epaapFeatures.map((feat) => (
+              <li class="flex items-start gap-3">
+                <div class="w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+                  <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feat.icon} />
+                  </svg>
+                </div>
+                <span class="text-text leading-relaxed">{t(locale, `epaap.${feat.key}`)}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="text-sm text-text-light mb-8 font-medium">{t(locale, 'authoritiesPage.epaapBenefits')}</p>
+
+          <a
+            href={getLocalizedPath(locale, '/contact')}
+            class="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25"
+          >
+            {t(locale, 'authoritiesPage.epaapCta')}
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <!-- Flow diagram mockup -->
+        <div data-animate data-animate-delay="2" class="bg-surface rounded-2xl p-8 border border-gray-100">
+          <div class="text-center mb-6">
+            <span class="text-xs text-text-light uppercase tracking-wider font-medium">{locale === 'ro' ? 'Flux de lucru ePaap' : 'ePaap Workflow'}</span>
+          </div>
+          <div class="space-y-4">
+            {['Nevoi / Articole bugetare', 'Grupare CPV → PAAP', 'Referate de necesitate', 'Flux semnături', 'Documente justificative'].map((step, i) => (
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center text-accent font-bold text-sm shrink-0">{i + 1}</div>
+                <div class="flex-1 bg-white rounded-lg p-3 border border-gray-100">
+                  <span class="text-sm font-medium text-navy">{locale === 'ro' ? step : ['Needs / Budget items', 'CPV Grouping → PAAP', 'Necessity reports', 'Signature workflow', 'Supporting documents'][i]}</span>
+                </div>
+                {i < 4 && (
+                  <svg class="w-4 h-4 text-accent/30 absolute -bottom-3 left-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consulting Services -->
+  <section class="py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 data-animate class="text-3xl font-heading font-bold text-navy mb-12 text-center">
+        {t(locale, 'authoritiesPage.consultingTitle')}
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {services.map((svc, i) => (
+          <ServiceCard
+            title={t(locale, `authoritiesPage.${svc.key}.title`)}
+            description={t(locale, `authoritiesPage.${svc.key}.desc`)}
+            icon={svc.icon}
+            delay={String(i + 1)}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 data-animate class="text-3xl font-heading font-bold mb-4">{t(locale, 'authoritiesPage.ctaTitle')}</h2>
+      <p data-animate data-animate-delay="1" class="text-gray-300 text-lg mb-8">{t(locale, 'authoritiesPage.ctaSubtitle')}</p>
+      <a
+        href={getLocalizedPath(locale, '/contact')}
+        class="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25"
+        data-animate data-animate-delay="2"
+      >
+        {t(locale, 'authoritiesPage.ctaButton')}
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>

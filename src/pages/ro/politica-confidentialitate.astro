@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLocaleFromUrl, t } from '../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const isRo = locale === 'ro';
+---
+
+<Layout title={isRo ? 'Politica de confidențialitate' : 'Privacy Policy'}>
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-heading font-bold">{isRo ? 'Politica de confidențialitate' : 'Privacy Policy'}</h1>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none">
+      <p class="text-text-light">{isRo ? 'Ultima actualizare: Martie 2026' : 'Last updated: March 2026'}</p>
+
+      <h2>{isRo ? '1. Informații generale' : '1. General Information'}</h2>
+      <p>{isRo
+        ? 'Equalys Services SRL ("noi", "nostru") operează site-ul bid-management.ro. Această politică descrie cum colectăm, utilizăm și protejăm datele dumneavoastră personale.'
+        : 'Equalys Services SRL ("we", "our") operates the bid-management.ro website. This policy describes how we collect, use and protect your personal data.'}</p>
+
+      <h2>{isRo ? '2. Date colectate' : '2. Data Collected'}</h2>
+      <p>{isRo
+        ? 'Colectăm următoarele categorii de date: informații de contact (nume, email, telefon), date transmise prin formulare (inclusiv documente încărcate pentru analiză), date tehnice (adresă IP, tip browser).'
+        : 'We collect the following categories of data: contact information (name, email, phone), data submitted through forms (including uploaded documents for analysis), technical data (IP address, browser type).'}</p>
+
+      <h2>{isRo ? '3. Scopul prelucrării' : '3. Purpose of Processing'}</h2>
+      <p>{isRo
+        ? 'Datele sunt utilizate pentru: furnizarea serviciilor solicitate, comunicare, analiză documentație prin AI, îmbunătățirea serviciilor.'
+        : 'Data is used for: providing requested services, communication, AI document analysis, service improvement.'}</p>
+
+      <h2>{isRo ? '4. Documente încărcate' : '4. Uploaded Documents'}</h2>
+      <p>{isRo
+        ? 'Documentele încărcate pentru analiză sunt procesate automat și nu sunt stocate permanent. Sunt șterse automat după procesare.'
+        : 'Documents uploaded for analysis are automatically processed and not permanently stored. They are automatically deleted after processing.'}</p>
+
+      <h2>{isRo ? '5. Drepturile dumneavoastră' : '5. Your Rights'}</h2>
+      <p>{isRo
+        ? 'Conform GDPR, aveți dreptul la: acces, rectificare, ștergere, restricționare, portabilitate și opoziție. Contactați-ne la contact@bid-management.ro.'
+        : 'Under GDPR, you have the right to: access, rectification, erasure, restriction, portability and objection. Contact us at contact@bid-management.ro.'}</p>
+
+      <h2>{isRo ? '6. Contact' : '6. Contact'}</h2>
+      <p>{isRo
+        ? 'Pentru orice întrebări legate de protecția datelor: contact@bid-management.ro'
+        : 'For any data protection questions: contact@bid-management.ro'}</p>
+    </div>
+  </section>
+</Layout>

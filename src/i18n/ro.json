@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "home": "Home",
+    "solutiiAutoritati": "Soluții pentru autorități",
+    "solutiiCompanii": "Soluții pentru companii",
+    "analizeaza": "Analizează documentația",
+    "studiiDeCaz": "Studii de caz",
+    "resurse": "Resurse",
+    "despre": "Despre noi",
+    "contact": "Contact / Demo"
+  },
+  "hero": {
+    "title": "Transformăm achizițiile publice în procese controlabile și previzibile.",
+    "subtitle": "Consultanță specializată pentru autorități și companii. ePaap — platformă dedicată planificării și PAAP pentru autorități contractante.",
+    "ctaPrimary": "Analizează documentația mea",
+    "ctaSecondary": "Vezi soluțiile"
+  },
+  "roleSelector": {
+    "title": "Cum te putem ajuta?",
+    "authority": {
+      "title": "Sunt autoritate contractantă",
+      "bullet1": "Planificare achiziții și generare PAAP fără erori",
+      "bullet2": "Referate de necesitate pe flux de semnături",
+      "bullet3": "Documentații de atribuire conforme și complete",
+      "cta": "Vezi soluțiile pentru autorități"
+    },
+    "company": {
+      "title": "Sunt companie ofertantă",
+      "bullet1": "Înțelegerea cerințelor din documentații complexe",
+      "bullet2": "Pregătire oferte tehnice și financiare competitive",
+      "bullet3": "Suport pentru clarificări și contestații",
+      "cta": "Vezi soluțiile pentru companii"
+    }
+  },
+  "howWeWork": {
+    "title": "Cum lucrăm",
+    "step1": { "title": "Înțelegem", "desc": "Analizăm procedura, contextul și documentele existente." },
+    "step2": { "title": "Identificăm", "desc": "Riscuri, blocaje și oportunități de optimizare." },
+    "step3": { "title": "Optimizăm", "desc": "Documentații, pași și decizii — totul aliniat la legislație." },
+    "step4": { "title": "Monitorizăm", "desc": "Rezultatele și ajustăm abordarea în timp real." }
+  },
+  "epaap": {
+    "title": "ePaap — platformă pentru nevoi, PAAP și referate într-un singur flux",
+    "feature1": "Culegere nevoi corelate cu articole bugetare",
+    "feature2": "Grupare pe coduri CPV și generare PAAP",
+    "feature3": "Referate de necesitate pe flux de semnături",
+    "feature4": "Documente justificative și arhivă achiziții",
+    "feature5": "Actualizare dinamică PAAP pentru articole noi",
+    "cta": "Află mai multe despre ePaap"
+  },
+  "results": {
+    "title": "Rezultate care contează",
+    "metric1": { "value": "500+", "label": "proceduri analizate anual" },
+    "metric2": { "value": "95%", "label": "reducere contestații admise" },
+    "metric3": { "value": "120+", "label": "autorități și companii sprijinite" },
+    "metric4": { "value": "15+", "label": "ani experiență în achiziții" },
+    "clients": "UAT-uri · Spitale · Instituții centrale · Companii private"
+  },
+  "caseStudies": {
+    "title": "Studii de caz",
+    "viewAll": "Vezi toate studiile de caz",
+    "filters": {
+      "all": "Toate",
+      "authority": "Autorități",
+      "company": "Companii"
+    }
+  },
+  "resources": {
+    "title": "Resurse & noutăți",
+    "downloadGuide": "Descarcă ghidul gratuit",
+    "viewAll": "Vezi toate resursele"
+  },
+  "ctaFinal": {
+    "title": "Ai o procedură critică sau o ofertă importantă?",
+    "ctaPrimary": "Trimite documentația pentru analiză",
+    "ctaSecondary": "Programează o discuție"
+  },
+  "footer": {
+    "description": "Consultanță specializată în achiziții publice, powered by technology.",
+    "quickLinks": "Linkuri rapide",
+    "legal": "Legal",
+    "privacy": "Politica de confidențialitate",
+    "terms": "Termeni și condiții",
+    "cookies": "Politica cookies",
+    "contact": "Contact",
+    "rights": "Toate drepturile rezervate."
+  },
+  "authoritiesPage": {
+    "title": "Soluții pentru autorități contractante",
+    "subtitle": "De la planificare și PAAP până la documente justificative și proceduri, cu ePaap + consultanță.",
+    "epaapTitle": "ePaap — digitalizarea PAAP și a referatelor",
+    "epaapBenefits": "Reducere erori · Trasabilitate completă · Pregătire pentru controale · Economie de timp",
+    "epaapCta": "Solicită demo ePaap pentru instituția ta",
+    "consultingTitle": "Consultanță pentru autorități",
+    "service1": { "title": "Audit și optimizare PAAP", "desc": "Verificăm și corectăm programul anual, identificăm neconcordanțe și propunem soluții." },
+    "service2": { "title": "Suport documentații de atribuire", "desc": "Pregătim documentația completă: fișa de date, caiet de sarcini, modele de contracte." },
+    "service3": { "title": "Asistarea comisiilor de evaluare", "desc": "Analiză documente de calificare și oferte, fără reprezentare juridică." },
+    "service4": { "title": "Audit proceduri finalizate", "desc": "Recomandări concrete pentru viitoarele proceduri pe baza lecțiilor învățate." },
+    "ctaTitle": "Spune-ne cum arată anul tău de achiziții",
+    "ctaSubtitle": "Îți propunem o combinație de ePaap + consultanță adaptată nevoilor tale.",
+    "ctaButton": "Contactează-ne pentru o discuție"
+  },
+  "companiesPage": {
+    "title": "Soluții pentru companii ofertante",
+    "subtitle": "Consultanță și cursuri pentru participare mai eficientă la achiziții publice.",
+    "consultingTitle": "Consultanță",
+    "service1": { "title": "Analiză documentații", "desc": "Identificare cerințe critice și restrictive din fișe și caiete de sarcini." },
+    "service2": { "title": "Strategie de participare", "desc": "Plan de acțiune adaptat fiecărei proceduri pentru maximizarea șanselor." },
+    "service3": { "title": "Pregătire DUAE și ofertă", "desc": "Asistență completă pentru oferta tehnică, financiară și DUAE." },
+    "service4": { "title": "Suport clarificări și contestații", "desc": "Analiză documente și formulare clarificări sau contestații fundamentate." },
+    "coursesTitle": "Cursuri & training",
+    "course1": { "title": "Introducere practică în achiziții publice", "format": "Online / Live", "duration": "8 ore", "level": "Începător" },
+    "course2": { "title": "Cum citești fișa de date și caietul de sarcini", "format": "Online / Live", "duration": "6 ore", "level": "Începător" },
+    "course3": { "title": "Cum pregătești DUAE și oferta", "format": "Online / Live", "duration": "8 ore", "level": "Intermediar" },
+    "course4": { "title": "Clarificări, contestații și lecții învățate", "format": "Online / Live", "duration": "6 ore", "level": "Intermediar" },
+    "courseCta": "Solicită ofertă pentru curs",
+    "ctaTitle": "Trimite documentația unei proceduri",
+    "ctaSubtitle": "Sau vorbește cu noi despre un plan de cursuri pentru echipa ta.",
+    "ctaButton": "Contactează-ne"
+  },
+  "analyzePage": {
+    "title": "Analiză rapidă a documentației de achiziție",
+    "subtitle": "Încarci fișa de date sau caietul de sarcini și primești un rezumat al procedurii și câteva zone de atenție.",
+    "disclaimer": "Aceasta este o analiză orientativă automată, nu constituie opinie juridică sau consultanță profesională.",
+    "step1Title": "Date de bază",
+    "iAm": "Sunt",
+    "authority": "Autoritate contractantă",
+    "company": "Companie ofertantă",
+    "institution": "Nume instituție / firmă",
+    "name": "Nume și prenume",
+    "email": "Email",
+    "phone": "Telefon (opțional)",
+    "step2Title": "Încarcă documentația",
+    "uploadLabel": "Încarcă fișa de date / documentația de atribuire (PDF)",
+    "uploadHint": "Maxim 10 MB · Format PDF",
+    "extraField": "Clarificări sau observații suplimentare (opțional)",
+    "privacyCheck": "Am citit și accept",
+    "privacyLink": "Politica de confidențialitate",
+    "step3Title": "Ce te interesează?",
+    "pref1": "Evidențiază cerințele de calificare critice",
+    "pref2": "Semnalizează potențiale riscuri de contestații",
+    "pref3": "Fă un sumar al criteriilor de evaluare",
+    "analyzeButton": "Analizează documentația",
+    "analyzing": "Analizăm documentația...",
+    "resultTitle": "Rezumat procedură",
+    "attentionTitle": "Zone de atenție",
+    "riskLevel": "Nivel de risc",
+    "riskLow": "Scăzut",
+    "riskMedium": "Mediu",
+    "riskHigh": "Ridicat",
+    "ctaDetailed": "Vreau o analiză detaliată și recomandări concrete",
+    "ctaDiscussion": "Programează o discuție pe baza acestei proceduri",
+    "epaapHint": "Pentru procedurile recurente, putem integra planificarea și PAAP în ePaap — solicită un demo.",
+    "next": "Continuă",
+    "back": "Înapoi"
+  },
+  "aboutPage": {
+    "title": "Despre noi",
+    "missionTitle": "Misiune & abordare",
+    "missionText": "Ajutăm autoritățile contractante și companiile să navigheze achizițiile publice cu încredere, prin consultanță specializată și instrumente digitale moderne.",
+    "teamTitle": "Echipa"
+  },
+  "contactPage": {
+    "title": "Contact",
+    "generalTab": "Contact general",
+    "demoTab": "Solicită demo ePaap",
+    "nameField": "Nume și prenume",
+    "emailField": "Email",
+    "phoneField": "Telefon",
+    "companyField": "Instituție / Firmă",
+    "messageField": "Mesaj",
+    "sendButton": "Trimite mesajul",
+    "demoType": "Tip autoritate",
+    "demoProcs": "Nr. proceduri / an (estimativ)",
+    "demoChallenges": "Principalele provocări",
+    "demoButton": "Solicită demo",
+    "successMessage": "Mesajul a fost trimis cu succes! Vă vom contacta în cel mai scurt timp."
+  }
+}

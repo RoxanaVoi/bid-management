@@ -1,0 +1,90 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import { getLocaleFromUrl, getLocalizedPath, getAlternateLocale } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description = 'Consultanță specializată în achiziții publice pentru autorități și companii. ePaap — platformă digitală pentru PAAP și referate.', ogImage } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const altLocale = getAlternateLocale(locale);
+const currentPath = Astro.url.pathname.replace(`/${locale}`, '') || '/';
+const altPath = getLocalizedPath(altLocale, currentPath);
+const fullTitle = `${title} | Bid Management`;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:locale" content={locale === 'ro' ? 'ro_RO' : 'en_US'} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Alternate languages -->
+    <link rel="alternate" hreflang="ro" href={`https://bid-management.ro${getLocalizedPath('ro', currentPath)}`} />
+    <link rel="alternate" hreflang="en" href={`https://bid-management.ro${getLocalizedPath('en', currentPath)}`} />
+    <link rel="canonical" href={Astro.url.href} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Bid Management - Equalys Services",
+      "description": description,
+      "url": "https://bid-management.ro",
+      "serviceType": "Public Procurement Consulting",
+      "areaServed": "Romania",
+      "availableLanguage": ["Romanian", "English"]
+    })} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <CookieConsent />
+
+    <!-- Scroll animations -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      document.querySelectorAll('[data-animate]').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>

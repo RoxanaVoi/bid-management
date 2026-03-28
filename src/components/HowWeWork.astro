@@ -1,0 +1,46 @@
+---
+import { getLocaleFromUrl, t } from '../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const steps = [
+  { key: 'step1', icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z', color: 'accent' },
+  { key: 'step2', icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z', color: 'warning' },
+  { key: 'step3', icon: 'M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z', color: 'accent' },
+  { key: 'step4', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z', color: 'success' },
+];
+---
+
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16" data-animate>
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy">
+        {t(locale, 'howWeWork.title')}
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+      <!-- Connection line (desktop) -->
+      <div class="hidden lg:block absolute top-16 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-accent via-warning to-success"></div>
+
+      {steps.map((step, i) => (
+        <div data-animate data-animate-delay={String(i + 1)} class="relative text-center">
+          <div class={`relative z-10 w-16 h-16 mx-auto mb-6 bg-${step.color}/10 rounded-2xl flex items-center justify-center`}>
+            <svg class={`w-7 h-7 text-${step.color}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={step.icon} />
+            </svg>
+            <div class="absolute -top-2 -right-2 w-7 h-7 bg-navy text-white rounded-full flex items-center justify-center text-xs font-bold">
+              {i + 1}
+            </div>
+          </div>
+          <h3 class="text-lg font-heading font-bold text-navy mb-2">
+            {t(locale, `howWeWork.${step.key}.title`)}
+          </h3>
+          <p class="text-text-light text-sm leading-relaxed">
+            {t(locale, `howWeWork.${step.key}.desc`)}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
