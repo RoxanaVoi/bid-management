@@ -14,7 +14,7 @@ const locale = getLocaleFromUrl(Astro.url);
 
     <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
       <!-- Authority card -->
-      <div data-animate data-animate-delay="1" class="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-accent/20 transition-all duration-300 hover:-translate-y-1">
+      <a href={getLocalizedPath(locale, '/solutii/autoritati')} data-animate data-animate-delay="1" class="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-accent/20 transition-all duration-300 hover:-translate-y-1 block no-underline">
         <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent to-accent-light rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
         <div class="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
@@ -42,17 +42,14 @@ const locale = getLocaleFromUrl(Astro.url);
           </li>
         </ul>
 
-        <a
-          href={getLocalizedPath(locale, '/solutii/autoritati')}
-          class="inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all"
-        >
+        <span class="inline-flex items-center gap-2 text-accent font-semibold group-hover:gap-3 transition-all">
           {t(locale, 'roleSelector.authority.cta')}
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-      </div>
+        </span>
+      </a>
 
       <!-- Company card -->
-      <div data-animate data-animate-delay="2" class="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-accent/20 transition-all duration-300 hover:-translate-y-1">
+      <a href={getLocalizedPath(locale, '/solutii/companii')} data-animate data-animate-delay="2" class="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-accent/20 transition-all duration-300 hover:-translate-y-1 block no-underline">
         <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent to-accent-light rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
         <div class="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
@@ -80,14 +77,11 @@ const locale = getLocaleFromUrl(Astro.url);
           </li>
         </ul>
 
-        <a
-          href={getLocalizedPath(locale, '/solutii/companii')}
-          class="inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all"
-        >
+        <span class="inline-flex items-center gap-2 text-accent font-semibold group-hover:gap-3 transition-all">
           {t(locale, 'roleSelector.company.cta')}
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-      </div>
+        </span>
+      </a>
     </div>
   </div>
 </section>

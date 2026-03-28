@@ -18,7 +18,7 @@ interface AnalysisResult {
 
 const labels = {
   ro: {
-    step1Title: 'Date de bază',
+    step1Title: 'Cine ești?',
     iAm: 'Sunt',
     authority: 'Autoritate contractantă',
     company: 'Companie ofertantă',
@@ -26,18 +26,29 @@ const labels = {
     name: 'Nume și prenume',
     email: 'Email',
     phone: 'Telefon (opțional)',
-    step2Title: 'Încarcă documentația',
-    uploadLabel: 'Încarcă fișa de date / documentația de atribuire (PDF)',
-    uploadHint: 'Maxim 10 MB · Format PDF',
-    extraField: 'Clarificări sau observații suplimentare (opțional)',
+    step2Title: 'Descrie procedura',
+    objectLabel: 'Obiectul achiziției',
+    objectPlaceholder: 'ex: Lucrări de reabilitare clădire administrativă...',
+    budgetLabel: 'Buget estimat (RON)',
+    budgetPlaceholder: 'ex: 2.500.000',
+    contractType: 'Tip contract',
+    contractTypes: ['Lucrări', 'Servicii', 'Furnizare'],
+    scoringLabel: 'Criterii de punctaj / evaluare',
+    scoringPlaceholder: 'ex: 60% preț, 40% calitate (experiență similară 20%, plan de lucru 20%)',
+    deadlineLabel: 'Termen limită depunere oferte',
+    headsUpLabel: 'Observații / heads-up',
+    headsUpPlaceholder: 'Orice informație relevantă: restricții, cerințe speciale, contextul procedurii...',
+    uploadLabel: 'Atașează fișa de date / documentația (opțional)',
+    uploadHint: 'PDF · Maxim 10 MB',
     privacyCheck: 'Am citit și accept',
     privacyLink: 'Politica de confidențialitate',
-    step3Title: 'Ce te interesează?',
+    step3Title: 'Ce te interesează mai mult?',
     pref1: 'Evidențiază cerințele de calificare critice',
     pref2: 'Semnalizează potențiale riscuri de contestații',
     pref3: 'Fă un sumar al criteriilor de evaluare',
-    analyzeButton: 'Analizează documentația',
-    analyzing: 'Analizăm documentația...',
+    pref4: 'Verifică conformitatea cu legislația',
+    analyzeButton: 'Trimite pentru analiză',
+    analyzing: 'Analizăm...',
     resultTitle: 'Rezumat procedură',
     attentionTitle: 'Zone de atenție',
     riskLevel: 'Nivel de risc',
@@ -52,6 +63,7 @@ const labels = {
     dragDrop: 'Trage fișierul aici sau',
     browse: 'alege de pe calculator',
     selected: 'Fișier selectat',
+    remove: 'Elimină',
     summaryLabels: {
       tipProcedura: 'Tip procedură',
       valoareEstimata: 'Valoare estimată',
@@ -61,7 +73,7 @@ const labels = {
     },
   },
   en: {
-    step1Title: 'Basic Information',
+    step1Title: 'Who are you?',
     iAm: 'I am',
     authority: 'Contracting authority',
     company: 'Bidding company',
@@ -69,18 +81,29 @@ const labels = {
     name: 'Full name',
     email: 'Email',
     phone: 'Phone (optional)',
-    step2Title: 'Upload Documentation',
-    uploadLabel: 'Upload data sheet / award documentation (PDF)',
-    uploadHint: 'Maximum 10 MB · PDF format',
-    extraField: 'Additional clarifications or observations (optional)',
+    step2Title: 'Describe the procedure',
+    objectLabel: 'Procurement object',
+    objectPlaceholder: 'e.g.: Administrative building rehabilitation works...',
+    budgetLabel: 'Estimated budget (RON)',
+    budgetPlaceholder: 'e.g.: 2,500,000',
+    contractType: 'Contract type',
+    contractTypes: ['Works', 'Services', 'Supply'],
+    scoringLabel: 'Scoring / evaluation criteria',
+    scoringPlaceholder: 'e.g.: 60% price, 40% quality (similar experience 20%, work plan 20%)',
+    deadlineLabel: 'Bid submission deadline',
+    headsUpLabel: 'Observations / heads-up',
+    headsUpPlaceholder: 'Any relevant info: restrictions, special requirements, procedure context...',
+    uploadLabel: 'Attach data sheet / documentation (optional)',
+    uploadHint: 'PDF · Maximum 10 MB',
     privacyCheck: 'I have read and accept the',
     privacyLink: 'Privacy Policy',
-    step3Title: 'What interests you?',
+    step3Title: 'What interests you most?',
     pref1: 'Highlight critical qualification requirements',
     pref2: 'Flag potential complaint risks',
     pref3: 'Summarize evaluation criteria',
-    analyzeButton: 'Analyze documentation',
-    analyzing: 'Analyzing documentation...',
+    pref4: 'Check compliance with legislation',
+    analyzeButton: 'Submit for analysis',
+    analyzing: 'Analyzing...',
     resultTitle: 'Procedure Summary',
     attentionTitle: 'Attention Areas',
     riskLevel: 'Risk Level',
@@ -95,6 +118,7 @@ const labels = {
     dragDrop: 'Drag file here or',
     browse: 'browse from computer',
     selected: 'File selected',
+    remove: 'Remove',
     summaryLabels: {
       tipProcedura: 'Procedure type',
       valoareEstimata: 'Estimated value',
@@ -119,6 +143,7 @@ export default function DocumentAnalysis({ locale }: Props) {
     qualification: true,
     complaints: true,
     evaluation: true,
+    legislation: false,
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -133,8 +158,6 @@ export default function DocumentAnalysis({ locale }: Props) {
 
   const handleAnalyze = async () => {
     setAnalyzing(true);
-    // In production, this sends to Cloudflare Pages Function → Claude API
-    // For now, simulate with a timeout
     await new Promise((r) => setTimeout(r, 3000));
 
     setResult({
@@ -146,15 +169,15 @@ export default function DocumentAnalysis({ locale }: Props) {
         tipContract: locale === 'ro' ? 'Servicii' : 'Services',
       },
       attentionAreas: locale === 'ro' ? [
-        'Număr mare de cerințe de calificare (12) — risc de restricționare a competiției',
-        'Criteriu de evaluare „experiență similară" formulat general — poate genera interpretări diferite',
-        'Termen de depunere scurt relativ la complexitatea documentației (21 zile)',
-        'Caietul de sarcini conține referințe la standarde specifice fără mențiunea „sau echivalent"',
+        'Bugetul estimat sugerează o procedură deschisă — verificați pragurile valorice actualizate',
+        'Criteriile de evaluare mixte (preț + calitate) necesită factori de evaluare clar cuantificabili',
+        'Termenul de depunere pare strâns relativ la complexitatea obiectului — risc de oferte puține',
+        'Recomandăm includerea unui criteriu de experiență similară cu prag minim clar definit',
       ] : [
-        'High number of qualification requirements (12) — risk of restricting competition',
-        'Evaluation criterion "similar experience" broadly formulated — may generate different interpretations',
-        'Short submission deadline relative to documentation complexity (21 days)',
-        'Specifications contain references to specific standards without "or equivalent" mention',
+        'Estimated budget suggests an open procedure — verify updated value thresholds',
+        'Mixed evaluation criteria (price + quality) require clearly quantifiable evaluation factors',
+        'Submission deadline seems tight relative to object complexity — risk of few bids',
+        'We recommend including a similar experience criterion with a clearly defined minimum threshold',
       ],
       riskLevel: 'medium',
     });
@@ -173,7 +196,6 @@ export default function DocumentAnalysis({ locale }: Props) {
 
   const riskLabel = result?.riskLevel === 'low' ? t.riskLow : result?.riskLevel === 'medium' ? t.riskMedium : t.riskHigh;
 
-  // Step indicator
   const StepIndicator = () => (
     <div className="flex items-center justify-center gap-2 mb-10">
       {[1, 2, 3].map((s) => (
@@ -191,11 +213,11 @@ export default function DocumentAnalysis({ locale }: Props) {
     </div>
   );
 
+  // STEP 4: Results
   if (step === 4 && result) {
     const rc = riskColors[result.riskLevel];
     return (
       <div className="space-y-8">
-        {/* Summary */}
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <div className="px-6 py-4 bg-[#1C1015] text-white">
             <h3 className="font-bold">{t.resultTitle}</h3>
@@ -210,7 +232,6 @@ export default function DocumentAnalysis({ locale }: Props) {
           </div>
         </div>
 
-        {/* Risk level */}
         <div className={`${rc.bg} ${rc.border} border rounded-2xl p-6`}>
           <div className="flex items-center gap-3">
             <div className={`w-4 h-4 ${rc.dot} rounded-full`} />
@@ -218,7 +239,6 @@ export default function DocumentAnalysis({ locale }: Props) {
           </div>
         </div>
 
-        {/* Attention areas */}
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-100">
             <h3 className="font-bold text-[#1C1015]">{t.attentionTitle}</h3>
@@ -235,18 +255,11 @@ export default function DocumentAnalysis({ locale }: Props) {
           </ul>
         </div>
 
-        {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <a
-            href={`/${locale}/contact`}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all"
-          >
+          <a href={`/${locale}/contact`} className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all">
             {t.ctaDetailed}
           </a>
-          <a
-            href={`/${locale}/contact`}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#1C1015] text-[#1C1015] font-semibold rounded-xl hover:bg-[#1C1015] hover:text-white transition-all"
-          >
+          <a href={`/${locale}/contact`} className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#1C1015] text-[#1C1015] font-semibold rounded-xl hover:bg-[#1C1015] hover:text-white transition-all">
             {t.ctaDiscussion}
           </a>
         </div>
@@ -264,6 +277,7 @@ export default function DocumentAnalysis({ locale }: Props) {
     <div>
       <StepIndicator />
 
+      {/* STEP 1: Contact + Role */}
       {step === 1 && (
         <div className="space-y-5">
           <h3 className="text-xl font-bold text-[#1C1015] mb-6">{t.step1Title}</h3>
@@ -271,27 +285,13 @@ export default function DocumentAnalysis({ locale }: Props) {
           <div>
             <label className={labelClass}>{t.iAm} *</label>
             <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => setRole('authority')}
-                className={`p-4 rounded-xl border-2 text-left transition-all ${
-                  role === 'authority'
-                    ? 'border-[#7B2332] bg-[#7B2332]/5'
-                    : 'border-gray-200 hover:border-gray-300'
-                }`}
-              >
+              <button type="button" onClick={() => setRole('authority')}
+                className={`p-4 rounded-xl border-2 text-left transition-all ${role === 'authority' ? 'border-[#7B2332] bg-[#7B2332]/5' : 'border-gray-200 hover:border-gray-300'}`}>
                 <svg className={`w-6 h-6 mb-2 ${role === 'authority' ? 'text-[#7B2332]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                 <span className={`text-sm font-medium ${role === 'authority' ? 'text-[#1C1015]' : 'text-gray-500'}`}>{t.authority}</span>
               </button>
-              <button
-                type="button"
-                onClick={() => setRole('company')}
-                className={`p-4 rounded-xl border-2 text-left transition-all ${
-                  role === 'company'
-                    ? 'border-[#7B2332] bg-[#7B2332]/5'
-                    : 'border-gray-200 hover:border-gray-300'
-                }`}
-              >
+              <button type="button" onClick={() => setRole('company')}
+                className={`p-4 rounded-xl border-2 text-left transition-all ${role === 'company' ? 'border-[#7B2332] bg-[#7B2332]/5' : 'border-gray-200 hover:border-gray-300'}`}>
                 <svg className={`w-6 h-6 mb-2 ${role === 'company' ? 'text-[#7B2332]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 <span className={`text-sm font-medium ${role === 'company' ? 'text-[#1C1015]' : 'text-gray-500'}`}>{t.company}</span>
               </button>
@@ -320,10 +320,7 @@ export default function DocumentAnalysis({ locale }: Props) {
           </div>
 
           <div className="flex justify-end pt-4">
-            <button
-              onClick={() => setStep(2)}
-              className="inline-flex items-center gap-2 px-8 py-3 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all"
-            >
+            <button onClick={() => setStep(2)} className="inline-flex items-center gap-2 px-8 py-3 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all">
               {t.next}
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </button>
@@ -331,43 +328,74 @@ export default function DocumentAnalysis({ locale }: Props) {
         </div>
       )}
 
+      {/* STEP 2: Brief — obiect, buget, criterii, termen, observații + opțional upload */}
       {step === 2 && (
         <div className="space-y-5">
           <h3 className="text-xl font-bold text-[#1C1015] mb-6">{t.step2Title}</h3>
 
           <div>
-            <label className={labelClass}>{t.uploadLabel} *</label>
+            <label className={labelClass}>{t.objectLabel} *</label>
+            <textarea rows={2} className={inputClass} placeholder={t.objectPlaceholder} />
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label className={labelClass}>{t.budgetLabel}</label>
+              <input type="text" className={inputClass} placeholder={t.budgetPlaceholder} />
+            </div>
+            <div>
+              <label className={labelClass}>{t.contractType}</label>
+              <select className={inputClass}>
+                <option value="">—</option>
+                {t.contractTypes.map((ct) => (
+                  <option key={ct} value={ct}>{ct}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label className={labelClass}>{t.scoringLabel}</label>
+            <textarea rows={2} className={inputClass} placeholder={t.scoringPlaceholder} />
+          </div>
+
+          <div>
+            <label className={labelClass}>{t.deadlineLabel}</label>
+            <input type="date" className={inputClass} />
+          </div>
+
+          <div>
+            <label className={labelClass}>{t.headsUpLabel}</label>
+            <textarea rows={3} className={inputClass} placeholder={t.headsUpPlaceholder} />
+          </div>
+
+          {/* Optional file upload */}
+          <div>
+            <label className={labelClass}>{t.uploadLabel}</label>
             <div
               onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
               onDragLeave={() => setDragOver(false)}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition-all ${
+              className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all ${
                 dragOver ? 'border-[#7B2332] bg-[#7B2332]/5' : file ? 'border-emerald-300 bg-emerald-50' : 'border-gray-200 hover:border-gray-300'
               }`}
             >
               <input ref={fileInputRef} type="file" accept=".pdf" onChange={handleFileChange} className="hidden" />
               {file ? (
                 <div className="flex items-center justify-center gap-3">
-                  <svg className="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  <div className="text-left">
-                    <p className="text-sm font-medium text-[#1C1015]">{t.selected}: {file.name}</p>
-                    <p className="text-xs text-gray-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
-                  </div>
+                  <svg className="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span className="text-sm font-medium text-[#1C1015]">{file.name}</span>
+                  <button type="button" onClick={(e) => { e.stopPropagation(); setFile(null); }} className="text-xs text-red-500 hover:text-red-700 underline">{t.remove}</button>
                 </div>
               ) : (
-                <>
-                  <svg className="w-10 h-10 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-                  <p className="text-sm text-gray-500">{t.dragDrop} <span className="text-[#7B2332] font-medium">{t.browse}</span></p>
-                  <p className="text-xs text-gray-400 mt-1">{t.uploadHint}</p>
-                </>
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+                  {t.dragDrop} <span className="text-[#7B2332] font-medium">{t.browse}</span>
+                  <span className="text-xs text-gray-400 ml-1">({t.uploadHint})</span>
+                </div>
               )}
             </div>
-          </div>
-
-          <div>
-            <label className={labelClass}>{t.extraField}</label>
-            <textarea rows={3} className={inputClass} />
           </div>
 
           <label className="flex items-start gap-3 cursor-pointer">
@@ -382,11 +410,7 @@ export default function DocumentAnalysis({ locale }: Props) {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" /></svg>
               {t.back}
             </button>
-            <button
-              onClick={() => setStep(3)}
-              disabled={!file}
-              className="inline-flex items-center gap-2 px-8 py-3 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-            >
+            <button onClick={() => setStep(3)} className="inline-flex items-center gap-2 px-8 py-3 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all">
               {t.next}
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </button>
@@ -394,6 +418,7 @@ export default function DocumentAnalysis({ locale }: Props) {
         </div>
       )}
 
+      {/* STEP 3: Preferences + Submit */}
       {step === 3 && (
         <div className="space-y-5">
           <h3 className="text-xl font-bold text-[#1C1015] mb-6">{t.step3Title}</h3>
@@ -403,6 +428,7 @@ export default function DocumentAnalysis({ locale }: Props) {
               { key: 'qualification', label: t.pref1 },
               { key: 'complaints', label: t.pref2 },
               { key: 'evaluation', label: t.pref3 },
+              { key: 'legislation', label: t.pref4 },
             ].map((pref) => (
               <label key={pref.key} className={`flex items-center gap-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${
                 prefs[pref.key as keyof typeof prefs] ? 'border-[#7B2332] bg-[#7B2332]/5' : 'border-gray-200'
