@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80">
+  <!-- Diagonal stripes mark -->
+  <g transform="translate(10, 8)">
+    <!-- Stripe 1 - charcoal -->
+    <rect x="0" y="0" width="12" height="45" rx="2" fill="#3D3232" transform="skewX(-15)"/>
+    <!-- Stripe 2 - burgundy -->
+    <rect x="16" y="0" width="12" height="45" rx="2" fill="#7B2332" transform="skewX(-15)"/>
+    <!-- Stripe 3 - charcoal -->
+    <rect x="32" y="0" width="12" height="45" rx="2" fill="#3D3232" transform="skewX(-15)"/>
+  </g>
+  <!-- EQUALYS text -->
+  <text x="68" y="38" fill="#7B2332" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="28" letter-spacing="3">
+    <tspan>EQU</tspan><tspan fill="#7B2332">A</tspan><tspan>LYS</tspan>
+  </text>
+  <!-- Small burgundy triangle inside the A -->
+  <polygon points="131,34 134,28 137,34" fill="#7B2332" opacity="0.5"/>
+  <!-- Tagline -->
+  <text x="68" y="55" fill="#3D3232" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="5.5" letter-spacing="1.5" text-transform="uppercase">
+    BUSINESS IS A COMPETITION...LET'S WIN IT TOGETHER!
+  </text>
+</svg>

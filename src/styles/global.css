@@ -58,14 +58,14 @@
 }
 
 @theme {
-  --color-navy: #0F172A;
-  --color-navy-light: #1E293B;
-  --color-navy-800: #1a2540;
-  --color-accent: #3B82F6;
-  --color-accent-light: #60A5FA;
-  --color-accent-dark: #2563EB;
-  --color-surface: #F8FAFC;
-  --color-surface-dark: #F1F5F9;
+  --color-navy: #1C1015;
+  --color-navy-light: #2A1820;
+  --color-navy-800: #241018;
+  --color-accent: #7B2332;
+  --color-accent-light: #A03448;
+  --color-accent-dark: #5A1A28;
+  --color-surface: #FAF7F7;
+  --color-surface-dark: #F5F0F1;
   --color-success: #10B981;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
@@ -139,14 +139,15 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-/* Scroll-triggered animations */
+/* Scroll-triggered animations — progressive enhancement */
 [data-animate] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
-
-[data-animate].visible {
+[data-animate].hidden-anim {
+  opacity: 0;
+  transform: translateY(20px);
+}
+[data-animate].hidden-anim.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -164,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-dark {
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(28, 16, 21, 0.8);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }

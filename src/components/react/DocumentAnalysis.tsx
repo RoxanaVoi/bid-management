@@ -162,8 +162,8 @@ export default function DocumentAnalysis({ locale }: Props) {
     setStep(4);
   };
 
-  const inputClass = "w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3B82F6]/20 focus:border-[#3B82F6] outline-none transition-all text-sm";
-  const labelClass = "block text-sm font-medium text-[#0F172A] mb-1.5";
+  const inputClass = "w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7B2332]/20 focus:border-[#7B2332] outline-none transition-all text-sm";
+  const labelClass = "block text-sm font-medium text-[#1C1015] mb-1.5";
 
   const riskColors = {
     low: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', dot: 'bg-emerald-500' },
@@ -179,13 +179,13 @@ export default function DocumentAnalysis({ locale }: Props) {
       {[1, 2, 3].map((s) => (
         <div key={s} className="flex items-center gap-2">
           <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
-            step >= s ? 'bg-[#3B82F6] text-white' : 'bg-gray-100 text-gray-400'
+            step >= s ? 'bg-[#7B2332] text-white' : 'bg-gray-100 text-gray-400'
           }`}>
             {step > s ? (
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
             ) : s}
           </div>
-          {s < 3 && <div className={`w-12 h-0.5 ${step > s ? 'bg-[#3B82F6]' : 'bg-gray-200'}`} />}
+          {s < 3 && <div className={`w-12 h-0.5 ${step > s ? 'bg-[#7B2332]' : 'bg-gray-200'}`} />}
         </div>
       ))}
     </div>
@@ -197,14 +197,14 @@ export default function DocumentAnalysis({ locale }: Props) {
       <div className="space-y-8">
         {/* Summary */}
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
-          <div className="px-6 py-4 bg-[#0F172A] text-white">
+          <div className="px-6 py-4 bg-[#1C1015] text-white">
             <h3 className="font-bold">{t.resultTitle}</h3>
           </div>
           <div className="p-6 grid sm:grid-cols-2 gap-4">
             {Object.entries(result.summary).map(([key, value]) => (
               <div key={key} className="flex flex-col">
                 <span className="text-xs text-gray-500 uppercase tracking-wider">{t.summaryLabels[key as keyof typeof t.summaryLabels]}</span>
-                <span className="text-sm font-semibold text-[#0F172A] mt-1">{value}</span>
+                <span className="text-sm font-semibold text-[#1C1015] mt-1">{value}</span>
               </div>
             ))}
           </div>
@@ -221,7 +221,7 @@ export default function DocumentAnalysis({ locale }: Props) {
         {/* Attention areas */}
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-100">
-            <h3 className="font-bold text-[#0F172A]">{t.attentionTitle}</h3>
+            <h3 className="font-bold text-[#1C1015]">{t.attentionTitle}</h3>
           </div>
           <ul className="p-6 space-y-3">
             {result.attentionAreas.map((area, i) => (
@@ -239,21 +239,21 @@ export default function DocumentAnalysis({ locale }: Props) {
         <div className="flex flex-col sm:flex-row gap-4">
           <a
             href={`/${locale}/contact`}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold rounded-xl transition-all"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all"
           >
             {t.ctaDetailed}
           </a>
           <a
             href={`/${locale}/contact`}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#0F172A] text-[#0F172A] font-semibold rounded-xl hover:bg-[#0F172A] hover:text-white transition-all"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#1C1015] text-[#1C1015] font-semibold rounded-xl hover:bg-[#1C1015] hover:text-white transition-all"
           >
             {t.ctaDiscussion}
           </a>
         </div>
 
         {role === 'authority' && (
-          <div className="bg-[#3B82F6]/5 border border-[#3B82F6]/20 rounded-xl p-4">
-            <p className="text-sm text-[#3B82F6]">{t.epaapHint}</p>
+          <div className="bg-[#7B2332]/5 border border-[#7B2332]/20 rounded-xl p-4">
+            <p className="text-sm text-[#7B2332]">{t.epaapHint}</p>
           </div>
         )}
       </div>
@@ -266,7 +266,7 @@ export default function DocumentAnalysis({ locale }: Props) {
 
       {step === 1 && (
         <div className="space-y-5">
-          <h3 className="text-xl font-bold text-[#0F172A] mb-6">{t.step1Title}</h3>
+          <h3 className="text-xl font-bold text-[#1C1015] mb-6">{t.step1Title}</h3>
 
           <div>
             <label className={labelClass}>{t.iAm} *</label>
@@ -276,24 +276,24 @@ export default function DocumentAnalysis({ locale }: Props) {
                 onClick={() => setRole('authority')}
                 className={`p-4 rounded-xl border-2 text-left transition-all ${
                   role === 'authority'
-                    ? 'border-[#3B82F6] bg-[#3B82F6]/5'
+                    ? 'border-[#7B2332] bg-[#7B2332]/5'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
-                <svg className={`w-6 h-6 mb-2 ${role === 'authority' ? 'text-[#3B82F6]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                <span className={`text-sm font-medium ${role === 'authority' ? 'text-[#0F172A]' : 'text-gray-500'}`}>{t.authority}</span>
+                <svg className={`w-6 h-6 mb-2 ${role === 'authority' ? 'text-[#7B2332]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                <span className={`text-sm font-medium ${role === 'authority' ? 'text-[#1C1015]' : 'text-gray-500'}`}>{t.authority}</span>
               </button>
               <button
                 type="button"
                 onClick={() => setRole('company')}
                 className={`p-4 rounded-xl border-2 text-left transition-all ${
                   role === 'company'
-                    ? 'border-[#3B82F6] bg-[#3B82F6]/5'
+                    ? 'border-[#7B2332] bg-[#7B2332]/5'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
-                <svg className={`w-6 h-6 mb-2 ${role === 'company' ? 'text-[#3B82F6]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                <span className={`text-sm font-medium ${role === 'company' ? 'text-[#0F172A]' : 'text-gray-500'}`}>{t.company}</span>
+                <svg className={`w-6 h-6 mb-2 ${role === 'company' ? 'text-[#7B2332]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <span className={`text-sm font-medium ${role === 'company' ? 'text-[#1C1015]' : 'text-gray-500'}`}>{t.company}</span>
               </button>
             </div>
           </div>
@@ -322,7 +322,7 @@ export default function DocumentAnalysis({ locale }: Props) {
           <div className="flex justify-end pt-4">
             <button
               onClick={() => setStep(2)}
-              className="inline-flex items-center gap-2 px-8 py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold rounded-xl transition-all"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all"
             >
               {t.next}
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -333,7 +333,7 @@ export default function DocumentAnalysis({ locale }: Props) {
 
       {step === 2 && (
         <div className="space-y-5">
-          <h3 className="text-xl font-bold text-[#0F172A] mb-6">{t.step2Title}</h3>
+          <h3 className="text-xl font-bold text-[#1C1015] mb-6">{t.step2Title}</h3>
 
           <div>
             <label className={labelClass}>{t.uploadLabel} *</label>
@@ -343,7 +343,7 @@ export default function DocumentAnalysis({ locale }: Props) {
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
               className={`border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition-all ${
-                dragOver ? 'border-[#3B82F6] bg-[#3B82F6]/5' : file ? 'border-emerald-300 bg-emerald-50' : 'border-gray-200 hover:border-gray-300'
+                dragOver ? 'border-[#7B2332] bg-[#7B2332]/5' : file ? 'border-emerald-300 bg-emerald-50' : 'border-gray-200 hover:border-gray-300'
               }`}
             >
               <input ref={fileInputRef} type="file" accept=".pdf" onChange={handleFileChange} className="hidden" />
@@ -351,14 +351,14 @@ export default function DocumentAnalysis({ locale }: Props) {
                 <div className="flex items-center justify-center gap-3">
                   <svg className="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                   <div className="text-left">
-                    <p className="text-sm font-medium text-[#0F172A]">{t.selected}: {file.name}</p>
+                    <p className="text-sm font-medium text-[#1C1015]">{t.selected}: {file.name}</p>
                     <p className="text-xs text-gray-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                   </div>
                 </div>
               ) : (
                 <>
                   <svg className="w-10 h-10 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-                  <p className="text-sm text-gray-500">{t.dragDrop} <span className="text-[#3B82F6] font-medium">{t.browse}</span></p>
+                  <p className="text-sm text-gray-500">{t.dragDrop} <span className="text-[#7B2332] font-medium">{t.browse}</span></p>
                   <p className="text-xs text-gray-400 mt-1">{t.uploadHint}</p>
                 </>
               )}
@@ -371,9 +371,9 @@ export default function DocumentAnalysis({ locale }: Props) {
           </div>
 
           <label className="flex items-start gap-3 cursor-pointer">
-            <input type="checkbox" required className="mt-1 accent-[#3B82F6]" />
+            <input type="checkbox" required className="mt-1 accent-[#7B2332]" />
             <span className="text-sm text-gray-600">
-              {t.privacyCheck} <a href={`/${locale}/politica-confidentialitate`} className="text-[#3B82F6] underline">{t.privacyLink}</a>
+              {t.privacyCheck} <a href={`/${locale}/politica-confidentialitate`} className="text-[#7B2332] underline">{t.privacyLink}</a>
             </span>
           </label>
 
@@ -385,7 +385,7 @@ export default function DocumentAnalysis({ locale }: Props) {
             <button
               onClick={() => setStep(3)}
               disabled={!file}
-              className="inline-flex items-center gap-2 px-8 py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {t.next}
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -396,7 +396,7 @@ export default function DocumentAnalysis({ locale }: Props) {
 
       {step === 3 && (
         <div className="space-y-5">
-          <h3 className="text-xl font-bold text-[#0F172A] mb-6">{t.step3Title}</h3>
+          <h3 className="text-xl font-bold text-[#1C1015] mb-6">{t.step3Title}</h3>
 
           <div className="space-y-3">
             {[
@@ -405,15 +405,15 @@ export default function DocumentAnalysis({ locale }: Props) {
               { key: 'evaluation', label: t.pref3 },
             ].map((pref) => (
               <label key={pref.key} className={`flex items-center gap-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${
-                prefs[pref.key as keyof typeof prefs] ? 'border-[#3B82F6] bg-[#3B82F6]/5' : 'border-gray-200'
+                prefs[pref.key as keyof typeof prefs] ? 'border-[#7B2332] bg-[#7B2332]/5' : 'border-gray-200'
               }`}>
                 <input
                   type="checkbox"
                   checked={prefs[pref.key as keyof typeof prefs]}
                   onChange={(e) => setPrefs({ ...prefs, [pref.key]: e.target.checked })}
-                  className="accent-[#3B82F6]"
+                  className="accent-[#7B2332]"
                 />
-                <span className="text-sm font-medium text-[#0F172A]">{pref.label}</span>
+                <span className="text-sm font-medium text-[#1C1015]">{pref.label}</span>
               </label>
             ))}
           </div>
@@ -426,7 +426,7 @@ export default function DocumentAnalysis({ locale }: Props) {
             <button
               onClick={handleAnalyze}
               disabled={analyzing}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold rounded-xl transition-all disabled:opacity-60"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all disabled:opacity-60"
             >
               {analyzing ? (
                 <>
