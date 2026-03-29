@@ -1,12 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import DocumentAnalysis from '../../components/react/DocumentAnalysis';
-import { getLocaleFromUrl, t } from '../../i18n/utils';
+import { getLocaleFromUrl } from '../../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
+const isRo = locale === 'ro';
 ---
 
-<Layout title={t(locale, 'analyzePage.title')}>
+<Layout title={isRo ? 'Analiză rapidă fișă de date' : 'Quick data sheet analysis'}>
   <!-- Hero -->
   <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,19 +16,27 @@ const locale = getLocaleFromUrl(Astro.url);
           <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
           <span class="text-accent text-sm font-medium">AI-Powered</span>
         </div>
-        <h1 class="text-4xl sm:text-5xl font-heading font-bold mb-4">{t(locale, 'analyzePage.title')}</h1>
-        <p class="text-xl text-gray-300 leading-relaxed mb-4">{t(locale, 'analyzePage.subtitle')}</p>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">
+          {isRo ? 'Analiză rapidă a fișei de date' : 'Quick data sheet analysis'}
+        </h1>
+        <p class="text-lg text-gray-300 leading-relaxed mb-4">
+          {isRo
+            ? 'Încarcă fișa de date descărcată din SEAP și primești automat un sumar structurat: autoritate, tip procedură, obiect, cerințe, criterii de punctaj, valoare estimată.'
+            : 'Upload the data sheet downloaded from SEAP and automatically receive a structured summary: authority, procedure type, object, requirements, scoring criteria, estimated value.'}
+        </p>
         <p class="text-sm text-gray-400 bg-white/5 border border-white/10 rounded-lg px-4 py-3">
           <svg class="w-4 h-4 inline mr-1.5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          {t(locale, 'analyzePage.disclaimer')}
+          {isRo
+            ? 'Aceasta este o analiză automată orientativă. Nu constituie opinie juridică sau consultanță profesională.'
+            : 'This is an automated indicative analysis. It does not constitute legal opinion or professional advice.'}
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Form -->
+  <!-- Analysis Tool -->
   <section class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <DocumentAnalysis client:load locale={locale} />
     </div>
   </section>
