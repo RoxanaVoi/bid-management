@@ -108,39 +108,95 @@ const labels = {
   },
 };
 
-// Extract text from PDF using pdf.js in browser
-async function extractPdfText(file: File): Promise<string> {
-  const pdfjsLib = await import('pdfjs-dist');
-  pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+// Load PDF.js from CDN (avoids Vite/Astro bundling issues with pdfjs-dist)
+const PDFJS_VERSION = '4.9.155';
+const PDFJS_CDN = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}`;
 
-  const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+let pdfjsLoaded: any = null;
 
-  let fullText = '';
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const content = await page.getTextContent();
-    const pageText = content.items
-      .map((item: any) => item.str)
-      .join(' ');
-    fullText += pageText + '\n\n';
+async function loadPdfJs(): Promise<any> {
+  if (pdfjsLoaded) return pdfjsLoaded;
+
+  // Load PDF.js from CDN via script tag
+  if (!(window as any).pdfjsLib) {
+    await new Promise<void>((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = `${PDFJS_CDN}/pdf.min.mjs`;
+      script.type = 'module';
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load PDF.js'));
+
+      // For module scripts, use import instead
+      const importScript = document.createElement('script');
+      importScript.type = 'module';
+      importScript.textContent = `
+        import * as pdfjsLib from '${PDFJS_CDN}/pdf.min.mjs';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '${PDFJS_CDN}/pdf.worker.min.mjs';
+        window.pdfjsLib = pdfjsLib;
+        window.dispatchEvent(new Event('pdfjs-ready'));
+      `;
+      document.head.appendChild(importScript);
+    });
+
+    // Wait for the module to load
+    await new Promise<void>((resolve) => {
+      if ((window as any).pdfjsLib) { resolve(); return; }
+      window.addEventListener('pdfjs-ready', () => resolve(), { once: true });
+      // Timeout fallback
+      setTimeout(() => resolve(), 5000);
+    });
   }
-  return fullText;
+
+  pdfjsLoaded = (window as any).pdfjsLib;
+  if (!pdfjsLoaded) throw new Error('PDF.js failed to initialize');
+  return pdfjsLoaded;
+}
+
+// Extract text from PDF using pdf.js
+async function extractPdfText(file: File): Promise<string> {
+  try {
+    const pdfjsLib = await loadPdfJs();
+    console.log('[eBid] PDF.js loaded, version:', pdfjsLib.version);
+
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+    console.log('[eBid] PDF loaded, pages:', pdf.numPages);
+
+    let fullText = '';
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      const pageText = content.items
+        .map((item: any) => item.str)
+        .join(' ');
+      fullText += pageText + '\n\n';
+    }
+    console.log('[eBid] PDF text extracted:', fullText.length, 'chars');
+    return fullText;
+  } catch (err) {
+    console.error('[eBid] PDF extraction error:', err);
+    throw new Error('pdf_error');
+  }
 }
 
 // Send to Cloudflare Function for Claude API analysis
 async function analyzeWithAI(text: string): Promise<AnalysisResult> {
+  console.log('[eBid] Sending to API, text length:', text.length);
   const response = await fetch('/api/analyze', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text: text.substring(0, 50000) }), // Limit text size
+    body: JSON.stringify({ text: text.substring(0, 50000) }),
   });
 
   if (!response.ok) {
-    throw new Error('API error');
+    const errBody = await response.text();
+    console.error('[eBid] API error:', response.status, errBody);
+    throw new Error(`API error: ${response.status}`);
   }
 
-  return response.json();
+  const result = await response.json();
+  console.log('[eBid] API result:', result);
+  return result;
 }
 
 export default function DocumentAnalysis({ locale }: Props) {
@@ -213,8 +269,19 @@ export default function DocumentAnalysis({ locale }: Props) {
       setResult(analysisResult);
       setStatus('done');
     } catch (err: any) {
+      console.error('[eBid] Analysis failed:', err);
       setStatus('error');
-      setErrorMsg(err.message === 'pdf_empty' ? t.errorPdf : t.errorGeneric);
+      if (err.message === 'pdf_empty') {
+        setErrorMsg(t.errorPdf);
+      } else if (err.message === 'pdf_error') {
+        setErrorMsg(locale === 'ro'
+          ? 'Nu am putut citi fișierul PDF. Verifică dacă fișierul nu este protejat sau corupt. Detalii: ' + String(err)
+          : 'Could not read the PDF file. Check if the file is not protected or corrupt. Details: ' + String(err));
+      } else {
+        setErrorMsg(locale === 'ro'
+          ? 'A apărut o eroare la analiză. Verifică consola browserului (F12) pentru detalii tehnice.'
+          : 'An analysis error occurred. Check the browser console (F12) for technical details.');
+      }
     }
   };
 
