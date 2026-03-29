@@ -1,98 +1,240 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import CTASection from '../../../components/CTASection.astro';
-import { getLocaleFromUrl, t } from '../../../i18n/utils';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
+const isRo = locale === 'ro';
 
-const caseStudies = locale === 'ro' ? [
-  { title: 'Procedură lucrări reabilitare clădire publică', client: 'Autoritate — UAT municipiu', type: 'Lucrări', context: 'Reabilitare completă a unei clădiri administrative, buget 3.2M RON, procedură licitație deschisă.', approach: 'Elaborare caiet de sarcini tehnic, stabilire criterii mixte calitate-preț, asistență în etapa de evaluare.', result: 'Contestații respinse, 5 ofertanți calificați', tag: 'authority' },
-  { title: 'Achiziție echipamente medicale — spital regional', client: 'Autoritate — Spital regional', type: 'Furnizare', context: 'Procedură cu loturi pentru echipamente de diagnostic și laborator, valoare 2.1M RON.', approach: 'Specificații tehnice neutre, criterii cost-calitate per lot, pregătire model contract cadru.', result: 'Economie de 12% față de estimare, fără contestații', tag: 'authority' },
-  { title: 'Pregătire ofertă servicii IT — dialog competitiv', client: 'Companie — Integrator IT', type: 'Servicii', context: 'Participare la dialog competitiv pentru un proiect de digitalizare a unei instituții publice.', approach: 'Analiză cerințe, pregătire propunere tehnică și financiară, suport la rundele de dialog.', result: 'Ofertă câștigătoare, punctaj maxim tehnic', tag: 'company' },
-  { title: 'Contestație respinsă — furnizare echipamente', client: 'Companie — Distribuitor', type: 'Furnizare', context: 'Compania a fost exclusă de la procedură pe baza unor cerințe de calificare interpretate diferit.', approach: 'Analiză detaliată a documentației, pregătire contestație cu argumente juridice solide.', result: 'Contestația admisă de CNSC, reluare evaluare', tag: 'company' },
-  { title: 'Audit PAAP — primărie municipiu', client: 'Autoritate — UAT', type: 'Servicii', context: 'Identificarea neconcordanțelor din PAAP-ul existent și alinierea la bugetul aprobat.', approach: 'Audit complet PAAP, reconciliere cu referatele de necesitate, propunere PAAP actualizat.', result: 'PAAP corectat și aprobat în 2 săptămâni', tag: 'authority' },
-] : [
-  { title: 'Public building rehabilitation works procedure', client: 'Authority — Municipal UAT', type: 'Works', context: 'Complete rehabilitation of an administrative building, budget 3.2M RON, open tender procedure.', approach: 'Technical specifications drafting, mixed quality-price criteria, evaluation stage assistance.', result: 'Complaints rejected, 5 qualified bidders', tag: 'authority' },
-  { title: 'Medical equipment procurement — regional hospital', client: 'Authority — Regional hospital', type: 'Supply', context: 'Lots procedure for diagnostic and laboratory equipment, value 2.1M RON.', approach: 'Neutral technical specifications, quality-cost criteria per lot, framework contract template.', result: '12% savings vs estimate, no complaints', tag: 'authority' },
-  { title: 'IT services bid preparation — competitive dialogue', client: 'Company — IT Integrator', type: 'Services', context: 'Participation in competitive dialogue for a public institution digitization project.', approach: 'Requirements analysis, technical and financial proposal, dialogue round support.', result: 'Winning bid, maximum technical score', tag: 'company' },
-  { title: 'Rejected complaint — equipment supply', client: 'Company — Distributor', type: 'Supply', context: 'The company was excluded from the procedure based on differently interpreted qualification requirements.', approach: 'Detailed documentation analysis, complaint with solid legal arguments.', result: 'Complaint upheld by CNSC, evaluation resumed', tag: 'company' },
-  { title: 'PAAP Audit — municipal town hall', client: 'Authority — UAT', type: 'Services', context: 'Identifying inconsistencies in the existing PAAP and aligning it with the approved budget.', approach: 'Complete PAAP audit, reconciliation with necessity reports, updated PAAP proposal.', result: 'PAAP corrected and approved in 2 weeks', tag: 'authority' },
+const caseStudies = [
+  {
+    slug: 'planificare-paap-autoritate',
+    label: isRo ? 'Autoritate contractantă' : 'Contracting authority',
+    title: isRo ? 'Planificarea necesarului și structurarea PAAP pentru o autoritate contractantă' : 'Needs planning and PAAP structuring for a contracting authority',
+    desc: isRo ? 'Am sprijinit organizarea procesului de colectare a nevoilor și transformarea acestuia într-un flux mai clar de planificare, prioritizare și documentare internă.' : 'We supported the organization of the needs collection process and its transformation into a clearer planning, prioritization, and internal documentation flow.',
+    meta: isRo ? 'Planificare & PAAP · Autoritate' : 'Planning & PAAP · Authority',
+    tags: ['autoritati', 'planificare'],
+  },
+  {
+    slug: 'analiza-documentatie-loturi',
+    label: isRo ? 'Operator economic' : 'Economic operator',
+    title: isRo ? 'Analiză documentație pentru o procedură cu mai multe loturi și cerințe tehnice sensibile' : 'Documentation analysis for a multi-lot procedure with sensitive technical requirements',
+    desc: isRo ? 'Am extras cerințele relevante, am separat informațiile pe loturi și am evidențiat punctele cu impact major asupra pregătirii ofertei.' : 'We extracted relevant requirements, separated information by lots, and highlighted points with major impact on bid preparation.',
+    meta: isRo ? 'Analiză documentație · Loturi multiple' : 'Documentation analysis · Multiple lots',
+    tags: ['operatori', 'analiza'],
+  },
+  {
+    slug: 'training-echipa-ofertare',
+    label: 'Training',
+    title: isRo ? 'Pregătirea unei echipe pentru participare mai eficientă la achiziții publice' : 'Preparing a team for more effective participation in public procurement',
+    desc: isRo ? 'Am construit un program aplicat pentru citirea documentațiilor, pregătirea DUAE și coordonarea internă a etapelor de ofertare.' : 'We built an applied program for reading documentation, preparing ESPD, and internal coordination of bidding stages.',
+    meta: isRo ? 'Training · Operator economic' : 'Training · Economic operator',
+    tags: ['operatori', 'training'],
+  },
+  {
+    slug: 'flux-intern-ofertare',
+    label: isRo ? 'Proces intern' : 'Internal process',
+    title: isRo ? 'Clarificarea unui flux intern de ofertare pentru documentații voluminoase' : 'Clarifying an internal bidding flow for voluminous documentation',
+    desc: isRo ? 'Am susținut echipa în structurarea responsabilităților, organizarea documentelor și reducerea blocajelor dintre funcțiile implicate.' : 'We supported the team in structuring responsibilities, organizing documents, and reducing bottlenecks between involved functions.',
+    meta: isRo ? 'Ofertare · Proces intern' : 'Bidding · Internal process',
+    tags: ['operatori', 'ofertare'],
+  },
+  {
+    slug: 'cerinte-restrictive-analiza',
+    label: isRo ? 'Analiză documentație' : 'Documentation analysis',
+    title: isRo ? 'Identificarea cerințelor restrictive într-o fișă de date și caiet de sarcini' : 'Identifying restrictive requirements in a data sheet and specifications',
+    desc: isRo ? 'Am analizat documentația și am evidențiat punctele care necesitau clarificări și validare suplimentară înainte de decizia de participare.' : 'We analyzed the documentation and highlighted points requiring clarifications and additional validation before the participation decision.',
+    meta: isRo ? 'Conformitate · Clarificări' : 'Compliance · Clarifications',
+    tags: ['operatori', 'analiza'],
+  },
+  {
+    slug: 'standardizare-mod-lucru',
+    label: isRo ? 'Standardizare' : 'Standardization',
+    title: isRo ? 'Standardizarea unui mod de lucru pentru analiză și ofertare' : 'Standardizing a work method for analysis and bidding',
+    desc: isRo ? 'Am definit o abordare repetabilă pentru documentații recurente, astfel încât echipa să lucreze mai rapid, mai coerent și mai previzibil.' : 'We defined a repeatable approach for recurring documentation, so the team works faster, more coherently, and more predictably.',
+    meta: isRo ? 'Proceduri interne · Eficiență' : 'Internal procedures · Efficiency',
+    tags: ['operatori', 'ofertare', 'training'],
+  },
+];
+
+const filters = [
+  { key: 'toate', label: isRo ? 'Toate' : 'All' },
+  { key: 'autoritati', label: isRo ? 'Pentru autorități' : 'For authorities' },
+  { key: 'operatori', label: isRo ? 'Pentru operatori economici' : 'For economic operators' },
+  { key: 'analiza', label: isRo ? 'Analiză documentații' : 'Documentation analysis' },
+  { key: 'planificare', label: isRo ? 'Planificare & PAAP' : 'Planning & PAAP' },
+  { key: 'ofertare', label: isRo ? 'Ofertare & conformitate' : 'Bidding & compliance' },
+  { key: 'training', label: isRo ? 'Training & proceduri interne' : 'Training & internal procedures' },
+];
+
+const methodSteps = [
+  { title: 'Context', desc: isRo ? 'Tipul de proiect, procedură sau organizație implicată.' : 'Type of project, procedure, or organization involved.', icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { title: isRo ? 'Provocare' : 'Challenge', desc: isRo ? 'Unde apăreau blocajele, riscurile sau complexitatea.' : 'Where blockers, risks, or complexity appeared.', icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z' },
+  { title: isRo ? 'Intervenție' : 'Intervention', desc: isRo ? 'Ce am analizat, organizat sau susținut concret.' : 'What we analyzed, organized, or concretely supported.', icon: 'M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z' },
+  { title: isRo ? 'Rezultat' : 'Result', desc: isRo ? 'Ce claritate, structură sau eficiență s-a obținut.' : 'What clarity, structure, or efficiency was achieved.', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+];
+
+const faqs = [
+  { q: isRo ? 'Sunt exemple reale?' : 'Are these real examples?', a: isRo ? 'Da, studiile de caz sunt construite pe situații reale și redactate într-o formă care păstrează relevanța profesională și confidențialitatea.' : 'Yes, case studies are built on real situations and written in a form that preserves professional relevance and confidentiality.' },
+  { q: isRo ? 'Puteți selecta exemple apropiate de domeniul nostru?' : 'Can you select examples close to our field?', a: isRo ? 'Da, putem indica exemple relevante în funcție de tipul procedurii, complexitatea documentației sau categoria de echipamente.' : 'Yes, we can point to relevant examples based on procedure type, documentation complexity, or equipment category.' },
+  { q: isRo ? 'Studiile de caz acoperă doar autorități?' : 'Do case studies only cover authorities?', a: isRo ? 'Nu, pagina include exemple atât pentru autorități contractante, cât și pentru operatori economici.' : 'No, the page includes examples for both contracting authorities and economic operators.' },
+  { q: isRo ? 'Putem discuta o situație similară cu a noastră?' : 'Can we discuss a situation similar to ours?', a: isRo ? 'Da, poți trimite documentația sau contextul și putem evalua rapid dacă există un mod de lucru potrivit.' : 'Yes, you can send the documentation or context and we can quickly assess if there is a suitable work method.' },
 ];
 ---
 
-<Layout title={t(locale, 'caseStudies.title')}>
-  <!-- Hero -->
-  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16">
+<Layout title={isRo ? 'Studii de caz' : 'Case Studies'}>
+
+  <!-- ===== HERO ===== -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16 lg:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl sm:text-5xl font-heading font-bold mb-4">{t(locale, 'caseStudies.title')}</h1>
-      <p class="text-xl text-gray-300">
-        {locale === 'ro' ? 'Exemple concrete din experiența noastră cu autorități și companii.' : 'Concrete examples from our experience with authorities and companies.'}
-      </p>
+      <div class="max-w-3xl">
+        <span class="text-accent text-sm font-medium uppercase tracking-wider">{isRo ? 'Studii de caz' : 'Case Studies'}</span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mt-3 mb-5 leading-tight">
+          {isRo ? 'Exemple reale de proiecte, analize și procese gestionate' : 'Real examples of projects, analyses, and managed processes'}
+        </h1>
+        <p class="text-lg text-gray-300 leading-relaxed mb-8">
+          {isRo
+            ? 'Descoperă cum am sprijinit autorități contractante și operatori economici în planificare, analiză de documentații, structurare de procese și gestionarea etapelor critice din achiziții publice.'
+            : 'Discover how we supported contracting authorities and economic operators in planning, documentation analysis, process structuring, and managing critical procurement stages.'}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#studii" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25">
+            {isRo ? 'Vezi studiile de caz' : 'See case studies'}
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          </a>
+          <a href={getLocalizedPath(locale, '/analizeaza-documentatia')} class="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+            {isRo ? 'Trimite documentația ta' : 'Submit your documentation'}
+          </a>
+        </div>
+        <p class="text-sm text-gray-500 mt-4">{isRo ? 'Exemple relevante pentru situații reale, nu prezentări generale.' : 'Relevant examples for real situations, not general presentations.'}</p>
+      </div>
     </div>
   </section>
 
-  <!-- Filters + List -->
-  <section class="py-16 bg-white">
+  <!-- ===== FILTERS + GRID ===== -->
+  <section id="studii" class="py-16 lg:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Filter tabs -->
-      <div class="flex gap-2 mb-12 flex-wrap">
-        <button class="filter-btn active px-4 py-2 text-sm font-medium rounded-full bg-navy text-white" data-filter="all">
-          {t(locale, 'caseStudies.filters.all')}
-        </button>
-        <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full bg-gray-100 text-text-light hover:bg-gray-200 transition-colors" data-filter="authority">
-          {t(locale, 'caseStudies.filters.authority')}
-        </button>
-        <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full bg-gray-100 text-text-light hover:bg-gray-200 transition-colors" data-filter="company">
-          {t(locale, 'caseStudies.filters.company')}
-        </button>
+      <!-- Sticky filter bar -->
+      <div class="flex gap-2 mb-12 flex-wrap sticky top-[72px] bg-white/95 backdrop-blur-sm py-4 -mt-4 z-10">
+        {filters.map((f, i) => (
+          <button
+            class:list={['filter-btn px-4 py-2 text-sm font-medium rounded-full transition-colors', i === 0 ? 'bg-navy text-white' : 'bg-gray-100 text-text-light hover:bg-gray-200']}
+            data-filter={f.key}
+          >
+            {f.label}
+          </button>
+        ))}
       </div>
 
-      <!-- Cards -->
-      <div class="grid md:grid-cols-2 gap-6">
-        {caseStudies.map((cs, i) => (
-          <div data-animate data-animate-delay={String((i % 4) + 1)} data-tag={cs.tag} class="case-study-card bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">{cs.type}</span>
-              <span class="text-text-light text-xs">{cs.client}</span>
-            </div>
-            <h3 class="text-lg font-heading font-bold text-navy mb-4">{cs.title}</h3>
-            <div class="space-y-3 text-sm">
-              <div>
-                <span class="font-medium text-navy">{locale === 'ro' ? 'Context' : 'Context'}:</span>
-                <span class="text-text-light"> {cs.context}</span>
+      <!-- Cards grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {caseStudies.map((cs) => (
+          <a href={getLocalizedPath(locale, `/studii-de-caz/${cs.slug}`)}
+            data-tags={cs.tags.join(',')}
+            class="case-card group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 block no-underline">
+            <div class="p-6">
+              <span class="inline-block px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full mb-4">
+                {cs.label}
+              </span>
+              <h3 class="text-lg font-heading font-bold text-navy mb-3 leading-snug group-hover:text-accent transition-colors">
+                {cs.title}
+              </h3>
+              <p class="text-text-light text-sm leading-relaxed mb-4">
+                {cs.desc}
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <span class="text-xs text-text-light">{cs.meta}</span>
+                <span class="inline-flex items-center gap-1 text-accent text-sm font-semibold group-hover:gap-2 transition-all">
+                  {isRo ? 'Vezi' : 'View'}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </span>
               </div>
-              <div>
-                <span class="font-medium text-navy">{locale === 'ro' ? 'Abordare' : 'Approach'}:</span>
-                <span class="text-text-light"> {cs.approach}</span>
-              </div>
             </div>
-            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-gray-100">
-              <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span class="text-sm font-medium text-success">{cs.result}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== METODĂ ===== -->
+  <section class="py-16 lg:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-heading font-bold text-navy mb-12 text-center">
+        {isRo ? 'Fiecare studiu de caz urmărește aceeași logică' : 'Each case study follows the same logic'}
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        {methodSteps.map((step, i) => (
+          <div class="text-center">
+            <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={step.icon}/></svg>
             </div>
+            <div class="w-8 h-8 bg-navy text-white rounded-full flex items-center justify-center text-sm font-bold mx-auto mb-3">{i + 1}</div>
+            <h3 class="font-heading font-bold text-navy mb-2">{step.title}</h3>
+            <p class="text-text-light text-sm">{step.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <CTASection />
+  <!-- ===== FAQ ===== -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-heading font-bold text-navy mb-10 text-center">
+        {isRo ? 'Întrebări frecvente' : 'Frequently asked questions'}
+      </h2>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group bg-surface rounded-2xl border border-gray-100">
+            <summary class="flex items-center justify-between p-5 cursor-pointer font-heading font-semibold text-navy">
+              {faq.q}
+              <svg class="w-5 h-5 text-accent shrink-0 ml-4 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-5 text-text-light text-sm leading-relaxed">
+              {faq.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="py-16 lg:py-20 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">
+        {isRo ? 'Ai o situație similară?' : 'Have a similar situation?'}
+      </h2>
+      <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+        {isRo
+          ? 'Dacă lucrezi la o procedură complexă, ai nevoie de claritate asupra documentației sau vrei să organizezi mai bine procesul intern, putem analiza contextul tău și propune un mod de lucru potrivit.'
+          : 'If you\'re working on a complex procedure, need clarity on documentation, or want to better organize the internal process, we can analyze your context and propose a suitable work method.'}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getLocalizedPath(locale, '/analizeaza-documentatia')} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25">
+          {isRo ? 'Trimite documentația pentru analiză' : 'Submit documentation for analysis'}
+        </a>
+        <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+          {isRo ? 'Discută cu noi' : 'Talk to us'}
+        </a>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <script>
   document.querySelectorAll('.filter-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach((b) => {
-        b.classList.remove('active', 'bg-navy', 'text-white');
+        b.classList.remove('bg-navy', 'text-white');
         b.classList.add('bg-gray-100', 'text-text-light');
       });
-      btn.classList.add('active', 'bg-navy', 'text-white');
+      btn.classList.add('bg-navy', 'text-white');
       btn.classList.remove('bg-gray-100', 'text-text-light');
 
       const filter = (btn as HTMLElement).dataset.filter;
-      document.querySelectorAll('.case-study-card').forEach((card) => {
-        const tag = (card as HTMLElement).dataset.tag;
-        if (filter === 'all' || tag === filter) {
+      document.querySelectorAll('.case-card').forEach((card) => {
+        const tags = (card as HTMLElement).dataset.tags || '';
+        if (filter === 'toate' || tags.includes(filter!)) {
           (card as HTMLElement).style.display = '';
         } else {
           (card as HTMLElement).style.display = 'none';
