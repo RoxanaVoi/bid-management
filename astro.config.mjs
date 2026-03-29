@@ -4,9 +4,12 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   site: 'https://bid-management.ro',
   output: 'static',
+
   i18n: {
     defaultLocale: 'ro',
     locales: ['ro', 'en'],
@@ -14,8 +17,11 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   integrations: [react(), sitemap()],
+  adapter: cloudflare(),
 });
