@@ -1,99 +1,290 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import ServiceCard from '../../../components/ServiceCard.astro';
-import CourseCard from '../../../components/CourseCard.astro';
-import { getLocaleFromUrl, t, getLocalizedPath } from '../../../i18n/utils';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
-
-const services = [
-  { key: 'service1', icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' },
-  { key: 'service2', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z' },
-  { key: 'service3', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
-  { key: 'service4', icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z' },
-];
-
-const courses = ['course1', 'course2', 'course3', 'course4'];
+const isRo = locale === 'ro';
 ---
 
-<Layout title={t(locale, 'companiesPage.title')}>
-  <!-- Hero -->
-  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-20">
+<Layout title={isRo ? 'eBid — Suport inteligent pentru ofertare' : 'eBid — Smart bidding support'}>
+
+  <!-- ===== HERO ===== -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16 lg:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-full mb-6">
           <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          <span class="text-accent text-sm font-medium">{locale === 'ro' ? 'Pentru companii ofertante' : 'For bidding companies'}</span>
+          <span class="text-accent text-sm font-medium">{isRo ? 'Pentru operatori economici' : 'For economic operators'}</span>
         </div>
-        <h1 class="text-4xl sm:text-5xl font-heading font-bold mb-6">{t(locale, 'companiesPage.title')}</h1>
-        <p class="text-xl text-gray-300 leading-relaxed">{t(locale, 'companiesPage.subtitle')}</p>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
+          {isRo
+            ? 'eBid — suport inteligent pentru ofertare în achiziții publice.'
+            : 'eBid — smart support for bidding in public procurement.'}
+        </h1>
+
+        <p class="text-lg text-gray-300 leading-relaxed mb-4">
+          {isRo
+            ? 'Ajutăm operatorii economici să înțeleagă mai repede documentațiile, să identifice cerințele esențiale, să organizeze răspunsurile pe loturi și să gestioneze procesul de ofertare parțial sau cap‑coadă.'
+            : 'We help economic operators understand documentation faster, identify essential requirements, organize responses by lots, and manage the bidding process partially or end-to-end.'}
+        </p>
+
+        <p class="text-sm text-gray-400 leading-relaxed mb-8 max-w-2xl">
+          {isRo
+            ? 'eBid este soluția noastră dedicată companiilor care participă la proceduri publice și au nevoie de mai mult control, mai puțină muncă fragmentată și o abordare mai clară a conformității tehnice și documentare.'
+            : 'eBid is our solution dedicated to companies participating in public procedures who need more control, less fragmented work, and a clearer approach to technical and documentary compliance.'}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={getLocalizedPath(locale, '/analizeaza-documentatia')} class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25 hover:-translate-y-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            {isRo ? 'Trimite documentația pentru analiză' : 'Submit documentation for analysis'}
+          </a>
+          <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+            {isRo ? 'Programează o discuție' : 'Schedule a discussion'}
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Consulting -->
-  <section class="py-24 bg-white">
+  <!-- ===== CE FACE eBid ===== -->
+  <section class="py-20 lg:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 data-animate class="text-3xl font-heading font-bold text-navy mb-12 text-center">
-        {t(locale, 'companiesPage.consultingTitle')}
-      </h2>
-      <div class="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {services.map((svc, i) => (
-          <ServiceCard
-            title={t(locale, `companiesPage.${svc.key}.title`)}
-            description={t(locale, `companiesPage.${svc.key}.desc`)}
-            icon={svc.icon}
-            delay={String(i + 1)}
-          />
+      <div class="max-w-3xl mx-auto text-center mb-14">
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-4">
+          {isRo
+            ? 'Din documentație complexă, în pași clari de ofertare.'
+            : 'From complex documentation to clear bidding steps.'}
+        </h2>
+        <p class="text-text-light text-lg leading-relaxed">
+          {isRo
+            ? 'eBid este gândit pentru companii care lucrează cu fișe de date, caiete de sarcini și cerințe tehnice greu de urmărit în emailuri, foldere și tabele separate.'
+            : 'eBid is designed for companies working with data sheets, specifications, and technical requirements that are hard to track across emails, folders, and separate spreadsheets.'}
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {([
+          {
+            icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+            title: isRo ? 'Analiză documentație' : 'Documentation Analysis',
+            desc: isRo
+              ? 'Identifică cerințele critice, condițiile restrictive, documentele obligatorii și punctele care trebuie clarificate înainte de decizia de participare.'
+              : 'Identifies critical requirements, restrictive conditions, mandatory documents, and points that need clarification before the participation decision.',
+          },
+          {
+            icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+            title: isRo ? 'Mapare cerințe' : 'Requirements Mapping',
+            desc: isRo
+              ? 'Extrage și structurează cerințele tehnice, administrative și comerciale într-o formă ușor de urmărit de către echipă.'
+              : 'Extracts and structures technical, administrative, and commercial requirements in a form easy for the team to follow.',
+          },
+          {
+            icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+            title: isRo ? 'Grupare pe loturi' : 'Lot Grouping',
+            desc: isRo
+              ? 'Separă informațiile relevante pe loturi, produse sau categorii de echipamente, astfel încât răspunsurile și responsabilitățile să fie mai ușor de organizat.'
+              : 'Separates relevant information by lots, products, or equipment categories, so responses and responsibilities are easier to organize.',
+          },
+          {
+            icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+            title: isRo ? 'Suport pentru conformitate' : 'Compliance Support',
+            desc: isRo
+              ? 'Ajută la corelarea cerințelor din documentație cu soluțiile, produsele și documentele disponibile în companie.'
+              : 'Helps correlate documentation requirements with solutions, products, and documents available in the company.',
+          },
+          {
+            icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
+            title: isRo ? 'Coordonare ofertare' : 'Bid Coordination',
+            desc: isRo
+              ? 'Susține pregătirea răspunsurilor, a documentelor și a fluxului intern de validare dintre comercial, tehnic, financiar și management.'
+              : 'Supports response preparation, document assembly, and internal validation flow between commercial, technical, financial, and management teams.',
+          },
+          {
+            icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
+            title: isRo ? 'Lucru parțial sau end-to-end' : 'Partial or end-to-end',
+            desc: isRo
+              ? 'Poate fi folosit pentru o analiză punctuală, pentru etape critice sau pentru gestionarea extinsă a procesului de ofertare.'
+              : 'Can be used for a specific analysis, for critical stages, or for extended management of the bidding process.',
+          },
+        ]).map((card, i) => (
+          <div class="group bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg hover:border-accent/20 transition-all duration-300 hover:-translate-y-1">
+            <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={card.icon} />
+              </svg>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-navy mb-2">{card.title}</h3>
+            <p class="text-text-light text-sm leading-relaxed">{card.desc}</p>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Courses & Training -->
-  <section class="py-24 bg-surface">
+  <!-- ===== CUM LUCRĂM ===== -->
+  <section class="py-20 lg:py-24 bg-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 data-animate class="text-3xl font-heading font-bold text-navy mb-4 text-center">
-        {t(locale, 'companiesPage.coursesTitle')}
-      </h2>
-      <p data-animate class="text-text-light text-center mb-12 max-w-2xl mx-auto">
-        {locale === 'ro'
-          ? 'Programe de formare adaptate nevoilor echipei tale, disponibile online sau la sediul companiei.'
-          : 'Training programs tailored to your team\'s needs, available online or on-site.'}
-      </p>
-      <div class="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {courses.map((key, i) => (
-          <CourseCard
-            title={t(locale, `companiesPage.${key}.title`)}
-            format={t(locale, `companiesPage.${key}.format`)}
-            duration={t(locale, `companiesPage.${key}.duration`)}
-            level={t(locale, `companiesPage.${key}.level`)}
-            cta={t(locale, 'companiesPage.courseCta')}
-            delay={String(i + 1)}
-          />
-        ))}
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-4">
+            {isRo ? 'Ne integrăm în modul vostru de lucru.' : 'We integrate into your way of working.'}
+          </h2>
+          <p class="text-text-light text-lg leading-relaxed mb-8">
+            {isRo
+              ? 'eBid nu pornește de la ideea că echipa trebuie să schimbe tot ce folosește deja. Putem lucra peste structura documentară și instrumentele existente, astfel încât adoptarea să fie mai ușoară și colaborarea să rămână practică.'
+              : 'eBid doesn\'t start from the idea that the team needs to change everything they already use. We can work on top of existing document structures and tools, making adoption easier and collaboration practical.'}
+          </p>
+
+          <ul class="space-y-4">
+            {([
+              isRo ? 'Putem lucra cu foldere și structuri documentare deja existente.' : 'We can work with existing folders and document structures.',
+              isRo ? 'Colaborarea se poate organiza peste instrumentele folosite deja de echipă, inclusiv soluții de stocare și partajare utilizate curent.' : 'Collaboration can be organized on top of tools already used by the team, including current storage and sharing solutions.',
+              isRo ? 'Separăm clar rolurile și responsabilitățile între echipele implicate.' : 'We clearly separate roles and responsibilities between involved teams.',
+              isRo ? 'Putem interveni punctual sau putem coordona un flux mai amplu de ofertare.' : 'We can intervene specifically or coordinate a broader bidding flow.',
+            ]).map((bullet) => (
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-accent/10 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-text leading-relaxed">{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Visual: integration diagram -->
+        <div class="bg-white rounded-2xl border border-gray-100 p-8">
+          <div class="text-center mb-6">
+            <span class="text-xs text-text-light uppercase tracking-wider font-medium">{isRo ? 'Flux de integrare' : 'Integration flow'}</span>
+          </div>
+          <div class="space-y-4">
+            {([
+              { label: isRo ? 'Documentația voastră' : 'Your documentation', icon: '📄', color: 'bg-gray-50 border-gray-200' },
+              { label: isRo ? 'Structurare eBid' : 'eBid structuring', icon: '⚙️', color: 'bg-accent/5 border-accent/20' },
+              { label: isRo ? 'Echipa comercială' : 'Commercial team', icon: '👥', color: 'bg-gray-50 border-gray-200' },
+              { label: isRo ? 'Echipa tehnică' : 'Technical team', icon: '🔧', color: 'bg-gray-50 border-gray-200' },
+              { label: isRo ? 'Ofertă finalizată' : 'Finalized bid', icon: '✅', color: 'bg-success/5 border-success/20' },
+            ]).map((step, i) => (
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0 border {step.color}">{step.icon}</div>
+                <div class={`flex-1 rounded-lg p-3 border ${step.color}`}>
+                  <span class="text-sm font-medium text-navy">{step.label}</span>
+                </div>
+                {i < 4 && (
+                  <svg class="w-4 h-4 text-accent/30 shrink-0 rotate-90 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-24 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+  <!-- ===== MODURI DE UTILIZARE ===== -->
+  <section class="py-20 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-4">
+          {isRo ? 'Poți folosi eBid în funcție de cât suport ai nevoie.' : 'Use eBid based on how much support you need.'}
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <!-- Card 1 -->
+        <div class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:border-accent/20 transition-all duration-300 hover:-translate-y-1">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent/40 to-accent/20 rounded-t-2xl"></div>
+          <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-4 text-accent font-heading font-bold text-sm">01</div>
+          <h3 class="text-lg font-heading font-bold text-navy mb-3">
+            {isRo ? 'Analiză punctuală' : 'Specific analysis'}
+          </h3>
+          <p class="text-text-light text-sm leading-relaxed">
+            {isRo
+              ? 'Pentru proceduri concrete în care ai nevoie rapid de extragerea cerințelor, identificarea riscurilor și clarificarea pașilor următori.'
+              : 'For specific procedures where you quickly need requirements extraction, risk identification, and next steps clarification.'}
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:border-accent/20 transition-all duration-300 hover:-translate-y-1">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent/60 to-accent/40 rounded-t-2xl"></div>
+          <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-4 text-accent font-heading font-bold text-sm">02</div>
+          <h3 class="text-lg font-heading font-bold text-navy mb-3">
+            {isRo ? 'Suport de ofertare' : 'Bidding support'}
+          </h3>
+          <p class="text-text-light text-sm leading-relaxed">
+            {isRo
+              ? 'Pentru echipe care lucrează intern la ofertă, dar au nevoie de structurare, validare și coordonare mai bună a informațiilor.'
+              : 'For teams working internally on the bid, but needing better structuring, validation, and coordination of information.'}
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:border-accent/20 transition-all duration-300 hover:-translate-y-1">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent to-accent/60 rounded-t-2xl"></div>
+          <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-4 text-accent font-heading font-bold text-sm">03</div>
+          <h3 class="text-lg font-heading font-bold text-navy mb-3">
+            {isRo ? 'Management extins' : 'Extended management'}
+          </h3>
+          <p class="text-text-light text-sm leading-relaxed">
+            {isRo
+              ? 'Pentru companii care vor să gestioneze mai riguros întregul flux, de la analiză și organizare pe loturi până la pregătirea documentelor și urmărirea livrabilelor.'
+              : 'For companies that want to more rigorously manage the entire flow, from analysis and lot organization to document preparation and deliverable tracking.'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PENTRU CINE ESTE ===== -->
+  <section class="py-20 lg:py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-8">
+          {isRo ? 'eBid este potrivit când:' : 'eBid is right when:'}
+        </h2>
+
+        <ul class="space-y-4">
+          {([
+            isRo ? 'documentația este stufoasă, tehnică sau împărțită în multe fișiere;' : 'documentation is dense, technical, or split across many files;',
+            isRo ? 'există mai multe loturi sau mai multe categorii de produse;' : 'there are multiple lots or multiple product categories;',
+            isRo ? 'echipa are nevoie de o imagine clară asupra cerințelor și responsabilităților;' : 'the team needs a clear picture of requirements and responsibilities;',
+            isRo ? 'conformitatea tehnică trebuie verificată atent înainte de ofertare;' : 'technical compliance must be carefully verified before bidding;',
+            isRo ? 'participarea la procedură este importantă și riscul de eroare trebuie redus;' : 'procedure participation is important and error risk must be reduced;',
+            isRo ? 'vrei să păstrezi instrumentele deja folosite, dar să lucrezi mai organizat.' : 'you want to keep the tools you already use, but work more organized.',
+          ]).map((item) => (
+            <li class="flex items-start gap-3 bg-white rounded-xl p-4 border border-gray-100">
+              <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+              <span class="text-text leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="py-20 lg:py-24 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 data-animate class="text-3xl font-heading font-bold mb-4">{t(locale, 'companiesPage.ctaTitle')}</h2>
-      <p data-animate data-animate-delay="1" class="text-gray-300 text-lg mb-8">{t(locale, 'companiesPage.ctaSubtitle')}</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center" data-animate data-animate-delay="2">
-        <a
-          href={getLocalizedPath(locale, '/analizeaza-documentatia')}
-          class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25"
-        >
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">
+        {isRo
+          ? 'Ai o procedură importantă și vrei un proces de ofertare mai clar?'
+          : 'Have an important procedure and want a clearer bidding process?'}
+      </h2>
+      <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+        {isRo
+          ? 'Trimite documentația pentru o analiză inițială sau discută cu noi despre cum poate fi folosit eBid în echipa voastră, punctual sau ca suport extins de ofertare.'
+          : 'Submit documentation for an initial analysis or talk to us about how eBid can be used in your team, specifically or as extended bidding support.'}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getLocalizedPath(locale, '/analizeaza-documentatia')} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25 hover:-translate-y-0.5">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          {t(locale, 'ctaFinal.ctaPrimary')}
+          {isRo ? 'Trimite documentația' : 'Submit documentation'}
         </a>
-        <a
-          href={getLocalizedPath(locale, '/contact')}
-          class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all"
-        >
-          {t(locale, 'companiesPage.ctaButton')}
+        <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+          {isRo ? 'Discută despre eBid' : 'Discuss about eBid'}
         </a>
       </div>
     </div>
