@@ -1,5 +1,10 @@
 import { useState, useRef } from 'react';
 
+// ====================================================================
+// FORMSPREE: Înlocuiește cu ID-ul formularului "Analiză" din formspree.io
+// ====================================================================
+const FORMSPREE_ANALYSIS_ID = 'YOUR_ANALYSIS_FORM_ID';
+
 interface Props {
   locale: 'ro' | 'en';
 }
@@ -158,7 +163,30 @@ export default function DocumentAnalysis({ locale }: Props) {
 
   const handleAnalyze = async () => {
     setAnalyzing(true);
-    await new Promise((r) => setTimeout(r, 3000));
+
+    // Collect all form data from the page and send to Formspree
+    try {
+      const allInputs = document.querySelectorAll('input, textarea, select');
+      const formPayload: Record<string, string> = {
+        _form_type: 'document_analysis',
+        _source: 'bid-management.ro',
+        role: role,
+        preferences: Object.entries(prefs).filter(([, v]) => v).map(([k]) => k).join(', '),
+      };
+      allInputs.forEach((el) => {
+        const input = el as HTMLInputElement;
+        if (input.name && input.value) formPayload[input.name] = input.value;
+      });
+      if (file) formPayload['attached_file'] = file.name;
+
+      await fetch(`https://formspree.io/f/${FORMSPREE_ANALYSIS_ID}`, {
+        method: 'POST',
+        body: JSON.stringify(formPayload),
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      });
+    } catch {
+      // Continue even if Formspree fails — show simulated results
+    }
 
     setResult({
       summary: {
