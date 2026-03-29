@@ -179,24 +179,41 @@ async function extractPdfText(file: File): Promise<string> {
   }
 }
 
-// Send to Cloudflare Function for Claude API analysis
+// Send to Cloudflare Function for Claude API analysis (with 25s timeout)
 async function analyzeWithAI(text: string): Promise<AnalysisResult> {
   console.log('[eBid] Sending to API, text length:', text.length);
-  const response = await fetch('/api/analyze', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text: text.substring(0, 50000) }),
-  });
 
-  if (!response.ok) {
-    const errBody = await response.text();
-    console.error('[eBid] API error:', response.status, errBody);
-    throw new Error(`API error: ${response.status}`);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 25000);
+
+  try {
+    const response = await fetch('/api/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: text.substring(0, 30000) }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeout);
+
+    if (!response.ok) {
+      const errBody = await response.text();
+      console.error('[eBid] API error:', response.status, errBody);
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('[eBid] API result received');
+    return result;
+  } catch (err: any) {
+    clearTimeout(timeout);
+    if (err.name === 'AbortError') {
+      console.warn('[eBid] API timeout after 25s, using local parser');
+    } else {
+      console.error('[eBid] API fetch failed:', err.message);
+    }
+    throw err;
   }
-
-  const result = await response.json();
-  console.log('[eBid] API result:', result);
-  return result;
 }
 
 export default function DocumentAnalysis({ locale }: Props) {
@@ -285,76 +302,64 @@ export default function DocumentAnalysis({ locale }: Props) {
     }
   };
 
-  // Local parsing fallback — extracts data using regex patterns from SEAP format
+  // Local parsing fallback — extracts data from SEAP PDF text
+  // PDF.js joins text with spaces, so we search for known SEAP section headers
   function parseLocally(text: string): AnalysisResult {
-    const find = (patterns: RegExp[]): string => {
-      for (const p of patterns) {
-        const match = text.match(p);
-        if (match?.[1]) return match[1].trim().substring(0, 500);
-      }
-      return '—';
+    console.log('[eBid] Using local parser, text sample:', text.substring(0, 200));
+
+    // Helper: find text between two markers
+    const between = (start: RegExp, end: RegExp, maxLen = 500): string => {
+      const startMatch = text.match(start);
+      if (!startMatch) return 'Nu este specificat';
+      const startIdx = startMatch.index! + startMatch[0].length;
+      const remaining = text.substring(startIdx, startIdx + maxLen * 2);
+      const endMatch = remaining.match(end);
+      const result = endMatch ? remaining.substring(0, endMatch.index!) : remaining.substring(0, maxLen);
+      return result.trim().replace(/\s+/g, ' ').substring(0, maxLen) || 'Nu este specificat';
     };
 
-    const autoritate = find([
-      /I\.1\)\s*Denumire\s*si\s*adrese?\s*\n?\s*(.+?)(?:\n|Cod de)/is,
-      /Denumire\s*si\s*adrese?\s*(.+?)(?:Cod|CUI)/is,
-    ]);
+    // Helper: find value after a label
+    const after = (label: RegExp, maxLen = 300): string => {
+      const match = text.match(label);
+      if (!match) return 'Nu este specificat';
+      const startIdx = match.index! + match[0].length;
+      const chunk = text.substring(startIdx, startIdx + maxLen).trim().replace(/\s+/g, ' ');
+      // Cut at next section header (Roman numeral or known header)
+      const cutMatch = chunk.match(/(?:I{1,3}\.[\d]|Sectiunea|Pagina \d)/);
+      return cutMatch ? chunk.substring(0, cutMatch.index!).trim() : chunk;
+    };
 
-    const obiect = find([
-      /II\.1\.1\s*Titlu:?\s*\n?\s*(.+?)(?:\n|Numar)/is,
-      /Titlu:?\s*(.+?)(?:Numar de referinta|$)/im,
-    ]);
+    const autoritate = after(/Denumire\s*si\s*adrese\s*/i, 200);
+    const tipProcedura = after(/Tip\s*anunt:\s*/i, 100) + ' | ' + after(/Tip\s*Legislatie:\s*/i, 100);
+    const obiect = after(/II\.1\.1\s*Titlu:\s*/i, 200) || after(/Titlu:\s*/i, 200);
+    const codCPV = after(/Cod\s*CPV\s*Principal:\s*/i, 100);
+    const tipContract = after(/II\.1\.3\s*Tip\s*de\s*contract:\s*/i, 100);
+    const valoareEstimata = after(/II\.1\.5\)\s*Valoarea\s*totala\s*estimata:\s*/i, 200) || after(/Valoarea\s*totala\s*estimata:\s*/i, 200);
+    const loturi = after(/Impartire\s*in\s*loturi:\s*/i, 300);
+    const durata = after(/Durata\s*in\s*luni:\s*/i, 100) || after(/Durata\s*contractului/i, 100);
+    const criterii = after(/Criterii\s*de\s*atribuire\s*/i, 500);
+    const garantie = after(/garantiei\s*de\s*participare:\s*/i, 100) || after(/Valoarea\s*garantiei/i, 100);
+    const termen = after(/termen.*limita.*depunere/i, 100) || after(/data\s*limita.*depunere/i, 100);
 
-    const cpv = find([
-      /Cod\s*CPV\s*Principal:?\s*\n?\s*(.+?)(?:\n|$)/im,
-      /II\.1\.2\s*Cod\s*CPV.*?:?\s*\n?\s*(.+?)(?:\n|$)/is,
-    ]);
-
-    const valoare = find([
-      /Valoarea\s*totala\s*estimata:?\s*\n?\s*(.+?)(?:\n|Alte)/is,
-      /II\.1\.5\)\s*Valoarea.*?:?\s*\n?\s*(.+?)(?:\n|$)/is,
-    ]);
-
-    const tipContract = find([
-      /Tip\s*de\s*contract:?\s*\n?\s*(.+?)(?:\n|$)/im,
-      /II\.1\.3\s*Tip.*?:?\s*\n?\s*(.+?)(?:\n|$)/is,
-    ]);
-
-    const loturi = find([
-      /Impartire\s*in\s*loturi:?\s*\n?\s*(.+?)(?:\n|Pot)/is,
-    ]);
-
-    const durata = find([
-      /Durata\s*(?:contractului|in\s*luni):?\s*(.+?)(?:\n|Contractul)/is,
-    ]);
-
-    const criterii = find([
-      /Criterii\s*de\s*atribuire\s*\n?\s*(.+?)(?:Denumire\s*factor|$)/is,
-    ]);
-
-    const garantie = find([
-      /garantiei\s*de\s*participare:?\s*(.+?)(?:\n|$)/im,
-    ]);
-
-    const tipProcedura = find([
-      /Tip\s*anunt:?\s*(.+?)(?:\n|$)/im,
-      /Tip\s*Legislatie:?\s*(.+?)(?:\n|$)/im,
-    ]);
+    // Cerinte - these are harder to extract with regex
+    const cerinteSection = between(/Sectiunea\s*III/i, /Sectiunea\s*IV/i, 2000);
+    const cerinteExp = cerinteSection.match(/experienta\s*similara[^.]*\./i)?.[0] || 'Nu este specificat explicit în fișa de date';
+    const cerinteCifra = cerinteSection.match(/cifra\s*de\s*afaceri[^.]*\./i)?.[0] || 'Nu este specificat explicit în fișa de date';
 
     return {
       autoritate,
       tipProcedura,
       obiect,
-      codCPV: cpv,
-      valoareEstimata: valoare,
+      codCPV,
+      valoareEstimata,
       tipContract,
       durata,
       loturi,
-      cerinteExperientaSimilara: find([/experienta\s*similara.*?:?\s*(.+?)(?:\n\n|\n[A-Z])/is]),
-      cerinteCifraAfaceri: find([/cifra\s*de\s*afaceri.*?:?\s*(.+?)(?:\n\n|\n[A-Z])/is]),
-      alteCerinte: find([/cerinte.*?calificare.*?:?\s*(.+?)(?:\n\n|\n[A-Z])/is]),
+      cerinteExperientaSimilara: cerinteExp,
+      cerinteCifraAfaceri: cerinteCifra,
+      alteCerinte: 'Verifică secțiunea III din fișa de date pentru cerințele complete de calificare.',
       criteriiPunctaj: criterii,
-      termenDepunere: find([/termen.*?(?:limita|depunere).*?:?\s*(.+?)(?:\n|$)/im]),
+      termenDepunere: termen,
       garantieParticipare: garantie,
     };
   }
