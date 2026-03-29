@@ -4,8 +4,8 @@ import { useState } from 'react';
 // FORMSPREE: Înlocuiește aceste ID-uri cu cele din contul tău formspree.io
 // Formatul e codul din URL-ul https://formspree.io/f/CODUL_TAU
 // ====================================================================
-const FORMSPREE_CONTACT_ID = 'YOUR_CONTACT_FORM_ID';
-const FORMSPREE_DEMO_ID = 'YOUR_DEMO_FORM_ID';
+const FORMSPREE_CONTACT_ID = 'xykbewkq';
+const FORMSPREE_DEMO_ID = 'xzdkerdn';
 
 interface Props {
   locale: 'ro' | 'en';

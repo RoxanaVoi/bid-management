@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 // ====================================================================
 // FORMSPREE: Înlocuiește cu ID-ul formularului "Analiză" din formspree.io
 // ====================================================================
-const FORMSPREE_ANALYSIS_ID = 'YOUR_ANALYSIS_FORM_ID';
+const FORMSPREE_ANALYSIS_ID = 'xeepagaj';
 
 interface Props {
   locale: 'ro' | 'en';
