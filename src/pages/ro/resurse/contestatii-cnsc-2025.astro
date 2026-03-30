@@ -1,0 +1,96 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<Layout title="Contestații CNSC: statistici și tendințe 2025">
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Contestații CNSC 2025</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">Analize</span>
+        <span class="text-gray-500 text-sm">20 Feb 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-heading font-bold leading-tight">Contestații CNSC: statistici și tendințe 2025</h1>
+    </div>
+  </section>
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-slate prose-lg max-w-none prose-headings:font-heading prose-headings:text-navy prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-p:text-text prose-p:leading-relaxed prose-li:text-text prose-strong:text-navy">
+
+        <p class="text-xl text-text leading-relaxed">
+          Contestațiile în achizițiile publice au devenit, în ultimii ani, un element structural al pieței, nu o excepție. Volumul de dosare gestionat anual de Consiliul Național de Soluționare a Contestațiilor (CNSC) se menține la nivel de mii de cauze, ceea ce înseamnă mii de proceduri afectate de întârzieri, reevaluări sau reluări.
+        </p>
+        <p>Rapoartele de activitate și culegerile de spețe ale CNSC permit deja să vorbim despre câteva tendințe clare pentru perioada recentă, relevante atât pentru autorități contractante, cât și pentru ofertanți.</p>
+
+        <h2>1. Un volum constant ridicat de contestații</h2>
+        <p>Analizele CNSC din ultimii ani arată un volum constant ridicat de contestații, cu valori anuale de ordinul miilor. Chiar dacă dinamica de la un an la altul poate varia ușor, trendul general rămâne unul de încărcare substanțială a completurilor de soluționare.</p>
+        <p>Pe lângă datele din rapoartele oficiale, și sursele media confirmă menținerea unei presiuni ridicate asupra CNSC, cu creșteri vizibile ale numărului de contestații în anumite perioade (de exemplu, primele luni din 2025). Acest context arată că mediul concurențial este activ, iar operatorii economici își folosesc tot mai frecvent dreptul de a contesta.</p>
+
+        <h2>2. Procedurile cel mai expuse la contestații</h2>
+        <p>Culegerea de spețe și rapoartele CNSC evidențiază o concentrare a contestațiilor în jurul procedurilor cu impact mare: lucrări de infrastructură, proiecte cu finanțare europeană, servicii complexe sau contracte cu valoare ridicată. Acolo unde miza economică este mare, și apetitul pentru litigiu crește vizibil.</p>
+        <p>În paralel, o parte considerabilă dintre cauzele analizate vizează proceduri aferente proiectelor finanțate din fonduri externe nerambursabile, unde presiunea termenelor și complexitatea regulilor produc inevitabil mai multe dispute. Se observă, de asemenea, prezența constantă a contestațiilor și în proceduri de furnizare, mai ales când specificațiile tehnice sau structura pe loturi ridică suspiciuni de favorizare.</p>
+
+        <h2>3. Cele mai frecvente motive de contestare</h2>
+        <p>Ghidul de bune practici al CNSC grupează spețele pe teme recurente, ceea ce permite conturarea unui „top" informal al motivelor de contestare.</p>
+        <p>Printre cele mai des întâlnite:</p>
+
+        <h3 class="text-xl mt-8 font-heading font-bold text-navy">Documentația de atribuire</h3>
+        <ul>
+          <li>Critici privind caracterul pretins restrictiv al cerințelor (experiență similară formulată excesiv, specificații tehnice îndreptate aparent spre anumite produse sau furnizori).</li>
+          <li>Neclarități sau inconsecvențe între caietul de sarcini, fișa de date și proiectul de contract.</li>
+        </ul>
+
+        <h3 class="text-xl mt-8 font-heading font-bold text-navy">Evaluarea ofertelor</h3>
+        <ul>
+          <li>Modul de interpretare a conformității tehnice, în special când oferte apropiate primesc tratament diferit.</li>
+          <li>Aplicarea criteriilor de atribuire (ponderea factorilor de evaluare, punctarea elementelor de calitate).</li>
+        </ul>
+
+        <h3 class="text-xl mt-8 font-heading font-bold text-navy">Calificare și excludere</h3>
+        <ul>
+          <li>Modul de apreciere a îndeplinirii criteriilor de calificare și a experienței similare.</li>
+          <li>Aplicarea motivelor de excludere și a regulilor privind conflictul de interese.</li>
+        </ul>
+        <p>Aceste tipologii apar constant în spețele publicate de CNSC și oferă un tablou clar al zonelor de vulnerabilitate din proceduri.</p>
+
+        <h2>4. Ce spun soluțiile CNSC despre „șansele" unei contestații</h2>
+        <p>Rapoartele de activitate CNSC nu se limitează la a număra contestațiile, ci le clasifică pe tipuri de soluții: admise, admise în parte, respinse, respinse ca tardive sau inadmisibile, anulate etc. Din această structură reies câteva concluzii importante pentru practicieni.</p>
+        <p>Pe de o parte, un număr semnificativ de cauze se opresc pe excepții procedurale — depunere peste termen, lipsa cauțiunii, lipsa interesului sau a calității procesuale — fără ca fondul criticilor să mai fie analizat. Pe de altă parte, în rândul contestațiilor analizate pe fond, se regăsește o pondere relevantă de soluții admise integral sau parțial, cu efecte precum anularea unor acte, reevaluarea ofertelor sau reluarea procedurii.</p>
+        <p>Mesajul pentru ofertanți este dublu: o contestație bine pregătită, în termen și motivată juridic are șanse reale, dar o contestație formal viciată se blochează înainte să fie discutat fondul. Pentru autorități, rata de admitere a unor critici arată că există încă spațiu semnificativ de îmbunătățire în proiectarea și derularea procedurilor.</p>
+
+        <h2>5. Impactul contestațiilor asupra duratei și calității achizițiilor</h2>
+        <p>CNSC subliniază în mod repetat efectele contestațiilor asupra duratei procedurilor: prelungiri ale termenelor de atribuire, suspendări, reevaluări succesive. În proiectele mari sau sensibile, aceste întârzieri se traduc direct în decalarea investițiilor și în dificultăți la nivel de implementare.</p>
+        <p>În același timp, deciziile CNSC pot fi atacate cu plângere la curtea de apel, adăugând un nou strat de durată și incertitudine. Pe termen lung, însă, practica CNSC și a instanțelor contribuie la clarificarea și uniformizarea modului de aplicare a regulilor de achiziții, ceea ce poate ridica gradual calitatea documentațiilor și a evaluărilor.</p>
+
+        <h2>6. Lecții pentru autorități și ofertanți</h2>
+        <p>Din perspectiva autorităților contractante, statisticile și spețele CNSC transmit câteva mesaje clare: nevoia de documentații de atribuire mai bine fundamentate, de criterii de calificare și evaluare proporționale și de proceduri interne mai riguroase de verificare înainte de lansare. Reducerea ambiguităților și a cerințelor discutabile poate diminua semnificativ riscul de contestații admise.</p>
+        <p>Pentru ofertanți, cunoașterea jurisprudenței CNSC devine un avantaj competitiv: permite identificarea mai rapidă a neregulilor reale, formularea unor contestații bine țintite și, nu în ultimul rând, construcția unor oferte inițiale care evită greșelile deja sancționate în alte spețe. Într-o piață în care contestațiile nu mai sunt excepția, ci regula, capacitatea de a naviga acest teren face deja parte din „skill-setul" de bază pentru achiziții publice.</p>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-16 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-heading font-bold mb-4">Vrei suport pentru analiza documentației sau pregătirea ofertei?</h2>
+      <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">Fie că ești autoritate contractantă sau operator economic, putem analiza documentația și identifica zonele de risc.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getLocalizedPath(locale, '/analizeaza-documentatia')} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25">
+          Analizează o fișă de date
+        </a>
+        <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+          Discută cu noi
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
