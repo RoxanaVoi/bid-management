@@ -117,33 +117,24 @@ let pdfjsLoaded: any = null;
 async function loadPdfJs(): Promise<any> {
   if (pdfjsLoaded) return pdfjsLoaded;
 
-  // Load PDF.js from CDN via script tag
+  // Load PDF.js from CDN via inline module script
   if (!(window as any).pdfjsLib) {
-    await new Promise<void>((resolve, reject) => {
-      const script = document.createElement('script');
-      script.src = `${PDFJS_CDN}/pdf.min.mjs`;
-      script.type = 'module';
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error('Failed to load PDF.js'));
-
-      // For module scripts, use import instead
-      const importScript = document.createElement('script');
-      importScript.type = 'module';
-      importScript.textContent = `
-        import * as pdfjsLib from '${PDFJS_CDN}/pdf.min.mjs';
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '${PDFJS_CDN}/pdf.worker.min.mjs';
-        window.pdfjsLib = pdfjsLib;
-        window.dispatchEvent(new Event('pdfjs-ready'));
-      `;
-      document.head.appendChild(importScript);
-    });
+    const importScript = document.createElement('script');
+    importScript.type = 'module';
+    importScript.textContent = `
+      import * as pdfjsLib from '${PDFJS_CDN}/pdf.min.mjs';
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '${PDFJS_CDN}/pdf.worker.min.mjs';
+      window.pdfjsLib = pdfjsLib;
+      window.dispatchEvent(new Event('pdfjs-ready'));
+    `;
+    document.head.appendChild(importScript);
 
     // Wait for the module to load
-    await new Promise<void>((resolve) => {
+    await new Promise<void>((resolve, reject) => {
       if ((window as any).pdfjsLib) { resolve(); return; }
       window.addEventListener('pdfjs-ready', () => resolve(), { once: true });
-      // Timeout fallback
-      setTimeout(() => resolve(), 5000);
+      // Timeout fallback — reject after 15s so the user gets an error message
+      setTimeout(() => reject(new Error('PDF.js load timeout')), 15000);
     });
   }
 
