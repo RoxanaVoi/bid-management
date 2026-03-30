@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import CTASection from '../../../components/CTASection.astro';
-import { getLocaleFromUrl, t } from '../../../i18n/utils';
+import { getLocaleFromUrl, t, getLocalizedPath } from '../../../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
 
@@ -36,16 +36,16 @@ const articles = locale === 'ro' ? [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {articles.map((article, i) => (
-          <article data-animate data-animate-delay={String((i % 4) + 1)} class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all hover:-translate-y-1">
+          <a href={i === 0 ? getLocalizedPath(locale, '/resurse/ghid-paap-2026') : '#'} data-animate data-animate-delay={String((i % 4) + 1)} class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all hover:-translate-y-1 block no-underline">
             <div class="flex items-center gap-2 mb-4">
               <span class="px-2.5 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">{article.category}</span>
               <span class="text-text-light text-xs">{article.date}</span>
             </div>
-            <h3 class="text-lg font-heading font-bold text-navy mb-3 hover:text-accent transition-colors cursor-pointer">
+            <h3 class="text-lg font-heading font-bold text-navy mb-3 hover:text-accent transition-colors">
               {article.title}
             </h3>
             <p class="text-text-light text-sm leading-relaxed">{article.excerpt}</p>
-          </article>
+          </a>
         ))}
       </div>
     </div>

@@ -1,0 +1,202 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const isRo = locale === 'ro';
+---
+
+<Layout title="Ghid complet PAAP 2026: ce trebuie să știi">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Ghid PAAP 2026</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">Ghiduri</span>
+        <span class="text-gray-500 text-sm">15 Mar 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-heading font-bold leading-tight">Ghid complet PAAP 2026: ce trebuie să știi</h1>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-slate prose-lg max-w-none
+        prose-headings:font-heading prose-headings:text-navy
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8
+        prose-p:text-text prose-p:leading-relaxed
+        prose-li:text-text
+        prose-strong:text-navy
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+
+        <p class="text-xl text-text leading-relaxed">
+          Programul Anual al Achizițiilor Publice (PAAP) rămâne, în 2026, una dintre cele mai importante piese ale mecanismului de achiziții: stabilește ce cumperi, când, cum și din ce bani. De la modul în care este construit depind ritmul procedurilor, nivelul de risc în derulare și, nu de puține ori, reușita proiectelor critice pentru instituție.
+        </p>
+        <p>
+          În continuare, găsești un ghid structurat, practic, despre cum să întocmești și să actualizezi PAAP 2026 astfel încât să fie un instrument de lucru real, nu doar o anexă formală pentru dosarul de achiziții.
+        </p>
+
+        <h2>1. Ce este, de fapt, PAAP?</h2>
+        <p>
+          Programul Anual al Achizițiilor Publice este documentul prin care autoritatea contractantă planifică toate procedurile de achiziție pe care intenționează să le deruleze într-un an. El traduce în termeni de contracte, proceduri și calendar ceea ce ai deja definit în buget și în documentele strategice.
+        </p>
+        <p>În practică, un PAAP bine făcut îți oferă:</p>
+        <ul>
+          <li>O imagine de ansamblu a tuturor achizițiilor (produse, servicii, lucrări) pe un an.</li>
+          <li>Un calendar realist de lansare a procedurilor, raportat la resursele interne.</li>
+          <li>O legătură clară între creditele bugetare aprobate și procedurile planificate.</li>
+          <li>Transparență — atât intern (management, compartimente beneficiare), cât și extern (public, organisme de control, finanțatori).</li>
+        </ul>
+
+        <h2>2. Baza legală și documentele de referință</h2>
+        <p>
+          Cadrul normativ central (Legea 98/2016, HG 395/2016 și actele subsecvente) tratează PAAP ca element obligatoriu de planificare și de fundamentare a procedurilor viitoare. În paralel, numeroase autorități publice își publică propriul PAAP (sau PAAP + SAAP), oferind modele concrete de structură și abordare.
+        </p>
+        <p>Pentru un PAAP 2026 robust, merită avute în vedere trei nivele de referință:</p>
+        <ul>
+          <li>Cadrul legal general (lege, hotărâre de guvern, instrucțiuni).</li>
+          <li>Strategia anuală de achiziții publice a instituției, acolo unde aceasta este elaborată.</li>
+          <li>Modelele și practicile altor autorități (ministere, agenții, consilii județene, spitale, inspectorate etc.), care pot inspira structura tabelelor, clasificările sau modul de evidențiere a actualizărilor.</li>
+        </ul>
+
+        <h2>3. Când începi lucrul la PAAP 2026?</h2>
+        <p>
+          Teoretic, PAAP se fundamentează pe bugetul aprobat pentru anul în curs. Practic, dacă aștepți bugetul final ca să începi, vei pierde câteva luni bune în care procedurile ar fi putut fi deja pregătite.
+        </p>
+        <p>O abordare matură presupune:</p>
+        <p><strong>Inițierea procesului în ultimul trimestru al anului anterior</strong>, pe baza:</p>
+        <ul>
+          <li>Proiectului de buget.</li>
+          <li>Nevoilor recurente (contracte anuale/multianuale, reînnoiri, servicii de mentenanță).</li>
+          <li>Nevoilor noi comunicate prin referate de necesitate sau cereri de la compartimente.</li>
+        </ul>
+        <p><strong>Versionarea clară:</strong></p>
+        <ul>
+          <li>„Proiect PAAP 2026" — lucrat intern înainte de aprobarea bugetului.</li>
+          <li>„PAAP 2026 — varianta aprobată" — corelată cu bugetul efectiv.</li>
+        </ul>
+        <p>Această etapizare îți permite să pregătești fișele de achiziție, notele conceptuale, eventualele strategii de grupare (acorduri-cadru, loturi etc.) încă dinainte de ianuarie.</p>
+
+        <h2>4. Structura recomandată pentru PAAP 2026</h2>
+        <p>Chiar dacă modelul tabelar poate varia de la o instituție la alta, anumite coloane sunt esențiale pentru ca PAAP să fie și juridic corect, și util în management:</p>
+        <ul>
+          <li><strong>Denumirea contractului / obiectul achiziției</strong> — Clar, concis, suficient de descriptiv.</li>
+          <li><strong>Cod CPV</strong> — Permite agregări pe tipuri de achiziții și verificarea încadrării corecte.</li>
+          <li><strong>Tipul contractului</strong> — Produse / servicii / lucrări.</li>
+          <li><strong>Valoarea estimată</strong> — Eventual defalcată pe surse de finanțare.</li>
+          <li><strong>Sursa de finanțare</strong> — Utilă pentru monitorizarea separată a proiectelor finanțate din fonduri UE/PNRR vs. buget național.</li>
+          <li><strong>Procedura / modalitatea de achiziție estimată</strong> — Licitație deschisă, licitație restrânsă, negociere, procedură simplificată, achiziție directă etc.</li>
+          <li><strong>Termen estimat de inițiere a procedurii</strong> — Lună/trimestru; ajută la planificarea resurselor interne.</li>
+          <li><strong>Durata estimată a contractului</strong> — În luni / ani, cu menționarea eventualelor reînnoiri.</li>
+          <li><strong>Compartiment responsabil / beneficiar</strong> — Pentru trasabilitate și claritatea responsabilităților.</li>
+          <li><strong>Observații</strong> — De exemplu: dependență de aprobarea unui proiect, condiționalități tehnice, necesitatea unui studiu de piață prealabil etc.</li>
+        </ul>
+        <p>Dacă instituția derulează un volum mare de achiziții, merită avut câte un PAAP pe subprograme / proiecte sau, cel puțin, un câmp care le identifică, astfel încât prioritizarea să fie mai ușor de făcut.</p>
+
+        <h2>5. Legătura dintre PAAP și referatul de necesitate</h2>
+        <p>PAAP nu se scrie „din pix", ci pleacă de la nevoi concrete, fundamentate de compartimentele beneficiare. Aici intervine rolul referatului de necesitate, care, în practică, ar trebui să răspundă la câteva întrebări cheie:</p>
+        <ul>
+          <li>Ce avem nevoie să achiziționăm și de ce acum?</li>
+          <li>Care este valoarea estimată și cum a fost determinată (analiză de piață, istorice, oferte indicative)?</li>
+          <li>Ce riscuri există dacă achiziția nu este realizată sau este întârziată?</li>
+          <li>Există opțiuni alternative (ex. prelungire contract existent, acord-cadru, partajare resurse cu alte entități)?</li>
+        </ul>
+        <p>Standardizarea conținutului referatului de necesitate te ajută să:</p>
+        <ul>
+          <li>Eviți discrepanțele între estimările diverselor compartimente.</li>
+          <li>Asiguri un minim de calitate a datelor care intră în PAAP (terminologie, valori, justificări).</li>
+          <li>Documentezi mai bine deciziile în fața organelor de control.</li>
+        </ul>
+
+        <h2>6. Relația PAAP — strategia anuală de achiziții publice</h2>
+        <p>În instituțiile unde există o strategie anuală / multianuală de achiziții publice, PAAP este instrumentul operațional de implementare. Strategia setează direcțiile (ce priorități avem, ce riscuri trebuie gestionate, ce tipuri de proceduri vrem să încurajăm), iar PAAP le traduce în:</p>
+        <ul>
+          <li>Liste de proceduri concrete.</li>
+          <li>Calendar de lansare.</li>
+          <li>Alocare de resurse (timp, personal, buget).</li>
+        </ul>
+        <p>O bună practică este ca, la început de an, să fie organizată o ședință comună (conducere — achiziții — economic — compartimente beneficiare) în care:</p>
+        <ul>
+          <li>Se prezintă PAAP 2026 într-o formă sintetică.</li>
+          <li>Se validează prioritățile pe trimestre / semestre.</li>
+          <li>Se clarifică ce proceduri pot fi grupate sau comasate.</li>
+        </ul>
+
+        <h2>7. Cum se actualizează PAAP în 2026</h2>
+        <p>În realitate, PAAP nu rămâne neschimbat tot anul. Bugetul se rectifică, proiectele apar sau se amână, nevoile instituției evoluează. Tocmai de aceea, abordarea corectă nu este să „reîncepi PAAP-ul", ci să îl actualizezi controlat.</p>
+        <p><strong>Elemente-cheie pentru o bună actualizare:</strong></p>
+
+        <h3>Procedură internă clară</h3>
+        <ul>
+          <li>Cine propune modificarea (compartiment beneficiar / achiziții)?</li>
+          <li>Cine aprobă (conducător autoritate / ordonator de credite)?</li>
+          <li>În ce format se transmit modificările (formular standard / notă internă)?</li>
+        </ul>
+
+        <h3>Trasabilitate</h3>
+        <ul>
+          <li>Numerotarea versiunilor (PAAP v1, v2, anexe de actualizare).</li>
+          <li>Păstrarea istoricelor (ce s-a introdus nou, ce s-a eliminat, ce s-a modificat la valoare sau la procedură).</li>
+        </ul>
+
+        <h3>Publicitate</h3>
+        <ul>
+          <li>Publicarea pe site-ul instituției a PAAP actualizat și/sau a anexelor de modificare.</li>
+        </ul>
+        <p>În plan managerial, actualizările sunt ocazii excelente pentru a reevalua prioritățile și pentru a redistribui resurse, nu doar pentru a „bifa" rectificările bugetare.</p>
+
+        <h2>8. Greșeli frecvente în practica PAAP</h2>
+        <p>Chiar și în instituții cu experiență, anumite erori apar recurent:</p>
+        <ul>
+          <li><strong>Lipsa corelării cu bugetul</strong> — Se planifică proceduri fără acoperire reală în credite bugetare.</li>
+          <li><strong>Subestimarea valorilor</strong> — Estimări prea mici care duc la alegerea greșită a procedurii.</li>
+          <li><strong>Calendar nerealist</strong> — Înghesuirea majorității procedurilor în același trimestru, fără resurse de personal suficiente.</li>
+          <li><strong>Nivel insuficient de detaliu</strong> — Formulări generice („materiale sanitare", „echipamente IT") care nu permit înțelegerea impactului și priorităților.</li>
+          <li><strong>Actualizări „informale"</strong> — Modificarea în practică a planului, dar fără actualizarea oficială a PAAP.</li>
+        </ul>
+        <p>Adresarea lor presupune atât ajustarea proceselor interne, cât și formarea continuă a personalului implicat.</p>
+
+        <h2>9. Bune practici pentru un PAAP 2026 „matur"</h2>
+        <p>Pentru ca PAAP 2026 să fie mai mult decât un simplu tabel, merită avute în vedere câteva bune practici:</p>
+        <ul>
+          <li><strong>Integrarea cu instrumente digitale interne</strong> — Folosirea unui registru electronic al achizițiilor, legat de PAAP, din care se pot extrage automat rapoarte pe CPV, pe surse de finanțare, pe stadiu al procedurilor.</li>
+          <li><strong>Alinierea cu raportarea către management</strong> — Sinteze trimestriale pe baza PAAP (ce s-a lansat, ce s-a amânat, ce a fost economisit față de valoarea estimată).</li>
+          <li><strong>Publicarea transparentă</strong> — PAAP și anexele de actualizare afișate clar într-o secțiune dedicată pe site, ușor de găsit și pentru furnizori, și pentru organismele de control.</li>
+          <li><strong>Legătura cu indicatori de performanță</strong> — Procent de proceduri lansate în termenul planificat, timp mediu de la planificare la semnarea contractului, procent de economii obținute față de valoarea estimată.</li>
+        </ul>
+
+        <h2>10. Concluzie: PAAP 2026 ca instrument de management</h2>
+        <p>
+          În 2026, presiunea pe instituții (bugete limitate, proiecte cu finanțare externă, controale tot mai sofisticate) face ca PAAP să fie mult mai mult decât un simplu „program" de bifat. Un PAAP bine gândit, corelat cu strategia, cu bugetul și cu referatele de necesitate, devine tabla de bord a întregii activități de achiziții.
+        </p>
+        <p>
+          Dacă tratezi PAAP 2026 ca pe un instrument viu — pregătit din timp, actualizat disciplinat și folosit în deciziile de management — vei avea mai puține surprize neplăcute în proceduri, mai multă predictibilitate și un dialog mai coerent cu toate părțile implicate: management, compartimente beneficiare, furnizori și organisme de control.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section class="py-16 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-heading font-bold mb-4">Ai nevoie de suport pentru PAAP 2026?</h2>
+      <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">ePaap digitalizează întregul flux — de la colectarea nevoilor și gruparea pe CPV până la generarea PAAP și referatele de necesitate.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getLocalizedPath(locale, '/solutii/autoritati')} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25">
+          Află mai multe despre ePaap
+        </a>
+        <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+          Discută cu noi
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
