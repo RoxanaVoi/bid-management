@@ -2,28 +2,29 @@
 import { getLocaleFromUrl, t, getLocalizedPath } from '../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
+const isRo = locale === 'ro';
 
 const caseStudies = [
   {
-    title: locale === 'ro' ? 'Procedură lucrări reabilitare clădire' : 'Building rehabilitation works procedure',
-    client: locale === 'ro' ? 'Autoritate — UAT municipiu' : 'Authority — Municipal UAT',
-    desc: locale === 'ro' ? 'Documentație de atribuire pentru lucrări complexe, cu caiet de sarcini tehnic detaliat și criterii de evaluare mixte.' : 'Award documentation for complex works, with detailed technical specifications and mixed evaluation criteria.',
-    result: locale === 'ro' ? 'Contestații respinse, 5 ofertanți calificați' : 'Complaints rejected, 5 qualified bidders',
-    tag: locale === 'ro' ? 'Lucrări' : 'Works',
+    slug: 'planificare-paap-autoritate',
+    title: isRo ? 'Planificarea necesarului și structurarea PAAP' : 'Needs planning and PAAP structuring',
+    label: isRo ? 'Autoritate' : 'Authority',
+    desc: isRo ? 'Am sprijinit organizarea procesului de colectare a nevoilor și transformarea acestuia într-un flux mai clar de planificare și documentare internă.' : 'We supported the needs collection process and its transformation into a clearer planning and internal documentation flow.',
+    meta: isRo ? 'Planificare & PAAP' : 'Planning & PAAP',
   },
   {
-    title: locale === 'ro' ? 'Achiziție echipamente medicale' : 'Medical equipment procurement',
-    client: locale === 'ro' ? 'Autoritate — Spital regional' : 'Authority — Regional hospital',
-    desc: locale === 'ro' ? 'Procedură cu loturi pentru echipamente de diagnostic și laborator, inclusiv specificații tehnice și criterii cost-calitate.' : 'Lots procedure for diagnostic and laboratory equipment, including technical specifications and quality-cost criteria.',
-    result: locale === 'ro' ? 'Economie de 12% față de estimare, fără contestații' : '12% savings vs estimate, no complaints',
-    tag: locale === 'ro' ? 'Furnizare' : 'Supply',
+    slug: 'analiza-documentatie-loturi',
+    title: isRo ? 'Analiză documentație — loturi multiple, cerințe tehnice sensibile' : 'Documentation analysis — multiple lots, sensitive technical requirements',
+    label: isRo ? 'Operator economic' : 'Economic operator',
+    desc: isRo ? 'Am extras cerințele relevante, am separat informațiile pe loturi și am evidențiat punctele cu impact major asupra pregătirii ofertei.' : 'We extracted relevant requirements, separated information by lots, and highlighted points with major impact on bid preparation.',
+    meta: isRo ? 'Analiză documentație' : 'Documentation analysis',
   },
   {
-    title: locale === 'ro' ? 'Pregătire ofertă servicii IT' : 'IT services bid preparation',
-    client: locale === 'ro' ? 'Companie — Integrator IT' : 'Company — IT Integrator',
-    desc: locale === 'ro' ? 'Suport complet pentru pregătirea ofertei tehnice și financiare într-o procedură de dialog competitiv.' : 'Complete support for technical and financial bid in a competitive dialogue procedure.',
-    result: locale === 'ro' ? 'Ofertă câștigătoare, punctaj maxim tehnic' : 'Winning bid, maximum technical score',
-    tag: locale === 'ro' ? 'Servicii' : 'Services',
+    slug: 'training-echipa-ofertare',
+    title: isRo ? 'Pregătirea unei echipe pentru participare la achiziții publice' : 'Preparing a team for public procurement participation',
+    label: 'Training',
+    desc: isRo ? 'Am construit un program aplicat pentru citirea documentațiilor, pregătirea DUAE și coordonarea internă a etapelor de ofertare.' : 'We built an applied program for reading documentation, ESPD preparation, and internal bidding stage coordination.',
+    meta: isRo ? 'Training · Proceduri interne' : 'Training · Internal procedures',
   },
 ];
 ---
@@ -38,13 +39,13 @@ const caseStudies = [
 
     <div class="grid md:grid-cols-3 gap-8 mb-12">
       {caseStudies.map((cs, i) => (
-        <div data-animate data-animate-delay={String(i + 1)} class="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+        <a href={getLocalizedPath(locale, `/studii-de-caz/${cs.slug}`)} data-animate data-animate-delay={String(i + 1)} class="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 block no-underline">
           <div class="p-6">
             <div class="flex items-center gap-2 mb-4">
               <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">
-                {cs.tag}
+                {cs.label}
               </span>
-              <span class="text-text-light text-xs">{cs.client}</span>
+              <span class="text-text-light text-xs">{cs.meta}</span>
             </div>
 
             <h3 class="text-lg font-heading font-bold text-navy mb-3 group-hover:text-accent transition-colors">
@@ -56,11 +57,13 @@ const caseStudies = [
             </p>
 
             <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
-              <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span class="text-sm font-medium text-success">{cs.result}</span>
+              <span class="inline-flex items-center gap-1 text-accent text-sm font-semibold group-hover:gap-2 transition-all">
+                {isRo ? 'Vezi studiul de caz' : 'View case study'}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </span>
             </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
 
