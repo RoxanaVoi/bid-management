@@ -178,13 +178,13 @@ async function analyzeWithAI(text: string): Promise<AnalysisResult> {
   console.log('[eBid] Sending to API, text length:', text.length);
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 25000);
+  const timeout = setTimeout(() => controller.abort(), 45000);
 
   try {
     const response = await fetch('/api/analyze', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: text.substring(0, 30000) }),
+      body: JSON.stringify({ text: text.substring(0, 80000) }),
       signal: controller.signal,
     });
 

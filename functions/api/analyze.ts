@@ -5,31 +5,36 @@ interface Env {
   ANTHROPIC_API_KEY: string;
 }
 
-const SYSTEM_PROMPT = `Ești un expert în achiziții publice din România. Analizezi fișe de date din SEAP (Sistemul Electronic de Achiziții Publice).
+const SYSTEM_PROMPT = `Ești un expert în achiziții publice din România. Analizezi fișe de date din SEAP.
 
-IMPORTANT: Fișa de date SEAP are o structură standard cu secțiuni numerotate. Extrage informațiile din secțiunile EXACTE indicate mai jos.
+REGULI STRICTE DE FORMATARE:
+1. Extrage DOAR informația relevantă din fiecare secțiune — fără headere de secțiune, fără "Informatii si/sau nivel(uri) minim(e)", fără text de sistem SEAP.
+2. Scrie curat, concis, ușor de citit. Folosește \\n pentru rânduri noi.
+3. Dacă o secțiune nu conține cerințe sau nu există, pune exact "N/A".
+4. NU include text irelevant (ex: "Sistemul Electronic de Achiziții Publice", "Pagina X", headere repetate).
+5. La experiență similară și ISO, extrage cerința ȘI modalitatea de demonstrare.
 
-Din textul fișei de date, extrage și returnează un JSON cu exact aceste câmpuri:
+Returnează un JSON cu aceste câmpuri:
 
 {
-  "autoritate": "Din Secțiunea I.1 — Numele complet al autorității contractante, adresa, CUI",
-  "tipProcedura": "Din antetul fișei — Tip anunț + Tip Legislație (ex: Anunț de participare, Legea 98/2016)",
-  "obiect": "Din Secțiunea II.1.1 Titlu — Descrierea obiectului achiziției",
-  "codCPV": "Din Secțiunea II.1.2 — Codul/codurile CPV principale cu denumirea",
-  "valoareEstimata": "Din Secțiunea II.1.5 sau II.2.6 — Valoarea totală estimată cu moneda și intervalul. Dacă sunt loturi, include valoarea per lot",
-  "tipContract": "Din Secțiunea II.1.3 — Furnizare/Servicii/Lucrări + tipul (Cumpărare etc.)",
-  "durata": "Din Secțiunea II.2.7 — Durata contractului în luni/zile",
-  "loturi": "Din Secțiunea II.1.6 — Da/Nu, numărul de loturi, și din secțiunile II.2.1 denumirile fiecărui lot",
-  "criteriiPunctaj": "Din Secțiunea II.2.5 Criterii de atribuire — Extrage COMPLET: tipul criteriului (cel mai bun raport calitate-preț / preț cel mai scăzut / cost), TOȚI factorii de evaluare cu denumirea, descrierea, ponderea/punctajul maxim, și algoritmul de calcul pentru fiecare factor. Listează fiecare factor pe un rând separat.",
-  "cerinteCifraAfaceri": "Din Secțiunea III.1.2 Capacitatea economică și financiară — Extrage TOATE cerințele privind cifra de afaceri: valoare minimă, perioadă de referință, mod de calcul. Dacă nu există secțiunea III.1.2 sau nu sunt cerințe, scrie 'Nu sunt specificate'",
-  "cerinteExperientaSimilara": "Din Secțiunea III.1.3.a Capacitatea tehnică și/sau profesională — Extrage TOATE cerințele: număr minim de contracte similare, valoare minimă per contract sau cumulat, perioadă de referință, tip de experiență cerută, documente solicitate ca dovadă. Fii FOARTE detaliat.",
-  "isoSolicitate": "Din Secțiunea III.1.3.b Standarde de asigurare a calității și de protecție a mediului — Extrage TOATE certificările/standardele solicitate: ISO 9001, ISO 14001, ISO 45001, OHSAS sau alte standarde, inclusiv dacă se acceptă echivalente",
-  "garantieParticipare": "Din Secțiunea III.1.6.a — Valoarea garanției de participare, moneda, procentul, forma acceptată",
-  "termenDepunere": "Din Secțiunea IV.2.2 sau din antet — Data și ora limită de depunere oferte",
-  "alteCerinte": "Orice alte cerințe importante din Secțiunea III care nu sunt acoperite mai sus: personal cheie, utilaje, autorizații speciale, licențe"
+  "autoritate": "Doar numele autorității (ex: Județul Bistrița-Năsăud, CUI 4347550)",
+  "tipProcedura": "Tip anunț + Legislație (ex: Anunț de participare — Legea 98/2016)",
+  "obiect": "Doar titlul / descrierea scurtă a obiectului",
+  "codCPV": "Cod(uri) CPV cu denumire (ex: 72262000-9 Servicii de dezvoltare software)",
+  "valoareEstimata": "Doar valoarea și moneda (ex: 50.443.724,17 RON fără TVA)",
+  "tipContract": "Doar tipul (ex: Servicii)",
+  "durata": "Doar durata (ex: 24 luni)",
+  "loturi": "Da/Nu + dacă da, câte loturi și denumirile lor pe rânduri separate",
+  "criteriiPunctaj": "Extrage COMPLET fiecare factor de evaluare pe câte un rând, în format:\\nFactor: [nume] — [pondere]% (max [X] pct)\\nAlgoritm: [descriere scurtă]\\n\\nExemplu corect:\\nPrețul ofertei — 40% (max 40 pct)\\nAlgoritm: cel mai mic preț primește punctaj maxim, restul proporțional\\n\\nExperiența managerului de proiect — 3% (max 3 pct)\\nAlgoritm: ...",
+  "cerinteCifraAfaceri": "Din III.1.2: cerința exactă (ex: Cifra de afaceri medie anuală pe ultimii 3 ani: minim 40.000.000 RON). Dacă nu sunt cerințe, pune N/A",
+  "cerinteExperientaSimilara": "Din III.1.3.a: ÎNTREAGA cerință detaliată:\\n- Perioadă de referință (ex: ultimii 3 ani)\\n- Valoare minimă cumulată (ex: 45.000.000 RON fără TVA)\\n- Număr maxim de contracte (ex: maxim 3 contracte)\\n- Tip servicii acceptate (ex: dezvoltare software, implementare soluții informatice)\\n- Documente doveditoare solicitate\\nFii COMPLET — aceasta e cea mai importantă secțiune. Dacă nu sunt cerințe, pune N/A",
+  "isoSolicitate": "Din III.1.3.b: certificările cerute (ex: ISO 9001:2015 sau echivalent, ISO 27001 sau echivalent) + cum se demonstrează (certificate valabile, echivalente acceptate). Dacă nu sunt cerințe, pune N/A",
+  "garantieParticipare": "Din III.1.6.a: valoare + monedă + perioadă de valabilitate (ex: 450.000 RON, valabilitate cel puțin egală cu oferta, 7 luni). Dacă nu e cerută, pune N/A",
+  "termenDepunere": "Data și ora limită (ex: 15.04.2026, ora 15:00). Dacă nu e specificat, pune N/A",
+  "alteCerinte": "Alte cerințe din Secțiunea III neincluse mai sus (personal cheie, utilaje, autorizații). Dacă nu sunt, pune N/A"
 }
 
-Returnează DOAR JSON-ul valid, fără text suplimentar. Dacă o informație nu e prezentă în document, pune "Nu este specificat în fișa de date". Fii FOARTE detaliat la criteriiPunctaj, cerinteExperientaSimilara și isoSolicitate — acestea sunt cele mai importante pentru ofertanți.`;
+Returnează DOAR JSON-ul valid.`;
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   const { ANTHROPIC_API_KEY } = context.env;
@@ -43,7 +48,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   try {
     const body = await context.request.json() as { text: string };
-    const text = body.text?.substring(0, 50000);
+    const text = body.text?.substring(0, 80000); // Allow more text for large SEAP data sheets
 
     if (!text || text.length < 50) {
       return new Response(
@@ -61,12 +66,12 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 4096,
+        max_tokens: 8192,
         system: SYSTEM_PROMPT,
         messages: [
           {
             role: 'user',
-            content: `Analizează această fișă de date din SEAP și extrage informațiile structurate:\n\n${text}`,
+            content: `Analizează această fișă de date din SEAP. IMPORTANT: extrage DOAR textul relevant, curat, fără headere de secțiuni SEAP, fără "Informatii si/sau nivel(uri) minim(e)", fără text de sistem. Unde nu sunt cerințe, pune "N/A". La experiență similară (III.1.3.a) extrage COMPLET cerința inclusiv valori, perioade, tip servicii, fără trunchiere.\n\nFișa de date:\n\n${text}`,
           },
         ],
       }),
