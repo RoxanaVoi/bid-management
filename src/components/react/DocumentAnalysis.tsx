@@ -15,12 +15,13 @@ interface AnalysisResult {
   tipContract: string;
   durata: string;
   loturi: string;
-  cerinteExperientaSimilara: string;
-  cerinteCifraAfaceri: string;
-  alteCerinte: string;
   criteriiPunctaj: string;
-  termenDepunere: string;
+  cerinteCifraAfaceri: string;
+  cerinteExperientaSimilara: string;
+  isoSolicitate: string;
   garantieParticipare: string;
+  termenDepunere: string;
+  alteCerinte: string;
 }
 
 const labels = {
@@ -57,12 +58,13 @@ const labels = {
       tipContract: 'Tip contract',
       durata: 'Durată contract',
       loturi: 'Loturi',
-      cerinteExperientaSimilara: 'Cerințe experiență similară',
-      cerinteCifraAfaceri: 'Cerințe cifră de afaceri',
-      alteCerinte: 'Alte cerințe de calificare',
-      criteriiPunctaj: 'Criterii de punctaj / evaluare',
+      criteriiPunctaj: 'Criterii de punctaj / evaluare (II.2.5)',
+      cerinteCifraAfaceri: 'Cifra de afaceri (III.1.2)',
+      cerinteExperientaSimilara: 'Experiență similară (III.1.3.a)',
+      isoSolicitate: 'ISO-uri solicitate (III.1.3.b)',
+      garantieParticipare: 'Garanție de participare (III.1.6.a)',
       termenDepunere: 'Termen limită depunere',
-      garantieParticipare: 'Garanție de participare',
+      alteCerinte: 'Alte cerințe de calificare',
     },
   },
   en: {
@@ -98,12 +100,13 @@ const labels = {
       tipContract: 'Contract type',
       durata: 'Contract duration',
       loturi: 'Lots',
-      cerinteExperientaSimilara: 'Similar experience requirements',
-      cerinteCifraAfaceri: 'Turnover requirements',
-      alteCerinte: 'Other qualification requirements',
-      criteriiPunctaj: 'Scoring / evaluation criteria',
+      criteriiPunctaj: 'Scoring / evaluation criteria (II.2.5)',
+      cerinteCifraAfaceri: 'Turnover requirements (III.1.2)',
+      cerinteExperientaSimilara: 'Similar experience (III.1.3.a)',
+      isoSolicitate: 'ISO certifications (III.1.3.b)',
+      garantieParticipare: 'Participation guarantee (III.1.6.a)',
       termenDepunere: 'Submission deadline',
-      garantieParticipare: 'Participation guarantee',
+      alteCerinte: 'Other qualification requirements',
     },
   },
 };
@@ -320,22 +323,40 @@ export default function DocumentAnalysis({ locale }: Props) {
       return cutMatch ? chunk.substring(0, cutMatch.index!).trim() : chunk;
     };
 
-    const autoritate = after(/Denumire\s*si\s*adrese\s*/i, 200);
-    const tipProcedura = after(/Tip\s*anunt:\s*/i, 100) + ' | ' + after(/Tip\s*Legislatie:\s*/i, 100);
-    const obiect = after(/II\.1\.1\s*Titlu:\s*/i, 200) || after(/Titlu:\s*/i, 200);
-    const codCPV = after(/Cod\s*CPV\s*Principal:\s*/i, 100);
-    const tipContract = after(/II\.1\.3\s*Tip\s*de\s*contract:\s*/i, 100);
-    const valoareEstimata = after(/II\.1\.5\)\s*Valoarea\s*totala\s*estimata:\s*/i, 200) || after(/Valoarea\s*totala\s*estimata:\s*/i, 200);
-    const loturi = after(/Impartire\s*in\s*loturi:\s*/i, 300);
-    const durata = after(/Durata\s*in\s*luni:\s*/i, 100) || after(/Durata\s*contractului/i, 100);
-    const criterii = after(/Criterii\s*de\s*atribuire\s*/i, 500);
-    const garantie = after(/garantiei\s*de\s*participare:\s*/i, 100) || after(/Valoarea\s*garantiei/i, 100);
-    const termen = after(/termen.*limita.*depunere/i, 100) || after(/data\s*limita.*depunere/i, 100);
+    // === Secțiunea I: Autoritate ===
+    const autoritate = after(/I\.1\)\s*Denumire\s*si\s*adrese\s*/i, 300) || after(/Denumire\s*si\s*adrese\s*/i, 200);
 
-    // Cerinte - these are harder to extract with regex
-    const cerinteSection = between(/Sectiunea\s*III/i, /Sectiunea\s*IV/i, 2000);
-    const cerinteExp = cerinteSection.match(/experienta\s*similara[^.]*\./i)?.[0] || 'Nu este specificat explicit în fișa de date';
-    const cerinteCifra = cerinteSection.match(/cifra\s*de\s*afaceri[^.]*\./i)?.[0] || 'Nu este specificat explicit în fișa de date';
+    // === Antet: Tip procedură ===
+    const tipProcedura = after(/Tip\s*anunt:\s*/i, 100) + ' | ' + after(/Tip\s*Legislatie:\s*/i, 100);
+
+    // === Secțiunea II.1: Obiect, CPV, Contract ===
+    const obiect = after(/II\.1\.1\s*Titlu:\s*/i, 200) || after(/Titlu:\s*/i, 200);
+    const codCPV = after(/Cod\s*CPV\s*Principal:\s*/i, 150);
+    const tipContract = after(/II\.1\.3\s*Tip\s*de\s*contract:\s*/i, 100);
+    const valoareEstimata = after(/II\.1\.5\)\s*Valoarea\s*totala\s*estimata:\s*/i, 300) || after(/Valoarea\s*totala\s*estimata:\s*/i, 200);
+    const loturi = after(/II\.1\.6\)\s*Impartire\s*in\s*loturi:\s*/i, 400) || after(/Impartire\s*in\s*loturi:\s*/i, 300);
+    const durata = after(/II\.2\.7\s*Durata/i, 150) || after(/Durata\s*in\s*luni:\s*/i, 100);
+
+    // === Secțiunea II.2.5: Criterii de atribuire → PUNCTAJELE ===
+    const criterii = between(/II\.2\.5\s*Criterii\s*de\s*atribuire/i, /II\.2\.6|II\.2\.7|Punctaj\s*maxim\s*total/i, 1000) || after(/Criterii\s*de\s*atribuire\s*/i, 500);
+
+    // === Secțiunea III.1.2: Capacitate economică → CIFRA DE AFACERI ===
+    const cerinteCifra = between(/III\.1\.2\)\s*Capacitatea\s*economica/i, /III\.1\.3|Sectiunea\s*IV/i, 500) || after(/Cifra\s*de\s*afaceri/i, 300);
+
+    // === Secțiunea III.1.3.a: Capacitate tehnică → EXPERIENȚĂ SIMILARĂ ===
+    const cerinteExp = between(/III\.1\.3\.?\s*a\)\s*Capacitatea\s*tehnica/i, /III\.1\.3\.?\s*b\)|III\.1\.4|III\.1\.5|III\.1\.6|Sectiunea\s*IV/i, 800) || after(/Capacitatea\s*tehnica\s*si\/sau\s*profesionala/i, 500);
+
+    // === Secțiunea III.1.3.b: Standarde calitate → ISO-URI ===
+    const isoSolicitate = between(/III\.1\.3\.?\s*b\)\s*Standarde\s*de\s*asigurare/i, /III\.1\.4|III\.1\.5|III\.1\.6|Sectiunea\s*IV/i, 500) || after(/Standarde\s*de\s*asigurare\s*a\s*calitatii/i, 300);
+
+    // === Secțiunea III.1.6.a: Garanție de participare ===
+    const garantie = between(/III\.1\.6\.?\s*a\)\s*Garantie\s*de\s*participare/i, /III\.1\.6\.?\s*b\)|III\.1\.7|III\.1\.8|III\.2|Sectiunea\s*IV/i, 300) || after(/garantiei\s*de\s*participare:\s*/i, 150);
+
+    // === Secțiunea IV: Termen depunere ===
+    const termen = after(/IV\.2\.2\)\s*Termen/i, 100) || after(/termen.*limita.*depunere/i, 100) || after(/data\s*limita.*depunere/i, 100);
+
+    // === Alte cerințe din Secțiunea III ===
+    const alteCerinte = between(/III\.1\.4|III\.1\.5/i, /III\.1\.6|Sectiunea\s*IV/i, 400);
 
     return {
       autoritate,
@@ -346,12 +367,13 @@ export default function DocumentAnalysis({ locale }: Props) {
       tipContract,
       durata,
       loturi,
-      cerinteExperientaSimilara: cerinteExp,
-      cerinteCifraAfaceri: cerinteCifra,
-      alteCerinte: 'Verifică secțiunea III din fișa de date pentru cerințele complete de calificare.',
       criteriiPunctaj: criterii,
-      termenDepunere: termen,
+      cerinteCifraAfaceri: cerinteCifra !== 'Nu este specificat' ? cerinteCifra : 'Nu sunt specificate cerințe privind cifra de afaceri',
+      cerinteExperientaSimilara: cerinteExp !== 'Nu este specificat' ? cerinteExp : 'Nu sunt specificate cerințe de experiență similară',
+      isoSolicitate: isoSolicitate !== 'Nu este specificat' ? isoSolicitate : 'Nu sunt solicitate standarde ISO',
       garantieParticipare: garantie,
+      termenDepunere: termen,
+      alteCerinte: alteCerinte !== 'Nu este specificat' ? alteCerinte : 'Verifică secțiunea III din fișa de date',
     };
   }
 
