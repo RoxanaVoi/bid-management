@@ -24,6 +24,16 @@ const locale = getLocaleFromUrl(Astro.url);
     </div>
   </section>
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Cum pregătești o ofertă câștigătoare: checklist complet",
+    "datePublished": "2026-02-15",
+    "author": { "@type": "Organization", "name": "Equalys Services" },
+    "publisher": { "@type": "Organization", "name": "Equalys Services", "url": "https://bid-management.ro" },
+    "mainEntityOfPage": "https://bid-management.ro/ro/resurse/checklist-oferta-castigatoare"
+  })} />
+
   <!-- Article -->
   <article class="py-16 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

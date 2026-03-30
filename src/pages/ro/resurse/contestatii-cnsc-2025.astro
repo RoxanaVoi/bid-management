@@ -23,6 +23,16 @@ const locale = getLocaleFromUrl(Astro.url);
     </div>
   </section>
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Contestații CNSC: statistici și tendințe 2025",
+    "datePublished": "2026-02-20",
+    "author": { "@type": "Organization", "name": "Equalys Services" },
+    "publisher": { "@type": "Organization", "name": "Equalys Services", "url": "https://bid-management.ro" },
+    "mainEntityOfPage": "https://bid-management.ro/ro/resurse/contestatii-cnsc-2025"
+  })} />
+
   <article class="py-16 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="prose prose-slate prose-lg max-w-none prose-headings:font-heading prose-headings:text-navy prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-p:text-text prose-p:leading-relaxed prose-li:text-text prose-strong:text-navy">

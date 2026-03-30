@@ -49,16 +49,40 @@ const fullTitle = `${title} | Bid Management`;
     <title>{fullTitle}</title>
 
     <!-- JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Bid Management - Equalys Services",
-      "description": description,
-      "url": "https://bid-management.ro",
-      "serviceType": "Public Procurement Consulting",
-      "areaServed": "Romania",
-      "availableLanguage": ["Romanian", "English"]
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Equalys Services",
+        "alternateName": "Bid Management",
+        "url": "https://bid-management.ro",
+        "logo": "https://bid-management.ro/images/logo-equalys.svg",
+        "description": "Consultanță specializată în achiziții publice pentru autorități contractante și operatori economici.",
+        "email": "office@bid-management.ro",
+        "telephone": "+40746188797",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "București",
+          "addressCountry": "RO"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+40746188797",
+          "email": "office@bid-management.ro",
+          "contactType": "customer service",
+          "availableLanguage": ["Romanian", "English"]
+        },
+        "sameAs": ["https://linkedin.com/company/equalys-services"]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Bid Management",
+        "url": "https://bid-management.ro",
+        "inLanguage": ["ro", "en"],
+        "description": "Consultanță achiziții publice, ePaap, eBid — instrumente digitale pentru planificare, analiză și ofertare."
+      }
+    ])} />
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />
