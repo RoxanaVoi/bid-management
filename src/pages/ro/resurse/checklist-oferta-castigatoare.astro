@@ -1,0 +1,144 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<Layout title="Cum pregătești o ofertă câștigătoare: checklist complet">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Checklist ofertă</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">Bune practici</span>
+        <span class="text-gray-500 text-sm">15 Feb 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-heading font-bold leading-tight">Cum pregătești o ofertă câștigătoare: checklist complet</h1>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-slate prose-lg max-w-none prose-headings:font-heading prose-headings:text-navy prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-p:text-text prose-p:leading-relaxed prose-li:text-text prose-strong:text-navy prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+
+        <p class="text-xl text-text leading-relaxed">
+          În achizițiile publice, multe oferte se pierd nu pentru că soluția este slabă, ci pentru că dosarul este incomplet, incoerent sau depus greșit. O singură declarație lipsă, un certificat expirat sau o eroare aritmetică poate transforma o ofertă competitivă într-una respinsă fără drept de apel.
+        </p>
+        <p>Acest articol îți propune o listă completă de verificare pentru pregătirea și depunerea unei oferte fără erori — un checklist practic, pe care îl poți folosi înainte de fiecare participare la proceduri.</p>
+
+        <h2>1. Înainte să intri în joc: poți, legal, să participi?</h2>
+        <p>Primul pas nu este să completezi formulare, ci să verifici dacă ești eligibil să intri în procedură. Documentele oficiale și ghidurile pentru ofertanți insistă pe criteriile de calificare și pe motivele de excludere, pentru că aici se rup foarte multe oferte încă din faza inițială.</p>
+        <p>Întreabă-te, onest:</p>
+        <ul>
+          <li>Îndeplinești criteriile de calificare (situație juridică, capacitate economică, experiență similară) așa cum sunt ele cerute în fișa de date?</li>
+          <li>Poți dovedi cu acte în termen de valabilitate că nu ai datorii fiscale, nu ești în situații de insolvență sau condamnări relevante și nu ești în conflict de interese cu autoritatea contractantă?</li>
+          <li>Dacă nu îndeplinești singur toate cerințele, ai un plan clar: asociere, terți susținători, subcontractanți bine aleși și documentați?</li>
+        </ul>
+        <p>Dacă răspunsurile sunt neclare, riscul să investești resurse într-o ofertă sortită respingerii este foarte mare.</p>
+
+        <h2>2. Citește toată documentația, nu doar caietul de sarcini</h2>
+        <p>O greșeală clasică în practică este să se sară direct în caietul de sarcini și să se ignore fișa de date sau proiectul de contract, deși acolo se află regulile jocului.</p>
+        <p>Merită să îți faci timp pentru:</p>
+        <ul>
+          <li><strong>O lectură integrală a fișei de date:</strong> termene-limită, criteriu de atribuire, modul de punctare, formatul documentelor, regulile pentru clarificări.</li>
+          <li><strong>O lectură atentă a proiectului de contract:</strong> termene de plată, garanții, penalități, condiții de reziliere — să nu descoperi după câștigarea licitației că nu poți respecta clauzele.</li>
+          <li><strong>O lectură tehnică a caietului de sarcini:</strong> cerințe minime obligatorii, cerințe de performanță, standarde, certificări, condiții de livrare și de garanție.</li>
+        </ul>
+        <p>Doar așa poți construi o ofertă care să fie în același timp conformă, competitivă și realistă pentru afacerea ta.</p>
+
+        <h2>3. Documentele de calificare: zona în care nu sunt permise improvizații</h2>
+        <p>Foarte multe probleme apar la documentele de calificare: lipsă, expirate, prezentate pe alt nume sau necorelate cu ce s-a solicitat.</p>
+        <p>În practică, asta înseamnă:</p>
+        <ul>
+          <li>Să verifici atent toate <strong>certificatele fiscale</strong> (stat și local), pentru toți partenerii implicați, astfel încât să fie valabile la data-limită de depunere.</li>
+          <li>Să pregătești <strong>documentele de înregistrare</strong> (CUI, certificatul constatator, acte de înființare) actualizate, care să dovedească că ai în obiectul de activitate ceea ce vrei să oferi.</li>
+          <li>Să completezi corect <strong>declarațiile pe propria răspundere</strong> privind motivele de excludere și conflictul de interese.</li>
+          <li>Să construiești o prezentare clară a <strong>experienței similare</strong>, cu liste de contracte, valori, beneficiari și documente de recepție.</li>
+        </ul>
+        <p>Un dosar de calificare bine structurat și ușor de citit transmite profesionalism și reduce semnificativ riscul de neconformitate formală.</p>
+
+        <h2>4. Propunerea tehnică: clară, completă, ușor de evaluat</h2>
+        <p>Multe oferte sunt grevate de propuneri tehnice incomplete, neclare sau care folosesc un limbaj ambiguu. Comisia de evaluare nu trebuie să ghicească dacă soluția ta îndeplinește cerințele — trebuie să poată vedea asta, în scris, foarte clar.</p>
+        <p>Câteva principii simple fac diferența:</p>
+        <ul>
+          <li><strong>Creează un tabel de conformitate</strong> în care să pui, față în față, cerința din caiet și răspunsul tău concret.</li>
+          <li><strong>Evită tentația de a „rescrie" cerințele;</strong> păstrează formularea autorității și adaugă sub ea modul în care oferta ta le acoperă.</li>
+          <li>Pentru produse și servicii complexe, <strong>atașează fișe tehnice, certificate, omologări</strong> și indică explicit la ce cerințe se referă fiecare document.</li>
+          <li>Fii atent la elementele care creează valoare pe termen lung: <strong>garanție, mentenanță, timpi de intervenție, training, consumabile</strong> — acestea pot cântări mult la criteriul „cel mai bun raport calitate-preț".</li>
+        </ul>
+        <p>O propunere tehnică „curată" este cea în care evaluatorul poate bifa rapid: cerință — îndeplinită / neîndeplinită, fără interpretări.</p>
+
+        <h2>5. Propunerea financiară: unde un minus în plus poate să coste tot</h2>
+        <p>O sumă greșită, un total care nu corespunde cu sumele pe poziții sau o mențiune incertă privind TVA-ul pot crea probleme serioase.</p>
+        <p>Atenția trebuie să meargă în special pe:</p>
+        <ul>
+          <li><strong>Coerența dintre formularul de ofertă și anexele financiare:</strong> totalul, structura pe loturi și valorile unitare trebuie să se potrivească perfect.</li>
+          <li><strong>Verificarea aritmetică</strong> a tuturor calculelor — o revizie manuală de către o a doua persoană poate prinde erori de multiplicare sau rotunjire.</li>
+          <li><strong>Indicarea clară a TVA-ului:</strong> dacă valorile sunt exprimate fără TVA, cu TVA sau separat.</li>
+          <li><strong>Respectarea modului de prezentare cerut</strong> în documentație (defalcări pe costuri, liste de prețuri, devize, centralizatoare).</li>
+        </ul>
+        <p>Propunerea financiară nu trebuie să lase loc de interpretări și trebuie să fie perfect „aliniată" cu ceea ce ai descris tehnic.</p>
+
+        <h2>6. Formă, semnătură, SEAP: tot ce ține de „ambalaj"</h2>
+        <p>Deși par detalii, exact aici apar multe dintre viciile de formă greu de remediat după termenul-limită.</p>
+        <ul>
+          <li>Asigură-te că toate documentele care trebuie semnate sunt într-adevăr <strong>semnate de persoana autorizată</strong> și că împuternicirile sunt la dosar.</li>
+          <li>Pune un <strong>opis clar</strong>, numerotează paginile și grupează documentele pe secțiuni (calificare, tehnic, financiar).</li>
+          <li>Respectă <strong>cerințele tehnice ale platformei SEAP</strong>: tipul fișierelor, dimensiunea maximă, cerința de semnătură electronică.</li>
+          <li><strong>Nu lăsa încărcarea ofertelor pentru ultimele minute</strong> — orice problemă tehnică înseamnă ratarea procedurii.</li>
+        </ul>
+        <p>Un dosar bine „ambalat" nu îți garantează câștigul, dar îți garantează că vei fi evaluat pe fond, nu respins din motive de formă.</p>
+
+        <h2>7. Garanții, termene, clarificări: detalii care pot schimba jocul</h2>
+        <p>Garanțiile de participare, termenele de valabilitate și mecanismul clarificărilor sunt zone sensibile, în care greșelile pot fi fatale.</p>
+        <ul>
+          <li><strong>Garanția de participare</strong> trebuie constituită exact în forma, cuantumul și perioada prevăzute în fișa de date.</li>
+          <li>Toate <strong>termenele-limită</strong> — depunere, valabilitate a ofertei, valabilitate a garanției — trebuie privite împreună.</li>
+          <li><strong>Secțiunea de clarificări nu este facultativă:</strong> este spațiul în care poți obține lămuriri esențiale — utilizați-o din timp.</li>
+        </ul>
+        <p>Gestionate corect, aceste elemente pot preveni respingeri formale și pot chiar clarifica în favoarea ta unele ambiguități din documentație.</p>
+
+        <h2>8. Înainte de „Trimite": checklistul care îți poate salva oferta</h2>
+        <p>Un obicei simplu este ca, înainte de depunere, oferta să treacă printr-un „mini-audit" intern. Nu este o formalitate, ci o ultimă plasă de siguranță.</p>
+        <ul>
+          <li>Ca o persoană care nu a lucrat direct la ofertă <strong>să verifice dosarul cap-coadă</strong>, pe baza unui checklist scris.</li>
+          <li>Să fie confirmată <strong>coerența între componente</strong>: ce promiți tehnic este acoperit financiar, iar ce pui în calificare susține restul ofertei.</li>
+          <li>Să se verifice dacă <strong>toate clarificările primite</strong> de la autoritate au fost integrate corect.</li>
+          <li>Să rămână arhivată intern <strong>o copie completă a ofertei depuse</strong>, ușor de regăsit pentru contestații sau proceduri viitoare.</li>
+        </ul>
+
+        <h2>De ce merită să transformi checklistul în rutină</h2>
+        <p>
+          O ofertă câștigătoare nu înseamnă doar „cel mai mic preț", ci o combinație între conformitate, calitate, competitivitate și profesionalism în prezentare. Într-un mediu în care legislația se rafinează, iar comisiile de evaluare devin tot mai atente, rutina unui checklist bine pus la punct poate face diferența între „aproape am câștigat" și „am câștigat".
+        </p>
+        <p>
+          Dacă îți transformi lista de verificare într-un instrument standard de lucru, folosit la fiecare participare, vei reduce treptat riscul de erori, vei câștiga timp și vei crește șansele ca, atunci când ai soluția corectă, ea să ajungă efectiv în faza de evaluare și să fie luată în calcul până la capăt.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section class="py-16 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-heading font-bold mb-4">Ai nevoie de suport pentru pregătirea ofertei?</h2>
+      <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">eBid te ajută să structurezi cerințele, să organizezi răspunsurile pe loturi și să gestionezi procesul de ofertare mai eficient.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getLocalizedPath(locale, '/solutii/companii')} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25">
+          Află mai multe despre eBid
+        </a>
+        <a href={getLocalizedPath(locale, '/analizeaza-documentatia')} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+          Analizează o fișă de date
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

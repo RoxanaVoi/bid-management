@@ -36,7 +36,7 @@ const articles = locale === 'ro' ? [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {articles.map((article, i) => (
-          <a href={i === 0 ? getLocalizedPath(locale, '/resurse/ghid-paap-2026') : '#'} data-animate data-animate-delay={String((i % 4) + 1)} class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all hover:-translate-y-1 block no-underline">
+          <a href={i === 0 ? getLocalizedPath(locale, '/resurse/ghid-paap-2026') : i === 5 ? getLocalizedPath(locale, '/resurse/checklist-oferta-castigatoare') : '#'} data-animate data-animate-delay={String((i % 4) + 1)} class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all hover:-translate-y-1 block no-underline">
             <div class="flex items-center gap-2 mb-4">
               <span class="px-2.5 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">{article.category}</span>
               <span class="text-text-light text-xs">{article.date}</span>
