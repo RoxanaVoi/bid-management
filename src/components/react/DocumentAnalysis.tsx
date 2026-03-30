@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-const FORMSPREE_ANALYSIS_ID = 'xeepagaj';
+const FORMSPREE_ANALYSIS_ID = 'xaqloqna';
 
 interface Props {
   locale: 'ro' | 'en';
