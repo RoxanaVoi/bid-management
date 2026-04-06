@@ -2,3 +2,8 @@
 /home/ /ro/ 301
 /autoritati-contractante/ /ro/solutii/autoritati 301
 /curs-specializat-equalys/ /ro/solutii/companii 301
+/contact/feed/ /ro/contact 301
+/category/noutati/feed/ /ro/resurse 301
+/category/documente/feed/ /ro/resurse 301
+/category/* /ro/resurse 301
+/feed/ /ro/resurse 301
