@@ -7,3 +7,6 @@
 /category/documente/feed/ /ro/resurse 301
 /category/* /ro/resurse 301
 /feed/ /ro/resurse 301
+/wp-content/* /ro/ 301
+/java-developer/ /ro/ 301
+/optimizare-proces/ /ro/ 301
