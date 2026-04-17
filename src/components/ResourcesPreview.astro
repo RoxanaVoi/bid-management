@@ -5,6 +5,12 @@ const locale = getLocaleFromUrl(Astro.url);
 
 const articles = [
   {
+    title: locale === 'ro' ? 'Noutăți aprilie 2026: Directivele UE, ALOP, praguri' : 'April 2026 Updates: EU Directives, ALOP, thresholds',
+    category: locale === 'ro' ? 'Noutăți' : 'News',
+    date: '10 Apr 2026',
+    slug: 'noutati-aprilie-2026',
+  },
+  {
     title: locale === 'ro' ? 'Ghid complet PAAP 2026: Ce trebuie să știi' : 'Complete PAAP 2026 Guide: What You Need to Know',
     category: locale === 'ro' ? 'Ghiduri' : 'Guides',
     date: '15 Mar 2026',
@@ -15,12 +21,6 @@ const articles = [
     category: locale === 'ro' ? 'Analize' : 'Analysis',
     date: '20 Feb 2026',
     slug: 'contestatii-cnsc-2025',
-  },
-  {
-    title: locale === 'ro' ? 'Cum pregătești o ofertă câștigătoare: checklist complet' : 'How to Prepare a Winning Bid: Complete Checklist',
-    category: locale === 'ro' ? 'Bune practici' : 'Best Practices',
-    date: '15 Feb 2026',
-    slug: 'checklist-oferta-castigatoare',
   },
 ];
 ---

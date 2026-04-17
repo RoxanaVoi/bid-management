@@ -6,17 +6,19 @@ import { getLocaleFromUrl, t, getLocalizedPath } from '../../../i18n/utils';
 const locale = getLocaleFromUrl(Astro.url);
 
 const articles = locale === 'ro' ? [
+  { title: 'Noutăți aprilie 2026: Directivele UE, noul ALOP și praguri actualizate', category: 'Noutăți', date: '10 Apr 2026', excerpt: 'Revizuirea fundamentală a Directivelor europene în T2 2026, impactul noului ALOP, workshop ANAP-Banca Mondială și noile praguri valorice.', slug: 'noutati-aprilie-2026' },
   { title: 'Ghid complet PAAP 2026: Ce trebuie să știi', category: 'Ghiduri', date: '15 Mar 2026', excerpt: 'Tot ce trebuie să știi despre întocmirea și actualizarea Programului Anual al Achizițiilor Publice în 2026.', slug: 'ghid-paap-2026' },
   { title: 'Contestații CNSC: statistici și tendințe 2025', category: 'Analize', date: '20 Feb 2026', excerpt: 'Analiză a celor mai frecvente motive de contestare și ratele de admisibilitate pe tipuri de proceduri.', slug: 'contestatii-cnsc-2025' },
   { title: 'Cum pregătești o ofertă câștigătoare: checklist complet', category: 'Bune practici', date: '15 Feb 2026', excerpt: 'Lista completă de verificare pentru pregătirea și depunerea unei oferte fără erori.', slug: 'checklist-oferta-castigatoare' },
 ] : [
+  { title: 'April 2026 Updates: EU Directives, New ALOP and Updated Thresholds', category: 'News', date: '10 Apr 2026', excerpt: 'Fundamental revision of European Directives in Q2 2026, impact of new ALOP, ANAP-World Bank workshop and new value thresholds.', slug: 'noutati-aprilie-2026' },
   { title: 'Complete PAAP 2026 Guide: What You Need to Know', category: 'Guides', date: '15 Mar 2026', excerpt: 'Everything you need to know about preparing and updating the Annual Public Procurement Program in 2026.', slug: 'ghid-paap-2026' },
   { title: 'CNSC Complaints: 2025 Statistics and Trends', category: 'Analysis', date: '20 Feb 2026', excerpt: 'Analysis of the most common complaint reasons and admissibility rates by procedure type.', slug: 'contestatii-cnsc-2025' },
   { title: 'How to Prepare a Winning Bid: Complete Checklist', category: 'Best Practices', date: '15 Feb 2026', excerpt: 'Complete verification checklist for preparing and submitting an error-free bid.', slug: 'checklist-oferta-castigatoare' },
 ];
 ---
 
-<Layout title={t(locale, 'resources.title')} description="Guides, analyses, and best practices in public procurement. PAAP 2026, CNSC complaints, winning bid checklist.">
+<Layout title={t(locale, 'resources.title')} description="Ghiduri, analize și bune practici în achiziții publice. PAAP 2026, contestații CNSC, checklist ofertă câștigătoare.">
   <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl sm:text-5xl font-heading font-bold mb-4">{t(locale, 'resources.title')}</h1>
