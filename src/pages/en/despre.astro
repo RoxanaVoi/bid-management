@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CTASection from '../../components/CTASection.astro';
+import PressCoverage from '../../components/PressCoverage.astro';
 import { getLocaleFromUrl, t } from '../../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
@@ -75,6 +76,9 @@ const team = [
       </div>
     </div>
   </section>
+
+  <div id="presa"></div>
+  <PressCoverage />
 
   <CTASection />
 </Layout>

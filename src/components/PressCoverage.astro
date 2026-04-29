@@ -1,0 +1,121 @@
+---
+import { getLocaleFromUrl } from '../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+type PressItem = {
+  outlet: string;
+  type: 'article' | 'video';
+  date: string;
+  title: string;
+  summary: string;
+  url: string;
+};
+
+const items: PressItem[] = locale === 'ro' ? [
+  {
+    outlet: 'Ziarul Financiar · ZF IT Generation',
+    type: 'article',
+    date: '23 Apr 2026',
+    title: 'Roxana și Radu Voicu, Equalys Global — soluții AI pentru licitații publice și conformare la regulile de mediu',
+    summary: 'Cum construim agenți AI care automatizează ofertarea în achizițiile publice și conformarea la directivele europene de mediu (CBAM, EUDR), cu trecere către un model SaaS în lunile următoare.',
+    url: 'https://www.zf.ro/zf-it-generation/zf-it-generation-roxana-radu-voicu-equalys-global-solutii-licitatii-23133980',
+  },
+  {
+    outlet: 'Ziarul Financiar · Business Hi-Tech',
+    type: 'article',
+    date: '06 Apr 2026',
+    title: 'După exitul către S&T în 2021, Radu și Roxana Voicu revin cu un nou business tech — Equalys Global',
+    summary: 'Despre noua noastră direcție: folosim agenți AI pentru a optimiza procese complexe de business, începând cu ofertarea pe achiziții publice și automatizarea conformării europene.',
+    url: 'https://www.zf.ro/business-hi-tech/dupa-exitul-catre-gigantul-austriac-s-t-2021-antreprenorii-radu-23114004',
+  },
+  {
+    outlet: 'Profit.ro',
+    type: 'video',
+    date: '2026',
+    title: 'Interviu video: cum optimizăm procesele din achiziții publice cu AI',
+    summary: 'Discuție pe Profit.ro despre soluțiile Equalys și modul în care folosim inteligența artificială pentru a face ofertarea mai rapidă, mai transparentă și mai puțin predispusă la erori.',
+    url: 'https://www.facebook.com/Profit.ro/videos/1729249324898059/',
+  },
+] : [
+  {
+    outlet: 'Ziarul Financiar · ZF IT Generation',
+    type: 'article',
+    date: '23 Apr 2026',
+    title: 'Roxana and Radu Voicu, Equalys Global — AI solutions for public tenders and environmental compliance',
+    summary: 'How we build AI agents that automate bidding in public procurement and compliance with European environmental rules (CBAM, EUDR), with a transition to a SaaS model in the coming months.',
+    url: 'https://www.zf.ro/zf-it-generation/zf-it-generation-roxana-radu-voicu-equalys-global-solutii-licitatii-23133980',
+  },
+  {
+    outlet: 'Ziarul Financiar · Business Hi-Tech',
+    type: 'article',
+    date: '06 Apr 2026',
+    title: 'After the 2021 exit to S&T, Radu and Roxana Voicu return with a new tech business — Equalys Global',
+    summary: 'About our new direction: we use AI agents to optimize complex business processes, starting with public procurement bidding and European compliance automation.',
+    url: 'https://www.zf.ro/business-hi-tech/dupa-exitul-catre-gigantul-austriac-s-t-2021-antreprenorii-radu-23114004',
+  },
+  {
+    outlet: 'Profit.ro',
+    type: 'video',
+    date: '2026',
+    title: 'Video interview: optimizing public procurement processes with AI',
+    summary: 'A Profit.ro discussion about Equalys solutions and how we use artificial intelligence to make bidding faster, more transparent and less error-prone.',
+    url: 'https://www.facebook.com/Profit.ro/videos/1729249324898059/',
+  },
+];
+
+const heading = locale === 'ro' ? 'Equalys în presă' : 'Equalys in the press';
+const intro = locale === 'ro'
+  ? 'Apariții publice despre soluțiile pe care le construim și modul în care folosim AI pentru a optimiza procesele din achiziții publice.'
+  : 'Public appearances about the solutions we build and how we use AI to optimize public procurement processes.';
+const readArticle = locale === 'ro' ? 'Citește articolul' : 'Read the article';
+const watchVideo = locale === 'ro' ? 'Vezi interviul' : 'Watch the interview';
+---
+
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 data-animate class="text-3xl font-heading font-bold text-navy mb-4">{heading}</h2>
+      <p data-animate data-animate-delay="1" class="text-text-light leading-relaxed">{intro}</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {items.map((item, i) => (
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-animate
+          data-animate-delay={String((i % 3) + 1)}
+          class="group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col no-underline"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-medium text-accent uppercase tracking-wide">{item.outlet}</span>
+            <span class="inline-flex items-center gap-1 text-xs text-text-light">
+              {item.type === 'video' ? (
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zM15 7l3-2v10l-3-2V7z" />
+                </svg>
+              ) : (
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              )}
+              {item.date}
+            </span>
+          </div>
+          <h3 class="text-base font-heading font-bold text-navy mb-3 group-hover:text-accent transition-colors leading-snug">
+            {item.title}
+          </h3>
+          <p class="text-text-light text-sm leading-relaxed mb-4 flex-1">{item.summary}</p>
+          <span class="inline-flex items-center gap-1 text-accent text-sm font-medium">
+            {item.type === 'video' ? watchVideo : readArticle}
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
