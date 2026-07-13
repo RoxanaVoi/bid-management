@@ -1,0 +1,100 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<Layout title="Analiză săptămânală 13 iulie 2026: revizuirea directivelor UE și eForms SDK 2.0" description="Săptămâna 7–13 iulie 2026 în achiziții publice: UE pregătește propunerea de revizuire a directivelor din 2014, eForms/TED intră în fereastra Release Candidate (SDK 2.0) și calendarul TED (OJ S) pentru iulie.">
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Analiză săptămânală 13 iulie 2026</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">Noutăți</span>
+        <span class="text-gray-500 text-sm">13 Iul 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-heading font-bold leading-tight">Analiză săptămânală: noutăți în achiziții publice — 13 iulie 2026</h1>
+      <p class="text-gray-300 text-lg mt-4">Achizițiile publice în săptămâna 7–13 iulie 2026: UE pregătește propunerea de revizuire a directivelor, iar eForms/TED intră în fereastra „Release Candidate" (SDK 2.0)</p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Analiză săptămânală: noutăți în achiziții publice — 13 iulie 2026",
+    "datePublished": "2026-07-13",
+    "author": { "@type": "Organization", "name": "Equalys Services" },
+    "publisher": { "@type": "Organization", "name": "Equalys Services", "url": "https://bid-management.ro" },
+    "mainEntityOfPage": "https://bid-management.ro/ro/resurse/noutati-13-iulie-2026"
+  })} />
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-slate prose-lg max-w-none prose-headings:font-heading prose-headings:text-navy prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-p:text-text prose-p:leading-relaxed prose-li:text-text prose-strong:text-navy prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+
+        <p class="text-xl text-text leading-relaxed">
+          Săptămâna aceasta nu am identificat, din surse primare accesibile public, modificări legislative românești majore în materia achizițiilor publice. În schimb, la nivel european sunt două evoluții care merită puse pe radar și pregătite din timp: (1) calendarul UE pentru revizuirea directivelor din 2014, aflat în etapa de pregătire a propunerii legislative, și (2) tranziția tehnică eForms/TED către o nouă generație de metadate (SDK 2.0), care va influența validările și integrarea anunțurilor.
+        </p>
+        <p>Adăugăm și un reper operațional util echipelor cu anunțuri la nivel UE: calendarul de publicare TED (OJ S) pentru iulie 2026.</p>
+
+        <h2>1. Revizuirea directivelor UE: de la evaluare la propunerea legislativă (și ce urmează pentru România)</h2>
+        <p>Comisia Europeană lucrează la revizuirea directivelor UE din 2014 privind achizițiile publice, pe baza unei evaluări aprofundate și a unor studii externe. Raportul de evaluare a fost publicat pe <strong>14 octombrie 2025</strong>. Ulterior, Comisia a deschis o consultare publică și un „call for evidence" care au rulat între <strong>3 noiembrie 2025 și 26 ianuarie 2026</strong>, cu o participare consistentă a părților interesate (745 de contribuții la Call for Evidence și 1.037 de răspunsuri la consultarea publică).</p>
+        <p>În prezent, procesul a intrat în etapa de pregătire a propunerii legale, susținută de o evaluare de impact cuprinzătoare, iar Programul de lucru al Comisiei vizează <strong>trimestrul II 2026</strong> ca țintă pentru adoptarea propunerii.</p>
+
+        <p><em>Notă de acuratețe: T2 2026 este data-țintă de adoptare din Programul de lucru al Comisiei, nu o dată garantată — calendarul se poate deplasa.</em></p>
+
+        <h3>Impact practic (pe înțelesul echipelor de ofertare și consultanță)</h3>
+        <ul>
+          <li><strong>Pentru autorități contractante:</strong> este momentul potrivit pentru a documenta intern unde apar „fricțiunile" reale — durata evaluării, criteriile de calificare, utilizarea criteriilor de sustenabilitate/sociale, lotizarea și accesul IMM-urilor, gestionarea modificărilor contractuale. Aceste exemple devin argumente practice în faza de transpunere și în viitoarele ghiduri.</li>
+          <li><strong>Pentru operatori economici:</strong> direcțiile vehiculate public (simplificare, componentă de „marketplace" digital UE, criterii de tip „Made in Europe" în limitele angajamentelor internaționale, accent pe green/social/innovation) sugerează creșterea cerințelor de conformare și a nevoii de trasabilitate a datelor din ofertă (origine, lanțuri de aprovizionare, indicatori ESG etc.).</li>
+          <li><strong>Pentru consultanți:</strong> merită pregătit un „watchlist" cu temele unde România ar putea avea marjă de manevră la transpunere — proceduri simplificate, praguri, instrumente de digitalizare, mecanisme de reziliență/„economic security".</li>
+        </ul>
+
+        <h3>Ce urmărim în perioada următoare</h3>
+        <p>Publicarea efectivă a propunerii legislative și a documentelor aferente (evaluarea de impact, anexele tehnice, pozițiile statelor membre), precum și sinteza consolidată a răspunsurilor la consultare, anunțată de Comisie pentru perioada următoare.</p>
+
+        <p class="text-sm text-text-light italic">Sursă: <a href="https://public-buyers-community.ec.europa.eu/revision-public-procurement-directives" target="_blank" rel="noopener">Public Buyers Community — „Revision of the Public Procurement Directives"</a></p>
+
+        <h2>2. eForms/TED: intrăm în fereastra de Release Candidate (SDK 2.0) — de ce contează chiar dacă lucrați „doar" în SEAP</h2>
+        <p>În documentația tehnică TED, foaia de parcurs eForms indică următorul calendar: <strong>SDK 1.15</strong> este țintit pentru iunie 2026, <strong>SDK 2.0.0-rc.1</strong> pentru iulie 2026, iar <strong>SDK 2.0 final</strong> este estimat în jurul lunii septembrie 2026. Documentația precizează explicit că SDK 1.15 este ultima versiune din seria 1.x, evoluțiile ulterioare urmând să fie livrate doar pe SDK 2.</p>
+
+        <h3>De reținut pentru practicieni</h3>
+        <ul>
+          <li><strong>Pentru autorități/entități care publică și la nivel european</strong> (sau pentru proiecte cu finanțare ori cerințe de publicitate UE): schimbările de SDK se traduc în practică prin reguli de validare și structuri de date care pot afecta câmpurile obligatorii, interoperabilitatea cu sistemele interne și automatizările de raportare.</li>
+          <li><strong>Pentru furnizori de soluții și echipe IT:</strong> documentația precizează că aplicațiile OJS — eNotices2, TED Central Validation Service, TED API, TED Viewer, TED Monitor și website-ul TED — sunt aliniate cu această tranziție, iar versiunea finală se publică după dezvoltarea și testarea completă a acestor aplicații.</li>
+        </ul>
+
+        <p class="text-sm text-text-light italic">Sursă: <a href="https://docs.ted.europa.eu/eforms-common/roadmap/index.html" target="_blank" rel="noopener">TED Developer Docs — „eForms SDK Roadmap"</a></p>
+
+        <h2>3. Ritmul publicărilor în TED (OJ S) — reper operațional pentru echipele cu anunțuri UE</h2>
+        <p>Pentru iulie 2026, calendarul TED listează numerele <strong>OJ S 124/2026 – 146/2026</strong>, cu date de publicare în fiecare zi lucrătoare, de la 01/07/2026 (S 124) până la 31/07/2026 (S 146) — în total <strong>23 de ediții</strong>. Pagina oferă și opțiunea de descărcare a calendarului anual (XLS, PDF, CSV).</p>
+
+        <p class="text-sm text-text-light italic">Sursă: <a href="https://ted.europa.eu/en/release-calendar" target="_blank" rel="noopener">TED — „Official Journal S Series Release Calendar"</a></p>
+
+        <h2>Notă metodologică</h2>
+        <p class="text-sm text-text-light italic">Informațiile din această analiză au fost verificate în sursele primare (Comisia Europeană / Public Buyers Community, TED Developer Docs și calendarul de publicare TED) la data de 13 iulie 2026. Datele-țintă privind SDK și propunerea legislativă UE sunt estimări oficiale și se pot modifica.</p>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-16 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-heading font-bold mb-4">Vrei suport pentru pregătirea din timp a acestor schimbări?</h2>
+      <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">Te ajutăm să îți pregătești echipele și procesele pentru revizuirea directivelor UE și tranziția eForms/TED.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getLocalizedPath(locale, '/solutii/autoritati')} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25">
+          Soluții pentru autorități
+        </a>
+        <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+          Discută cu noi
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

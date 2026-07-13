@@ -6,11 +6,13 @@ import { getLocaleFromUrl, t, getLocalizedPath } from '../../../i18n/utils';
 const locale = getLocaleFromUrl(Astro.url);
 
 const articles = locale === 'ro' ? [
+  { title: 'Analiză săptămânală 13 iulie 2026: revizuirea directivelor UE și eForms SDK 2.0', category: 'Noutăți', date: '13 Iul 2026', excerpt: 'UE pregătește propunerea de revizuire a directivelor din 2014, eForms/TED intră în fereastra Release Candidate (SDK 2.0) și calendarul TED pentru iulie.', slug: 'noutati-13-iulie-2026' },
   { title: 'Noutăți aprilie 2026: Directivele UE, noul ALOP și praguri actualizate', category: 'Noutăți', date: '10 Apr 2026', excerpt: 'Revizuirea fundamentală a Directivelor europene în T2 2026, impactul noului ALOP, workshop ANAP-Banca Mondială și noile praguri valorice.', slug: 'noutati-aprilie-2026' },
   { title: 'Ghid complet PAAP 2026: Ce trebuie să știi', category: 'Ghiduri', date: '15 Mar 2026', excerpt: 'Tot ce trebuie să știi despre întocmirea și actualizarea Programului Anual al Achizițiilor Publice în 2026.', slug: 'ghid-paap-2026' },
   { title: 'Contestații CNSC: statistici și tendințe 2025', category: 'Analize', date: '20 Feb 2026', excerpt: 'Analiză a celor mai frecvente motive de contestare și ratele de admisibilitate pe tipuri de proceduri.', slug: 'contestatii-cnsc-2025' },
   { title: 'Cum pregătești o ofertă câștigătoare: checklist complet', category: 'Bune practici', date: '15 Feb 2026', excerpt: 'Lista completă de verificare pentru pregătirea și depunerea unei oferte fără erori.', slug: 'checklist-oferta-castigatoare' },
 ] : [
+  { title: 'Weekly Review July 13, 2026: EU Directives Revision and eForms SDK 2.0', category: 'News', date: '13 Jul 2026', excerpt: 'The EU prepares the proposal to revise the 2014 directives, eForms/TED enters the Release Candidate window (SDK 2.0), plus the TED calendar for July.', slug: 'noutati-13-iulie-2026' },
   { title: 'April 2026 Updates: EU Directives, New ALOP and Updated Thresholds', category: 'News', date: '10 Apr 2026', excerpt: 'Fundamental revision of European Directives in Q2 2026, impact of new ALOP, ANAP-World Bank workshop and new value thresholds.', slug: 'noutati-aprilie-2026' },
   { title: 'Complete PAAP 2026 Guide: What You Need to Know', category: 'Guides', date: '15 Mar 2026', excerpt: 'Everything you need to know about preparing and updating the Annual Public Procurement Program in 2026.', slug: 'ghid-paap-2026' },
   { title: 'CNSC Complaints: 2025 Statistics and Trends', category: 'Analysis', date: '20 Feb 2026', excerpt: 'Analysis of the most common complaint reasons and admissibility rates by procedure type.', slug: 'contestatii-cnsc-2025' },

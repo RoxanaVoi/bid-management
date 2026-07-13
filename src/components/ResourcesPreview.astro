@@ -5,6 +5,12 @@ const locale = getLocaleFromUrl(Astro.url);
 
 const articles = [
   {
+    title: locale === 'ro' ? 'Analiză săptămânală 13 iulie: directivele UE, eForms SDK 2.0' : 'Weekly Review July 13: EU Directives, eForms SDK 2.0',
+    category: locale === 'ro' ? 'Noutăți' : 'News',
+    date: locale === 'ro' ? '13 Iul 2026' : '13 Jul 2026',
+    slug: 'noutati-13-iulie-2026',
+  },
+  {
     title: locale === 'ro' ? 'Noutăți aprilie 2026: Directivele UE, ALOP, praguri' : 'April 2026 Updates: EU Directives, ALOP, thresholds',
     category: locale === 'ro' ? 'Noutăți' : 'News',
     date: '10 Apr 2026',
@@ -15,12 +21,6 @@ const articles = [
     category: locale === 'ro' ? 'Ghiduri' : 'Guides',
     date: '15 Mar 2026',
     slug: 'ghid-paap-2026',
-  },
-  {
-    title: locale === 'ro' ? 'Contestații CNSC: statistici și tendințe 2025' : 'CNSC Complaints: 2025 Statistics and Trends',
-    category: locale === 'ro' ? 'Analize' : 'Analysis',
-    date: '20 Feb 2026',
-    slug: 'contestatii-cnsc-2025',
   },
 ];
 ---
