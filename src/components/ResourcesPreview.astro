@@ -5,6 +5,12 @@ const locale = getLocaleFromUrl(Astro.url);
 
 const articles = [
   {
+    title: locale === 'ro' ? 'Nimeni nu răspunde pentru ce cumpără statul. Toți răspund pentru cum.' : 'Nobody answers for what the state buys. Everybody answers for how.',
+    category: locale === 'ro' ? 'Analize' : 'Analysis',
+    date: locale === 'ro' ? '28 Iul 2026' : '28 Jul 2026',
+    slug: 'paradigma-controlului-achizitii-publice',
+  },
+  {
     title: locale === 'ro' ? 'Analiză săptămânală 13 iulie: directivele UE, eForms SDK 2.0' : 'Weekly Review July 13: EU Directives, eForms SDK 2.0',
     category: locale === 'ro' ? 'Noutăți' : 'News',
     date: locale === 'ro' ? '13 Iul 2026' : '13 Jul 2026',
@@ -15,12 +21,6 @@ const articles = [
     category: locale === 'ro' ? 'Noutăți' : 'News',
     date: '10 Apr 2026',
     slug: 'noutati-aprilie-2026',
-  },
-  {
-    title: locale === 'ro' ? 'Ghid complet PAAP 2026: Ce trebuie să știi' : 'Complete PAAP 2026 Guide: What You Need to Know',
-    category: locale === 'ro' ? 'Ghiduri' : 'Guides',
-    date: '15 Mar 2026',
-    slug: 'ghid-paap-2026',
   },
 ];
 ---

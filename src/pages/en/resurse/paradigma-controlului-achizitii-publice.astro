@@ -1,0 +1,365 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<Layout title="Nimeni nu răspunde pentru ce cumpără statul. Toți răspund pentru cum." description="De ce trei eșecuri celebre ale verii lui 2026 — terminalul Otopeni, A3 fără benzinării, nota 7,09 la igienă digitală — au un singur numitor comun: controlul verifică legalitatea hârtiilor, nu calitatea deciziei de cumpărare.">
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Paradigma controlului</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">Analize</span>
+        <span class="text-gray-500 text-sm">28 Iul 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight">Nimeni nu răspunde pentru ce cumpără statul. Toți răspund pentru <span class="text-accent-light">cum</span>.</h1>
+      <p class="text-gray-300 text-lg mt-5 leading-relaxed">De ce trei eșecuri celebre ale verii lui 2026 au un singur numitor comun — și de ce acela nu apare în niciun raport de control.</p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Nimeni nu răspunde pentru ce cumpără statul. Toți răspund pentru cum.",
+    "description": "De ce trei eșecuri celebre ale verii lui 2026 au un singur numitor comun — și de ce acela nu apare în niciun raport de control.",
+    "datePublished": "2026-07-28",
+    "author": { "@type": "Organization", "name": "Equalys Services" },
+    "publisher": { "@type": "Organization", "name": "Equalys Services", "url": "https://bid-management.ro" },
+    "mainEntityOfPage": "https://bid-management.ro/ro/resurse/paradigma-controlului-achizitii-publice"
+  })} />
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="article-body">
+
+        <h2>Trei știri, fără adjective</h2>
+
+        <div class="space-y-6 mb-10">
+          <div class="relative bg-surface rounded-2xl border border-gray-100 p-6 sm:p-7">
+            <span class="absolute -top-3 left-6 sm:left-7 px-3 py-1 bg-accent text-white text-[11px] font-heading font-bold rounded-full tracking-widest">UNU</span>
+            <p class="text-text text-base sm:text-lg leading-relaxed mt-2">În iunie 2026, Compania Națională Aeroporturi București a semnat contractul de proiectare pentru noul terminal Otopeni: un terminal de 176.000 mp dimensionat pentru 30 de milioane de pasageri în 2040, un contract întins pe 10,5 ani. Valoarea estimată a procedurii: aproximativ 40 de milioane de euro. Oferte primite: nouă, de la mari firme internaționale de inginerie. Valoarea de atribuire: aproximativ 18,4 milioane de euro — <strong>46% din estimare</strong>. Capacitatea aeroportului e depășită de ani buni, iar creșterea traficului era vizibilă și previzibilă încă din 2015. Proiectarea începe acum și durează maximum doi ani. Construcția, estimată la trei ani și jumătate, abia după aceea.</p>
+          </div>
+
+          <div class="relative bg-surface rounded-2xl border border-gray-100 p-6 sm:p-7">
+            <span class="absolute -top-3 left-6 sm:left-7 px-3 py-1 bg-accent text-white text-[11px] font-heading font-bold rounded-full tracking-widest">DOI</span>
+            <p class="text-text text-base sm:text-lg leading-relaxed mt-2">Autostrada A3 București–Ploiești, inaugurată în iulie 2012, funcționează de <strong>14 ani fără benzinării</strong> și fără toalete funcționale pe circa 60 de kilometri. Explicația invocată de-a lungul anilor: procedurile de concesionare a spațiilor de servicii au întâmpinat dificultăți din lipsa ofertelor. Un câștigător — OMV Petrom Marketing — a fost desemnat abia pe 6 februarie 2025, pentru un pachet de 12 parcări și spații de servicii concesionate pe 23–32 de ani; proiectarea primelor șase a început în iunie 2026, cu deschidere estimată în 2027. Iar pentru a doua tranșă de șase parcări — Palanca, Moara Domnească, Bărcănești — procedura de concesiune a fost anulată în 2024 și nu a mai fost relansată. Paisprezece ani: licitații fără oferte, licitații anulate, dosare în regulă.</p>
+          </div>
+
+          <div class="relative bg-surface rounded-2xl border border-gray-100 p-6 sm:p-7">
+            <span class="absolute -top-3 left-6 sm:left-7 px-3 py-1 bg-accent text-white text-[11px] font-heading font-bold rounded-full tracking-widest">TREI</span>
+            <p class="text-text text-base sm:text-lg leading-relaxed mt-2">În iulie 2026, Barometrul Digital — o inițiativă civică independentă — a evaluat igiena digitală a 2.487 de instituții publice românești: primării, prefecturi, consilii județene, spitale. Media națională: <strong>7,09 din 10</strong>. Calificativul asumat de autori: „mediocri”. Spitalele județene au media 7,0, iar coada catalogului coboară sub 4.</p>
+          </div>
+        </div>
+
+        <p>Trei povești diferite: o investiție strategică întârziată cu un deceniu, un serviciu banal absent timp de paisprezece ani, o infrastructură digitală națională de nota 7.</p>
+
+        <p>Acum partea interesantă: <strong>niciuna dintre aceste trei povești nu e o poveste despre proceduri încălcate.</strong> Licitațiile s-au publicat. Termenele s-au respectat. Dosarele sunt, aproape sigur, în regulă.</p>
+
+        <p>Asta e problema. Nu că sistemul nu funcționează — ci că funcționează perfect pentru ce a fost proiectat să facă. Doar că a fost proiectat să producă dosare, nu rezultate.</p>
+
+        <h2>Teza, fără menajamente</h2>
+
+        <p>Paradigma achizițiilor publice românești optimizează un singur lucru: <strong>trecerea controlului</strong>. Nu satisfacerea nevoii. Nu calitatea rezultatului. Nu costul total pe durata de viață. Trecerea controlului.</p>
+
+        <p>Iar controlul, la rândul lui, verifică un singur lucru: <strong>legalitatea hârtiilor</strong>. Nu mă credeți pe cuvânt — am citit raportul Curții de Conturi privind constatările în domeniul achizițiilor publice în anul 2024, cap cu cap.</p>
+
+        <div class="my-10 grid sm:grid-cols-3 gap-4">
+          <div class="bg-navy rounded-2xl p-6 text-center">
+            <div class="text-3xl font-heading font-bold text-white">2.325</div>
+            <div class="text-gray-400 text-xs mt-2 leading-snug">abateri constatate la 1.361 de entități auditate</div>
+          </div>
+          <div class="bg-navy rounded-2xl p-6 text-center">
+            <div class="text-3xl font-heading font-bold text-white">58,12%</div>
+            <div class="text-gray-400 text-xs mt-2 leading-snug">din entitățile verificate au avut abateri în achiziții</div>
+          </div>
+          <div class="bg-navy rounded-2xl p-6 text-center">
+            <div class="text-3xl font-heading font-bold text-white">43,63%</div>
+            <div class="text-gray-400 text-xs mt-2 leading-snug">același indicator, în anul precedent</div>
+          </div>
+        </div>
+
+        <p>Deci nu, controlul nu doarme. Controlul e intens. Întrebarea e <em>la ce se uită</em>.</p>
+
+        <p>Raportul clasifică abaterile pe etape, și există — spre lauda metodologiei — un capitol întreg pentru etapa de planificare/pregătire: <strong>605 abateri, 26% din total</strong>. Dar citiți tipologia acestor abateri de „planificare”: strategia anuală și programul anual neîntocmite la termen sau în structura legală; extrase din program nepublicate în SEAP; divizarea contractelor pentru a coborî sub praguri; alegerea eronată a procedurii; nerespectarea regulilor de estimare a valorii; produse în referatele de necesitate fără legătură cu obiectul de activitate; documentații tehnico-economice neaprobate legal.</p>
+
+        <p>Toate reale. Toate necesare. Și toate despre același lucru: <strong>dacă hârtiile planificării există, sunt la termen și respectă forma legală.</strong> Niciun tip de abatere din raport nu întreabă: nevoia era reală și corect dimensionată? piața a fost consultată înainte de estimare? calitatea a fost definită în caietul de sarcini? ce spune costul pe ciclul de viață?</p>
+
+        <p>Restul de 74% din abateri se împart între organizarea procedurii (16%) și — partea leului, 58% — post-atribuire: plăți pentru bunuri nelivrate, cheltuieli supraevaluate, documente justificative lipsă, clauze de cantitate și calitate neurmărite. Legalitatea execuției și a plăților. Tot hârtii, alt dosar.</p>
+
+        <blockquote class="my-10 border-l-4 border-accent bg-surface rounded-r-2xl py-6 px-6">
+          <p class="text-navy font-heading font-bold text-lg sm:text-xl leading-snug">Verificăm, cu o intensitate crescândă, conformitatea documentelor din fiecare fază. Nu verificăm, nicăieri, calitatea deciziei de cumpărare.</p>
+        </blockquote>
+
+        <p>HG 395/2016 cere ca strategia de contractare să <em>documenteze deciziile</em> etapei de planificare (art. 9 alin. 3) — controlul verifică dacă strategia există și e aprobată, nu dacă deciziile documentate în ea au fost bune.</p>
+
+        <p>Un caiet de sarcini slab, atribuit impecabil, produce un rezultat slab cu acte în regulă. O concesiune neatractivă, licitată în mod repetat fără nicio ofertă, produce paisprezece ani de nimic — cu tot atâtea dosare perfecte la arhivă. Nimeni nu răspunde pentru caietul de sarcini slab. Nimeni nu răspunde pentru concesiunea la care n-a venit nimeni. Toți ar fi răspuns pentru o eroare de procedură.</p>
+
+        <p>Asta trebuie să se schimbe. Nu legea. Paradigma controlului.</p>
+
+        <h2>„Dar cumpărăm pe preț, aia e problema”</h2>
+
+        <p>Să demontăm întâi explicația de serviciu.</p>
+
+        <p>În 2024, România a atribuit 82% din procedurile de achiziție publică ofertei celei mai ieftine, față de 54% media unei țări europene de mijloc, iar 44% din contracte au avut un singur ofertant, față de 28% media UE. Sursa: tabloul de bord al Comisiei Europene pentru piața unică, pe date TED.</p>
+
+        <div class="my-10 bg-surface rounded-2xl border border-gray-100 p-6 sm:p-8">
+          <div class="grid sm:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-heading font-bold text-navy text-sm mb-5">Atribuiri pe „prețul cel mai scăzut”</h4>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-xs mb-1.5"><span class="text-text font-medium">România</span><span class="text-navy font-heading font-bold">82%</span></div>
+                  <div class="h-2.5 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-accent rounded-full" style="width:82%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs mb-1.5"><span class="text-text font-medium">Estonia</span><span class="text-navy font-heading font-bold">83%</span></div>
+                  <div class="h-2.5 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-navy rounded-full" style="width:83%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs mb-1.5"><span class="text-text font-medium">Țară UE de mijloc</span><span class="text-navy font-heading font-bold">54%</span></div>
+                  <div class="h-2.5 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-text-light rounded-full" style="width:54%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-navy text-sm mb-5">Proceduri cu un singur ofertant</h4>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-xs mb-1.5"><span class="text-text font-medium">România</span><span class="text-navy font-heading font-bold">44%</span></div>
+                  <div class="h-2.5 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-accent rounded-full" style="width:44%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs mb-1.5"><span class="text-text font-medium">Estonia</span><span class="text-navy font-heading font-bold">28%</span></div>
+                  <div class="h-2.5 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-navy rounded-full" style="width:28%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs mb-1.5"><span class="text-text font-medium">Media UE</span><span class="text-navy font-heading font-bold">28%</span></div>
+                  <div class="h-2.5 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-text-light rounded-full" style="width:28%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-text-light text-xs mt-6 pt-5 border-t border-gray-200">Date 2024, tabloul de bord al Comisiei Europene pentru piața unică, pe date TED.</p>
+        </div>
+
+        <p>Diagnostic clar, nu? Cumpărăm prost pentru că cumpărăm ieftin.</p>
+
+        <p>Numai că același tablou de bord arată că <strong>Estonia — țara cu cel mai performant stat digital din Europa — a atribuit în 2024 83% din proceduri ofertei celei mai ieftine.</strong> Mai mult decât România. Cu o diferență esențială: Estonia are 28% proceduri cu ofertant unic — exact media europeană. Preț „ieftin”, competiție sănătoasă, rezultate excelente.</p>
+
+        <p>De ce le iese? Pentru că atunci când Estonia scoate la licitație un sistem informatic, caietul de sarcini pornește de la o arhitectură care există: registrele de bază, X-Road, modelul de date. Furnizorul nu propune fundația — o primește și o consumă. Ce rămâne de comparat între oferte e, în bună măsură, prețul.</p>
+
+        <blockquote class="my-10 border-l-4 border-accent bg-surface rounded-r-2xl py-6 px-6">
+          <p class="text-navy font-heading font-bold text-lg sm:text-xl leading-snug">Prețul cel mai scăzut aplicat unei specificații foarte bine definite dă un rezultat bun. Prețul cel mai scăzut aplicat unei specificații slabe dă exact ce merităm.</p>
+        </blockquote>
+
+        <p>Criteriul de atribuire nu e cauza. E simptomul. Cauza e ce se întâmplă — sau nu se întâmplă — înainte de publicarea anunțului.</p>
+
+        <p>Iar legislația română nu doar că permite tot ce ne-ar trebui — a mers deja mai departe decât credem. Din septembrie 2022, art. 187 alin. (3^1) din Legea 98/2016 (introdus prin Legea 208/2022) permite criteriul „prețul cel mai scăzut” <strong>numai sub pragurile europene</strong>. Peste praguri — adică exact procedurile măsurate de TED — prețul ca unic criteriu e interzis de aproape patru ani. Art. 187 alin. (8), în forma dată de OUG 52/2024, exclude costul și prețul cel mai scăzut pentru serviciile intelectuale, pentru infrastructura de transport transeuropeană și drumurile județene și pentru anumite produse cu impact de mediu pe ciclul de viață; art. 32 alin. (6) din HG 395/2016 plafonează ponderea prețului la 40% pentru aceste categorii; art. 187 alin. (7) permite explicit costul pe ciclul de viață; art. 139 reglementează consultarea pieței.</p>
+
+        <p>Și acum puneți cele două cifre față în față: criteriul prețului e restricționat prin lege, peste praguri, din 2022 — iar în datele TED pentru 2024, 82% din procedurile românești sunt atribuite ofertei celei mai ieftine. Am trăit deja, fără să o numim, exact experiența poloneză: <strong>am schimbat formularele, nu rezultatele.</strong> Criteriile s-au conformat pe hârtie; câștigă, în continuare, cel mai ieftin.</p>
+
+        <p>Nu ne lipsește nimic în lege. Atunci ce ne lipsește?</p>
+
+        <h2>Mecanismul: frica rațională</h2>
+
+        <p>Puneți-vă în locul omului care semnează.</p>
+
+        <div class="my-10 grid sm:grid-cols-2 gap-5">
+          <div class="rounded-2xl border-2 border-accent/20 bg-accent/5 p-6">
+            <h4 class="font-heading font-bold text-accent text-base mb-5">Dacă plătești prea mult</h4>
+            <ul class="space-y-3 text-sm text-text list-none pl-0">
+              <li class="flex gap-3"><span class="text-accent">▸</span><span>Prejudiciul e <strong>măsurabil</strong> — o diferență de preț</span></li>
+              <li class="flex gap-3"><span class="text-accent">▸</span><span>E <strong>imediat</strong> — apare la primul control</span></li>
+              <li class="flex gap-3"><span class="text-accent">▸</span><span>E <strong>personal</strong> — se impută</span></li>
+              <li class="flex gap-3"><span class="text-accent">▸</span><span>Are <strong>un singur număr</strong> de apărat</span></li>
+            </ul>
+          </div>
+          <div class="rounded-2xl border-2 border-gray-200 bg-white p-6">
+            <h4 class="font-heading font-bold text-navy text-base mb-5">Dacă cumperi prost</h4>
+            <ul class="space-y-3 text-sm text-text list-none pl-0">
+              <li class="flex gap-3"><span class="text-text-light">▸</span><span>Efectul e <strong>difuz</strong> — se vede în 3–5 ani</span></li>
+              <li class="flex gap-3"><span class="text-text-light">▸</span><span>E <strong>întârziat</strong> — apari în alt post, sau deloc</span></li>
+              <li class="flex gap-3"><span class="text-text-light">▸</span><span>E <strong>colectiv</strong> — „sistemul”</span></li>
+              <li class="flex gap-3"><span class="text-text-light">▸</span><span>Are <strong>un raționament</strong> de apărat</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <p>Un funcționar rațional, în acest sistem, minimizează riscul măsurabil. Alege prețul. Nu pentru că i-a spus cineva, ci pentru că <strong>prețul e singura decizie pe care o poate apăra fără efort.</strong> Un număr se apără cu un tabel. Calitatea se apără cu un argument — iar un argument, într-un mediu în care instituțiile de control interpretează divergent aceleași texte de lege, e o expunere.</p>
+
+        <p>Că interpretările divergente nu sunt o scuză, ci o realitate recunoscută oficial, o arată chiar ANAP: în 2026, agenția a reluat dialogul interinstituțional cu Curtea de Conturi, Autoritatea de Audit, CNSC, Consiliul Concurenței și MIPE tocmai pentru a identifica situațiile în care aceleași dispoziții legale sunt aplicate diferit de autorități, de organismele de verificare, de audit și de soluționare a contestațiilor.</p>
+
+        <p>Citiți încă o dată fraza de mai sus. Statul recunoaște, instituțional, că nu se înțelege cu sine însuși asupra propriilor reguli.</p>
+
+        <p>Consecința practică e devastatoare pentru orice reformă: <strong>un singur auditor care se uită doar la preț anulează curajul a zece autorități contractante.</strong> Poți face zece proiecte-pilot de achiziție pe calitate — toate mor la primul control efectuat de cineva care aplică altă grilă de lectură. De asta paradigma nu se schimbă prin ghiduri, traininguri și circulare. Se schimbă doar când omul care semnează știe <em>dinainte</em> cu ce grilă va fi judecat — și când grila aceea include și întrebarea „ce ai cumpărat”, nu doar „cum ai atribuit”.</p>
+
+        <p>Alinierea interpretării între instituțiile de control nu e un obiectiv administrativ de rangul doi. <strong>E precondiția oricărei schimbări.</strong> Fără ea, orice inițiativă de calitate e o loterie cu miza pe cariera semnatarului.</p>
+
+        <h2>Nota 7,09 nu e o problemă de IT. E o problemă de achiziții.</h2>
+
+        <p>Reveniți la Barometrul Digital. Cele cinci dimensiuni evaluate — securitatea e-mailului, criptarea, configurarea de securitate, suprafața expusă, actualizarea software-ului — sunt, toate, <em>lucruri cumpărate</em>. Nota unei instituții la igienă digitală este, în bună măsură, radiografia caietelor ei de sarcini din ultimii zece ani. O notă de 4 nu înseamnă „IT-ul nu-și face treaba”. Înseamnă contracte în care nimeni n-a scris cerințele și controale în care nimeni nu le-a căutat.</p>
+
+        <div class="my-10 rounded-2xl bg-navy p-6 sm:p-8 text-white">
+          <span class="inline-block px-2.5 py-1 bg-white/10 text-gray-300 text-xs font-medium rounded-full mb-5">Februarie 2024</span>
+          <div class="grid sm:grid-cols-3 gap-6 items-center">
+            <div class="sm:col-span-1 text-center sm:text-left">
+              <div class="text-4xl font-heading font-bold text-accent-light">26</div>
+              <div class="text-gray-400 text-xs mt-1">spitale căzute simultan</div>
+              <div class="text-2xl font-heading font-bold text-white mt-5">~157.000 €</div>
+              <div class="text-gray-400 text-xs mt-1">răscumpărare cerută (3,5 BTC)</div>
+            </div>
+            <p class="sm:col-span-2 text-gray-300 text-sm leading-relaxed">Un atac ransomware asupra furnizorului sistemului Hipocrate a perturbat simultan activitatea a 26 de spitale din România. Douăzeci și șase de unități au căzut deodată pentru că depindeau de același furnizor, prin aceeași infrastructură. Iar cerințele care ar fi limitat dezastrul — obiective de recuperare a datelor, testarea restaurării, segmentarea rețelei — sunt cerințe minime de calificare tehnică ce pot fi scrise în orice caiet de sarcini. <strong class="text-white">Legal. Gratuit. Fără risc de contestație.</strong></p>
+          </div>
+        </div>
+
+        <p>Nimeni nu le scrie, pentru că nimeni nu e verificat pentru absența lor.</p>
+
+        <p class="text-sm text-text-light italic">Notă metodologică: Barometrul e o inițiativă privată care măsoară semnale externe, nu un audit oficial — cifrele se citesc ca ordin de mărime. Dar ordinul de mărime spune destul.</p>
+
+        <h2>Cum ar arăta paradigma inversată</h2>
+
+        <p>Nu propun mai mult control. Propun <strong>control mutat acolo unde se iau deciziile.</strong> Concret, trei schimbări:</p>
+
+        <h3>Întâi: controlul începe cu planificarea</h3>
+        <p>Prima întrebare a oricărei verificări nu ar trebui să fie „arătați-mi procesul-verbal al ședinței de evaluare”, ci: există analiză de necesitate? A fost consultată piața conform art. 139? Cum a fost fundamentată valoarea estimată? Există calcul pe ciclul de viață acolo unde legea îl permite? Există notă de risc? Toate sunt obligații sau facultăți legale existente. Niciuna nu e azi obiect sistematic de control. O concesiune rămasă repetat fără oferte — sau anulată și nerelansată — ar trebui să declanșeze o întrebare de planificare — „ce a spus consultarea pieței?” — nu un al patrulea dosar identic.</p>
+
+        <p>Și reveniți la Otopeni: estimare de 40 de milioane, atribuire la 18,4 — mai puțin de jumătate. Nu spun că e greșit; nouă consorții au concurat serios, iar la servicii intelectuale legea plafonează oricum prețul la 40% din punctaj. Spun că, atunci când oferta câștigătoare e la 46% din estimare pentru proiectarea celei mai mari investiții aeroportuare din istoria țării, întrebarea legitimă a unui control de planificare nu e „de ce e ieftin”, ci <strong>„cum a fost fundamentată estimarea și ce spune analiza de risc despre execuția la acest preț”</strong>. E o întrebare de dosar, nu de suspiciune. Și e o întrebare pe care, în paradigma actuală, nu o pune nimeni — pentru că fundamentarea valorii estimate nu e obiect de verificare.</p>
+
+        <h3>Al doilea: rezultatul intră în evaluare</h3>
+        <p>Polonia a demonstrat în 2014 că o regulă bine scrisă mută munții pe hârtie: după amendarea legii, procentul procedurilor cu prețul drept unic criteriu a scăzut de la <strong>93% la 31% în două luni și jumătate</strong>. Și tot Polonia a demonstrat limita: rapoartele ulterioare de evaluare au constatat că oferta cea mai ieftină continua să câștige în peste 80% din cazuri, iar criteriile „calitative” deveniseră adesea fictive — termen de livrare, perioadă de garanție. Ai schimbat formularele, nu rezultatele.</p>
+        <p>Lecția: dacă nu măsori ce s-a întâmplat <em>după</em> recepție — a funcționat? cât a costat mentenanța? câte defecte în garanție? — orice reformă de criterii se transformă în teatru de punctaje. „Am cumpărat ceva care s-a stricat în trei ani” trebuie să coste, instituțional, la fel de mult ca „am plătit cu 10% mai mult”.</p>
+
+        <h3>Al treilea: interpretare unitară cu efect obligatoriu</h3>
+        <p>Dialogul interinstituțional început de ANAP e un pas. Dar dialogul produce minute; autoritățile contractante au nevoie de precedent — dezlegări de speță publicate, asumate de toate organele de control, opozabile la verificare. În ziua în care un șef de serviciu achiziții poate pune pe masă, la control, o interpretare oficială unitară în locul unei rugăciuni, comportamentul lui se schimbă în aceeași zi.</p>
+
+        <h2>Ce poți face de mâine, fără să aștepți pe nimeni</h2>
+
+        <p>Pentru autoritatea contractantă care nu are timp de reforme sistemice, trei pârghii, toate legale azi:</p>
+
+        <div class="my-10 space-y-4">
+          <div class="flex gap-5 rounded-2xl border border-gray-100 bg-surface p-6">
+            <div class="shrink-0 w-9 h-9 rounded-xl bg-accent text-white font-heading font-bold text-sm flex items-center justify-center">1</div>
+            <div>
+              <h4 class="font-heading font-bold text-navy mb-2">Definește calitatea în caietul de sarcini, nu în grila de punctaj</h4>
+              <p class="text-text text-sm leading-relaxed">O cerință minimă obligatorie nu se contestă la fel de ușor ca un factor de evaluare și nu poate fi „cumpărată” cu o declarație. Vrei recuperare a datelor în 4 ore? N-o puncta. Impune-o.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 rounded-2xl border border-gray-100 bg-surface p-6">
+            <div class="shrink-0 w-9 h-9 rounded-xl bg-accent text-white font-heading font-bold text-sm flex items-center justify-center">2</div>
+            <div>
+              <h4 class="font-heading font-bold text-navy mb-2">Cumpără arhitectură, nu aplicații</h4>
+              <p class="text-text text-sm leading-relaxed">Interdicția de a cere cetățeanului documente pe care statul le are deja există în dreptul român din 2022 (Legea 267/2021, extinsă prin Legea 9/2023). Transform-o în clauză de achiziție: niciun sistem informatic nou fără API-uri documentate, fără obligația de interoperare cu registrele de bază, fără drepturi exclusive ale furnizorului asupra modelului de date. Costul clauzei la semnare: aproape zero. Costul absenței ei: îl trăim zilnic.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 rounded-2xl border border-gray-100 bg-surface p-6">
+            <div class="shrink-0 w-9 h-9 rounded-xl bg-accent text-white font-heading font-bold text-sm flex items-center justify-center">3</div>
+            <div>
+              <h4 class="font-heading font-bold text-navy mb-2">Fă decizia apărabilă</h4>
+              <p class="text-text text-sm leading-relaxed">Managerul care alege calitatea nu are nevoie de curaj. Are nevoie de un dosar: analiză de necesitate documentată, consultare de piață, calcul pe ciclul de viață cu ipoteze explicite, justificarea ponderilor, notă de risc. Un asemenea dosar nu garantează că nu vei fi verificat. Garantează că, atunci când vei fi verificat, vei avea ce arăta. Diferența dintre „am considerat că e mai bine” și „iată calculul făcut în martie, cu aceste ipoteze, verificate prin consultare de piață” este diferența dintre o constatare și un dosar închis.</p>
+            </div>
+          </div>
+        </div>
+
+        <p>Asta e, de altfel, munca noastră de zi cu zi: decizii de achiziție care rezistă la control pentru că au fost construite să reziste.</p>
+
+        <h2>Întrebarea care închide cercul</h2>
+
+        <p>Statul român nu cumpără prost pentru că vrea. Cumpără prost pentru că a construit un sistem în care singura decizie fără risc personal e cea mai ieftină — și în care nimeni, niciodată, nu e întrebat ce s-a ales de lucrul cumpărat.</p>
+
+        <p>Schimbarea nu cere o lege nouă. Cere ca instituțiile de control să se uite acolo unde se decide soarta banului public — la planificare — și să vorbească între ele aceeași limbă juridică atunci când o fac.</p>
+
+        <p>Până atunci, o singură întrebare, lăsată deschisă pentru oricine citește rapoarte de control:</p>
+
+        <div class="my-10 rounded-2xl bg-gradient-to-br from-navy via-navy-800 to-navy p-8 sm:p-10 text-center">
+          <p class="text-white font-heading font-bold text-xl sm:text-2xl leading-snug">Câte rapoarte din ultimii zece ani constată un prejudiciu pentru că o instituție a cumpărat <span class="text-accent-light">prea ieftin</span>?</p>
+        </div>
+
+        <p>În raportul pe 2024 al Curții de Conturi, printre toate tipurile de abateri catalogate, pe trei etape și opt ani de serie istorică, o asemenea categorie nu există. Nu pentru că fenomenul nu există. Pentru că nimeni nu îl caută.</p>
+
+        <h2>Surse</h2>
+        <ul class="text-sm text-text-light list-disc pl-6 space-y-2 leading-relaxed">
+          <li>Curtea de Conturi a României — raportul privind constatările în domeniul achizițiilor publice, anul 2024</li>
+          <li>Comisia Europeană — Single Market Scoreboard, indicatori achiziții publice pe date TED (2024)</li>
+          <li>Legea 98/2016, Legea 208/2022, OUG 52/2024, HG 395/2016, Legea 267/2021, Legea 9/2023</li>
+          <li>ANAP — dialogul interinstituțional privind interpretarea unitară a legislației (2026)</li>
+          <li>Barometrul Digital — evaluarea igienei digitale a 2.487 de instituții publice (iulie 2026)</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-16 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-heading font-bold mb-4">Vrei decizii de achiziție care rezistă la control?</h2>
+      <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">Te ajutăm să construiești dosarul care susține alegerea calității: analiză de necesitate, consultare de piață, cost pe ciclul de viață și justificarea ponderilor.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getLocalizedPath(locale, '/solutii/autoritati')} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25">
+          Soluții pentru autorități
+        </a>
+        <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+          Discută cu noi
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* The project has no @tailwindcss/typography plugin, so article prose is styled here.
+     Only direct children are targeted, to leave the card/stat blocks untouched. */
+  .article-body > p:not([class]) {
+    color: var(--color-text);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .article-body > p[class] {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+  .article-body > h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-navy);
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .article-body > h2:first-child {
+    margin-top: 0;
+  }
+  .article-body > h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-navy);
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin-top: 2.5rem;
+    margin-bottom: 0.875rem;
+  }
+  .article-body > ul {
+    margin-bottom: 1.5rem;
+  }
+  .article-body strong:not([class]) {
+    color: var(--color-navy);
+    font-weight: 600;
+  }
+  .article-body em {
+    font-style: italic;
+  }
+  .article-body a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .article-body a:hover {
+    text-decoration: underline;
+  }
+</style>

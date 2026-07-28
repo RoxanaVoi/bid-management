@@ -6,6 +6,7 @@ import { getLocaleFromUrl, t, getLocalizedPath } from '../../../i18n/utils';
 const locale = getLocaleFromUrl(Astro.url);
 
 const articles = locale === 'ro' ? [
+  { title: 'Nimeni nu răspunde pentru ce cumpără statul. Toți răspund pentru cum.', category: 'Analize', date: '28 Iul 2026', excerpt: 'Terminalul Otopeni, A3 fără benzinării de 14 ani și nota 7,09 la igienă digitală au un singur numitor comun: controlul verifică hârtiile, nu decizia de cumpărare.', slug: 'paradigma-controlului-achizitii-publice' },
   { title: 'Analiză săptămânală 13 iulie 2026: revizuirea directivelor UE și eForms SDK 2.0', category: 'Noutăți', date: '13 Iul 2026', excerpt: 'UE pregătește propunerea de revizuire a directivelor din 2014, eForms/TED intră în fereastra Release Candidate (SDK 2.0) și calendarul TED pentru iulie.', slug: 'noutati-13-iulie-2026' },
   { title: 'Noutăți aprilie 2026: Directivele UE, noul ALOP și praguri actualizate', category: 'Noutăți', date: '10 Apr 2026', excerpt: 'Revizuirea fundamentală a Directivelor europene în T2 2026, impactul noului ALOP, workshop ANAP-Banca Mondială și noile praguri valorice.', slug: 'noutati-aprilie-2026' },
   { title: 'Ghid complet PAAP 2026: Ce trebuie să știi', category: 'Ghiduri', date: '15 Mar 2026', excerpt: 'Tot ce trebuie să știi despre întocmirea și actualizarea Programului Anual al Achizițiilor Publice în 2026.', slug: 'ghid-paap-2026' },
