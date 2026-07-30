@@ -1,0 +1,245 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<Layout title="România adoptă achiziții verzi obligatorii tocmai când UE schimbă regulile jocului" description="Pe 9 septembrie 2026, Comisia Europeană publică propunerea de Regulament care ar înlocui directivele din 2014. România are obligații GPP din 2026, dar fără platformă de criterii, fără formare și fără monitorizare. Irlanda arată că nu regulile fac diferența.">
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Achiziții verzi și noul Regulament</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">Analize</span>
+        <span class="text-gray-500 text-sm">31 Iul 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight">România adoptă achiziții verzi obligatorii tocmai când UE schimbă <span class="text-accent-light">regulile jocului</span></h1>
+      <p class="text-gray-300 text-lg mt-5 leading-relaxed">Irlanda arată că nu regulile fac diferența. Ce vine pe 9 septembrie, ce ne lipsește și de ce achizițiile verzi sunt, de fapt, un test de planificare.</p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "România adoptă achiziții verzi obligatorii tocmai când UE schimbă regulile jocului",
+    "description": "Pe 9 septembrie 2026, Comisia Europeană publică propunerea de Regulament care ar înlocui directivele din 2014. Ce înseamnă pentru achizitorii români, și ce ne arată Irlanda despre diferența dintre a avea o lege și a o implementa.",
+    "datePublished": "2026-07-31",
+    "author": { "@type": "Organization", "name": "Equalys Services" },
+    "publisher": { "@type": "Organization", "name": "Equalys Services", "url": "https://bid-management.ro" },
+    "mainEntityOfPage": "https://bid-management.ro/ro/resurse/achizitii-verzi-regulament-european"
+  })} />
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="article-body">
+
+        <p class="text-lg text-text-light leading-relaxed mb-10">Pe 9 septembrie 2026, Comisia Europeană publică propunerea de Regulament care ar înlocui directivele din 2014 cu un set unic de reguli, direct aplicabil, fără transpunere națională. Textul final va fi negociat în Parlament și Consiliu — dar direcția e clară din draftul deja scurs. Ce înseamnă asta pentru achizitorii români, și ce ne arată Irlanda despre diferența dintre a avea o lege și a o implementa.</p>
+
+        <h2>Ce vine pe 9 septembrie</h2>
+
+        <p>Cea mai mare reformă a achizițiilor publice europene din ultimul deceniu e la câteva săptămâni distanță — nu ca lege finală, ci ca propunere oficială a Comisiei Europene.</p>
+
+        <p>Pe 9 septembrie 2026, Comisia urmează să publice proiectul de act legislativ care va înlocui, într-un singur text, cele trei directive din 2014: Directiva 2014/24/UE privind achizițiile clasice, Directiva 2014/25/UE privind sectoarele speciale și Directiva 2014/23/UE privind concesiunile. Va urma procedura legislativă ordinară — negocieri în Parlamentul European și Consiliu, un proces care durează de regulă 12–36 de luni, cu amendamente semnificative posibile.</p>
+
+        <p>Dar un draft al propunerii a fost deja scurs și confirmat independent de Euronews, Agence Europe și mai multe firme de avocatură de top. Iar detaliul cel mai important din draft nu e conținutul — e <strong>forma: Regulament, nu Directivă.</strong></p>
+
+        <p>Ce înseamnă asta, concret? O Directivă lasă fiecărui stat membru libertatea de a „traduce” regulile în legislația națională. România are Legea 98/2016, Legea 99/2016, Legea 100/2016 — transpunerile sale ale directivelor din 2014. Fiecare stat a tradus diferit, a adăugat detalii proprii, a creat spațiu de interpretare. Un Regulament se aplică direct și uniform în toate cele 27 de state membre, fără transpunere. Un singur text, aceleași reguli, aceeași interpretare.</p>
+
+        <div class="bg-surface rounded-2xl border-l-4 border-accent p-6 sm:p-7 my-8">
+          <p class="text-text leading-relaxed"><strong>Cifra care ne privește direct.</strong> Din draftul scurs reiese că atribuirea s-ar face pe baza celui mai bun raport calitate-preț, iar <strong>criteriile de calitate ar trebui să reprezinte minimum 30% din punctajul total — urcând la 50% pentru contractele intensive în muncă.</strong> Puneți asta lângă statistica românească: 82% din procedurile noastre se atribuie pe preț. Nu e o ajustare de nuanță. E o răsturnare a modului în care cumpără astăzi sistemul public românesc.</p>
+        </div>
+
+        <p>Că schimbarea e reală o confirmă și rezistența: în mai 2026, 17 state membre conduse de Austria, Franța și Germania (plus Norvegia) au publicat un apel comun cerând Comisiei să renunțe la forma de Regulament. Argumentele: subsidiaritatea, perturbarea a sute de mii de practicieni care nu sunt specialiști în dreptul UE, riscul de reguli pe două niveluri acolo unde armonizarea nu e completă.</p>
+
+        <p>Pedro Telles, unul dintre cei mai citați academici europeni în materie, a analizat apelul paragraf cu paragraf și a identificat ce se ascunde sub argumente: <strong>statele recunosc implicit că transpunerea directivelor le permite să adapteze regulile în interes propriu — și le e frică să piardă această libertate.</strong> Iar după 50 de ani de directive, achizițiile transfrontaliere directe au crescut de la 1–2% la sub 5%. Dacă instrumentul a eșuat într-o jumătate de secol, a mai da o șansă aceluiași instrument nu e prudență — e inerție. Telles face paralela cu GDPR: trecerea de la Directivă la Regulament a fost dificilă, dar echilibrul de după e superior celui de dinainte.</p>
+
+        <h2>De ce directivele n-au funcționat</h2>
+
+        <p>Directivele din 2014 au fost adoptate cu obiective ambițioase: simplificarea procedurilor, creșterea participării IMM-urilor, deschiderea piețelor transfrontaliere, promovarea achizițiilor strategice — verzi, sociale, de inovare. Cadrul „MEAT” — cea mai avantajoasă ofertă din punct de vedere economic — permitea teoretic echilibrarea prețului cu calitatea, criteriile de mediu și valoarea pe termen lung.</p>
+
+        <p>După 12 ani, bilanțul e documentat și sumbru.</p>
+
+        <p>Curtea Europeană de Conturi, în Raportul special 28/2023, a constatat că obiectivele principale ale reformei din 2014 nu au fost atinse: competiția pentru contractele publice a scăzut, procedurile nu s-au simplificat suficient, iar participarea nu a crescut cum se spera. Tabloul de bord al Comisiei Europene pentru piața unică arată că, la nivelul UE, peste jumătate din contracte se atribuie ofertei celei mai ieftine, iar media de proceduri cu un singur ofertant a ajuns la 33% — cu unele state la peste 50%.</p>
+
+        <p>Criteriile de sustenabilitate au rămas voluntare, subutilizate sau tratate ca accesorii, nu ca parte a deciziei de cumpărare. Directivele au deschis ușa, dar n-au obligat pe nimeni să treacă prin ea.</p>
+
+        <p>Parlamentul European a spus-o fără menajamente în rezoluția din 9 septembrie 2025, adoptată cu 432 de voturi pentru, 95 contra și 124 de abțineri: cadrul actual are 476 de articole și 907 pagini de legislație, iar reducerea lui e o condiție a simplificării.</p>
+
+        <p>Din ce se poate citi în draftul scurs, propunerea clarifică utilizarea cerințelor de mediu și sociale în atribuire, pune accent pe achizițiile strategice și pe costul pe ciclul de viață, introduce măsuri de securitate economică privind participarea companiilor din state terțe și extinde digitalizarea — inclusiv obligația de a crea spații naționale de date pentru achiziții publice interconectate la nivel european. Textul final poate diferi semnificativ, dar direcția e clară: mai multă greutate pentru calitate și criterii strategice, mai puțin spațiu pentru atribuirea pe preț. Și, prin forma de Regulament, spațiul de interpretare națională — exact problema despre care am scris în <a href={getLocalizedPath(locale, '/resurse/paradigma-controlului-achizitii-publice')}>articolul precedent</a> — se reduce drastic.</p>
+
+        <h2>România: lege nouă, ecosistem vechi</h2>
+
+        <p>Pe hârtie, România s-a mișcat. Și merită recunoscut, pentru că s-a mișcat repede.</p>
+
+        <p>În aprilie 2025, Guvernul a aprobat Programul Național de Achiziții Ecologice (PNAE) 2025–2030 — primul plan de acest tip din istoria României, cu ținte obligatorii de achiziții verzi pe 22 de categorii de produse, servicii și lucrări. Primul an de implementare: 2026. HG 427/2025 stabilește obligațiile și termenele. Ordinul ANAP 1.946/2024 listează criteriile ecologice aplicabile. Cadrul legislativ e complet.</p>
+
+        <p>Miruna Bohaltea, directoarea Centrului de Competențe pentru Achiziții Publice Strategice din ANAP, a declarat într-un interviu pentru Comisia Europeană, pe 14 iulie 2025, un adevăr pe care merită să-l auzim fără menajamente: <strong>„România a fost, ani de zile, singurul stat membru UE fără un plan național de acțiune pentru GPP, bazându-se pe implementare voluntară.”</strong> PNAE corectează asta — dar ce se întâmplă sub legislație?</p>
+
+        <h3>Instrumente practice</h3>
+        <p>România nu are un echivalent al platformei irlandeze gppcriteria.gov.ie, unde achizitorul caută după cuvânt-cheie și descarcă criteriile gata de lipit în documentație. Criteriile din Ordinul 1.946/2024 există, dar sub formă de act normativ, nu de instrument practic cu căutare și descărcare.</p>
+
+        <h3>Formare</h3>
+        <p>Programul de formare ANAP-INA, de 72 de ore, nu include un modul dedicat achizițiilor verzi. Miruna Bohaltea recunoaște în același interviu că lipsa de cunoștințe, competențe și formare practică a autorităților contractante rămâne „o provocare critică”. Formarea pe PNAE și HG 427/2025 vine aproape exclusiv de la furnizori privați de training — contra cost, la grupe mici. Adică obligația e pentru toți, formarea e pentru cine și-o permite.</p>
+
+        <h3>Monitorizare</h3>
+        <p>Zero. PNAE e, conform propriilor autori, „primul program cu elemente dedicate de monitorizare” — ceea ce confirmă: până acum nu a existat niciun mecanism. Primul raport va acoperi anul 2026. Până atunci, singura cifră disponibilă vine dintr-un studiu academic (Bilan, 2023) care a verificat manual specificațiile tehnice din licitații pe trei categorii de produse: <strong>aproximativ 20% din licitațiile publicate între 2018 și 2022 erau „verzi”</strong>.</p>
+
+        <h3>Mecanism comply-or-explain</h3>
+        <p>Inexistent. Dacă o autoritate contractantă nu include criterii verzi într-o procedură, nu trebuie să justifice de ce. Nu există nicio consecință, nicio transparență, nicio întrebare.</p>
+
+        <p>Și acum puneți datele față în față: <strong>obligații GPP pe 22 de categorii, din 2026, pentru un sistem care nu are instrumente, nu are formare, nu are monitorizare și nu are mecanism de responsabilizare — iar peste șase săptămâni, Comisia Europeană publică propunerea care deschide înlocuirea întregului cadru legislativ pe care aceste obligații sunt construite.</strong></p>
+
+        <p>Iar un detaliu care spune mai mult decât orice cifră: la data publicării acestui articol, la câteva săptămâni de publicarea oficială a propunerii de Regulament care ar înlocui directivele pe care e construită toată legislația noastră de achiziții, <strong>nicio instituție românească cu atribuții în domeniu nu a emis vreo comunicare publică pe acest subiect.</strong> Nicio alertă ANAP. Nicio analiză pe platformele de specialitate din România. Nicio discuție în comunitățile profesionale de practicieni. În aceeași perioadă, Irlanda și-a organizat workshop-uri, a lansat consultare publică pentru prima Strategie Națională de Achiziții, iar oficialii OGP participă activ la dialogurile europene pe reformă. Informația există — ANAP participă la grupurile de lucru ale Comisiei. Comunicarea nu.</p>
+
+        <h2>Ce au făcut alții: Irlanda</h2>
+
+        <p>Irlanda a pornit din exact același loc. Plan voluntar de GPP din 2012, adopție slabă, conștientizare scăzută, niciun sistem de monitorizare, ținta de 50% GPP neverificată. Sună familiar.</p>
+
+        <p>Diferența: între 2020 și 2024, Irlanda n-a construit doar legislație. A construit un ecosistem. Un studiu de caz publicat de International Institute for Sustainable Development documentează transformarea. Iată ce a construit Irlanda și ce n-a construit România.</p>
+
+        <h3>Criterii gata de utilizat</h3>
+        <p>EPA (Agenția de Protecție a Mediului) a dezvoltat criterii naționale GPP pe 11 sectoare prioritare — ICT, catering, curățenie, iluminat, mobilier, construcții, transport, textile, hârtie, echipamente termice, produse energetice — și le-a pus pe gppcriteria.gov.ie, o platformă online unde achizitorul caută după cuvânt-cheie sau sector și descarcă clauzele exacte pentru documentația de atribuire. Nu trebuie să înțeleagă sustenabilitatea — trebuie să dea copy-paste. România: criteriile există în Ordinul 1.946/2024, dar sub formă de act normativ, nu de instrument.</p>
+
+        <h3>Formare sistematică</h3>
+        <p>EPA a oferit training GPP autorităților publice între 2020 și 2022, a publicat ghiduri (trei ediții, ultima în 2024), materiale video introductive și prezentări de formare pentru furnizori, și organizează anual evenimente „GPP in Practice” cu studii de caz reale de la autorități contractante care au implementat criterii verzi — cu provocările, oportunitățile și criteriile utilizate, publicate. România: formarea pe PNAE vine de la furnizori privați, contra cost, la grupe mici.</p>
+
+        <h3>Monitorizare anuală</h3>
+        <p>EPA publică anual raportul de monitorizare GPP pe departamentele guvernamentale — e al patrulea din serie. Cifrele sunt publice: 10% în 2021, 34% în 2022, 40% în 2023, 48% în 2024. Nu doar știu unde sunt — știu de unde au plecat și cu cât cresc. România: zero rapoarte publicate.</p>
+
+        <h3>Comply-or-explain</h3>
+        <p>Strategia „Buying Greener” 2024–2027 impune ca autoritățile care nu includ criterii GPP să justifice de ce în raportul anual. Nu e un mandat rigid — e un default inteligent: folosești criteriile verzi, iar dacă nu le folosești, explici. Schimbă punctul de plecare de la „aplică dacă vrei” la „aplică, sau justifică”. România: niciun mecanism.</p>
+
+        <h3>Engagement cu piața</h3>
+        <p>Strategia irlandeză încurajează explicit consultarea pieței înainte de licitații. Furnizorii au răspuns: Ecocem, producător de ciment cu emisii reduse cu 70%, și-a extins fabrica din Dunkirk ca răspuns direct la semnalul de cerere din achizițiile publice. Piața se adaptează când vede un semnal coerent — nu o lege publicată pe care nimeni n-o aplică.</p>
+
+        <p>Rezultatele nu sunt doar verzi. Sunt rezultate de achiziții:</p>
+
+        <div class="overflow-x-auto my-8 rounded-2xl border border-gray-100">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-surface">
+                <th class="text-left font-heading font-semibold text-navy px-4 py-3">Indicator</th>
+                <th class="text-left font-heading font-semibold text-navy px-4 py-3">Irlanda</th>
+                <th class="text-left font-heading font-semibold text-navy px-4 py-3">România</th>
+                <th class="text-left font-heading font-semibold text-navy px-4 py-3">Media UE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-gray-100"><td class="px-4 py-3">Atribuiri pe preț</td><td class="px-4 py-3 font-semibold text-navy">11%</td><td class="px-4 py-3">82%</td><td class="px-4 py-3">~54%</td></tr>
+              <tr class="border-t border-gray-100"><td class="px-4 py-3">Proceduri cu ofertant unic</td><td class="px-4 py-3 font-semibold text-navy">21%</td><td class="px-4 py-3">44%</td><td class="px-4 py-3">~33%</td></tr>
+              <tr class="border-t border-gray-100"><td class="px-4 py-3">Contracte către IMM-uri</td><td class="px-4 py-3 font-semibold text-navy">72%</td><td class="px-4 py-3">—</td><td class="px-4 py-3">—</td></tr>
+              <tr class="border-t border-gray-100"><td class="px-4 py-3">GPP în contracte (2024)</td><td class="px-4 py-3 font-semibold text-navy">48%</td><td class="px-4 py-3">~20%*</td><td class="px-4 py-3">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-sm text-text-light">* Estimare din studiul academic Bilan 2023, pe trei categorii, 2018–2022; România nu are monitorizare oficială.</p>
+
+        <p>Cifrele demontează două mituri deodată. Primul: „dacă nu cumperi pe preț, excluzi firmele mici” — Irlanda are 72% contracte către IMM-uri cu doar 11% atribuiri pe preț. Al doilea: „achizițiile verzi sunt un lux pentru țări bogate” — Irlanda nu e Norvegia. E o țară cu o economie diversificată care a decis să-și construiască ecosistemul, nu doar legislația.</p>
+
+        <h2>De ce funcționează achizițiile verzi — și nu e din motivele la care te gândești</h2>
+
+        <p>Achizițiile verzi funcționează ca vehicul de reformă nu pentru că sunt „verzi”, ci pentru că <strong>obligă autoritățile contractante să facă exact lucrurile pe care le evită de obicei</strong>: să calculeze costul pe ciclul de viață (nu doar prețul de achiziție), să consulte piața (ce poate livra efectiv?), să definească specificații clare și măsurabile (nu „abordarea propusă” în 200 de pagini), să documenteze decizia (de ce am ales sau nu am ales criteriile verzi).</p>
+
+        <p>Cu alte cuvinte: GPP funcționează pentru că e un cal troian al planificării bune. Nu ceri autorității să „fie verde” — îi ceri să planifice, să specifice și să justifice. Verdele e efectul secundar al unui proces de cumpărare făcut corect.</p>
+
+        <p>Irish Green Building Council spune în studiul de caz, la capitolul provocărilor rămase, ceva care condensează tot articolul: <strong>cele mai mari câștiguri vin înainte ca documentația de atribuire să fie scrisă</strong> — din fazele de proiectare timpurie, din evitarea achizițiilor inutile, din repararea și reutilizarea activelor existente, din contracte construite în jurul performanței, nu al cantității. Asta nu e un insight GPP. E insight-ul central al oricărei reforme de achiziții — și e exact teza <a href={getLocalizedPath(locale, '/resurse/paradigma-controlului-achizitii-publice')}>articolului precedent</a>: controlul verifică ce se întâmplă la licitație, dar valoarea se creează sau se distruge la planificare.</p>
+
+        <h2>Ce ne lipsește — inventar, nu argumentație</h2>
+
+        <p>La acest punct al articolului, diagnosticul e făcut. Rămâne inventarul.</p>
+
+        <p><strong>O platformă cu criteriile gata de utilizat</strong> — echivalentul gppcriteria.gov.ie. Criteriile din Ordinul 1.946/2024 transformate într-un instrument digital unde achizitorul caută după categorie și descarcă clauzele. Costul: modest. Impactul: elimină principala barieră practică — „nu știu ce să scriu”.</p>
+
+        <p><strong>Un program de formare gratuit, la scară</strong> — nu la hotel contra cost, ci integrat în programul ANAP-INA, cu modul dedicat GPP. Irlanda a format între 2020 și 2022. PNAE impune obligații din 2026. Cine formează achizitorii între aprilie 2025, când s-a adoptat planul, și ianuarie 2026, când obligațiile intră în vigoare? Întrebarea nu e retorică — chiar nu am găsit răspunsul.</p>
+
+        <p><strong>Un raport anual de monitorizare</strong> — primul ar trebui să acopere 2026. Cine îl face? ANAP? Ministerul Mediului? Cu ce metodologie? Pe ce eșantion? Irlanda a construit monitorizarea din primul an. Noi am construit obligația fără a construi măsurarea.</p>
+
+        <p><strong>Un mecanism comply-or-explain</strong> — dacă o autoritate nu include criterii verzi, să justifice de ce, public, în raportarea anuală. Nu e o sancțiune — e o întrebare. Dar e o întrebare pe care nimeni nu o pune azi.</p>
+
+        <p><strong>Alinierea interpretativă</strong> — lecția din articolul precedent se aplică identic: dacă un organ de control consideră că un criteriu verde e discriminatoriu, iar altul îl consideră obligatoriu, niciun achizitor rațional nu-l va folosi. Fără interpretare unitară pe achizițiile verzi, PNAE devine exact ce a pățit art. 187 alin. (3¹): am schimbat formularele, nu rezultatele.</p>
+
+        <h2>Regulamentul rezolvă o problemă și creează alta</h2>
+
+        <p>Propunerea de Regulament european care se publică pe 9 septembrie deschide drumul spre rezolvarea, la scară continentală, a exact problemei cerute în articolul precedent: interpretare unitară, direct aplicabilă, fără transpunere. Dacă parcursul legislativ confirmă forma de Regulament, e cea mai puternică pârghie structurală posibilă. Și, odată cu el, o parte din spațiul de interpretare divergentă care blochează azi reformele naționale ar dispărea prin definiție.</p>
+
+        <p>Dar nici cel mai bun Regulament nu construiește ecosistemul local. Irlanda n-a avut nevoie de Regulament ca să facă GPP să funcționeze — a avut nevoie de instrumente, de formare, de monitorizare și de consecvență, toate construite cu directivele existente. Un Regulament mai bun, aplicat de un sistem fără instrumente, produce același rezultat ca o Directivă mai veche aplicată de un sistem fără instrumente: conformitate pe hârtie, realitate neschimbată.</p>
+
+        <p>Reforma vine oricum — sub o formă sau alta. Întrebarea e dacă ne prinde cu ecosistemul construit sau doar cu încă o lege nouă pe care n-o aplicăm.</p>
+
+        <h2>Surse</h2>
+        <ul class="text-sm text-text-light list-disc pl-6 space-y-2 leading-relaxed">
+          <li>Proiect de Regulament privind achizițiile publice — draft intern al Comisiei Europene, nefinalizat; publicarea oficială a propunerii este așteptată pe 9 septembrie 2026. Draftul a fost confirmat independent de Euronews, Agence Europe, McCann FitzGerald, Keystone Procurement și Pedro Telles. Textul va fi negociat în Parlament și Consiliu (procedură legislativă ordinară, estimat 12–36 luni); conținutul final poate diferi semnificativ.</li>
+          <li>Parlamentul European — Rezoluția din 9 septembrie 2025 privind achizițiile publice (2024/2103(INI)), adoptată cu 432 voturi pentru, 95 contra, 124 abțineri.</li>
+          <li>Curtea Europeană de Conturi — Raportul special 28/2023 privind achizițiile publice în UE: competiția în scădere și obiective neatinse ale reformei din 2014.</li>
+          <li>Comisia Europeană — Single Market and Competitiveness Scoreboard, secțiunea <em>Access to Public Procurement</em>, date 2024.</li>
+          <li>IISD — Ronja Bechauf, <em>How Ireland Turned Green Public Procurement Into Standard Practice</em>, studiu de caz, 23 iulie 2026.</li>
+          <li>EPA Ireland — <em>Green Public Procurement: Guidance for the Public Sector</em>, ediția a treia, 2024; rapoarte anuale de monitorizare GPP 2021–2024; platforma gppcriteria.gov.ie.</li>
+          <li>Guvernul Irlandei — <em>Buying Greener: Green Public Procurement Strategy and Action Plan 2024–2027</em>; Circulara 17/2025.</li>
+          <li>PNAE 2025–2030 — Programul Național de Achiziții Ecologice, aprobat prin HG 427/2025, aprilie 2025.</li>
+          <li>Ordinul ANAP nr. 1.946/2024 — criterii ecologice aplicabile categoriilor de produse cu impact asupra mediului.</li>
+          <li>Miruna Bohaltea, Director Centrul de Competențe pentru Achiziții Publice Strategice, ANAP — interviu pentru Green Forum / Comisia Europeană, 14 iulie 2025.</li>
+          <li>Bilan (2023) — <em>Challenges for Upscaling Green Public Procurement in Romania</em>: ~20% din licitații „verzi” pe trei categorii, 2018–2022.</li>
+          <li>Strategia Națională în Domeniul Achizițiilor Publice (SNAP) 2023–2027.</li>
+        </ul>
+
+        <p class="text-sm text-text-light italic mt-6">Toate cifrele sunt verificabile la sursele indicate. Regulamentul european este în fază de proiect — cifrele și mecanismele descrise pot suferi modificări în cursul procedurii legislative. Dacă găsiți o eroare, scrieți-ne — o corectăm și o marcăm.</p>
+
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .article-body > p {
+    margin-bottom: 1.5rem;
+  }
+  .article-body > p[class] {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+  .article-body > h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-navy);
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .article-body > h2:first-child {
+    margin-top: 0;
+  }
+  .article-body > h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-navy);
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin-top: 2.5rem;
+    margin-bottom: 0.875rem;
+  }
+  .article-body > ul {
+    margin-bottom: 1.5rem;
+  }
+  .article-body strong:not([class]) {
+    color: var(--color-navy);
+    font-weight: 600;
+  }
+  .article-body em {
+    font-style: italic;
+  }
+  .article-body a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .article-body a:hover {
+    text-decoration: underline;
+  }
+</style>
