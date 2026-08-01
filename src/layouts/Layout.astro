@@ -12,6 +12,9 @@ interface Props {
 }
 
 const { title, description = 'Consultanță specializată în achiziții publice pentru autorități și companii. ePaap — platformă digitală pentru PAAP și referate.', ogImage } = Astro.props;
+const site = Astro.site ?? new URL('https://bid-management.ro');
+// Social platforms require an absolute URL; a relative path is silently dropped.
+const ogImageUrl = new URL(ogImage ?? '/images/og-default.png', site).href;
 const locale = getLocaleFromUrl(Astro.url);
 const altLocale = getAlternateLocale(locale);
 const currentPath = Astro.url.pathname.replace(`/${locale}`, '') || '/';
@@ -36,12 +39,16 @@ const fullTitle = `${title} | Bid Management`;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:locale" content={locale === 'ro' ? 'ro_RO' : 'en_US'} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Bid Management" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Alternate languages -->
     <link rel="alternate" hreflang="ro" href={`https://bid-management.ro${getLocalizedPath('ro', currentPath)}`} />
