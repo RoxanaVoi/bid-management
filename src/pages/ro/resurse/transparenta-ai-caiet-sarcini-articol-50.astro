@@ -1,0 +1,213 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<Layout title="Transparența AI se cumpără. Dacă nu e în caietul de sarcini, nu apare la recepție" description="Ce trebuie să ceară autoritățile în achizițiile de chatboți și soluții generative după aplicarea articolului 50 din AI Act.">
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Transparența AI în achiziții</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">Analize</span>
+        <span class="text-gray-500 text-sm">13 Aug 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight">Transparența AI se cumpără. Dacă nu e în caietul de sarcini, nu apare la recepție</h1>
+      <p class="text-gray-300 text-lg mt-5 leading-relaxed">Șapte cerințe verificabile pentru achiziția de chatboți, agenți virtuali și sisteme generative după aplicarea articolului 50 din AI Act.</p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Transparența AI se cumpără. Dacă nu e în caietul de sarcini, nu apare la recepție",
+    "description": "Ce trebuie să ceară autoritățile în achizițiile de chatboți și soluții generative după aplicarea articolului 50 din AI Act.",
+    "datePublished": "2026-08-13",
+    "author": { "@type": "Organization", "name": "Equalys Services" },
+    "publisher": { "@type": "Organization", "name": "Equalys Services", "url": "https://bid-management.ro" },
+    "mainEntityOfPage": "https://bid-management.ro/ro/resurse/transparenta-ai-caiet-sarcini-articol-50"
+  })} />
+
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="article-body prose max-w-none">
+        <p class="text-xl text-text leading-relaxed">De la 2 august 2026, o parte dintre obligațiile de transparență ale AI Act nu mai sunt o discuție despre viitor. Se aplică. Un chatbot trebuie proiectat astfel încât oamenii să știe că interacționează cu un sistem AI, anumite conținuturi generate trebuie să poată fi identificate, iar textele produse cu AI pentru informarea publicului cer fie etichetare, fie un control uman și editorial real. Pentru o autoritate contractantă, miza este imediată: dacă aceste funcții nu apar în documentația de atribuire, în livrabile și în testele de acceptanță, obligația juridică rămâne la instituție, dar instrumentele de conformare rămân la furnizor.</p>
+
+        <h2>Ce s-a schimbat, de fapt</h2>
+
+        <p>Articolul 50 din Regulamentul european privind inteligența artificială se aplică de la 2 august 2026. Comisia Europeană a publicat ghiduri de aplicare și un set de întrebări și răspunsuri pentru a delimita rolurile furnizorilor și ale implementatorilor — termenul folosit de regulament pentru organizațiile care utilizează sisteme AI sub autoritatea lor.</p>
+
+        <p>Pentru sistemele care interacționează direct cu persoane, obligația de proiectare revine furnizorului: oamenii trebuie informați, încă de la începutul primei interacțiuni, într-un mod clar, distinct și accesibil, că vorbesc cu un sistem AI, cu excepția situației în care acest lucru este evident. Pentru anumite sisteme generative, furnizorul trebuie să asigure și marcarea tehnică, într-un format prelucrabil automat, a conținutului generat sau manipulat.</p>
+
+        <p>Implementatorii au propriile obligații. Ei trebuie să informeze persoanele expuse la sisteme de recunoaștere a emoțiilor sau de clasificare biometrică și să eticheteze anumite deepfake-uri și texte generate ori manipulate cu AI, publicate pentru informarea publicului asupra unor chestiuni de interes public.</p>
+
+        <p>Există o excepție importantă pentru texte: etichetarea nu este necesară atunci când materialul a trecut printr-un proces real de revizuire umană sau control editorial și o persoană poartă răspunderea editorială pentru publicare. Ghidul Comisiei este explicit că o verificare superficială, gramaticală sau pur formală nu este suficientă. Controlul trebuie să permită aprobarea, modificarea sau respingerea fondului și să includă verificarea informațiilor și a surselor.</p>
+
+        <p class="text-sm text-text-light italic">Sursă: <a href="https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act" target="_blank" rel="noopener">Comisia Europeană — întrebări și răspunsuri privind articolul 50</a></p>
+
+        <h2>De ce aceasta este o problemă de achiziții, nu doar de juridic sau IT</h2>
+
+        <p>Regulamentul stabilește obligația, dar nu scrie caietul de sarcini în locul autorității. Între „sistemul respectă AI Act” și un produs care poate demonstra transparența la recepție există o diferență contractuală majoră.</p>
+
+        <p>Un chatbot poate afișa o notificare, dar nu neapărat de la prima interacțiune. Poate afișa textul într-un loc greu de observat sau inaccesibil persoanelor cu dizabilități. Un generator de conținut poate include marcaje tehnice, dar acestea pot dispărea la export, comprimare sau conversie. Un furnizor poate schimba modelul de bază după recepție, alterând funcțiile de transparență fără ca beneficiarul să primească o notificare sau să refacă testele.</p>
+
+        <p>Dacă documentația cere numai „chatbot cu inteligență artificială”, timp de răspuns și disponibilitate, comisia poate recepționa un produs funcțional, dar insuficient pentru obligațiile instituției. Iar după semnare, autoritatea va negocia dintr-o poziție mai slabă exact acele funcții care ar fi trebuit să fie condiții de acceptare.</p>
+
+        <p>OECD descrie aceeași problemă la nivel mai larg: beneficiile AI în achizițiile publice depind de implementare, guvernanța datelor și orientarea către utilizator, în timp ce maturitatea organizațiilor de achiziții rămâne redusă. Achiziția nu este doar canalul prin care tehnologia intră în instituție; este momentul în care responsabilitățile pot fi transformate în obligații măsurabile.</p>
+
+        <p class="text-sm text-text-light italic">Sursă: <a href="https://www.oecd.org/en/publications/governing-with-artificial-intelligence_795de142-en/full-report/ai-in-public-procurement_2e095543.html" target="_blank" rel="noopener">OECD — AI în achizițiile publice</a></p>
+
+        <h2>Șapte cerințe care trebuie traduse în contract</h2>
+
+        <p>Următoarele puncte nu sunt o reproducere a articolului 50 și nu se aplică mecanic oricărui sistem. Sunt o grilă de lucru pentru transformarea obligațiilor relevante și a riscurilor operaționale în cerințe verificabile.</p>
+
+        <h3>1. Harta rolurilor și a funcțiilor AI</h3>
+        <p>Documentația ar trebui să precizeze cine este furnizor, implementator, subcontractant, furnizor al modelului de bază și operator al infrastructurii. Pentru fiecare funcție AI trebuie descrise scopul, utilizatorii, tipurile de intrări și ieșiri, conținutul publicat și posibilul impact asupra persoanelor.</p>
+        <p>Fără această hartă, autoritatea nu poate determina ce obligații sunt relevante și nici cine trebuie să furnizeze dovezile.</p>
+
+        <h3>2. Informarea de la prima interacțiune</h3>
+        <p>Pentru un chatbot, agent vocal sau avatar, cerința nu ar trebui formulată generic — „utilizatorul este informat”. Caietul de sarcini trebuie să stabilească momentul, textul, limba, poziția, persistența și cerințele de accesibilitate ale informării.</p>
+        <p>La recepție trebuie testate cel puțin prima interacțiune, revenirea utilizatorului, versiunile mobil și desktop, limbile disponibile și situațiile în care conversația este transferată unui operator uman.</p>
+
+        <h3>3. Marcarea și supraviețuirea marcajului</h3>
+        <p>Dacă sistemul intră în obligațiile de marcare a conținutului generat sau manipulat, furnizorul trebuie să explice tehnologia folosită, formatele acoperite și limitele ei. Testele trebuie să urmărească dacă marcajul rămâne detectabil după export, redimensionare, compresie sau alte prelucrări rezonabil previzibile.</p>
+        <p>Marcarea tehnică furnizată de sistem nu înlocuiește automat etichetarea vizibilă pe care o poate datora organizația ce publică materialul.</p>
+
+        <h3>4. Control editorial care poate opri publicarea</h3>
+        <p>Pentru texte de interes public, un buton „aprobare” nu dovedește singur un control editorial real. Fluxul trebuie să indice cine verifică fondul, cine verifică sursele, cine poate modifica sau respinge materialul și cine poartă răspunderea finală.</p>
+        <p>Sistemul ar trebui să păstreze o trasabilitate minimă: versiunea generată, intervențiile umane, sursele consultate, persoana care a aprobat și versiunea publicată. Nu pentru a transforma fiecare articol într-un dosar birocratic, ci pentru a putea demonstra că omul a decis fondul, nu doar a corectat virgulele.</p>
+
+        <h3>5. Dovezi și teste de acceptanță</h3>
+        <p>Declarația furnizorului trebuie completată cu dovezi: capturi sau înregistrări ale informării, rezultate ale testelor de accesibilitate, documentația marcajelor, exemple de detectare și scenarii de eșec.</p>
+        <p>Protocolul de recepție trebuie să conțină rezultate așteptate, criterii de trecere și remediere. O cerință care nu poate fi testată riscă să devină doar o formulare decorativă.</p>
+
+        <h3>6. Schimbările de model și de furnizor</h3>
+        <p>Multe sisteme AI depind de modele sau servicii externe care se modifică frecvent. Contractul trebuie să precizeze ce schimbări necesită notificare, reevaluare sau retestare: înlocuirea modelului, schimbarea furnizorului de infrastructură, introducerea unei funcții generative, modificarea mecanismului de marcare ori extinderea către o nouă categorie de utilizatori.</p>
+        <p>Conformitatea demonstrată la recepția inițială nu trebuie presupusă automat pentru orice versiune viitoare.</p>
+
+        <h3>7. Incident, audit și ieșire</h3>
+        <p>Autoritatea are nevoie de termene de notificare a incidentelor, acces la informațiile necesare investigației, obligații de remediere și un mecanism de suspendare a funcției problematice. În plus, contractul trebuie să stabilească ce date, jurnale și configurații primește instituția la încetare și în ce format.</p>
+        <p>Acestea sunt cerințe de guvernanță contractuală, nu afirmații că articolul 50 impune, în mod identic, fiecare element pentru orice achiziție.</p>
+
+        <h2>Ce oferă deja Uniunea Europeană</h2>
+
+        <p>Public Buyers Community a publicat clauze contractuale-model pentru cumpărarea sistemelor AI: o versiune completă pentru sistemele cu risc ridicat, o versiune adaptabilă pentru celelalte sisteme și un comentariu de utilizare. Materialele sunt disponibile și în limba română.</p>
+
+        <p>Clauzele sunt un punct de plecare valoros, nu o invitație la copy-paste. Chiar pagina oficială le prezintă ca instrumente care trebuie personalizate pentru nevoile și contextul achiziției. Cerințele de transparență trebuie corelate cu utilizarea efectivă, persoanele afectate, fluxul de publicare și arhitectura tehnică.</p>
+
+        <p class="text-sm text-text-light italic">Sursă: <a href="https://public-buyers-community.ec.europa.eu/communities/procurement-ai/resources/updated-eu-ai-model-contractual-clauses" target="_blank" rel="noopener">Public Buyers Community — clauzele contractuale-model pentru AI</a></p>
+
+        <h2>Ce înseamnă practic pentru România</h2>
+
+        <p>Înaintea lansării unei achiziții care include chatbot, agent virtual, generare de documente, imagine, audio sau video, autoritatea poate adăuga două anexe simple:</p>
+
+        <ul class="list-disc pl-6 space-y-2">
+          <li>matricea de obligații și responsabilități: funcție AI, rol legal, obligație relevantă, responsabil, dovadă și momentul verificării;</li>
+          <li>protocolul de acceptanță pentru transparență: scenariu de test, rezultat așteptat, dovadă, abatere permisă, remediere și retestare.</li>
+        </ul>
+
+        <p>În plus, consultarea pieței poate verifica din timp dacă cerințele sunt realist îndeplinite de mai mulți furnizori și dacă formularea nu restrânge nejustificat concurența. Cerința bună descrie rezultatul și dovada, nu dictează o tehnologie proprietară de marcare.</p>
+
+        <p>Pentru operatorii economici, mesajul este la fel de clar: avantajul competitiv nu va veni doar din promisiunea că produsul „folosește AI”, ci din capacitatea de a demonstra, în oferta tehnică și la recepție, cum funcționează transparența, controlul uman și actualizarea sistemului.</p>
+
+        <h2>Limite și contraargumente</h2>
+
+        <p>Nu orice software care folosește AI intră în fiecare obligație a articolului 50. Nu orice text asistat de AI trebuie etichetat, iar existența revizuirii umane reale și a răspunderii editoriale poate schimba analiza. Nici conținutul produs înainte de data aplicării nu trebuie etichetat retroactiv.</p>
+
+        <p>Există și o perioadă tranzitorie limitată, până la 2 decembrie 2026, pentru obligația furnizorilor privind marcarea și detectarea conținutului, în cazul sistemelor introduse pe piață înainte de data aplicării. Excepția nu trebuie extinsă la alte obligații sau situații.</p>
+
+        <p>Codul european de practică pentru conținutul generat de AI este voluntar. Comisia și AI Board l-au considerat un instrument adecvat pentru a facilita demonstrarea conformității, dar aderarea nu reprezintă singura cale și nici o dovadă concludentă că toate obligațiile sunt îndeplinite.</p>
+
+        <h2>Concluzie</h2>
+
+        <p>În achizițiile clasice, o funcție omisă din caietul de sarcini poate deveni un cost suplimentar. În achizițiile de AI, aceeași omisiune poate deveni și un deficit de transparență pe care instituția îl descoperă abia când sistemul vorbește deja cu cetățenii sau publică în numele ei.</p>
+
+        <div class="my-10 rounded-2xl bg-gradient-to-br from-navy via-navy-800 to-navy p-8 sm:p-10 text-center">
+          <p class="text-white font-heading font-bold text-xl sm:text-2xl leading-snug">Nu mai este suficient: „funcționează chatbotul?” Trebuie întrebat și: „putem demonstra, în condiții reale, cine vorbește, cine decide și cine răspunde?”</p>
+        </div>
+
+        <p class="text-sm text-text-light italic">Materialul are caracter informativ și nu reprezintă opinie juridică pentru o procedură sau situație concretă.</p>
+
+        <h2>Surse</h2>
+        <ul class="text-sm text-text-light list-disc pl-6 space-y-2 leading-relaxed">
+          <li><a href="https://digital-strategy.ec.europa.eu/en/library/guidelines-transparency-obligations-providers-and-deployers-ai-systems" target="_blank" rel="noopener">Comisia Europeană — Ghidurile privind obligațiile de transparență din articolul 50</a></li>
+          <li><a href="https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act" target="_blank" rel="noopener">Comisia Europeană — Întrebări și răspunsuri privind articolul 50</a></li>
+          <li><a href="https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content" target="_blank" rel="noopener">Comisia Europeană — Codul de practică pentru transparența conținutului generat cu AI</a></li>
+          <li><a href="https://digital-strategy.ec.europa.eu/en/library/commission-opinion-assessment-code-practice-transparency-ai-generated-content" target="_blank" rel="noopener">Comisia Europeană — Opinia privind caracterul adecvat al Codului de practică</a></li>
+          <li><a href="https://public-buyers-community.ec.europa.eu/communities/procurement-ai/resources/updated-eu-ai-model-contractual-clauses" target="_blank" rel="noopener">Public Buyers Community — Clauzele contractuale-model actualizate pentru AI</a></li>
+          <li><a href="https://www.oecd.org/en/publications/governing-with-artificial-intelligence_795de142-en/full-report/ai-in-public-procurement_2e095543.html" target="_blank" rel="noopener">OECD — AI in public procurement, Governing with Artificial Intelligence</a></li>
+          <li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj?locale=ro" target="_blank" rel="noopener">EUR-Lex — Regulamentul (UE) 2024/1689</a></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-16 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-heading font-bold mb-4">Pregătești o achiziție care include AI?</h2>
+      <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">Te ajutăm să transformi transparența, controlul uman și auditabilitatea în cerințe verificabile și criterii de recepție.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getLocalizedPath(locale, '/solutii/autoritati')} class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25">Soluții pentru autorități</a>
+        <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">Discută cu noi</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .article-body > p:not([class]) {
+    color: var(--color-text);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .article-body > p[class] {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+  .article-body > h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-navy);
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .article-body > h2:first-child {
+    margin-top: 0;
+  }
+  .article-body > h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-navy);
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin-top: 2.5rem;
+    margin-bottom: 0.875rem;
+  }
+  .article-body > ul {
+    margin-bottom: 1.5rem;
+  }
+  .article-body strong:not([class]) {
+    color: var(--color-navy);
+    font-weight: 600;
+  }
+  .article-body em {
+    font-style: italic;
+  }
+  .article-body a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .article-body a:hover {
+    text-decoration: underline;
+  }
+</style>
