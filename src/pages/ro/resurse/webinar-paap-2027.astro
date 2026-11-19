@@ -368,8 +368,26 @@ const eventSchema = {
         });
     });
 
-    var m = location.hash.match(/^#slide-(\d+)$/);
-    if (m) show(Number(m[1]));
-    else if (location.hash === '#demo') show(DEMO);
+    // Slide-urile sunt ascunse până sunt selectate, deci o ancoră singură
+    // nu are unde să sară: butonul "Vezi demonstrația" schimba hash-ul, iar
+    // slide-ul 31 rămânea ascuns. Tratăm hash-ul și la click, nu doar la
+    // încărcare. history.replaceState din show() nu declanșează hashchange,
+    // deci nu se buclează.
+    function dinHash(deruleaza) {
+      var m = location.hash.match(/^#slide-(\d+)$/);
+      var n = m ? Number(m[1]) : location.hash === '#demo' ? DEMO : null;
+      if (n === null) return;
+      show(n);
+      if (deruleaza) {
+        var el = document.getElementById('wpViewer');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    window.addEventListener('hashchange', function () {
+      dinHash(true);
+    });
+
+    dinHash(false);
   })();
 </script>
