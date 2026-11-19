@@ -5,7 +5,17 @@ const locale = getLocaleFromUrl(Astro.url);
 const altLocale = getAlternateLocale(locale);
 const navItems = getNavItems(locale);
 const currentPath = Astro.url.pathname.replace(`/${locale}`, '') || '/';
-const altHref = getLocalizedPath(altLocale, currentPath);
+// Nu toate paginile au pereche tradusa. Fara verificarea asta, butonul de
+// limba ducea la 404 pe paginile care exista doar intr-o limba.
+const paginiExistente = Object.keys(import.meta.glob('/src/pages/**/*.astro'));
+const caleCurata = currentPath.replace(/\/$/, '') || '/';
+const caleAlternativa = `/src/pages/${altLocale}${caleCurata === '/' ? '/index' : caleCurata}`;
+const areTraducere = paginiExistente.some(
+  (f) => f === `${caleAlternativa}.astro` || f === `${caleAlternativa}/index.astro`
+);
+const altHref = areTraducere
+  ? getLocalizedPath(altLocale, currentPath)
+  : getLocalizedPath(altLocale, '/');
 ---
 
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">

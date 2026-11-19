@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Articolele din /resurse folosesc clasele prose-*; fara pluginul asta
+   nu faceau nimic, iar titlurile de sectiune aratau ca text obisnuit. */
+@plugin "@tailwindcss/typography";
+
 @font-face {
   font-family: 'Inter';
   font-weight: 400;

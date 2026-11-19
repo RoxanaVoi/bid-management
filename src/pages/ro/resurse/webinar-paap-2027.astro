@@ -19,9 +19,40 @@ const deck = (slides as Slide[]).map((s) => ({
 const title = 'De la referatul de necesitate la planul aprobat';
 const description =
   'Webinarul din 19 noiembrie 2026: ce se întâmplă în practică între o necesitate transmisă pe e-mail și o poziție din PAAP, și ce dovediți când vine controlul. 40 de slide-uri și demonstrația ePAAP.';
+
+// Pagina are cel mai bogat continut de pe site; fara asta nu era declarata
+// nici macar ca articol.
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'De la referatul de necesitate la planul aprobat',
+  description,
+  datePublished: '2026-11-19',
+  dateModified: '2026-11-19',
+  inLanguage: 'ro-RO',
+  author: { '@type': 'Person', name: 'Roxana Voicu' },
+  publisher: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  mainEntityOfPage: 'https://bid-management.ro/ro/resurse/webinar-paap-2027',
+  about: ['referat de necesitate', 'program anual al achizițiilor publice', 'achiziție directă'],
+};
+
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'De la referatul de necesitate la planul aprobat',
+  startDate: '2026-11-19',
+  endDate: '2026-11-19',
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+  location: { '@type': 'VirtualLocation', url: 'https://bid-management.ro/ro/resurse/webinar-paap-2027' },
+  description,
+  performer: { '@type': 'Person', name: 'Roxana Voicu' },
+  organizer: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  inLanguage: 'ro-RO',
+};
 ---
 
-<Layout title={title} description={description} ogImage={`${base}/slides/slide-01.webp`}>
+<Layout title={title} description={description} ogImage={`${base}/slides/slide-01.webp`} schema={[articleSchema, eventSchema]} noSuffix>
   <!-- ─────────────────────────── HERO ─────────────────────────── -->
   <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -201,7 +232,7 @@ const description =
 
       <p class="text-text-light text-xs mt-3">
         Navigare cu săgețile de pe tastatură. Orice slide poate fi trimis direct ca link, de exemplu
-        <code class="text-accent">…/webinar-paap-2027#slide-17</code>.
+        <code class="text-accent-light">…/webinar-paap-2027#slide-17</code>.
       </p>
     </div>
   </section>

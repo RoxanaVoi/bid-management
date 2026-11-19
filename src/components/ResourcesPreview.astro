@@ -3,26 +3,19 @@ import { getLocaleFromUrl, t, getLocalizedPath } from '../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
 
-const articles = [
-  {
-    title: locale === 'ro' ? 'Nimeni nu răspunde pentru ce cumpără statul. Toți răspund pentru cum.' : 'Nobody answers for what the state buys. Everybody answers for how.',
-    category: locale === 'ro' ? 'Analize' : 'Analysis',
-    date: locale === 'ro' ? '28 Iul 2026' : '28 Jul 2026',
-    slug: 'paradigma-controlului-achizitii-publice',
-  },
-  {
-    title: locale === 'ro' ? 'Analiză săptămânală 13 iulie: directivele UE, eForms SDK 2.0' : 'Weekly Review July 13: EU Directives, eForms SDK 2.0',
-    category: locale === 'ro' ? 'Noutăți' : 'News',
-    date: locale === 'ro' ? '13 Iul 2026' : '13 Jul 2026',
-    slug: 'noutati-13-iulie-2026',
-  },
-  {
-    title: locale === 'ro' ? 'Noutăți aprilie 2026: Directivele UE, ALOP, praguri' : 'April 2026 Updates: EU Directives, ALOP, thresholds',
-    category: locale === 'ro' ? 'Noutăți' : 'News',
-    date: '10 Apr 2026',
-    slug: 'noutati-aprilie-2026',
-  },
-];
+// Cele trei materiale de referință există deocamdată doar în română; pe
+// versiunea engleză rămân articolele care au traducere.
+const articles = locale === 'ro'
+  ? [
+      { title: 'De la referatul de necesitate la planul aprobat', category: 'Webinar', date: '19 Noi 2026', slug: 'webinar-paap-2027' },
+      { title: 'Pragurile valorice în achizițiile publice, 2026', category: 'Referință', date: '19 Noi 2026', slug: 'praguri-achizitii-publice' },
+      { title: 'Zece întrebări înainte de a aproba PAAP 2027', category: 'Referință', date: '19 Noi 2026', slug: 'checklist-aprobare-paap-2027' },
+    ]
+  : [
+      { title: 'Nobody answers for what the state buys. Everybody answers for how.', category: 'Analysis', date: '28 Jul 2026', slug: 'paradigma-controlului-achizitii-publice' },
+      { title: 'Weekly Review July 13: EU Directives, eForms SDK 2.0', category: 'News', date: '13 Jul 2026', slug: 'noutati-13-iulie-2026' },
+      { title: 'April 2026 Updates: EU Directives, ALOP, thresholds', category: 'News', date: '10 Apr 2026', slug: 'noutati-aprilie-2026' },
+    ];
 ---
 
 <section class="py-24 bg-surface">

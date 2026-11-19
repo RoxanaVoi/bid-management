@@ -19,16 +19,34 @@ const services = [
   { key: 'service3', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
   { key: 'service4', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z' },
 ];
+
+// Motoarele generative citesc Service ca sa stie ce vinde firma si cui.
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'ePaap — planificarea achizițiilor publice pentru autorități contractante',
+  serviceType: 'Consultanță și software pentru achiziții publice',
+  description:
+    'Platformă și consultanță pentru programul anual al achizițiilor publice, referate de necesitate, documente justificative și pregătirea pentru control.',
+  provider: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  areaServed: { '@type': 'Country', name: 'România' },
+  audience: { '@type': 'Audience', audienceType: 'Autorități contractante' },
+  availableChannel: {
+    '@type': 'ServiceChannel',
+    serviceUrl: 'https://bid-management.ro/ro/solutii/autoritati',
+    servicePhone: '+40746188797',
+  },
+};
 ---
 
-<Layout title={t(locale, 'authoritiesPage.title')} description="ePaap digitalizează planificarea PAAP, referatele de necesitate și documentele justificative. Consultanță pentru autorități contractante.">
+<Layout title={t(locale, 'authoritiesPage.title')} description="ePaap digitalizează planificarea PAAP, referatele de necesitate și documentele justificative. Consultanță pentru autorități contractante." schema={[serviceSchema]}>
   <!-- Hero -->
   <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-full mb-6">
-          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-          <span class="text-accent text-sm font-medium">{locale === 'ro' ? 'Pentru autorități contractante' : 'For contracting authorities'}</span>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-light/15 border border-accent-light/30 rounded-full mb-6">
+          <svg class="w-4 h-4 text-accent-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span class="text-accent-light text-sm font-medium">{locale === 'ro' ? 'Pentru autorități contractante' : 'For contracting authorities'}</span>
         </div>
         <h1 class="text-4xl sm:text-5xl font-heading font-bold mb-6">{t(locale, 'authoritiesPage.title')}</h1>
         <p class="text-xl text-gray-300 leading-relaxed">{t(locale, 'authoritiesPage.subtitle')}</p>
