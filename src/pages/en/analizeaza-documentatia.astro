@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import DocumentAnalysis from '../../components/react/DocumentAnalysis';
-import { getLocaleFromUrl } from '../../i18n/utils';
+import { getLocaleFromUrl, getLocalizedPath } from '../../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
 const isRo = locale === 'ro';
@@ -13,8 +13,10 @@ const isRo = locale === 'ro';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-light/15 border border-accent-light/30 rounded-full mb-6">
-          <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-          <span class="text-accent-light text-sm font-medium">AI-Powered</span>
+          <div class="w-2 h-2 bg-accent-light rounded-full animate-pulse"></div>
+          <span class="text-accent-light text-sm font-medium">
+            {isRo ? 'Analiză automată · fără cost' : 'Automated analysis · free'}
+          </span>
         </div>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">
           {isRo ? 'Analiză rapidă a fișei de date' : 'Quick data sheet analysis'}
@@ -38,6 +40,71 @@ const isRo = locale === 'ro';
   <section class="py-16 bg-white">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <DocumentAnalysis client:load locale={locale} />
+    </div>
+  </section>
+
+  <!-- ===== CE PRIMEȘTI ===== -->
+  <section class="py-20 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-heading font-bold text-navy mb-10">
+        {isRo ? 'Ce primești înapoi' : 'What you get back'}
+      </h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        {(isRo
+          ? [['Rezumatul procedurii', 'Autoritatea, obiectul, tipul de procedură, valoarea estimată și termenele, extrase din document.'],
+             ['Zonele de atenție', 'Cerințele de calificare critice și punctele care pot deveni restrictive, fiecare cu un nivel de risc.'],
+             ['Criteriile de evaluare', 'Cum se punctează oferta și ce anume trebuie să demonstrezi ca să iei punctajul.']]
+          : [['Procedure summary', 'Authority, object, procedure type, estimated value and deadlines, extracted from the document.'],
+             ['Points of attention', 'Critical qualification requirements and points that may be restrictive, each with a risk level.'],
+             ['Evaluation criteria', 'How the bid is scored and what you need to evidence.']]
+        ).map(([titlu, text]) => (
+          <div class="bg-white border border-gray-200 rounded-xl p-6">
+            <h3 class="font-heading font-semibold text-navy mb-2">{titlu}</h3>
+            <p class="text-text-light text-sm leading-relaxed m-0">{text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIMITE ȘI PAS URMĂTOR ===== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-10">
+        <div>
+          <h2 class="text-2xl font-heading font-bold text-navy mb-4">
+            {isRo ? 'Ce nu face' : 'What it does not do'}
+          </h2>
+          <p class="text-text leading-relaxed mb-4">
+            {isRo
+              ? 'Citește documentul pe care îl încarci și atât. Nu cunoaște istoricul procedurii, clarificările publicate ulterior, capacitatea firmei tale sau ce au depus ceilalți.'
+              : 'It reads the document you upload, and nothing else. It does not know the procedure history, later clarifications, your capacity, or what others submitted.'}
+          </p>
+          <p class="text-text leading-relaxed m-0">
+            {isRo
+              ? 'Nu înlocuiește o decizie de participare și nu ține loc de opinie juridică. E un prim filtru, util cât timp e tratat ca atare.'
+              : 'It does not replace the decision to bid and is not a legal opinion. It is a first filter, useful as long as it is treated as one.'}
+          </p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-heading font-bold text-navy mb-4">
+            {isRo ? 'Când ai nevoie de mai mult' : 'When you need more'}
+          </h2>
+          <p class="text-text leading-relaxed mb-6">
+            {isRo
+              ? 'Dacă documentația e pe mai multe loturi, dacă o cerință pare restrictivă și te gândești la o solicitare de clarificări, sau dacă termenul e aproape, intervenim direct pe procedura voastră.'
+              : 'If the documentation spans several lots, if a requirement looks restrictive, or if the deadline is close, we step in on your procedure directly.'}
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href={getLocalizedPath(locale, '/solutii/companii')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy hover:bg-navy-light text-white font-semibold rounded-xl text-sm transition-colors no-underline">
+              {isRo ? 'Consultanță pentru ofertare' : 'Bidding support'}
+            </a>
+            <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 hover:border-accent text-navy font-semibold rounded-xl text-sm transition-colors no-underline">
+              {isRo ? 'Scrie-ne' : 'Contact us'}
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

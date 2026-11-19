@@ -1,16 +1,19 @@
 ---
 import CaseStudyLayout from '../../../layouts/CaseStudyLayout.astro';
-const locale = 'ro';
+const locale = 'en';
 ---
 <CaseStudyLayout
-  title="Identificarea cerințelor restrictive într-o fișă de date și caiet de sarcini"
-  subtitle="Am analizat documentația și am evidențiat punctele care necesitau clarificări și validare suplimentară înainte de decizia de participare."
-  meta="Conformitate · Clarificări"
-  label="Analiză documentație"
-  context="Operatorul economic evalua participarea la o procedură în care fișa de date și caietul de sarcini conțineau cerințe tehnice cu potențial restrictiv."
-  challenge="Riscul era de a investi resurse semnificative în pregătirea ofertei fără a înțelege pe deplin cerințele care puteau conduce la excludere."
-  interventionIntro="Am analizat în detaliu documentația și am structurat o hartă a cerințelor cu niveluri de risc."
-  interventionSteps={["Am identificat cerințele cu potențial restrictiv.", "Am evidențiat punctele care necesitau clarificări formale.", "Am susținut fundamentarea deciziei de participare."]}
-  resultText="Compania a putut lua o decizie informată privind participarea, cu o imagine clară a riscurilor și a pașilor de clarificare necesari."
-  resultHighlights={["Cerințe restrictive identificate clar", "Bază solidă pentru clarificări", "Decizie de participare informată"]}
+  title="Finding restrictive requirements in tender documents"
+  description="Case study: a map of requirements with risk levels, drawn from a tender data sheet and used for formal clarification requests."
+  noSuffix
+  subtitle="We produced a map of the requirements with risk levels, used both for formal clarification requests and for the decision whether to bid."
+  meta="Analysis · Clarifications"
+  label="Analysis"
+  context="The company suspected that some qualification requirements were narrowing the field of possible bidders."
+  challenge="The suspicion had to be turned into arguments that could be put in a formal clarification request."
+  challengeBullets={["Requirements that seemed tailored to one supplier.", "Unclear link between the requirement and the object of the contract.", "Little time before the clarification deadline."]}
+  interventionIntro="We went through the data sheet and the technical specifications and marked each requirement with a level of risk."
+  interventionSteps={["We mapped every qualification requirement.", "We marked the ones that could be contested.", "We drafted the substance of the clarification request."]}
+  resultText="The company submitted a documented clarification request and decided on its participation knowing the risk."
+  resultHighlights={["Requirements assessed one by one", "Arguments ready for a formal request", "A decision taken with the risk known"]}
 />

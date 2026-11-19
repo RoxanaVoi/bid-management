@@ -1,0 +1,151 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLocaleFromUrl, t, getLocalizedPath } from '../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const functii = [
+  { key: 'feature1', detaliu: 'Every need is entered linked to the budget line it is paid from, not separately.' },
+  { key: 'feature2', detaliu: 'Lines are grouped by CPV code and the plan is generated from them, not written by hand.' },
+  { key: 'feature3', detaliu: 'The needs memo travels the signature flow, recording who issued and who approved it, and when.' },
+  { key: 'feature4', detaliu: 'Supporting documents stay attached to the line, in the procurement archive.' },
+  { key: 'feature5', detaliu: 'When new budget lines appear at a revision, the plan updates without being rewritten.' },
+];
+
+const laControl = [
+  {
+    intrebare: 'Which stated need does this line rest on?',
+    raspuns: 'The line stays linked to the needs memo that generated it, with number, date and issuing department.',
+  },
+  {
+    intrebare: 'How was the estimated value determined?',
+    raspuns: 'The method is recorded alongside the value, not reconstructed from memory afterwards.',
+  },
+  {
+    intrebare: 'What else was bought for the same need?',
+    raspuns: 'Similar needs are identified before the procedure is chosen, not after the threshold has been passed.',
+  },
+  {
+    intrebare: 'Who changed this line, and when?',
+    raspuns: 'Every change leaves a record. When people move on, traceability stays.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'ePAAP',
+  applicationCategory: 'BusinessApplication',
+  applicationSubCategory: 'Public procurement software',
+  operatingSystem: 'Web',
+  inLanguage: 'en',
+  description:
+    'A platform for the annual public procurement plan and needs memos: collecting needs, grouping by CPV code, the signature flow, supporting documents and the history of changes.',
+  url: 'https://bid-management.ro/en/epaap',
+  author: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  audience: { '@type': 'Audience', audienceType: 'Contracting authorities' },
+  areaServed: { '@type': 'Country', name: 'România' },
+};
+---
+
+<Layout
+  title="ePAAP — the platform for the annual plan and needs memos"
+  description="The platform for the annual public procurement plan and needs memos: needs linked to budget lines, CPV grouping, signature flow, history after every change."
+  schema={[schema]}
+  noSuffix
+>
+  <!-- ===== HERO ===== -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-light/15 border border-accent-light/30 rounded-full mb-6">
+          <span class="text-accent-light text-sm font-medium">For contracting authorities</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
+          ePAAP — <span class="text-accent-light">the plan and the memos</span> in a single flow
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-4">
+          From a need sent in by a department to the approved line in the annual plan, with the
+          history that stays after every change.
+        </p>
+        <p class="text-sm text-gray-400 mb-8">
+          {t(locale, 'authoritiesPage.epaapBenefits')}
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center gap-2 px-6 py-3 bg-accent-light hover:bg-mint text-navy font-semibold rounded-xl transition-colors no-underline">
+            {t(locale, 'authoritiesPage.epaapCta')}
+          </a>
+          <a href={getLocalizedPath(locale, '/resurse/referat-de-necesitate-campuri-minime')} class="inline-flex items-center gap-2 px-6 py-3 border border-white/25 hover:border-accent-light hover:text-accent-light text-gray-200 font-semibold rounded-xl transition-colors no-underline">
+            What a defensible needs memo contains
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CE FACE ===== -->
+  <section class="py-20 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-12">What it does</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        {functii.map((f, i) => (
+          <div class="flex gap-4 bg-surface border border-gray-200 rounded-xl p-6">
+            <span class="shrink-0 w-9 h-9 rounded-lg bg-accent text-white font-bold text-sm flex items-center justify-center tabular-nums">
+              {i + 1}
+            </span>
+            <div>
+              <h3 class="font-heading font-semibold text-navy mb-1">{t(locale, `epaap.${f.key}`)}</h3>
+              <p class="text-text-light text-sm leading-relaxed m-0">{f.detaliu}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CE VEDE CONTROLUL ===== -->
+  <section class="py-20 lg:py-24 bg-navy text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">What an audit sees</h2>
+      <p class="text-gray-300 text-lg mb-12 max-w-2xl">
+        An audit walks the chain backwards: it starts from the contract and asks for the document
+        that justified it. These are the questions, and what answers each one.
+      </p>
+      <div class="space-y-4">
+        {laControl.map((c) => (
+          <div class="border border-white/15 rounded-xl p-6">
+            <p class="text-accent-light font-semibold mb-2 m-0">{c.intrebare}</p>
+            <p class="text-gray-300 leading-relaxed m-0">{c.raspuns}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-gray-400 mt-8">
+        The aggregation mechanism, with the thresholds in force and the legal basis for each, is set
+        out in
+        <a href={getLocalizedPath(locale, '/resurse/praguri-achizitii-publice')} class="text-accent-light hover:underline">the 2026 thresholds page</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CUM SE ACHIZIȚIONEAZĂ ===== -->
+  <section class="py-20 lg:py-24 bg-surface">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-6">How to procure it</h2>
+      <p class="text-text text-lg leading-relaxed mb-6">
+        Like any public purchase, it starts from a needs memo that requires an estimated value and
+        the method by which it was determined. We send a named quote for your institution, which
+        you can use as the source of that estimated value, with date and issuer.
+      </p>
+      <div class="rounded-xl bg-white border border-gray-200 p-6 mb-8">
+        <p class="text-text leading-relaxed m-0">
+          If it helps, we can also send the structure of the memo for this type of purchase. The
+          minimum fields, each with its legal basis, are public anyway, on
+          <a href={getLocalizedPath(locale, '/resurse/referat-de-necesitate-campuri-minime')} class="text-accent hover:underline">the needs memo page</a>.
+        </p>
+      </div>
+      <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center gap-2 px-6 py-3 bg-navy hover:bg-navy-light text-white font-semibold rounded-xl transition-colors no-underline">
+        Request a named quote
+      </a>
+    </div>
+  </section>
+</Layout>

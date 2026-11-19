@@ -6,7 +6,7 @@ const locale = getLocaleFromUrl(Astro.url);
 const isRo = locale === 'ro';
 ---
 
-<Layout title={isRo ? 'Termeni și condiții' : 'Terms and Conditions'}>
+<Layout title={isRo ? 'Termeni și condiții' : 'Terms and Conditions'} description="Terms of use for the site and the automated documentation analysis: what our services cover and where automated conclusions stop.">
   <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl font-heading font-bold">{isRo ? 'Termeni și condiții' : 'Terms and Conditions'}</h1>
