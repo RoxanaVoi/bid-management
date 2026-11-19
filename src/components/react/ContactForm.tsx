@@ -96,8 +96,8 @@ export default function ContactForm({ locale }: Props) {
     );
   }
 
-  const inputClass = "w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7B2332]/20 focus:border-[#7B2332] outline-none transition-all text-sm";
-  const labelClass = "block text-sm font-medium text-[#1C1015] mb-1.5";
+  const inputClass = "w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#08777F]/20 focus:border-[#08777F] outline-none transition-all text-sm";
+  const labelClass = "block text-sm font-medium text-[#0F172A] mb-1.5";
 
   return (
     <div>
@@ -108,11 +108,11 @@ export default function ContactForm({ locale }: Props) {
       {/* Tabs */}
       <div className="flex gap-1 bg-gray-100 rounded-xl p-1 mb-8">
         <button onClick={() => setActiveTab('general')}
-          className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all ${activeTab === 'general' ? 'bg-white text-[#1C1015] shadow-sm' : 'text-gray-500 hover:text-[#1C1015]'}`}>
+          className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all ${activeTab === 'general' ? 'bg-white text-[#0F172A] shadow-sm' : 'text-gray-500 hover:text-[#0F172A]'}`}>
           {t.generalTab}
         </button>
         <button onClick={() => setActiveTab('demo')}
-          className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all ${activeTab === 'demo' ? 'bg-white text-[#1C1015] shadow-sm' : 'text-gray-500 hover:text-[#1C1015]'}`}>
+          className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all ${activeTab === 'demo' ? 'bg-white text-[#0F172A] shadow-sm' : 'text-gray-500 hover:text-[#0F172A]'}`}>
           {t.demoTab}
         </button>
       </div>
@@ -148,7 +148,7 @@ export default function ContactForm({ locale }: Props) {
           {/* Honeypot anti-spam */}
           <input type="text" name="_gotcha" className="hidden" />
           <button type="submit" disabled={status === 'sending'}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed">
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#08777F] hover:bg-[#055C62] text-white font-semibold rounded-xl transition-all hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed">
             {status === 'sending' ? (
               <><svg className="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>{t.sending}</>
             ) : t.send}
@@ -195,8 +195,8 @@ export default function ContactForm({ locale }: Props) {
             <label className={labelClass}>{t.demoChallenges}</label>
             <div className="grid grid-cols-2 gap-2">
               {t.challengeOptions.map((opt) => (
-                <label key={opt} className="flex items-center gap-2 p-3 border border-gray-200 rounded-xl hover:border-[#7B2332]/30 transition-colors cursor-pointer">
-                  <input type="checkbox" name="challenges" value={opt} className="accent-[#7B2332]" />
+                <label key={opt} className="flex items-center gap-2 p-3 border border-gray-200 rounded-xl hover:border-[#08777F]/30 transition-colors cursor-pointer">
+                  <input type="checkbox" name="challenges" value={opt} className="accent-[#08777F]" />
                   <span className="text-sm text-gray-700">{opt}</span>
                 </label>
               ))}
@@ -204,7 +204,7 @@ export default function ContactForm({ locale }: Props) {
           </div>
           <input type="text" name="_gotcha" className="hidden" />
           <button type="submit" disabled={status === 'sending'}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed">
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#08777F] hover:bg-[#055C62] text-white font-semibold rounded-xl transition-all hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed">
             {status === 'sending' ? (
               <><svg className="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>{t.sending}</>
             ) : t.demoButton}

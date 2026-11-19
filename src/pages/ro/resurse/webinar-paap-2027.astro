@@ -1,0 +1,344 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CTASection from '../../../components/CTASection.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+import slides from '../../../data/webinar-paap-2027.json';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const DEMO_SLIDE = 31;
+const pad = (n: number) => String(n).padStart(2, '0');
+const base = '/resurse/webinar-paap-2027';
+
+type Slide = { n: number; eyebrow: string; title: string };
+const deck = (slides as Slide[]).map((s) => ({
+  ...s,
+  src: `${base}/slides/slide-${pad(s.n)}.webp`,
+}));
+
+const title = 'De la referatul de necesitate la planul aprobat';
+const description =
+  'Webinarul din 19 noiembrie 2026: ce se întâmplă în practică între o necesitate transmisă pe e-mail și o poziție din PAAP, și ce dovediți când vine controlul. 40 de slide-uri și demonstrația ePAAP.';
+---
+
+<Layout title={title} description={description} ogImage={`${base}/slides/slide-01.webp`}>
+  <!-- ─────────────────────────── HERO ─────────────────────────── -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent-light transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent-light transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Webinar PAAP 2027</span>
+      </nav>
+
+      <div class="flex items-center gap-2 mb-5">
+        <span class="px-3 py-1 bg-accent-light/15 text-accent-light text-xs font-medium rounded-full">Webinar</span>
+        <span class="text-gray-400 text-sm">19 noiembrie 2026</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-5">
+        De la referatul de necesitate la <span class="text-accent-light">planul aprobat</span>
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-300 max-w-3xl leading-relaxed mb-6">
+        Ce se întâmplă în practică între o necesitate transmisă pe e-mail și o poziție din PAAP
+        — și ce dovediți când vine controlul.
+      </p>
+
+      <p class="text-sm text-gray-400 mb-8">
+        Roxana Voicu, co-fondator Equalys Services · 40 de slide-uri · demonstrație ePAAP, 12 minute
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={`${base}/webinar-paap-2027-slide-uri.pdf`}
+          download
+          class="inline-flex items-center gap-2 px-6 py-3 bg-accent-light hover:bg-mint text-navy font-semibold rounded-xl transition-colors no-underline"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+          </svg>
+          Descarcă slide-urile (PDF)
+        </a>
+        <a
+          href="#demo"
+          class="inline-flex items-center gap-2 px-6 py-3 border border-white/25 hover:border-accent-light hover:text-accent-light text-gray-200 font-semibold rounded-xl transition-colors no-underline"
+        >
+          Vezi demonstrația ePAAP
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── CONTEXT ────────────────────────── -->
+  <section class="py-12 lg:py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="border-l-4 border-accent pl-6">
+        <p class="text-lg text-text leading-relaxed mb-4">
+          Pe <strong class="text-navy">19 noiembrie 2026</strong> am susținut acest webinar împreună cu
+          grupul de experți în achiziții publice moderat de <strong class="text-navy">Florin Popovici</strong>
+          — o comunitate de oameni care lucrează zi de zi cu procesul de achiziție: referate de necesitate,
+          planuri anuale, estimări, proceduri și raportări.
+        </p>
+        <p class="text-text leading-relaxed mb-4">
+          Sunt practicieni din autorități contractante și consultanți care își compară deciziile între ei
+          înainte să le apere la control. Întrebările au venit de la ei, trimise înainte de întâlnire, iar
+          o parte din material este construit direct pe ele — de la estimarea valorii când nu ai istoric,
+          până la acordul-cadru multianual într-un buget anual.
+        </p>
+        <p class="text-text leading-relaxed">
+          Las aici întreg materialul, inclusiv anexele: pragurile valabile în 2026, checklistul pentru
+          aprobarea PAAP 2027 și câmpurile minime ale unui referat apărabil. Mulțumesc grupului pentru
+          invitație și pentru calitatea discuției.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── VIEWER ─────────────────────────── -->
+  <section class="pb-12 lg:pb-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-navy rounded-2xl p-3 sm:p-4" id="wpViewer">
+        <div id="wpStage">
+          {deck.map((s) => (
+            <figure class="m-0" data-n={s.n} hidden={s.n !== 1}>
+              {s.n === DEMO_SLIDE ? (
+                <div id="demo" class="relative rounded-xl overflow-hidden aspect-video scroll-mt-24">
+                  <img
+                    src={`${base}/poster-demo-epaap.webp`}
+                    alt="Demonstrația aplicației ePAAP"
+                    width="1600"
+                    height="900"
+                    loading="lazy"
+                    class="absolute inset-0 w-full h-full object-cover blur-sm brightness-[.35]"
+                  />
+                  <div class="relative h-full flex flex-col justify-center p-5 sm:p-8 lg:p-12">
+                    <p class="text-accent-light font-semibold tracking-widest uppercase text-[11px] sm:text-xs mb-2">
+                      Demo ePAAP · 12 minute
+                    </p>
+                    <h2 class="text-white font-heading font-bold text-lg sm:text-2xl lg:text-3xl leading-tight mb-3">
+                      Procesul în aplicație, de la referat la plan
+                    </h2>
+                    <p class="hidden sm:block text-gray-300 text-sm lg:text-base max-w-xl mb-6">
+                      Înregistrarea arată necesitățile similare identificate înainte de alegerea procedurii,
+                      pragurile verificate automat și istoricul care rămâne după fiecare modificare.
+                    </p>
+                    <form id="wpGateForm" novalidate class="max-w-xl">
+                      <div class="flex flex-wrap gap-2">
+                        <label class="sr-only" for="wpEmail">Adresa de e-mail</label>
+                        <input
+                          id="wpEmail"
+                          name="email"
+                          type="email"
+                          required
+                          autocomplete="email"
+                          placeholder="nume@institutie.ro"
+                          class="flex-1 min-w-[200px] px-4 py-2.5 rounded-xl bg-navy/70 border border-white/25 text-white placeholder:text-gray-500 text-sm outline-none focus:border-accent-light focus:ring-2 focus:ring-accent-light/30 transition-all"
+                        />
+                        <button
+                          type="submit"
+                          class="px-5 py-2.5 rounded-xl bg-accent-light hover:bg-mint text-navy font-semibold text-sm transition-colors"
+                        >
+                          Vezi demonstrația
+                        </button>
+                      </div>
+                      <label class="flex items-start gap-2 mt-3 text-[11px] sm:text-xs text-gray-400 leading-snug">
+                        <input type="checkbox" name="consent" required class="mt-0.5 accent-[#08C9AA]" />
+                        <span>
+                          Sunt de acord să primesc materialul și informări ocazionale despre achiziții publice.
+                          Mă pot dezabona oricând. Detalii în
+                          <a href={getLocalizedPath(locale, '/politica-confidentialitate')} class="underline hover:text-accent-light">politica de confidențialitate</a>.
+                        </span>
+                      </label>
+                      <p id="wpGateStatus" role="status" class="mt-2 text-xs text-pivot-light min-h-[1em]"></p>
+                    </form>
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={s.src}
+                  alt={`Slide ${s.n}: ${s.eyebrow} — ${s.title}`}
+                  width="1600"
+                  height="900"
+                  loading={s.n <= 2 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  class="w-full h-auto rounded-xl aspect-video bg-navy-800"
+                />
+              )}
+              <figcaption class="px-1 pt-3 pb-1">
+                <span class="block text-accent-light text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase">{s.eyebrow}</span>
+                <span class="block text-gray-300 text-sm mt-0.5">{s.title}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <nav class="flex items-center gap-2 px-1 py-2" aria-label="Navigare slide-uri">
+          <button type="button" id="wpPrev" aria-label="Slide-ul anterior"
+            class="px-3 py-1.5 rounded-lg bg-navy-800 border border-white/15 text-gray-200 hover:border-accent-light hover:text-accent-light transition-colors">←</button>
+          <button type="button" id="wpNext" aria-label="Slide-ul următor"
+            class="px-3 py-1.5 rounded-lg bg-navy-800 border border-white/15 text-gray-200 hover:border-accent-light hover:text-accent-light transition-colors">→</button>
+          <span class="text-gray-400 text-sm tabular-nums ml-1"><span id="wpNow">1</span> / {deck.length}</span>
+          <button type="button" id="wpFull"
+            class="ml-auto hidden sm:block px-3 py-1.5 rounded-lg bg-navy-800 border border-white/15 text-gray-200 hover:border-accent-light hover:text-accent-light text-xs transition-colors">Ecran complet</button>
+        </nav>
+
+        <div class="flex gap-1.5 overflow-x-auto px-1 pb-1" role="tablist" aria-label="Miniaturi">
+          {deck.map((s) => (
+            <button type="button" data-go={s.n} role="tab" aria-selected={s.n === 1 ? 'true' : 'false'}
+              aria-label={`Slide ${s.n}: ${s.title}`}
+              class="wp-thumb relative shrink-0 rounded-md border-2 border-transparent aria-selected:border-accent-light leading-none">
+              <img src={s.n === DEMO_SLIDE ? `${base}/poster-demo-epaap.webp` : s.src} alt=""
+                width="160" height="90" loading="lazy"
+                class="w-[96px] h-[54px] sm:w-[112px] sm:h-[63px] object-cover rounded opacity-50 hover:opacity-100 transition-opacity" />
+              <span class="absolute left-1 bottom-1 px-1 py-px rounded bg-navy/85 text-gray-200 text-[10px] leading-none">{s.n}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <p class="text-text-light text-xs mt-3">
+        Navigare cu săgețile de pe tastatură. Orice slide poate fi trimis direct ca link, de exemplu
+        <code class="text-accent">…/webinar-paap-2027#slide-17</code>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── CUPRINS ────────────────────────── -->
+  <section class="py-14 lg:py-16 bg-surface">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-heading font-bold text-navy mb-6">Ce conține prezentarea</h2>
+      <ol class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
+        {deck.map((s) => (
+          <li>
+            <button type="button" data-go={s.n}
+              class="w-full flex gap-3 text-left bg-white border border-gray-200 rounded-xl px-4 py-3 hover:border-accent hover:shadow-sm transition-all">
+              <span class="text-accent font-bold text-sm tabular-nums pt-0.5">{pad(s.n)}</span>
+              <span>
+                <strong class="block text-navy text-sm font-semibold leading-snug">{s.title}</strong>
+                <em class="block not-italic text-text-light text-[11px] uppercase tracking-wider mt-1">{s.eyebrow}</em>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>
+
+<script is:inline define:vars={{ TOTAL: deck.length, DEMO: DEMO_SLIDE }}>
+  (function () {
+    var stage = document.getElementById('wpStage');
+    if (!stage) return;
+    var figures = Array.prototype.slice.call(stage.querySelectorAll('[data-n]'));
+    var thumbs = Array.prototype.slice.call(document.querySelectorAll('.wp-thumb'));
+    var now = 1;
+
+    function show(n) {
+      n = Math.min(Math.max(n, 1), TOTAL);
+      now = n;
+      figures.forEach(function (f) { f.hidden = Number(f.dataset.n) !== n; });
+      thumbs.forEach(function (t) {
+        t.setAttribute('aria-selected', Number(t.dataset.go) === n ? 'true' : 'false');
+      });
+      document.getElementById('wpNow').textContent = String(n);
+      if (history.replaceState) history.replaceState(null, '', '#slide-' + n);
+      var active = thumbs[n - 1];
+      if (active && active.scrollIntoView) active.scrollIntoView({ block: 'nearest', inline: 'center' });
+    }
+
+    document.getElementById('wpPrev').onclick = function () { show(now - 1); };
+    document.getElementById('wpNext').onclick = function () { show(now + 1); };
+
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-go]');
+      if (!b) return;
+      e.preventDefault();
+      show(Number(b.dataset.go));
+      document.getElementById('wpViewer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.matches('input, textarea, select')) return;
+      if (e.key === 'ArrowRight') show(now + 1);
+      if (e.key === 'ArrowLeft') show(now - 1);
+    });
+
+    var full = document.getElementById('wpFull');
+    if (full) full.onclick = function () {
+      var el = document.getElementById('wpViewer');
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (el.requestFullscreen) el.requestFullscreen();
+    };
+
+    var x0 = null;
+    stage.addEventListener('touchstart', function (e) { x0 = e.changedTouches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) show(dx < 0 ? now + 1 : now - 1);
+      x0 = null;
+    }, { passive: true });
+
+    // ── Poarta de e-mail pentru demonstrație ────────────────────────────
+    var KEY = 'epaap-demo-unlocked';
+
+    function renderPlayer(embedUrl) {
+      var gate = document.getElementById('demo');
+      if (!gate) return;
+      // Film servit de pe site: element video nativ. Adresă de embed
+      // (Stream, Vimeo, YouTube): iframe.
+      gate.innerHTML = /\.mp4($|\?)/.test(embedUrl)
+        ? '<video src="' + embedUrl + '" controls preload="metadata" playsinline ' +
+          'poster="/resurse/webinar-paap-2027/poster-demo-epaap.webp" ' +
+          'class="absolute inset-0 w-full h-full"></video>'
+        : '<iframe src="' + embedUrl + '" loading="lazy" allowfullscreen ' +
+          'allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" ' +
+          'title="Demonstrația aplicației ePAAP" class="absolute inset-0 w-full h-full border-0"></iframe>';
+      gate.classList.add('bg-black');
+    }
+
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (err) {}
+    if (saved) renderPlayer(saved);
+
+    var form = document.getElementById('wpGateForm');
+    if (form) form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var status = document.getElementById('wpGateStatus');
+      var email = form.email.value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        status.textContent = 'Verificați adresa de e-mail.';
+        return;
+      }
+      if (!form.consent.checked) {
+        status.textContent = 'Bifați acordul pentru a continua.';
+        return;
+      }
+      status.textContent = 'Se pregătește înregistrarea…';
+      fetch('/api/demo-epaap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, sursa: 'webinar-paap-2027' }),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (!d || !d.embedUrl) throw new Error('fără adresă');
+          try { localStorage.setItem(KEY, d.embedUrl); } catch (err) {}
+          renderPlayer(d.embedUrl);
+        })
+        .catch(function () {
+          status.textContent =
+            'Nu am putut debloca înregistrarea. Scrieți-ne la office@bid-management.ro și v-o trimitem.';
+        });
+    });
+
+    var m = location.hash.match(/^#slide-(\d+)$/);
+    if (m) show(Number(m[1]));
+    else if (location.hash === '#demo') show(DEMO);
+  })();
+</script>

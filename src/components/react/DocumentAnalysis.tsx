@@ -377,7 +377,7 @@ export default function DocumentAnalysis({ locale }: Props) {
     };
   }
 
-  const inputClass = "w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#7B2332]/20 focus:border-[#7B2332] outline-none transition-all text-sm";
+  const inputClass = "w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#08777F]/20 focus:border-[#08777F] outline-none transition-all text-sm";
 
   // ===== RESULTS VIEW =====
   if (status === 'done' && result) {
@@ -387,7 +387,7 @@ export default function DocumentAnalysis({ locale }: Props) {
     return (
       <div className="space-y-6">
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
-          <div className="px-6 py-4 bg-[#1C1015] text-white flex items-center justify-between">
+          <div className="px-6 py-4 bg-[#0F172A] text-white flex items-center justify-between">
             <h3 className="font-bold text-lg">{t.resultTitle}</h3>
             <span className="text-xs text-white/50">{file?.name}</span>
           </div>
@@ -398,7 +398,7 @@ export default function DocumentAnalysis({ locale }: Props) {
                 <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">
                   {fieldLabels[key] || key}
                 </div>
-                <div className="text-sm text-[#1C1015] leading-relaxed whitespace-pre-line">
+                <div className="text-sm text-[#0F172A] leading-relaxed whitespace-pre-line">
                   {value}
                 </div>
               </div>
@@ -408,17 +408,17 @@ export default function DocumentAnalysis({ locale }: Props) {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <a href={`/${locale}/contact`}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all">
+            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#08777F] hover:bg-[#055C62] text-white font-semibold rounded-xl transition-all">
             {t.ctaDetailed}
           </a>
           <a href={`/${locale}/contact`}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#1C1015] text-[#1C1015] font-semibold rounded-xl hover:bg-[#1C1015] hover:text-white transition-all">
+            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-[#0F172A] text-[#0F172A] font-semibold rounded-xl hover:bg-[#0F172A] hover:text-white transition-all">
             {t.ctaDiscussion}
           </a>
         </div>
 
         <button onClick={() => { setStatus('idle'); setResult(null); setFile(null); }}
-          className="text-sm text-[#7B2332] font-medium hover:underline">
+          className="text-sm text-[#08777F] font-medium hover:underline">
           ← {t.newAnalysis}
         </button>
       </div>
@@ -432,16 +432,16 @@ export default function DocumentAnalysis({ locale }: Props) {
       <div className="text-center py-16">
         <div className="w-20 h-20 mx-auto mb-8 relative">
           <div className="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
-          <div className="absolute inset-0 border-4 border-[#7B2332] rounded-full border-t-transparent animate-spin"></div>
+          <div className="absolute inset-0 border-4 border-[#08777F] rounded-full border-t-transparent animate-spin"></div>
         </div>
-        <p className="text-lg font-semibold text-[#1C1015] mb-4">{t.analyzing}</p>
+        <p className="text-lg font-semibold text-[#0F172A] mb-4">{t.analyzing}</p>
         <div className="space-y-2 max-w-xs mx-auto">
           {steps.map((step, i) => (
-            <div key={i} className={`flex items-center gap-3 text-sm ${analyzeStep > i + 1 ? 'text-emerald-600' : analyzeStep === i + 1 ? 'text-[#7B2332] font-medium' : 'text-gray-400'}`}>
+            <div key={i} className={`flex items-center gap-3 text-sm ${analyzeStep > i + 1 ? 'text-emerald-600' : analyzeStep === i + 1 ? 'text-[#08777F] font-medium' : 'text-gray-400'}`}>
               {analyzeStep > i + 1 ? (
                 <svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
               ) : analyzeStep === i + 1 ? (
-                <div className="w-5 h-5 border-2 border-[#7B2332] border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-5 h-5 border-2 border-[#08777F] border-t-transparent rounded-full animate-spin"></div>
               ) : (
                 <div className="w-5 h-5 border-2 border-gray-200 rounded-full"></div>
               )}
@@ -461,19 +461,19 @@ export default function DocumentAnalysis({ locale }: Props) {
       )}
 
       <div>
-        <label className="block text-sm font-medium text-[#1C1015] mb-1.5">{t.emailLabel} *</label>
+        <label className="block text-sm font-medium text-[#0F172A] mb-1.5">{t.emailLabel} *</label>
         <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} placeholder="email@companie.ro" />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#1C1015] mb-1.5">{t.uploadLabel} *</label>
+        <label className="block text-sm font-medium text-[#0F172A] mb-1.5">{t.uploadLabel} *</label>
         <div
           onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
           className={`border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition-all ${
-            dragOver ? 'border-[#7B2332] bg-[#7B2332]/5' : file ? 'border-emerald-300 bg-emerald-50' : 'border-gray-200 hover:border-gray-300'
+            dragOver ? 'border-[#08777F] bg-[#08777F]/5' : file ? 'border-emerald-300 bg-emerald-50' : 'border-gray-200 hover:border-gray-300'
           }`}
         >
           <input ref={fileInputRef} type="file" accept=".pdf" onChange={handleFileChange} className="hidden" />
@@ -481,7 +481,7 @@ export default function DocumentAnalysis({ locale }: Props) {
             <div className="flex items-center justify-center gap-3">
               <svg className="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               <div className="text-left">
-                <p className="text-sm font-medium text-[#1C1015]">{file.name}</p>
+                <p className="text-sm font-medium text-[#0F172A]">{file.name}</p>
                 <p className="text-xs text-gray-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
               </div>
               <button type="button" onClick={(e) => { e.stopPropagation(); setFile(null); }} className="text-xs text-red-500 hover:text-red-700 underline ml-2">{t.remove}</button>
@@ -489,7 +489,7 @@ export default function DocumentAnalysis({ locale }: Props) {
           ) : (
             <>
               <svg className="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-              <p className="text-sm text-gray-500">{t.dragDrop} <span className="text-[#7B2332] font-medium">{t.browse}</span></p>
+              <p className="text-sm text-gray-500">{t.dragDrop} <span className="text-[#08777F] font-medium">{t.browse}</span></p>
               <p className="text-xs text-gray-400 mt-2">{t.uploadHint}</p>
             </>
           )}
@@ -497,16 +497,16 @@ export default function DocumentAnalysis({ locale }: Props) {
       </div>
 
       <label className="flex items-start gap-3 cursor-pointer">
-        <input type="checkbox" required className="mt-1 accent-[#7B2332]" />
+        <input type="checkbox" required className="mt-1 accent-[#08777F]" />
         <span className="text-sm text-gray-600">
-          {t.privacyCheck} <a href={`/${locale}/politica-confidentialitate`} className="text-[#7B2332] underline">{t.privacyLink}</a>
+          {t.privacyCheck} <a href={`/${locale}/politica-confidentialitate`} className="text-[#08777F] underline">{t.privacyLink}</a>
         </span>
       </label>
 
       <button
         onClick={handleAnalyze}
         disabled={!file || !email}
-        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#7B2332] hover:bg-[#5A1A28] text-white font-semibold rounded-xl transition-all hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#08777F] hover:bg-[#055C62] text-white font-semibold rounded-xl transition-all hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
         {t.analyzeButton}
