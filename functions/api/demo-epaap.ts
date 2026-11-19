@@ -13,7 +13,8 @@
  *   CF_STREAM_VIDEO_UID  uid-ul videoclipului din Stream
  *   CF_STREAM_CUSTOMER   subdomeniul: customer-xxxx din adresa de embed
  *   LEAD_WEBHOOK         opțional: URL unde se trimite lead-ul (CRM, Zapier…)
- *   VIMEO_EMBED_URL      opțional: dacă folosiți Vimeo în loc de Stream
+ *   EMBED_URL            opțional: adresă fixă de embed, în locul celor patru
+ *                        variabile Stream de mai sus (vezi nota de la final)
  *
  * Legare KV (Pages → Settings → Functions → KV namespace bindings):
  *   LEADS                namespace pentru contactele colectate
@@ -25,6 +26,7 @@ interface Env {
   CF_STREAM_VIDEO_UID?: string;
   CF_STREAM_CUSTOMER?: string;
   LEAD_WEBHOOK?: string;
+  EMBED_URL?: string;
   VIMEO_EMBED_URL?: string;
   LEADS?: KVNamespace;
 }
@@ -73,6 +75,10 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
   if (env.LEADS) {
     await env.LEADS.put(`lead:${email}:${lead.data}`, JSON.stringify(lead));
+  } else {
+    // Plasă de siguranță: dacă namespace-ul KV nu e legat, contactul ar fi
+    // pierdut în tăcere. Așa rămâne măcar în jurnalele funcției.
+    console.log('LEADS nelegat — contact necapturat:', JSON.stringify(lead));
   }
 
   if (env.LEAD_WEBHOOK) {
@@ -88,10 +94,10 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     }
   }
 
-  // ── Varianta Vimeo: adresa e fixă, doar că nu stă în HTML ────────────────
-  if (env.VIMEO_EMBED_URL) {
-    return json({ embedUrl: env.VIMEO_EMBED_URL });
-  }
+  // ── Varianta simplă: adresa e fixă, doar că nu stă în HTML ──────────────
+  // Merge cu orice player (Stream public, Vimeo, YouTube nelistat).
+  const fix = env.EMBED_URL ?? env.VIMEO_EMBED_URL;
+  if (fix) return json({ embedUrl: fix });
 
   // ── Varianta Cloudflare Stream: token semnat, valabil 12 ore ─────────────
   const { CF_ACCOUNT_ID, CF_STREAM_TOKEN, CF_STREAM_VIDEO_UID, CF_STREAM_CUSTOMER } =
@@ -128,10 +134,13 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 };
 
 /**
- * Alternativă, dacă legați Stream direct ca binding în Pages (Settings →
- * Functions → Stream bindings, nume STREAM). Nu mai e nevoie de API token:
+ * De ce API token și nu legare directă: legarea Stream (env.STREAM) e o
+ * facilitate de Workers. Pages Functions suportă doar un subset de legări —
+ * KV, R2, D1, Durable Objects — deci aici tokenul e singura cale către
+ * tokenuri semnate.
  *
- *   const token = await env.STREAM.video(CF_STREAM_VIDEO_UID).generateToken();
- *   const embedUrl =
- *     `https://${CF_STREAM_CUSTOMER}.cloudflarestream.com/${token}/iframe`;
+ * Varianta fără niciun secret: lăsați filmul public în Stream și puneți
+ * adresa lui de embed în EMBED_URL. Adresa tot nu apare în HTML-ul static,
+ * dar cine o primește o poate da mai departe. Se poate trece oricând la
+ * tokenuri semnate, adăugând cele patru variabile de mai sus.
  */
