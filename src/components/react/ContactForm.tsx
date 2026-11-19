@@ -14,7 +14,7 @@ interface Props {
 const labels = {
   ro: {
     generalTab: 'Contact general',
-    demoTab: 'Solicită demo ePaap',
+    demoTab: 'Solicită demo ePAAP',
     name: 'Nume și prenume',
     email: 'Email',
     phone: 'Telefon',
@@ -33,7 +33,7 @@ const labels = {
   },
   en: {
     generalTab: 'General Contact',
-    demoTab: 'Request ePaap Demo',
+    demoTab: 'Request ePAAP Demo',
     name: 'Full name',
     email: 'Email',
     phone: 'Phone',

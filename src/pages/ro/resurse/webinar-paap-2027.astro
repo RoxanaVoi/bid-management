@@ -138,7 +138,7 @@ const eventSchema = {
               {s.n === DEMO_SLIDE ? (
                 <div id="demo" class="relative rounded-xl overflow-hidden aspect-video scroll-mt-24">
                   <img
-                    src={`${base}/poster-demo-epaap.webp`}
+                    src={`${base}/poster-demo-ePAAP.webp`}
                     alt="Demonstrația aplicației ePAAP"
                     width="1600"
                     height="900"
@@ -221,7 +221,7 @@ const eventSchema = {
             <button type="button" data-go={s.n} role="tab" aria-selected={s.n === 1 ? 'true' : 'false'}
               aria-label={`Slide ${s.n}: ${s.title}`}
               class="wp-thumb relative shrink-0 rounded-md border-2 border-transparent aria-selected:border-accent-light leading-none">
-              <img src={s.n === DEMO_SLIDE ? `${base}/poster-demo-epaap.webp` : s.src} alt=""
+              <img src={s.n === DEMO_SLIDE ? `${base}/poster-demo-ePAAP.webp` : s.src} alt=""
                 width="160" height="90" loading="lazy"
                 class="w-[96px] h-[54px] sm:w-[112px] sm:h-[63px] object-cover rounded opacity-50 hover:opacity-100 transition-opacity" />
               <span class="absolute left-1 bottom-1 px-1 py-px rounded bg-navy/85 text-gray-200 text-[10px] leading-none">{s.n}</span>
@@ -316,7 +316,7 @@ const eventSchema = {
     }, { passive: true });
 
     // ── Poarta de e-mail pentru demonstrație ────────────────────────────
-    var KEY = 'epaap-demo-unlocked';
+    var KEY = 'ePAAP-demo-unlocked';
 
     function renderPlayer(embedUrl) {
       var gate = document.getElementById('demo');
@@ -325,7 +325,7 @@ const eventSchema = {
       // (Stream, Vimeo, YouTube): iframe.
       gate.innerHTML = /\.mp4($|\?)/.test(embedUrl)
         ? '<video src="' + embedUrl + '" controls preload="metadata" playsinline ' +
-          'poster="/resurse/webinar-paap-2027/poster-demo-epaap.webp" ' +
+          'poster="/resurse/webinar-paap-2027/poster-demo-ePAAP.webp" ' +
           'class="absolute inset-0 w-full h-full"></video>'
         : '<iframe src="' + embedUrl + '" loading="lazy" allowfullscreen ' +
           'allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" ' +
@@ -351,7 +351,7 @@ const eventSchema = {
         return;
       }
       status.textContent = 'Se pregătește înregistrarea…';
-      fetch('/api/demo-epaap', {
+      fetch('/api/demo-ePAAP', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, sursa: 'webinar-paap-2027' }),

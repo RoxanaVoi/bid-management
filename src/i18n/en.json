@@ -1,13 +1,13 @@
 {
   "nav": {
     "home": "Home",
-    "solutiiAutoritati": "Solutions for Authorities",
-    "solutiiCompanii": "eBid · Economic Operators",
+    "solutiiAutoritati": "Contracting authorities",
+    "solutiiCompanii": "Economic operators",
     "analizeaza": "Analyze Documentation",
     "studiiDeCaz": "Case Studies",
-    "resurse": "Resources",
+    "resurse": "Guides",
     "despre": "About Us",
-    "contact": "Contact / Demo"
+    "contact": "Contact"
   },
   "hero": {
     "title": "The invisible infrastructure behind well-executed public procurement.",
@@ -34,26 +34,37 @@
   },
   "howWeWork": {
     "title": "How we work",
-    "step1": { "title": "Understand", "desc": "We analyze the procedure, context and existing documents." },
-    "step2": { "title": "Identify", "desc": "Risks, blockers and optimization opportunities." },
-    "step3": { "title": "Optimize", "desc": "Documentation, steps and decisions — all aligned with legislation." },
-    "step4": { "title": "Monitor", "desc": "Results and adjust the approach in real time." }
-  },
-  "epaap": {
-    "title": "ePaap — platform for needs, PAAP and reports in a single workflow",
-    "feature1": "Needs collection correlated with budget items",
-    "feature2": "CPV code grouping and PAAP generation",
-    "feature3": "Necessity reports with signature workflow",
-    "feature4": "Supporting documents and procurement archive",
-    "feature5": "Dynamic PAAP update for new items",
-    "cta": "Learn more about ePaap"
+    "step1": {
+      "title": "Understand",
+      "desc": "We analyze the procedure, context and existing documents."
+    },
+    "step2": {
+      "title": "Identify",
+      "desc": "Risks, blockers and optimization opportunities."
+    },
+    "step3": {
+      "title": "Optimize",
+      "desc": "Documentation, steps and decisions — all aligned with legislation."
+    },
+    "step4": {
+      "title": "Monitor",
+      "desc": "Results and adjust the approach in real time."
+    }
   },
   "results": {
     "title": "Results that matter",
-    "metric1": { "value": "500+", "label": "procedures analyzed annually" },
-    "metric2": { "value": "95%", "label": "reduction in upheld complaints" },
-    "metric3": { "value": "120+", "label": "authorities and companies supported" },
-    "metric4": { "value": "15+", "label": "years of procurement experience" },
+    "metric1": {
+      "value": "500+",
+      "label": "procedures analyzed annually"
+    },
+    "metric3": {
+      "value": "120+",
+      "label": "authorities and companies supported"
+    },
+    "metric4": {
+      "value": "15+",
+      "label": "years of procurement experience"
+    },
     "clients": "Local authorities · Hospitals · Central institutions · Private companies"
   },
   "caseStudies": {
@@ -87,32 +98,76 @@
   },
   "authoritiesPage": {
     "title": "Solutions for Contracting Authorities",
-    "subtitle": "From planning and PAAP to supporting documents and procedures, with ePaap + consulting.",
-    "epaapTitle": "ePaap — Digitizing PAAP and necessity reports",
-    "epaapBenefits": "Error reduction · Full traceability · Audit readiness · Time savings",
-    "epaapCta": "Request ePaap demo for your institution",
+    "subtitle": "From planning and PAAP to supporting documents and procedures, with ePAAP + consulting.",
     "consultingTitle": "Consulting for Authorities",
-    "service1": { "title": "PAAP Audit & Optimization", "desc": "We review and correct the annual program, identify inconsistencies and propose solutions." },
-    "service2": { "title": "Award Documentation Support", "desc": "We prepare complete documentation: data sheet, specifications, contract templates." },
-    "service3": { "title": "Evaluation Committee Assistance", "desc": "Qualification documents and bid analysis, without legal representation." },
-    "service4": { "title": "Completed Procedures Audit", "desc": "Concrete recommendations for future procedures based on lessons learned." },
+    "service1": {
+      "title": "PAAP Audit & Optimization",
+      "desc": "We review and correct the annual program, identify inconsistencies and propose solutions."
+    },
+    "service2": {
+      "title": "Award Documentation Support",
+      "desc": "We prepare complete documentation: data sheet, specifications, contract templates."
+    },
+    "service3": {
+      "title": "Evaluation Committee Assistance",
+      "desc": "Qualification documents and bid analysis, without legal representation."
+    },
+    "service4": {
+      "title": "Completed Procedures Audit",
+      "desc": "Concrete recommendations for future procedures based on lessons learned."
+    },
     "ctaTitle": "Tell us about your procurement year",
-    "ctaSubtitle": "We'll propose a combination of ePaap + consulting tailored to your needs.",
-    "ctaButton": "Contact us for a discussion"
+    "ctaSubtitle": "We'll propose a combination of ePAAP + consulting tailored to your needs.",
+    "ctaButton": "Contact us for a discussion",
+    "epaapTitle": "ePAAP — Digitizing PAAP and necessity reports",
+    "epaapBenefits": "Error reduction · Full traceability · Audit readiness · Time savings",
+    "epaapCta": "Request ePAAP demo for your institution"
   },
   "companiesPage": {
     "title": "Solutions for Bidding Companies",
     "subtitle": "Consulting and training for more effective participation in public procurement.",
     "consultingTitle": "Consulting",
-    "service1": { "title": "Documentation Analysis", "desc": "Identifying critical and restrictive requirements from data sheets and specifications." },
-    "service2": { "title": "Participation Strategy", "desc": "Action plan adapted to each procedure to maximize chances." },
-    "service3": { "title": "ESPD & Bid Preparation", "desc": "Complete assistance for technical, financial bids and ESPD." },
-    "service4": { "title": "Clarifications & Complaints Support", "desc": "Document analysis and drafting of well-founded clarifications or complaints." },
+    "service1": {
+      "title": "Documentation Analysis",
+      "desc": "Identifying critical and restrictive requirements from data sheets and specifications."
+    },
+    "service2": {
+      "title": "Participation Strategy",
+      "desc": "Action plan adapted to each procedure to maximize chances."
+    },
+    "service3": {
+      "title": "ESPD & Bid Preparation",
+      "desc": "Complete assistance for technical, financial bids and ESPD."
+    },
+    "service4": {
+      "title": "Clarifications & Complaints Support",
+      "desc": "Document analysis and drafting of well-founded clarifications or complaints."
+    },
     "coursesTitle": "Courses & Training",
-    "course1": { "title": "Practical Introduction to Public Procurement", "format": "Online / Live", "duration": "8 hours", "level": "Beginner" },
-    "course2": { "title": "How to Read the Data Sheet and Specifications", "format": "Online / Live", "duration": "6 hours", "level": "Beginner" },
-    "course3": { "title": "How to Prepare ESPD and Bid", "format": "Online / Live", "duration": "8 hours", "level": "Intermediate" },
-    "course4": { "title": "Clarifications, Complaints and Lessons Learned", "format": "Online / Live", "duration": "6 hours", "level": "Intermediate" },
+    "course1": {
+      "title": "Practical Introduction to Public Procurement",
+      "format": "Online / Live",
+      "duration": "8 hours",
+      "level": "Beginner"
+    },
+    "course2": {
+      "title": "How to Read the Data Sheet and Specifications",
+      "format": "Online / Live",
+      "duration": "6 hours",
+      "level": "Beginner"
+    },
+    "course3": {
+      "title": "How to Prepare ESPD and Bid",
+      "format": "Online / Live",
+      "duration": "8 hours",
+      "level": "Intermediate"
+    },
+    "course4": {
+      "title": "Clarifications, Complaints and Lessons Learned",
+      "format": "Online / Live",
+      "duration": "6 hours",
+      "level": "Intermediate"
+    },
     "courseCta": "Request course quote",
     "ctaTitle": "Submit your procedure documentation",
     "ctaSubtitle": "Or talk to us about a training plan for your team.",
@@ -150,9 +205,9 @@
     "riskHigh": "High",
     "ctaDetailed": "I want a detailed analysis and concrete recommendations",
     "ctaDiscussion": "Schedule a discussion about this procedure",
-    "epaapHint": "For recurring procedures, we can integrate planning and PAAP into ePaap — request a demo.",
     "next": "Continue",
-    "back": "Back"
+    "back": "Back",
+    "epaapHint": "For recurring procedures, we can integrate planning and PAAP into ePAAP — request a demo."
   },
   "aboutPage": {
     "title": "About Us",
@@ -163,7 +218,7 @@
   "contactPage": {
     "title": "Contact",
     "generalTab": "General Contact",
-    "demoTab": "Request ePaap Demo",
+    "demoTab": "Request ePAAP Demo",
     "nameField": "Full name",
     "emailField": "Email",
     "phoneField": "Phone",
@@ -175,5 +230,14 @@
     "demoChallenges": "Main challenges",
     "demoButton": "Request demo",
     "successMessage": "Message sent successfully! We will contact you as soon as possible."
+  },
+  "epaap": {
+    "title": "ePAAP — platform for needs, PAAP and reports in a single workflow",
+    "feature1": "Needs collection correlated with budget items",
+    "feature2": "CPV code grouping and PAAP generation",
+    "feature3": "Necessity reports with signature workflow",
+    "feature4": "Supporting documents and procurement archive",
+    "feature5": "Dynamic PAAP update for new items",
+    "cta": "Learn more about ePAAP"
   }
 }

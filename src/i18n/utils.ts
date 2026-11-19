@@ -32,14 +32,16 @@ export function getAlternateLocale(locale: Locale): Locale {
   return locale === 'ro' ? 'en' : 'ro';
 }
 
+// Meniul e organizat pe audiență, nu pe ce vinde firma. "Home" iese —
+// logo-ul duce acasă. "Analizează documentația" e un instrument, nu o
+// secțiune: a devenit butonul din dreapta antetului. "Studii de caz" se
+// leagă din fiecare pagină de audiență și din subsol.
 export function getNavItems(locale: Locale) {
   return [
-    { label: t(locale, 'nav.home'), href: getLocalizedPath(locale, '/') },
     { label: t(locale, 'nav.solutiiAutoritati'), href: getLocalizedPath(locale, '/solutii/autoritati') },
     { label: t(locale, 'nav.solutiiCompanii'), href: getLocalizedPath(locale, '/solutii/companii') },
-    { label: t(locale, 'nav.analizeaza'), href: getLocalizedPath(locale, '/analizeaza-documentatia') },
-    { label: t(locale, 'nav.studiiDeCaz'), href: getLocalizedPath(locale, '/studii-de-caz') },
     { label: t(locale, 'nav.resurse'), href: getLocalizedPath(locale, '/resurse') },
+    { label: t(locale, 'nav.studiiDeCaz'), href: getLocalizedPath(locale, '/studii-de-caz') },
     { label: t(locale, 'nav.despre'), href: getLocalizedPath(locale, '/despre') },
     { label: t(locale, 'nav.contact'), href: getLocalizedPath(locale, '/contact') },
   ];
