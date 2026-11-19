@@ -1,0 +1,190 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const campuri = [
+  {
+    nume: 'Identification',
+    text: 'The issuing department, the registration number and date, the person drafting it and the person approving it.',
+    temei: null,
+  },
+  {
+    nume: 'The need',
+    text: 'A description of the objective need and why it arises now — not the name of the product, but the need.',
+    temei: null,
+  },
+  {
+    nume: 'Quantities and price',
+    text: 'The quantity, the unit price and the total estimated price, excluding VAT.',
+    temei: 'GD 395/2016, art. 3(1)',
+  },
+  {
+    nume: 'Method of determining the value',
+    text: 'An updated unit or total price, from market research or on a historical basis — with the source and the date.',
+    temei: 'GD 395/2016, art. 2(5)(c)',
+  },
+  {
+    nume: 'History and aggregation',
+    text: 'What was purchased for identical or similar uses during the budget year, and how it affects the estimated value.',
+    temei: 'GD 395/2016, art. 17(2); Law 98/2016, art. 20',
+  },
+  {
+    nume: 'Technical specifications',
+    text: 'The requirements held by the requesting department, sent together with the memo.',
+    temei: 'GD 395/2016, art. 2(5)',
+  },
+  {
+    nume: 'Timing',
+    text: 'The date by which the need must be covered and, if it replaces a contract, that contract’s expiry date.',
+    temei: null,
+  },
+  {
+    nume: 'Proposed funding source',
+    text: 'The funds allocated to the purpose and their budget position.',
+    temei: 'GD 395/2016, art. 2(5)(d)',
+  },
+  {
+    nume: 'Priority',
+    text: 'The priority level, used both in the initial version and at revisions.',
+    temei: 'GD 395/2016, art. 12(3)(b)',
+  },
+];
+
+const faq = [
+  {
+    q: 'What is a needs memo?',
+    a: 'A needs memo is the internal document through which a department of the contracting authority justifies its need to purchase something: it describes the objective need, the quantities, the estimated value and the method by which that value was determined. It is the starting point of every line in the annual procurement plan.',
+  },
+  {
+    q: 'Who drafts the needs memo?',
+    a: 'The department that has the need drafts it, not the procurement department. The requesting department is the one that knows the objective need and holds the technical specifications; the procurement department takes them over and chooses the procedure.',
+  },
+  {
+    q: 'Is there a mandatory standard template?',
+    a: 'The legislation does not impose a set template, but it does impose the content: the elements from Government Decision no. 395/2016 must be present. A memo that does not show the method of determining the value, or the history of similar purchases, is incomplete however neatly it is formatted.',
+  },
+  {
+    q: 'Why must the method of determining the estimated value be written down?',
+    a: 'Because an audit checks not only the figure but how it was reached. An estimated value without a source and a date cannot be defended, and if the choice of procedure depended on that value, the choice of procedure becomes questionable too.',
+  },
+  {
+    q: 'How does the memo relate to the direct purchase threshold?',
+    a: 'The memo is where what has already been bought for the same need during the budget year is recorded. Aggregation follows identical or similar uses, not the CPV code, and if the history does not appear in the memo, exceeding the threshold is discovered only at audit.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'The minimum fields of a defensible needs memo',
+  datePublished: '2026-11-19',
+  dateModified: '2026-11-19',
+  inLanguage: 'en',
+  author: { '@type': 'Person', name: 'Roxana Voicu' },
+  publisher: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  mainEntityOfPage: 'https://bid-management.ro/en/resurse/referat-de-necesitate-campuri-minime',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Layout
+  title="Needs memo: what it must contain"
+  description="The minimum fields of a needs memo that holds up at audit, each with its legal basis: the need, quantities, estimation method, history, funding source."
+  schema={[articleSchema, faqSchema]}
+  noSuffix
+>
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent-light transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent-light transition-colors">Resources</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">The needs memo</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent-light/15 text-accent-light text-xs font-medium rounded-full">Reference</span>
+        <span class="text-gray-400 text-sm">19 November 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-5">
+        The fields of a <span class="text-accent-light">defensible needs memo</span>
+      </h1>
+      <p class="text-lg text-gray-300 max-w-3xl leading-relaxed">
+        Nine fields, each with its legal basis. If all of them are filled in, the line in the plan has
+        something to stand on when it is checked.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-14 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-3">
+        {campuri.map((c, i) => (
+          <div class="border border-gray-200 rounded-xl p-5 hover:border-accent/40 transition-colors">
+            <div class="flex items-baseline gap-3 mb-2">
+              <span class="text-accent font-bold text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+              <h2 class="text-lg font-heading font-semibold text-navy m-0">{c.nume}</h2>
+            </div>
+            <p class="text-text leading-relaxed m-0 pl-8">{c.text}</p>
+            {c.temei && (
+              <p class="text-xs text-text-light mt-2 pl-8 m-0">
+                <span class="font-medium text-accent">Legal basis:</span> {c.temei}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="prose prose-slate prose-lg max-w-none mt-12
+        prose-headings:font-heading prose-headings:text-navy
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-2
+        prose-p:text-text prose-li:text-text prose-strong:text-navy
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+
+        <h2>The field most often missing</h2>
+        <p>
+          Of the nine, the one most often missing is the history. A memo that says what it wants to buy
+          but not what has already been bought for the same need during the budget year leaves
+          aggregation undocumented. And aggregation follows identical or similar uses, not the CPV
+          code: two different codes covering the same need add up.
+        </p>
+        <p>
+          The second most often omitted is the method of determining the value. A figure without a
+          source and a date cannot be defended, and if the choice of procedure depended on it, the
+          procedure is discussed too.
+        </p>
+
+        <h2>Frequently asked questions</h2>
+        {faq.map((i) => (
+          <div>
+            <h3>{i.q}</h3>
+            <p>{i.a}</p>
+          </div>
+        ))}
+
+        <h2>Legal basis</h2>
+        <ul>
+          <li>Government Decision no. 395/2016 — art. 2(5), art. 3(1), art. 12(3)(b), art. 17(2)</li>
+          <li>Law no. 98/2016 — art. 7, 11, 20</li>
+        </ul>
+
+        <p class="text-sm text-text-light">
+          Informational material, reflecting legislation and practice as at 19 November 2026. It does
+          not constitute legal advice.
+        </p>
+      </div>
+    </div>
+  </article>
+</Layout>

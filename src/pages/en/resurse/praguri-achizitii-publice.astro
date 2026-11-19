@@ -1,0 +1,176 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const actualizat = '2026-11-19';
+
+const praguri = [
+  { cat: 'Works — mandatory publication in the OJEU', prag: '26,960,556', ant: '27,334,460' },
+  { cat: 'Supplies and services — central government authorities', prag: '698,460', ant: '705,819' },
+  { cat: 'Supplies and services — regional and local authorities', prag: '1,077,624', ant: '1,090,812' },
+  { cat: 'Social and other specific services', prag: '3,741,750', ant: '3,701,850' },
+  { cat: 'Lots — simplified procedure or direct purchase', prag: '399,120 supplies and services · 4,989,000 works', ant: '394,864 · 4,935,800' },
+  { cat: 'Direct purchase — art. 7(5), unchanged', prag: '270,120 supplies and services · 900,400 works', ant: 'since 10.09.2022' },
+];
+
+const intrebari = [
+  {
+    q: 'What is the direct purchase threshold in 2026?',
+    a: 'The direct purchase threshold is RON 270,120 excluding VAT for supplies and services, and RON 900,400 excluding VAT for works. Unlike the OJEU publication thresholds, it does not derive from the European directives and remains the one set by Law no. 208/2022, in force since 10 September 2022.',
+  },
+  {
+    q: 'Why have some thresholds fallen compared with the previous values?',
+    a: 'The OJEU publication thresholds are expressed in euro and converted into lei at a rate set periodically by the Commission. When the conversion rate differs, the value in lei can fall even though the threshold in euro stays the same.',
+  },
+  {
+    q: 'From what date do the 2026 thresholds apply?',
+    a: 'The updated thresholds apply to procedures launched after 1 January 2026. For a procedure already launched, the threshold in force on the launch date remains applicable, not the one in force at evaluation or award.',
+  },
+  {
+    q: 'How do I check the correct value on the date of a procedure?',
+    a: 'Check the values in the ANAP notice in force on the date the procedure is launched. A published table, however recent, remains a secondary source: the legal basis is the Commission delegated regulation and the corresponding ANAP notice.',
+  },
+  {
+    q: 'Are values aggregated by CPV code or by need?',
+    a: 'Aggregation follows the need, meaning purchases with identical or similar uses, not the CPV code alone. Two different CPV codes covering the same need are aggregated, and splitting one need into smaller contracts to stay below the threshold constitutes artificial division.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Public procurement value thresholds, 2026',
+  datePublished: '2026-11-19',
+  dateModified: actualizat,
+  inLanguage: 'en',
+  author: { '@type': 'Person', name: 'Roxana Voicu' },
+  publisher: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  mainEntityOfPage: 'https://bid-management.ro/en/resurse/praguri-achizitii-publice',
+};
+---
+
+<Layout
+  title="Romanian procurement thresholds 2026"
+  description="All value thresholds applicable in Romania in 2026, in RON excluding VAT: direct purchase, simplified procedure, OJEU publication, with previous values and legal basis."
+  schema={[articleSchema, faqSchema]}
+  noSuffix
+>
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent-light transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent-light transition-colors">Resources</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Thresholds 2026</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent-light/15 text-accent-light text-xs font-medium rounded-full">Reference</span>
+        <span class="text-gray-400 text-sm">Updated 19 November 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-5">
+        Value thresholds in <span class="text-accent-light">Romanian public procurement, 2026</span>
+      </h1>
+      <p class="text-lg text-gray-300 max-w-3xl leading-relaxed">
+        All values in RON excluding VAT, with the previous values alongside, so you can see what
+        changed. For contracting authorities and economic operators.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-14 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="overflow-x-auto rounded-2xl border border-gray-200">
+        <table class="w-full text-sm">
+          <caption class="sr-only">Value thresholds applicable in 2026, Law no. 98/2016</caption>
+          <thead class="bg-surface">
+            <tr>
+              <th scope="col" class="text-left font-semibold text-navy px-5 py-3">Category — Law no. 98/2016</th>
+              <th scope="col" class="text-left font-semibold text-navy px-5 py-3 whitespace-nowrap">2026 threshold, RON excl. VAT</th>
+              <th scope="col" class="text-left font-semibold text-text-light px-5 py-3 whitespace-nowrap">Previous value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {praguri.map((p, i) => (
+              <tr class={i % 2 ? 'bg-surface/40' : ''}>
+                <th scope="row" class="text-left font-normal text-text px-5 py-3 align-top">{p.cat}</th>
+                <td class="px-5 py-3 font-semibold text-navy tabular-nums align-top">{p.prag}</td>
+                <td class="px-5 py-3 text-text-light tabular-nums align-top">{p.ant}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 rounded-xl bg-pivot/10 border border-pivot/30 p-5">
+        <p class="text-sm text-text leading-relaxed m-0">
+          <strong class="text-navy">Check the values against the ANAP notice in force on the date of the procedure.</strong>
+          The table here is a secondary source. The legal basis is the Commission regulations and the
+          ANAP notice corresponding to the date you launch the procedure.
+        </p>
+      </div>
+
+      <div class="prose prose-slate prose-lg max-w-none mt-12
+        prose-headings:font-heading prose-headings:text-navy
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-2
+        prose-p:text-text prose-li:text-text prose-strong:text-navy
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+
+        <h2>Where these values come from</h2>
+        <p>
+          The OJEU publication thresholds were updated by Commission Delegated Regulation (EU) 2025/2152
+          and the related regulations, published in the Official Journal of the EU on 23 October 2025.
+          They apply to procedures launched after 1 January 2026, and ANAP adopted them by notice.
+        </p>
+        <p>
+          The direct purchase threshold does not follow this mechanism. It does not derive from the
+          European directives and remains the one set by Law no. 208/2022, applicable since
+          10 September 2022.
+        </p>
+
+        <h2>The threshold is not checked against the invoice, but against the need</h2>
+        <p>
+          The mistake that appears most often at audit is not misreading the table, but measuring
+          against the wrong thing. Aggregation follows purchases with identical or similar uses, not
+          the CPV code and not the invoice. Two different CPV codes covering the same need add up, and
+          a need split into smaller orders to stay below the threshold is artificial division, however
+          small each individual order is.
+        </p>
+
+        <h2>Frequently asked questions</h2>
+        {intrebari.map((i) => (
+          <div>
+            <h3>{i.q}</h3>
+            <p>{i.a}</p>
+          </div>
+        ))}
+
+        <h2>Legal basis</h2>
+        <ul>
+          <li>Law no. 98/2016 — art. 7, 11, 20</li>
+          <li>Commission Delegated Regulation (EU) 2025/2152 and related regulations, OJ EU, 23 October 2025</li>
+          <li>Law no. 208/2022, for the direct purchase threshold</li>
+          <li>ANAP notices on applicable thresholds</li>
+        </ul>
+
+        <p class="text-sm text-text-light">
+          Informational material, reflecting legislation and practice as at 19 November 2026. It does
+          not constitute legal advice. Before relying on a provision in a decision, check the
+          consolidated text in the Official Gazette.
+        </p>
+      </div>
+    </div>
+  </article>
+</Layout>

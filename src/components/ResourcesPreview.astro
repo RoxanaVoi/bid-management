@@ -3,8 +3,6 @@ import { getLocaleFromUrl, t, getLocalizedPath } from '../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
 
-// Cele trei materiale de referință există deocamdată doar în română; pe
-// versiunea engleză rămân articolele care au traducere.
 const articles = locale === 'ro'
   ? [
       { title: 'De la referatul de necesitate la planul aprobat', category: 'Webinar', date: '19 Noi 2026', slug: 'webinar-paap-2027' },
@@ -12,9 +10,9 @@ const articles = locale === 'ro'
       { title: 'Zece întrebări înainte de a aproba PAAP 2027', category: 'Referință', date: '19 Noi 2026', slug: 'checklist-aprobare-paap-2027' },
     ]
   : [
-      { title: 'Nobody answers for what the state buys. Everybody answers for how.', category: 'Analysis', date: '28 Jul 2026', slug: 'paradigma-controlului-achizitii-publice' },
-      { title: 'Weekly Review July 13: EU Directives, eForms SDK 2.0', category: 'News', date: '13 Jul 2026', slug: 'noutati-13-iulie-2026' },
-      { title: 'April 2026 Updates: EU Directives, ALOP, thresholds', category: 'News', date: '10 Apr 2026', slug: 'noutati-aprilie-2026' },
+      { title: 'Romanian procurement thresholds, 2026', category: 'Reference', date: '19 Nov 2026', slug: 'praguri-achizitii-publice' },
+      { title: 'Ten checks before approving the 2027 plan', category: 'Reference', date: '19 Nov 2026', slug: 'checklist-aprobare-paap-2027' },
+      { title: 'Needs memo: what it must contain', category: 'Reference', date: '19 Nov 2026', slug: 'referat-de-necesitate-campuri-minime' },
     ];
 ---
 

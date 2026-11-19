@@ -33,7 +33,7 @@ const features = ['feature1', 'feature2', 'feature3', 'feature4', 'feature5'];
         </ul>
 
         <a
-          href={getLocalizedPath(locale, locale === 'ro' ? '/epaap' : '/solutii/autoritati')}
+          href={getLocalizedPath(locale, '/epaap')}
           class="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25"
         >
           {t(locale, 'epaap.cta')}

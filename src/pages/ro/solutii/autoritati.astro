@@ -171,19 +171,112 @@ const serviceSchema = {
           </div>
         ))}
       </div>
-      {isRo && (
-        <div class="mt-10 flex flex-wrap gap-3">
-          <a href={getLocalizedPath(locale, '/resurse/checklist-aprobare-paap-2027')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-surface border border-gray-200 hover:border-accent rounded-xl text-navy font-medium text-sm transition-colors no-underline">
-            {isRo ? 'Checklistul înainte de aprobarea PAAP' : 'The checklist before approving the plan'}
-          </a>
-          <a href={getLocalizedPath(locale, '/resurse/referat-de-necesitate-campuri-minime')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-surface border border-gray-200 hover:border-accent rounded-xl text-navy font-medium text-sm transition-colors no-underline">
-            {isRo ? 'Câmpurile referatului de necesitate' : 'The fields of a needs memo'}
-          </a>
-          <a href={getLocalizedPath(locale, '/resurse/praguri-achizitii-publice')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-surface border border-gray-200 hover:border-accent rounded-xl text-navy font-medium text-sm transition-colors no-underline">
-            {isRo ? 'Pragurile valorice în 2026' : 'Value thresholds for 2026'}
-          </a>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={getLocalizedPath(locale, '/resurse/checklist-aprobare-paap-2027')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-surface border border-gray-200 hover:border-accent rounded-xl text-navy font-medium text-sm transition-colors no-underline">
+          {isRo ? 'Checklistul înainte de aprobarea PAAP' : 'The checklist before approving the plan'}
+        </a>
+        <a href={getLocalizedPath(locale, '/resurse/referat-de-necesitate-campuri-minime')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-surface border border-gray-200 hover:border-accent rounded-xl text-navy font-medium text-sm transition-colors no-underline">
+          {isRo ? 'Câmpurile referatului de necesitate' : 'The fields of a needs memo'}
+        </a>
+        <a href={getLocalizedPath(locale, '/resurse/praguri-achizitii-publice')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-surface border border-gray-200 hover:border-accent rounded-xl text-navy font-medium text-sm transition-colors no-underline">
+          {isRo ? 'Pragurile valorice în 2026' : 'Value thresholds for 2026'}
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== ADOPȚIE ȘI GUVERNANȚĂ AI ===== -->
+  <section id="guvernanta-ai" class="py-24 bg-navy text-white scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-light/15 border border-accent-light/30 rounded-full mb-6">
+        <span class="text-accent-light text-sm font-medium">
+          {isRo ? 'Direcție nouă' : 'New area'}
+        </span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">
+        {isRo ? 'Adopție și guvernanță AI în instituții publice' : 'AI adoption and governance in public institutions'}
+      </h2>
+      <p class="text-gray-300 text-lg leading-relaxed mb-12 max-w-3xl">
+        {isRo
+          ? 'O autoritate contractantă întâlnește inteligența artificială pe două căi diferite: o cumpără prin proceduri și o folosește intern. Fiecare vine cu obligații proprii, iar cele două se tratează separat.'
+          : 'A contracting authority meets artificial intelligence in two different ways: it buys it through procurement, and it uses it internally. Each carries its own obligations.'}
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="border border-white/15 rounded-2xl p-7">
+          <h3 class="text-xl font-heading font-bold mb-3">
+            {isRo ? 'Când cumpărați AI' : 'When you buy AI'}
+          </h3>
+          <p class="text-gray-300 leading-relaxed mb-5">
+            {isRo
+              ? 'Transparența nu vine din oficiu cu produsul. Dacă obligația nu e scrisă în caietul de sarcini, nu apare la recepție și nu se poate cere ulterior fără act adițional.'
+              : 'Transparency does not come with the product by default. If the obligation is not written into the specifications, it will not appear at acceptance.'}
+          </p>
+          <ul class="space-y-2.5 text-sm text-gray-300 mb-6">
+            {(isRo
+              ? ['Cerințe verificabile în caietul de sarcini, nu formulări generale',
+                 'Încadrarea sistemului: utilizare generală, risc ridicat sau interacțiune cu publicul',
+                 'Criterii de atribuire care pot fi probate la evaluare',
+                 'Ce se recepționează efectiv: documentație, jurnale, posibilitatea de audit']
+              : ['Verifiable requirements in the specifications, not general wording',
+                 'Classifying the system: general purpose, high risk, or public-facing',
+                 'Award criteria that can be evidenced at evaluation',
+                 'What is actually accepted: documentation, logs, auditability']
+            ).map((x) => (
+              <li class="flex gap-3">
+                <span class="text-accent-light mt-1.5 shrink-0">—</span>
+                <span>{x}</span>
+              </li>
+            ))}
+          </ul>
+          {isRo && (
+            <a href={getLocalizedPath(locale, '/resurse/transparenta-ai-caiet-sarcini-articol-50')} class="text-accent-light text-sm font-medium hover:underline">
+              Analiza pe articolul 50 din AI Act →
+            </a>
+          )}
         </div>
-      )}
+
+        <div class="border border-white/15 rounded-2xl p-7">
+          <h3 class="text-xl font-heading font-bold mb-3">
+            {isRo ? 'Când folosiți AI intern' : 'When you use AI internally'}
+          </h3>
+          <p class="text-gray-300 leading-relaxed mb-5">
+            {isRo
+              ? 'În majoritatea instituțiilor, AI-ul a intrat deja: fără conturi la nivel de instituție, fără instruire, fiecare cu ce unealtă vrea. Primul pas nu e o politică, ci inventarul a ceea ce se folosește deja.'
+              : 'In most institutions AI is already in use: no institution-level accounts, no training, everyone with whatever tool they like. The first step is an inventory of what is already running.'}
+          </p>
+          <ul class="space-y-2.5 text-sm text-gray-300 mb-6">
+            {(isRo
+              ? ['Inventarul sistemelor folosite, pe compartimente',
+                 'Încadrarea fiecăruia și ce obligații atrage',
+                 'Reguli interne pe documente de lucru și date cu caracter personal',
+                 'Instruirea oamenilor care le folosesc zi de zi']
+              : ['An inventory of the systems in use, by department',
+                 'Classifying each one and the obligations it triggers',
+                 'Internal rules for working documents and personal data',
+                 'Training the people who use them daily']
+            ).map((x) => (
+              <li class="flex gap-3">
+                <span class="text-accent-light mt-1.5 shrink-0">—</span>
+                <span>{x}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <p class="text-sm text-gray-400 mt-8 max-w-3xl leading-relaxed">
+        {isRo
+          ? 'Lucrăm pe cadrul ISO/IEC 42001 pentru managementul sistemelor de inteligență artificială și pe obligațiile din Regulamentul european privind IA. Pe partea juridică ne oprim la analiză documentară: nu oferim reprezentare și nu ținem loc de aviz juridic.'
+          : 'We work with the ISO/IEC 42001 framework for AI management systems and with the obligations of the EU AI Act. On the legal side we stop at documentary analysis: we do not provide representation.'}
+      </p>
+
+      <div class="mt-8">
+        <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center gap-2 px-6 py-3 bg-accent-light hover:bg-mint text-navy font-semibold rounded-xl transition-colors no-underline">
+          {isRo ? 'Discutați situația instituției' : 'Discuss your situation'}
+        </a>
+      </div>
     </div>
   </section>
 

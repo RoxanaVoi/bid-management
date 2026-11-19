@@ -1,0 +1,149 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const intrebari = [
+  'Does every line in the plan have an identifiable needs memo, with number, date and issuing department?',
+  'For every line, is the method used to determine the estimated value written down?',
+  'Have purchases with identical or similar uses, contracts in progress and relevant 2026 history been identified, and was the 2027 estimated value determined by the applicable legal method?',
+  'Is there an inventory of contracts and framework agreements in progress, with remaining value and expiry date?',
+  'Which needs are approaching the direct purchase threshold and become procedures in 2027?',
+  'Does every line contain all nine minimum pieces of information, including the unique identification code?',
+  'Is the funding source indicated for every line, including those still to be identified?',
+  'Is the priority level set, so that cuts at budget revision are decided against a criterion?',
+  'Do externally funded projects have separate programmes, and is the plan drawn up on the standard form from Order 281/2016?',
+  'Does the circuit respect the nature of the acts — at hospitals, the board of directors’ opinion on the plan and on direct purchases above RON 50,000, before approval?',
+];
+
+const faq = [
+  {
+    q: 'When must the annual plan be approved for the following year?',
+    a: 'The annual plan is drawn up in the last quarter of the preceding year, on the basis of the draft budget, and is approved together with the budget. Waiting for the final budget before starting loses the months in which procedures could already have been prepared.',
+  },
+  {
+    q: 'What minimum information must each line in the plan contain?',
+    a: 'Each line carries nine minimum items, among them the object of the purchase, the CPV code, the estimated value, the funding source, the chosen procedure, the estimated initiation and award dates, and the unique identification code of the line. A missing unique code is one of the frequent audit findings.',
+  },
+  {
+    q: 'Is the standard form mandatory for the annual plan?',
+    a: 'Yes. The standard form is prescribed by ANAP Order no. 281/2016, published in Official Gazette no. 487 of 30 June 2016. It is not optional, and an in-house table that lacks the form’s columns does not replace it.',
+  },
+  {
+    q: 'What happens if the plan changes during the year?',
+    a: 'The plan is updated whenever changes occur, and updating is not merely permitted but required. What an audit checks is not that it changed, but whether each change has a documented cause and whether the version history can be reconstructed.',
+  },
+  {
+    q: 'Why does the priority level of each line matter?',
+    a: 'At budget revision, the lines postponed or dropped must be chosen against a criterion set beforehand, not against what is convenient at the time. The priority level is the criterion that makes the decision defensible.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Ten checks before approving the 2027 annual procurement plan',
+  datePublished: '2026-11-19',
+  dateModified: '2026-11-19',
+  inLanguage: 'en',
+  author: { '@type': 'Person', name: 'Roxana Voicu' },
+  publisher: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  mainEntityOfPage: 'https://bid-management.ro/en/resurse/checklist-aprobare-paap-2027',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Layout
+  title="Checklist: ten checks before approving the 2027 plan"
+  description="Ten questions to verify before approving the annual procurement plan: identifiable memo, estimation method, aggregation, funding sources, priority level."
+  schema={[articleSchema, faqSchema]}
+  noSuffix
+>
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent-light transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent-light transition-colors">Resources</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">2027 plan checklist</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent-light/15 text-accent-light text-xs font-medium rounded-full">Reference</span>
+        <span class="text-gray-400 text-sm">19 November 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-5">
+        Ten checks before approving the <span class="text-accent-light">2027 plan</span>
+      </h1>
+      <p class="text-lg text-gray-300 max-w-3xl leading-relaxed">
+        If every answer is documented, the plan holds up at audit. If not, you know exactly where the
+        work is, while there is still time.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-14 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ol class="list-none p-0 m-0 space-y-3">
+        {intrebari.map((q, i) => (
+          <li class="flex gap-4 bg-surface border border-gray-200 rounded-xl p-5">
+            <span class="shrink-0 w-8 h-8 rounded-lg bg-accent text-white font-bold text-sm flex items-center justify-center tabular-nums">{i + 1}</span>
+            <span class="text-text leading-relaxed pt-1">{q}</span>
+          </li>
+        ))}
+      </ol>
+
+      <div class="prose prose-slate prose-lg max-w-none mt-12
+        prose-headings:font-heading prose-headings:text-navy
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-2
+        prose-p:text-text prose-li:text-text prose-strong:text-navy
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+
+        <h2>Why these ten</h2>
+        <p>
+          They are the questions an audit asks, asked beforehand. An audit does not check whether the
+          plan looks good; it checks whether every figure in it can be justified: which need it rests
+          on, who determined it, by what method, and what else was bought for the same need during the
+          year now ending.
+        </p>
+        <p>
+          The tenth applies only to hospitals, but it is often missed: the board of directors’ opinion
+          is required by art. 187(10)(d) of Law no. 95/2006, both on the plan and on direct purchases
+          above RON 50,000, and it must precede approval.
+        </p>
+
+        <h2>Frequently asked questions</h2>
+        {faq.map((i) => (
+          <div>
+            <h3>{i.q}</h3>
+            <p>{i.a}</p>
+          </div>
+        ))}
+
+        <h2>Legal basis</h2>
+        <ul>
+          <li>Government Decision no. 395/2016 — art. 2, 3, 11–14, 16–17</li>
+          <li>Law no. 98/2016 — art. 7, 11 and 20</li>
+          <li>ANAP Order no. 281/2016 — standard forms, Official Gazette no. 487/30.06.2016</li>
+          <li>Law no. 95/2006 — art. 187(10)(d), for hospitals</li>
+        </ul>
+
+        <p class="text-sm text-text-light">
+          Informational material, reflecting legislation and practice as at 19 November 2026. It does
+          not constitute legal advice.
+        </p>
+      </div>
+    </div>
+  </article>
+</Layout>

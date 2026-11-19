@@ -19,15 +19,22 @@ interface Props {
 
 const {
   title,
-  description = 'Consultanță specializată în achiziții publice pentru autorități și companii. ePAAP — platformă digitală pentru PAAP și referate.',
+  description,
   ogImage,
   schema = [],
   noSuffix = false,
 } = Astro.props;
 const site = Astro.site ?? new URL('https://bid-management.ro');
+// Descrierea implicită urmează limba paginii; până acum paginile EN
+// moșteneau una în română.
+const DESCRIERE_IMPLICITA: Record<string, string> = {
+  ro: 'Consultanță specializată în achiziții publice pentru autorități contractante și operatori economici. ePAAP — platformă pentru PAAP și referate de necesitate.',
+  en: 'Public procurement consulting for Romanian contracting authorities and economic operators. ePAAP — a platform for the annual plan and needs memos.',
+};
 // Social platforms require an absolute URL; a relative path is silently dropped.
 const ogImageUrl = new URL(ogImage ?? '/images/og-default-2026.png', site).href;
 const locale = getLocaleFromUrl(Astro.url);
+const descriere = description ?? DESCRIERE_IMPLICITA[locale] ?? DESCRIERE_IMPLICITA.ro;
 const altLocale = getAlternateLocale(locale);
 const currentPath = Astro.url.pathname.replace(`/${locale}`, '') || '/';
 const altPath = getLocalizedPath(altLocale, currentPath);
@@ -97,7 +104,7 @@ const breadcrumb = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
+    <meta name="description" content={descriere} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Bing Webmaster verification -->
@@ -105,7 +112,7 @@ const breadcrumb = {
 
     <!-- Open Graph -->
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={descriere} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:locale" content={locale === 'ro' ? 'ro_RO' : 'en_US'} />
@@ -117,7 +124,7 @@ const breadcrumb = {
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={descriere} />
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Alternate languages -->
