@@ -287,19 +287,24 @@ const description =
     // ── Poarta de e-mail pentru demonstrație ────────────────────────────
     var KEY = 'epaap-demo-unlocked';
 
-    function randerPlayer(embedUrl) {
+    function renderPlayer(embedUrl) {
       var gate = document.getElementById('demo');
       if (!gate) return;
-      gate.innerHTML =
-        '<iframe src="' + embedUrl + '" loading="lazy" allowfullscreen ' +
-        'allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" ' +
-        'title="Demonstrația aplicației ePAAP" class="absolute inset-0 w-full h-full border-0"></iframe>';
+      // Film servit de pe site: element video nativ. Adresă de embed
+      // (Stream, Vimeo, YouTube): iframe.
+      gate.innerHTML = /\.mp4($|\?)/.test(embedUrl)
+        ? '<video src="' + embedUrl + '" controls preload="metadata" playsinline ' +
+          'poster="/resurse/webinar-paap-2027/poster-demo-epaap.webp" ' +
+          'class="absolute inset-0 w-full h-full"></video>'
+        : '<iframe src="' + embedUrl + '" loading="lazy" allowfullscreen ' +
+          'allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" ' +
+          'title="Demonstrația aplicației ePAAP" class="absolute inset-0 w-full h-full border-0"></iframe>';
       gate.classList.add('bg-black');
     }
 
     var saved = null;
     try { saved = localStorage.getItem(KEY); } catch (err) {}
-    if (saved) randerPlayer(saved);
+    if (saved) renderPlayer(saved);
 
     var form = document.getElementById('wpGateForm');
     if (form) form.addEventListener('submit', function (e) {
@@ -324,7 +329,7 @@ const description =
         .then(function (d) {
           if (!d || !d.embedUrl) throw new Error('fără adresă');
           try { localStorage.setItem(KEY, d.embedUrl); } catch (err) {}
-          randerPlayer(d.embedUrl);
+          renderPlayer(d.embedUrl);
         })
         .catch(function () {
           status.textContent =

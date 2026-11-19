@@ -33,6 +33,10 @@ interface Env {
 
 const CORP_FREE = /^(gmail|yahoo|hotmail|outlook|icloud|proton(mail)?)\./i;
 
+/** Filmul livrat de site. Numele are sufix aleatoriu ca adresa să nu fie
+ *  ghicită: cine nu trece prin formular nu o primește. */
+const LOCAL_VIDEO = "/resurse/webinar-paap-2027/epaap-demo-9408eb963c33.mp4";
+
 const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), {
     status,
@@ -103,8 +107,11 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const { CF_ACCOUNT_ID, CF_STREAM_TOKEN, CF_STREAM_VIDEO_UID, CF_STREAM_CUSTOMER } =
     env;
 
+  // Varianta implicită: filmul stă chiar lângă pagină, cu un nume care nu se
+  // ghicește. 19,3 MB, sub limita de 25 MiB a Pages, iar traficul pe fișiere
+  // statice nu se taxează. Nu cere abonament, token sau legare.
   if (!CF_ACCOUNT_ID || !CF_STREAM_TOKEN || !CF_STREAM_VIDEO_UID || !CF_STREAM_CUSTOMER) {
-    return json({ error: "playback neconfigurat" }, 500);
+    return json({ embedUrl: LOCAL_VIDEO });
   }
 
   const r = await fetch(
@@ -125,7 +132,10 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const data = (await r.json()) as { success?: boolean; result?: { token?: string } };
   const token = data?.result?.token;
   if (!r.ok || !token) {
-    return json({ error: "nu s-a putut genera accesul" }, 502);
+    // Stream e configurat dar a refuzat. Nu lăsăm vizitatorul cu o eroare
+    // după ce și-a dat adresa: servim filmul local și semnalăm în jurnale.
+    console.log('Stream a refuzat tokenul, revenim la filmul local:', r.status);
+    return json({ embedUrl: LOCAL_VIDEO });
   }
 
   return json({
