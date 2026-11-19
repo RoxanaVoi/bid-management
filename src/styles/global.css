@@ -58,19 +58,30 @@
 }
 
 @theme {
-  --color-navy: #1C1015;
-  --color-navy-light: #2A1820;
-  --color-navy-800: #241018;
-  --color-accent: #7B2332;
-  --color-accent-light: #A03448;
-  --color-accent-dark: #5A1A28;
-  --color-surface: #FAF7F7;
-  --color-surface-dark: #F5F0F1;
+  /* Paleta Equalys — derivată din logo (equalys-final-color.svg).
+     accent      #08777F  teal închis, capătul de sus al gradientului din badge.
+                          Contrast 5.31:1 pe alb — se poate folosi ca text.
+     accent-light#08C9AA  teal aprins, capătul de jos al gradientului.
+                          2.11:1 pe alb (NU ca text pe fundal deschis),
+                          8.45:1 pe navy — pentru accente pe fundal închis.
+     pivot       #F2A516  romb-ul chihlimbariu din badge, accent secundar. */
+  --color-navy: #0F172A;
+  --color-navy-light: #1E293B;
+  --color-navy-800: #16213A;
+  --color-accent: #08777F;
+  --color-accent-light: #08C9AA;
+  --color-accent-dark: #055C62;
+  --color-mint: #6FE0C9;
+  --color-mint-light: #BDEEE3;
+  --color-pivot: #F2A516;
+  --color-pivot-light: #FFC94D;
+  --color-surface: #F4FAF9;
+  --color-surface-dark: #E8F4F1;
   --color-success: #10B981;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
   --color-text: #334155;
-  --color-text-light: #64748B;
+  --color-text-light: #5B7280;
   --color-text-dark: #0F172A;
 
   --font-heading: "Space Grotesk", system-ui, sans-serif;
@@ -165,7 +176,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-dark {
-  background: rgba(28, 16, 21, 0.8);
+  background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
