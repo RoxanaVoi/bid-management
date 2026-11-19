@@ -1,0 +1,203 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const campuri = [
+  {
+    nume: 'Identificare',
+    text: 'Compartimentul emitent, numărul și data de înregistrare, persoana care întocmește și cea care aprobă.',
+    temei: null,
+  },
+  {
+    nume: 'Necesitatea',
+    text: 'Descrierea necesității obiective și motivul pentru care apare acum — nu denumirea produsului, ci nevoia.',
+    temei: null,
+  },
+  {
+    nume: 'Cantități și preț',
+    text: 'Cantitatea, prețul unitar și prețul total estimat, fără TVA.',
+    temei: 'HG 395/2016, art. 3 alin. (1)',
+  },
+  {
+    nume: 'Metoda de determinare a valorii',
+    text: 'Preț unitar sau total actualizat, în urma unei cercetări a pieței sau pe bază istorică — cu sursa și data.',
+    temei: 'HG 395/2016, art. 2 alin. (5) lit. c)',
+  },
+  {
+    nume: 'Istoricul și cumulul',
+    text: 'Ce s-a achiziționat pe utilizări identice sau similare în anul bugetar și cum influențează valoarea estimată.',
+    temei: 'HG 395/2016, art. 17 alin. (2); Legea 98/2016, art. 20',
+  },
+  {
+    nume: 'Specificații tehnice',
+    text: 'Cerințele de care dispune compartimentul solicitant, transmise odată cu referatul.',
+    temei: 'HG 395/2016, art. 2 alin. (5)',
+  },
+  {
+    nume: 'Încadrarea temporală',
+    text: 'Data până la care necesitatea trebuie acoperită și, dacă înlocuiește un contract, data expirării lui.',
+    temei: null,
+  },
+  {
+    nume: 'Sursa de finanțare propusă',
+    text: 'Fondurile alocate destinației și poziția lor bugetară.',
+    temei: 'HG 395/2016, art. 2 alin. (5) lit. d)',
+  },
+  {
+    nume: 'Prioritatea',
+    text: 'Gradul de prioritate, folosit la forma inițială și la rectificări.',
+    temei: 'HG 395/2016, art. 12 alin. (3) lit. b)',
+  },
+];
+
+const faq = [
+  {
+    q: 'Ce este referatul de necesitate?',
+    a: 'Referatul de necesitate este documentul intern prin care un compartiment al autorității contractante își fundamentează nevoia de a achiziționa ceva: descrie necesitatea obiectivă, cantitățile, valoarea estimată și metoda prin care a fost determinată. Este punctul de pornire al fiecărei poziții din programul anual al achizițiilor publice.',
+  },
+  {
+    q: 'Cine întocmește referatul de necesitate?',
+    a: 'Îl întocmește compartimentul care are nevoia, nu compartimentul de achiziții. Compartimentul solicitant este cel care cunoaște necesitatea obiectivă și deține specificațiile tehnice, iar compartimentul de achiziții le preia și alege procedura.',
+  },
+  {
+    q: 'Este obligatoriu un model standard de referat?',
+    a: 'Legislația nu impune un formular tipizat, dar impune conținutul: elementele din HG nr. 395/2016 trebuie să se regăsească. Un referat care nu arată metoda de determinare a valorii sau istoricul achizițiilor similare este incomplet, oricât de îngrijit ar fi formatat.',
+  },
+  {
+    q: 'De ce trebuie scrisă metoda de determinare a valorii estimate?',
+    a: 'Pentru că la control se verifică nu doar cifra, ci cum s-a ajuns la ea. O valoare estimată fără sursă și fără dată nu poate fi apărată, iar dacă procedura aleasă depinde de acea valoare, alegerea procedurii devine și ea discutabilă.',
+  },
+  {
+    q: 'Ce legătură are referatul cu pragul achiziției directe?',
+    a: 'Referatul este locul unde se consemnează ce s-a mai cumpărat pe aceeași necesitate în anul bugetar. Cumulul se face pe utilizări identice sau similare, nu pe codul CPV, iar dacă istoricul nu apare în referat, depășirea pragului se descoperă abia la control.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Câmpurile minime ale unui referat de necesitate apărabil',
+  datePublished: '2026-11-19',
+  dateModified: '2026-11-19',
+  inLanguage: 'ro-RO',
+  author: { '@type': 'Person', name: 'Roxana Voicu' },
+  publisher: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  mainEntityOfPage: 'https://bid-management.ro/ro/resurse/referat-de-necesitate-campuri-minime',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Layout
+  title="Referat de necesitate: ce trebuie să conțină"
+  description="Câmpurile minime ale unui referat de necesitate care rezistă la control, cu temeiul legal al fiecăruia: necesitate, cantități, metoda de estimare, istoric, finanțare."
+  schema={[articleSchema, faqSchema]} noSuffix>
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent-light transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent-light transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Referatul de necesitate</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent-light/15 text-accent-light text-xs font-medium rounded-full">Referință</span>
+        <span class="text-gray-400 text-sm">19 noiembrie 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-5">
+        Câmpurile unui <span class="text-accent-light">referat de necesitate apărabil</span>
+      </h1>
+      <p class="text-lg text-gray-300 max-w-3xl leading-relaxed">
+        Nouă câmpuri, fiecare cu temeiul lui. Dacă toate sunt completate, poziția din plan are pe ce
+        sta atunci când e verificată.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-14 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-3">
+        {campuri.map((c, i) => (
+          <div class="border border-gray-200 rounded-xl p-5 hover:border-accent/40 transition-colors">
+            <div class="flex items-baseline gap-3 mb-2">
+              <span class="text-accent font-bold text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+              <h2 class="text-lg font-heading font-semibold text-navy m-0">{c.nume}</h2>
+            </div>
+            <p class="text-text leading-relaxed m-0 pl-8">{c.text}</p>
+            {c.temei && (
+              <p class="text-xs text-text-light mt-2 pl-8 m-0">
+                <span class="font-medium text-accent">Temei:</span> {c.temei}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="prose prose-slate prose-lg max-w-none mt-12
+        prose-headings:font-heading prose-headings:text-navy
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-2
+        prose-p:text-text prose-li:text-text prose-strong:text-navy
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+
+        <h2>Câmpul care lipsește cel mai des</h2>
+        <p>
+          Din cele nouă, cel care lipsește cel mai des este istoricul. Un referat care spune ce vrea să
+          cumpere, dar nu spune ce s-a mai cumpărat pe aceeași necesitate în anul bugetar, lasă cumulul
+          nedocumentat. Iar cumulul se face pe utilizări identice sau similare, nu pe codul CPV: două
+          coduri diferite care acoperă aceeași nevoie se adună.
+        </p>
+        <p>
+          Al doilea cel mai des omis este metoda de determinare a valorii. O cifră fără sursă și fără dată
+          nu se poate apăra, iar dacă de acea cifră a depins alegerea procedurii, se discută și procedura.
+        </p>
+
+        <h2>Întrebări frecvente</h2>
+        {faq.map((i) => (
+          <div>
+            <h3>{i.q}</h3>
+            <p>{i.a}</p>
+          </div>
+        ))}
+
+        <h2>Temei legal</h2>
+        <ul>
+          <li>HG nr. 395/2016 — art. 2 alin. (5), art. 3 alin. (1), art. 12 alin. (3) lit. b), art. 17 alin. (2)</li>
+          <li>Legea nr. 98/2016 — art. 7, 11, 20</li>
+        </ul>
+
+        <p class="text-sm text-text-light">
+          Material informativ, reflectând legislația și practica la 19 noiembrie 2026. Nu constituie
+          consultanță juridică.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12 bg-surface">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-xl font-heading font-bold text-navy mb-5">Continuați cu</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <a href={getLocalizedPath(locale, '/resurse/webinar-paap-2027')} class="block bg-white border border-gray-200 rounded-xl p-5 hover:border-accent transition-colors no-underline">
+          <strong class="block text-navy font-semibold mb-1">De la referat la planul aprobat</strong>
+          <span class="text-text-light text-sm">Materialul complet al webinarului, cu demonstrația ePAAP.</span>
+        </a>
+        <a href={getLocalizedPath(locale, '/resurse/checklist-aprobare-paap-2027')} class="block bg-white border border-gray-200 rounded-xl p-5 hover:border-accent transition-colors no-underline">
+          <strong class="block text-navy font-semibold mb-1">Checklist înainte de aprobarea PAAP 2027</strong>
+          <span class="text-text-light text-sm">Zece verificări, cu temeiurile aferente.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

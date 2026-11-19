@@ -1,0 +1,195 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const actualizat = '2026-11-19';
+
+const praguri = [
+  { cat: 'Lucrări — publicare obligatorie în JOUE', prag: '26.960.556', ant: '27.334.460' },
+  { cat: 'Produse și servicii — autorități guvernamentale centrale', prag: '698.460', ant: '705.819' },
+  { cat: 'Produse și servicii — autorități regionale și locale', prag: '1.077.624', ant: '1.090.812' },
+  { cat: 'Servicii sociale și alte servicii specifice', prag: '3.741.750', ant: '3.701.850' },
+  { cat: 'Loturi — procedură simplificată sau achiziție directă', prag: '399.120 produse și servicii · 4.989.000 lucrări', ant: '394.864 · 4.935.800' },
+  { cat: 'Achiziție directă — art. 7 alin. (5), neschimbat', prag: '270.120 produse și servicii · 900.400 lucrări', ant: 'din 10.09.2022' },
+];
+
+const intrebari = [
+  {
+    q: 'Care este pragul achiziției directe în 2026?',
+    a: 'Pragul achiziției directe este de 270.120 lei fără TVA pentru produse și servicii și 900.400 lei fără TVA pentru lucrări. Spre deosebire de pragurile de publicare în JOUE, acesta nu derivă din directivele europene și a rămas cel stabilit prin Legea nr. 208/2022, în vigoare din 10 septembrie 2022.',
+  },
+  {
+    q: 'De ce au scăzut unele praguri față de valorile anterioare?',
+    a: 'Pragurile de publicare în Jurnalul Oficial al Uniunii Europene se exprimă în euro și se convertesc în lei la o rată stabilită periodic de Comisie. Când cursul folosit la recalculare diferă, valoarea în lei poate scădea chiar dacă pragul în euro rămâne același.',
+  },
+  {
+    q: 'De la ce dată se aplică pragurile din 2026?',
+    a: 'Pragurile actualizate se aplică procedurilor lansate după 1 ianuarie 2026. Pentru o procedură deja lansată rămâne aplicabil pragul în vigoare la data lansării, nu cel de la data evaluării sau a atribuirii.',
+  },
+  {
+    q: 'Cum se verifică valoarea corectă la data unei proceduri?',
+    a: 'Valorile se verifică în notificarea ANAP aflată în vigoare la data la care se lansează procedura. Un tabel publicat, oricât de recent, rămâne o sursă secundară: temeiul este regulamentul delegat al Comisiei și notificarea ANAP corespunzătoare.',
+  },
+  {
+    q: 'Se cumulează valorile pe coduri CPV sau pe necesitate?',
+    a: 'Cumulul se face pe necesitate, adică pe achiziții cu utilizări identice sau similare, nu doar pe codul CPV. Două coduri CPV diferite care acoperă aceeași necesitate se cumulează, iar împărțirea unei necesități în contracte mai mici pentru a rămâne sub prag constituie divizare.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Pragurile valorice în achizițiile publice, 2026',
+  datePublished: '2026-11-19',
+  dateModified: actualizat,
+  inLanguage: 'ro-RO',
+  author: { '@type': 'Person', name: 'Roxana Voicu' },
+  publisher: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  mainEntityOfPage: 'https://bid-management.ro/ro/resurse/praguri-achizitii-publice',
+  about: 'Praguri valorice Legea nr. 98/2016, achiziție directă, publicare JOUE',
+};
+---
+
+<Layout
+  title="Praguri achiziții publice 2026 — toate valorile"
+  description="Pragurile valorice aplicabile în 2026, în lei fără TVA: achiziție directă, procedură simplificată, publicare în JOUE. Cu valorile anterioare și temeiul legal."
+  schema={[articleSchema, faqSchema]} noSuffix>
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent-light transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent-light transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Praguri 2026</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent-light/15 text-accent-light text-xs font-medium rounded-full">Referință</span>
+        <span class="text-gray-400 text-sm">Actualizat 19 noiembrie 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-5">
+        Pragurile valorice în <span class="text-accent-light">achizițiile publice, 2026</span>
+      </h1>
+      <p class="text-lg text-gray-300 max-w-3xl leading-relaxed">
+        Toate valorile în lei fără TVA, cu valorile anterioare alături, ca să vedeți ce s-a schimbat.
+        Pentru autorități contractante și operatori economici.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-14 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="overflow-x-auto rounded-2xl border border-gray-200">
+        <table class="w-full text-sm">
+          <caption class="sr-only">Praguri valorice aplicabile în 2026, Legea nr. 98/2016</caption>
+          <thead class="bg-surface">
+            <tr>
+              <th scope="col" class="text-left font-semibold text-navy px-5 py-3">Categoria — Legea nr. 98/2016</th>
+              <th scope="col" class="text-left font-semibold text-navy px-5 py-3 whitespace-nowrap">Prag 2026, lei fără TVA</th>
+              <th scope="col" class="text-left font-semibold text-text-light px-5 py-3 whitespace-nowrap">Valoarea anterioară</th>
+            </tr>
+          </thead>
+          <tbody>
+            {praguri.map((p, i) => (
+              <tr class={i % 2 ? 'bg-surface/40' : ''}>
+                <th scope="row" class="text-left font-normal text-text px-5 py-3 align-top">{p.cat}</th>
+                <td class="px-5 py-3 font-semibold text-navy tabular-nums align-top">{p.prag}</td>
+                <td class="px-5 py-3 text-text-light tabular-nums align-top">{p.ant}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 rounded-xl bg-pivot/10 border border-pivot/30 p-5">
+        <p class="text-sm text-text leading-relaxed m-0">
+          <strong class="text-navy">Verificați valorile în notificarea ANAP în vigoare la data procedurii.</strong>
+          Tabelul de aici este o sursă secundară. Temeiul îl dau regulamentele Comisiei și notificarea ANAP
+          corespunzătoare datei la care lansați procedura.
+        </p>
+      </div>
+
+      <div class="prose prose-slate prose-lg max-w-none mt-12
+        prose-headings:font-heading prose-headings:text-navy
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-p:text-text prose-li:text-text prose-strong:text-navy
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+
+        <h2>De unde vin aceste valori</h2>
+        <p>
+          Pragurile de publicare în Jurnalul Oficial al Uniunii Europene au fost actualizate prin
+          Regulamentul delegat (UE) 2025/2152 al Comisiei și prin regulamentele conexe, publicate în
+          Jurnalul Oficial al UE la 23 octombrie 2025. Se aplică procedurilor lansate după 1 ianuarie 2026,
+          iar ANAP le-a preluat prin notificare.
+        </p>
+        <p>
+          Pragul achiziției directe nu urmează acest mecanism. El nu derivă din directivele europene și a
+          rămas cel stabilit prin Legea nr. 208/2022, aplicabil din 10 septembrie 2022.
+        </p>
+
+        <h2>Pragul nu se verifică pe factură, ci pe necesitate</h2>
+        <p>
+          Greșeala care apare cel mai des la control nu este citirea greșită a tabelului, ci raportarea la
+          lucrul greșit. Cumulul se face pe achiziții cu utilizări identice sau similare, nu pe codul CPV și
+          nu pe factură. Două coduri CPV diferite care acoperă aceeași necesitate se adună, iar o necesitate
+          împărțită în comenzi mai mici ca să rămână sub prag este divizare, indiferent cât de mică e fiecare
+          comandă în parte.
+        </p>
+        <p>
+          Am detaliat mecanismul, cu un exercițiu pe un an întreg de achiziții directe repetate, în
+          <a href={getLocalizedPath(locale, '/resurse/webinar-paap-2027')}>materialul webinarului despre
+          referatul de necesitate și PAAP</a>.
+        </p>
+
+        <h2>Întrebări frecvente</h2>
+        {intrebari.map((i) => (
+          <div>
+            <h3 class="text-lg font-heading font-semibold text-navy mt-8 mb-2">{i.q}</h3>
+            <p>{i.a}</p>
+          </div>
+        ))}
+
+        <h2>Temei legal</h2>
+        <ul>
+          <li>Legea nr. 98/2016 — art. 7, 11, 20</li>
+          <li>Regulamentul delegat (UE) 2025/2152 al Comisiei și regulamentele conexe, JO UE, 23 octombrie 2025</li>
+          <li>Legea nr. 208/2022, pentru pragul achiziției directe</li>
+          <li>Notificările ANAP privind pragurile aplicabile</li>
+        </ul>
+
+        <p class="text-sm text-text-light">
+          Material informativ, reflectând legislația și practica la 19 noiembrie 2026. Nu constituie
+          consultanță juridică. Înainte de a invoca un text într-o decizie, verificați forma consolidată
+          din Monitorul Oficial.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12 bg-surface">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-xl font-heading font-bold text-navy mb-5">Continuați cu</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <a href={getLocalizedPath(locale, '/resurse/checklist-aprobare-paap-2027')} class="block bg-white border border-gray-200 rounded-xl p-5 hover:border-accent transition-colors no-underline">
+          <strong class="block text-navy font-semibold mb-1">Zece întrebări înainte de a aproba PAAP 2027</strong>
+          <span class="text-text-light text-sm">Checklistul de verificare, cu temeiurile aferente.</span>
+        </a>
+        <a href={getLocalizedPath(locale, '/resurse/referat-de-necesitate-campuri-minime')} class="block bg-white border border-gray-200 rounded-xl p-5 hover:border-accent transition-colors no-underline">
+          <strong class="block text-navy font-semibold mb-1">Câmpurile unui referat de necesitate apărabil</strong>
+          <span class="text-text-light text-sm">Ce trebuie să conțină, câmp cu câmp, cu temeiul fiecăruia.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

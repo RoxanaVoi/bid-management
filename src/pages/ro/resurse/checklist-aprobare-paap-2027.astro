@@ -1,0 +1,162 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const intrebari = [
+  'Fiecare poziție din plan are un referat identificabil, cu număr, dată și compartiment emitent?',
+  'Pentru fiecare poziție este scrisă metoda prin care s-a determinat valoarea estimată?',
+  'Au fost identificate achizițiile cu utilizări identice sau similare, contractele în derulare și istoricul relevant din 2026, iar valoarea estimată pentru 2027 a fost determinată potrivit metodei legale aplicabile?',
+  'Există inventarul contractelor și acordurilor-cadru în derulare, cu valoarea rămasă și data expirării?',
+  'Ce necesități se apropie de pragul achiziției directe și devin proceduri în 2027?',
+  'Fiecare poziție are completate toate cele nouă informații minime, inclusiv codul unic de identificare?',
+  'Sursa de finanțare este indicată pentru fiecare poziție, inclusiv cele care urmează a fi identificate?',
+  'Gradul de prioritate este stabilit, astfel încât tăierile de la rectificare să fie decise după un criteriu?',
+  'Proiectele cu finanțare nerambursabilă au programe distincte, iar planul e întocmit pe formularul standard din Ordinul 281/2016?',
+  'Circuitul respectă natura actelor — la spitale, avizul consiliului de administrație pe PAAP și pe achizițiile directe peste 50.000 lei, înainte de aprobare?',
+];
+
+const faq = [
+  {
+    q: 'Când trebuie aprobat PAAP pentru anul următor?',
+    a: 'Programul anual se elaborează în ultimul trimestru al anului anterior, pe baza proiectului de buget, și se aprobă odată cu bugetul. Dacă se așteaptă bugetul final pentru a începe, se pierd lunile în care procedurile ar fi putut fi deja pregătite.',
+  },
+  {
+    q: 'Ce informații minime trebuie să conțină fiecare poziție din PAAP?',
+    a: 'Fiecare poziție are nouă informații minime, printre care obiectul achiziției, codul CPV, valoarea estimată, sursa de finanțare, procedura aleasă, data estimată de inițiere, data estimată de atribuire și codul unic de identificare al poziției. Lipsa codului unic este una dintre constatările frecvente la control.',
+  },
+  {
+    q: 'Este obligatoriu formularul standard pentru PAAP?',
+    a: 'Da. Formularul standard este prevăzut de Ordinul ANAP nr. 281/2016, publicat în Monitorul Oficial nr. 487 din 30 iunie 2016. Nu este opțional, iar un tabel propriu care nu conține coloanele formularului nu îl înlocuiește.',
+  },
+  {
+    q: 'Ce se întâmplă dacă PAAP se modifică în timpul anului?',
+    a: 'Planul se actualizează ori de câte ori apar modificări, iar actualizarea este nu doar permisă, ci obligatorie. Ceea ce se verifică la control nu este faptul că s-a modificat, ci dacă fiecare modificare are o cauză documentată și dacă istoricul versiunilor se poate reconstitui.',
+  },
+  {
+    q: 'De ce contează gradul de prioritate al pozițiilor?',
+    a: 'La rectificare bugetară, pozițiile care se amână sau se elimină trebuie alese după un criteriu stabilit înainte, nu după disponibilitatea de moment. Gradul de prioritate este criteriul care face decizia apărabilă.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Zece întrebări de verificare înainte de a aproba PAAP 2027',
+  datePublished: '2026-11-19',
+  dateModified: '2026-11-19',
+  inLanguage: 'ro-RO',
+  author: { '@type': 'Person', name: 'Roxana Voicu' },
+  publisher: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  mainEntityOfPage: 'https://bid-management.ro/ro/resurse/checklist-aprobare-paap-2027',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Layout
+  title="Checklist PAAP 2027: zece verificări înainte de aprobare"
+  description="Zece întrebări de verificat înainte de a aproba programul anual al achizițiilor publice pentru 2027, cu temeiul legal al fiecăreia. Pentru autorități contractante."
+  schema={[articleSchema, faqSchema]} noSuffix>
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href={getLocalizedPath(locale, '/')} class="hover:text-accent-light transition-colors">Acasă</a>
+        <span class="mx-2">/</span>
+        <a href={getLocalizedPath(locale, '/resurse')} class="hover:text-accent-light transition-colors">Resurse</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-400">Checklist PAAP 2027</span>
+      </nav>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 bg-accent-light/15 text-accent-light text-xs font-medium rounded-full">Referință</span>
+        <span class="text-gray-400 text-sm">19 noiembrie 2026</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight mb-5">
+        Zece întrebări înainte de a aproba <span class="text-accent-light">PAAP 2027</span>
+      </h1>
+      <p class="text-lg text-gray-300 max-w-3xl leading-relaxed">
+        Dacă la fiecare dintre ele răspunsul e documentat, planul rezistă la control. Dacă nu,
+        știți exact unde trebuie lucrat, cât mai e timp.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-14 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ol class="list-none p-0 m-0 space-y-3">
+        {intrebari.map((q, i) => (
+          <li class="flex gap-4 bg-surface border border-gray-200 rounded-xl p-5">
+            <span class="shrink-0 w-8 h-8 rounded-lg bg-accent text-white font-bold text-sm flex items-center justify-center tabular-nums">{i + 1}</span>
+            <span class="text-text leading-relaxed pt-1">{q}</span>
+          </li>
+        ))}
+      </ol>
+
+      <div class="prose prose-slate prose-lg max-w-none mt-12
+        prose-headings:font-heading prose-headings:text-navy
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-2
+        prose-p:text-text prose-li:text-text prose-strong:text-navy
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+
+        <h2>De ce aceste zece și nu altele</h2>
+        <p>
+          Sunt întrebările pe care le pune controlul, puse înainte. Nu verifică dacă planul arată bine,
+          ci dacă fiecare cifră din el se poate justifica: pe ce necesitate stă, cine a determinat-o, prin
+          ce metodă, și ce s-a mai cumpărat pe aceeași necesitate în anul care se încheie.
+        </p>
+        <p>
+          Întrebarea a zecea se aplică doar spitalelor, dar acolo se ratează des: avizul consiliului de
+          administrație este cerut de art. 187 alin. (10) lit. d) din Legea nr. 95/2006, atât pe program,
+          cât și pe achizițiile directe peste 50.000 lei, și trebuie să preceadă aprobarea.
+        </p>
+
+        <h2>Întrebări frecvente</h2>
+        {faq.map((i) => (
+          <div>
+            <h3>{i.q}</h3>
+            <p>{i.a}</p>
+          </div>
+        ))}
+
+        <h2>Temei legal</h2>
+        <ul>
+          <li>HG nr. 395/2016 — art. 2, 3, 11–14, 16–17</li>
+          <li>Legea nr. 98/2016 — art. 7, 11 și 20</li>
+          <li>Ordinul ANAP nr. 281/2016 — formularele standard PAAP, M. Of. nr. 487/30.06.2016</li>
+          <li>Legea nr. 95/2006 — art. 187 alin. (10) lit. d), pentru spitale</li>
+        </ul>
+
+        <p class="text-sm text-text-light">
+          Material informativ, reflectând legislația și practica la 19 noiembrie 2026. Nu constituie
+          consultanță juridică.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12 bg-surface">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-xl font-heading font-bold text-navy mb-5">Continuați cu</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <a href={getLocalizedPath(locale, '/resurse/referat-de-necesitate-campuri-minime')} class="block bg-white border border-gray-200 rounded-xl p-5 hover:border-accent transition-colors no-underline">
+          <strong class="block text-navy font-semibold mb-1">Câmpurile unui referat de necesitate apărabil</strong>
+          <span class="text-text-light text-sm">Punctul de pornire al fiecărei poziții din plan.</span>
+        </a>
+        <a href={getLocalizedPath(locale, '/resurse/praguri-achizitii-publice')} class="block bg-white border border-gray-200 rounded-xl p-5 hover:border-accent transition-colors no-underline">
+          <strong class="block text-navy font-semibold mb-1">Pragurile valorice în 2026</strong>
+          <span class="text-text-light text-sm">Toate valorile, cu cele anterioare alături.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

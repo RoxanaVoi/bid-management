@@ -9,17 +9,87 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  /** JSON-LD suplimentar pentru pagină: Service, FAQPage, HowTo etc.
+   *  Se adaugă peste Organization/WebSite/BreadcrumbList, care vin din oficiu. */
+  schema?: Record<string, unknown>[];
+  /** Titlurile descriptive depășesc bugetul afișat în rezultatele căutării.
+   *  Cu noSuffix, " | Bid Management" nu se mai adaugă. */
+  noSuffix?: boolean;
 }
 
-const { title, description = 'Consultanță specializată în achiziții publice pentru autorități și companii. ePaap — platformă digitală pentru PAAP și referate.', ogImage } = Astro.props;
+const {
+  title,
+  description = 'Consultanță specializată în achiziții publice pentru autorități și companii. ePaap — platformă digitală pentru PAAP și referate.',
+  ogImage,
+  schema = [],
+  noSuffix = false,
+} = Astro.props;
 const site = Astro.site ?? new URL('https://bid-management.ro');
 // Social platforms require an absolute URL; a relative path is silently dropped.
-const ogImageUrl = new URL(ogImage ?? '/images/og-default.png', site).href;
+const ogImageUrl = new URL(ogImage ?? '/images/og-default-2026.png', site).href;
 const locale = getLocaleFromUrl(Astro.url);
 const altLocale = getAlternateLocale(locale);
 const currentPath = Astro.url.pathname.replace(`/${locale}`, '') || '/';
 const altPath = getLocalizedPath(altLocale, currentPath);
-const fullTitle = `${title} | Bid Management`;
+const fullTitle = noSuffix ? title : `${title} | Bid Management`;
+
+// ── Breadcrumb ────────────────────────────────────────────────────────────
+// Motoarele de căutare afișează calea sub rezultat, iar cele generative o
+// folosesc ca să înțeleagă unde stă pagina în site.
+const SEGMENT_LABELS: Record<string, Record<string, string>> = {
+  ro: {
+    resurse: 'Resurse',
+    solutii: 'Soluții',
+    'studii-de-caz': 'Studii de caz',
+    autoritati: 'Autorități contractante',
+    companii: 'Operatori economici',
+    contact: 'Contact',
+    despre: 'Despre noi',
+    'analizeaza-documentatia': 'Analizează documentația',
+  },
+  en: {
+    resurse: 'Resources',
+    solutii: 'Solutions',
+    'studii-de-caz': 'Case studies',
+    autoritati: 'Contracting authorities',
+    companii: 'Economic operators',
+    contact: 'Contact',
+    despre: 'About',
+    'analizeaza-documentatia': 'Document analysis',
+  },
+};
+
+const prettify = (s: string) =>
+  s.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+
+// Un hreflang care trimite spre 404 invalideaza perechea. Verificam la
+// build daca pagina alternativa exista cu adevarat.
+const paginiExistente = Object.keys(import.meta.glob('/src/pages/**/*.astro'));
+const caleFaraLocale = altPath.replace(`/${altLocale}`, '').replace(/\/$/, '') || '/';
+const caleAlternativa = `/src/pages/${altLocale}${caleFaraLocale === '/' ? '/index' : caleFaraLocale}`;
+const areTraducere = paginiExistente.some(
+  (f) => f === `${caleAlternativa}.astro` || f === `${caleAlternativa}/index.astro`
+);
+
+const segments = currentPath.split('/').filter(Boolean);
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: locale === 'ro' ? 'Acasă' : 'Home',
+      item: new URL(`/${locale}/`, site).href,
+    },
+    ...segments.map((seg, i) => ({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: SEGMENT_LABELS[locale]?.[seg] ?? prettify(seg),
+      item: new URL(`/${locale}/${segments.slice(0, i + 1).join('/')}`, site).href,
+    })),
+  ],
+};
 ---
 
 <!doctype html>
@@ -51,8 +121,10 @@ const fullTitle = `${title} | Bid Management`;
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Alternate languages -->
-    <link rel="alternate" hreflang="ro" href={`https://bid-management.ro${getLocalizedPath('ro', currentPath)}`} />
-    <link rel="alternate" hreflang="en" href={`https://bid-management.ro${getLocalizedPath('en', currentPath)}`} />
+    <link rel="alternate" hreflang={locale} href={`https://bid-management.ro${getLocalizedPath(locale, currentPath)}`} />
+    {areTraducere && (
+      <link rel="alternate" hreflang={altLocale} href={`https://bid-management.ro${altPath}`} />
+    )}
     <link rel="canonical" href={Astro.url.href} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon-2026.svg" />
@@ -91,7 +163,9 @@ const fullTitle = `${title} | Bid Management`;
         "url": "https://bid-management.ro",
         "inLanguage": ["ro", "en"],
         "description": "Consultanță achiziții publice, ePaap, eBid — instrumente digitale pentru planificare, analiză și ofertare."
-      }
+      },
+      breadcrumb,
+      ...schema
     ])} />
   </head>
   <body class="min-h-screen flex flex-col">
