@@ -5,7 +5,27 @@ import { getLocaleFromUrl, t, getLocalizedPath } from '../../../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
 
-const epaapFeatures = [
+const isRo = locale === 'ro';
+const intrebariControl = isRo
+  ? [
+      { q: 'Pe ce necesitate stă această poziție din plan?', a: 'Referatul de necesitate, identificabil prin număr, dată și compartiment emitent.' },
+      { q: 'Cum a fost determinată valoarea estimată?', a: 'Metoda consemnată odată cu valoarea: cercetare de piață sau bază istorică, cu sursa și data.' },
+      { q: 'Ce s-a mai cumpărat pe aceeași necesitate anul acesta?', a: 'Istoricul achizițiilor cu utilizări identice sau similare, care intră în cumul. Nu doar pe codul CPV.' },
+      { q: 'De ce s-a modificat poziția în martie?', a: 'Cauza documentată a fiecărei actualizări și versiunea anterioară a planului.' },
+      { q: 'Cine a aprobat, și în ce ordine?', a: 'Circuitul de semnături, cu avizele cerute înainte de aprobare — la spitale, inclusiv cel al consiliului de administrație.' },
+      { q: 'Unde sunt documentele justificative?', a: 'Atașate poziției, nu într-un dosar separat reconstituit ulterior.' },
+    ]
+  : [
+      { q: 'Which stated need does this line rest on?', a: 'The needs memo, identifiable by number, date and issuing department.' },
+      { q: 'How was the estimated value determined?', a: 'The method recorded alongside the value: market research or historical basis, with source and date.' },
+      { q: 'What else was bought for the same need this year?', a: 'The history of identical or similar purchases, which counts towards the cumulative threshold.' },
+      { q: 'Why was this line changed in March?', a: 'The documented cause of each update, and the previous version of the plan.' },
+      { q: 'Who approved it, and in what order?', a: 'The signature flow, with the approvals required before sign-off.' },
+      { q: 'Where are the supporting documents?', a: 'Attached to the line, not in a separate folder reconstructed afterwards.' },
+    ];
+
+
+const ePAAPFeatures = [
   { key: 'feature1', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
   { key: 'feature2', icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10' },
   { key: 'feature3', icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z' },
@@ -21,7 +41,7 @@ const services = [
 ];
 ---
 
-<Layout title={t(locale, 'authoritiesPage.title')} description="ePaap digitizes PAAP planning, necessity reports, and supporting documents. Consulting for contracting authorities.">
+<Layout title={t(locale, 'authoritiesPage.title')} description="ePAAP digitizes PAAP planning, necessity reports, and supporting documents. Consulting for contracting authorities.">
   <!-- Hero -->
   <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,25 +56,25 @@ const services = [
     </div>
   </section>
 
-  <!-- ePaap Main Block -->
+  <!-- ePAAP Main Block -->
   <section class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div data-animate>
           <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 rounded-full mb-6">
-            <span class="text-accent text-sm font-medium">ePaap Platform</span>
+            <span class="text-accent text-sm font-medium">ePAAP Platform</span>
           </div>
           <h2 class="text-3xl font-heading font-bold text-navy mb-6">{t(locale, 'authoritiesPage.epaapTitle')}</h2>
 
           <ul class="space-y-4 mb-6">
-            {epaapFeatures.map((feat) => (
+            {ePAAPFeatures.map((feat) => (
               <li class="flex items-start gap-3">
                 <div class="w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
                   <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feat.icon} />
                   </svg>
                 </div>
-                <span class="text-text leading-relaxed">{t(locale, `epaap.${feat.key}`)}</span>
+                <span class="text-text leading-relaxed">{t(locale, `ePAAP.${feat.key}`)}</span>
               </li>
             ))}
           </ul>
@@ -73,7 +93,7 @@ const services = [
         <!-- Flow diagram mockup -->
         <div data-animate data-animate-delay="2" class="bg-surface rounded-2xl p-8 border border-gray-100">
           <div class="text-center mb-6">
-            <span class="text-xs text-text-light uppercase tracking-wider font-medium">{locale === 'ro' ? 'Flux de lucru ePaap' : 'ePaap Workflow'}</span>
+            <span class="text-xs text-text-light uppercase tracking-wider font-medium">{locale === 'ro' ? 'Flux de lucru ePAAP' : 'ePAAP Workflow'}</span>
           </div>
           <div class="space-y-4">
             {['Nevoi / Articole bugetare', 'Grupare CPV → PAAP', 'Referate de necesitate', 'Flux semnături', 'Documente justificative'].map((step, i) => (
@@ -113,6 +133,42 @@ const services = [
   </section>
 
   <!-- CTA -->
+
+  <!-- ===== CE SE CERE LA CONTROL ===== -->
+  <section class="py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-4">
+        {isRo ? 'Întrebările care vin la control' : 'The questions an audit asks'}
+      </h2>
+      <p class="text-text-light text-lg mb-12 max-w-2xl">
+        {isRo
+          ? 'Controlul nu verifică dacă planul arată bine. Verifică dacă fiecare cifră din el se poate justifica. Astea sunt întrebările, și documentul care răspunde la fiecare.'
+          : 'An audit does not check whether the plan looks good. It checks whether every figure in it can be justified.'}
+      </p>
+      <div class="grid md:grid-cols-2 gap-5">
+        {intrebariControl.map((c) => (
+          <div class="border border-gray-200 rounded-xl p-6 hover:border-accent/40 transition-colors">
+            <p class="font-heading font-semibold text-navy mb-2 m-0">{c.q}</p>
+            <p class="text-text-light text-sm leading-relaxed m-0">{c.a}</p>
+          </div>
+        ))}
+      </div>
+      {isRo && (
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href={getLocalizedPath(locale, '/resurse/checklist-aprobare-paap-2027')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-surface border border-gray-200 hover:border-accent rounded-xl text-navy font-medium text-sm transition-colors no-underline">
+            {isRo ? 'Checklistul înainte de aprobarea PAAP' : 'The checklist before approving the plan'}
+          </a>
+          <a href={getLocalizedPath(locale, '/resurse/referat-de-necesitate-campuri-minime')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-surface border border-gray-200 hover:border-accent rounded-xl text-navy font-medium text-sm transition-colors no-underline">
+            {isRo ? 'Câmpurile referatului de necesitate' : 'The fields of a needs memo'}
+          </a>
+          <a href={getLocalizedPath(locale, '/resurse/praguri-achizitii-publice')} class="inline-flex items-center gap-2 px-5 py-2.5 bg-surface border border-gray-200 hover:border-accent rounded-xl text-navy font-medium text-sm transition-colors no-underline">
+            {isRo ? 'Pragurile valorice în 2026' : 'Value thresholds for 2026'}
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
   <section class="py-24 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 data-animate class="text-3xl font-heading font-bold mb-4">{t(locale, 'authoritiesPage.ctaTitle')}</h2>

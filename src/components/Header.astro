@@ -1,5 +1,5 @@
 ---
-import { getLocaleFromUrl, getNavItems, getAlternateLocale, getLocalizedPath } from '../i18n/utils';
+import { getLocaleFromUrl, getNavItems, getAlternateLocale, getLocalizedPath, t } from '../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
 const altLocale = getAlternateLocale(locale);
@@ -29,7 +29,7 @@ const altHref = areTraducere
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden xl:flex items-center gap-1">
+      <nav class="hidden lg:flex items-center gap-1">
         {navItems.map((item) => (
           <a
             href={item.href}
@@ -55,10 +55,19 @@ const altHref = areTraducere
           {altLocale.toUpperCase()}
         </a>
 
+        <!-- Instrumentul principal, scos din meniu ca sa nu mai stea
+             la acelasi nivel cu sectiuni intregi -->
+        <a
+          href={getLocalizedPath(locale, '/analizeaza-documentatia')}
+          class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors no-underline"
+        >
+          {t(locale, 'nav.analizeaza')}
+        </a>
+
         <!-- Mobile menu toggle -->
         <button
           id="menu-toggle"
-          class="xl:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
           aria-label="Toggle menu"
         >
           <svg id="menu-icon" class="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,7 +82,7 @@ const altHref = areTraducere
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="xl:hidden hidden border-t border-gray-100">
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
       {navItems.map((item) => (
         <a

@@ -12,7 +12,7 @@ const features = ['feature1', 'feature2', 'feature3', 'feature4', 'feature5'];
       <!-- Left: Content -->
       <div data-animate>
         <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-light/15 border border-accent-light/30 rounded-full mb-6">
-          <span class="text-accent-light text-sm font-medium">ePaap Platform</span>
+          <span class="text-accent-light text-sm font-medium">ePAAP Platform</span>
         </div>
 
         <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-6">
@@ -27,13 +27,13 @@ const features = ['feature1', 'feature2', 'feature3', 'feature4', 'feature5'];
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <span class="text-gray-300 leading-relaxed">{t(locale, `epaap.${key}`)}</span>
+              <span class="text-gray-300 leading-relaxed">{t(locale, `ePAAP.${key}`)}</span>
             </li>
           ))}
         </ul>
 
         <a
-          href={getLocalizedPath(locale, '/solutii/autoritati')}
+          href={getLocalizedPath(locale, locale === 'ro' ? '/epaap' : '/solutii/autoritati')}
           class="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-accent/25"
         >
           {t(locale, 'epaap.cta')}
@@ -50,7 +50,7 @@ const features = ['feature1', 'feature2', 'feature3', 'feature4', 'feature5'];
               <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
                 <span class="text-white font-bold text-sm">e</span>
               </div>
-              <span class="text-white font-heading font-semibold">ePaap Dashboard</span>
+              <span class="text-white font-heading font-semibold">ePAAP Dashboard</span>
             </div>
             <div class="flex gap-2">
               <div class="w-20 h-6 bg-white/10 rounded-md"></div>

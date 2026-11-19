@@ -1,0 +1,152 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLocaleFromUrl, t, getLocalizedPath } from '../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const functii = [
+  { key: 'feature1', detaliu: 'Fiecare nevoie intră legată de articolul bugetar din care se plătește, nu separat de el.' },
+  { key: 'feature2', detaliu: 'Pozițiile se grupează pe coduri CPV, iar planul se generează din ele, nu se scrie de mână.' },
+  { key: 'feature3', detaliu: 'Referatul circulă pe flux, cu cine a emis și cine a aprobat, la ce dată.' },
+  { key: 'feature4', detaliu: 'Documentele justificative rămân atașate poziției, în arhiva achiziției.' },
+  { key: 'feature5', detaliu: 'Când apar articole noi la rectificare, planul se actualizează fără să se rescrie.' },
+];
+
+const laControl = [
+  {
+    intrebare: 'Pe ce necesitate stă această poziție?',
+    raspuns: 'Poziția din plan rămâne legată de referatul care a generat-o, cu număr, dată și compartiment emitent.',
+  },
+  {
+    intrebare: 'Cum s-a determinat valoarea estimată?',
+    raspuns: 'Metoda de determinare se consemnează odată cu valoarea, nu se reconstituie ulterior din memorie.',
+  },
+  {
+    intrebare: 'Ce s-a mai cumpărat pe aceeași necesitate?',
+    raspuns: 'Necesitățile similare sunt identificate înainte de alegerea procedurii, nu după ce pragul a fost depășit.',
+  },
+  {
+    intrebare: 'Cine a modificat poziția asta și când?',
+    raspuns: 'Fiecare modificare lasă istoric. Când oamenii se schimbă, trasabilitatea rămâne.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'ePAAP',
+  applicationCategory: 'BusinessApplication',
+  applicationSubCategory: 'Software pentru achiziții publice',
+  operatingSystem: 'Web',
+  inLanguage: 'ro-RO',
+  description:
+    'Platformă pentru programul anual al achizițiilor publice și referatele de necesitate: culegerea nevoilor, gruparea pe coduri CPV, fluxul de semnături, documentele justificative și istoricul modificărilor.',
+  url: 'https://bid-management.ro/ro/epaap',
+  author: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  audience: { '@type': 'Audience', audienceType: 'Autorități contractante' },
+  areaServed: { '@type': 'Country', name: 'România' },
+};
+---
+
+<Layout
+  title="ePAAP — platforma pentru PAAP și referate"
+  description="Platforma pentru programul anual al achizițiilor publice și referatele de necesitate: nevoi legate de buget, grupare CPV, flux de semnături, istoric după fiecare modificare."
+  schema={[schema]}
+  noSuffix
+>
+  <!-- ===== HERO ===== -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-light/15 border border-accent-light/30 rounded-full mb-6">
+          <span class="text-accent-light text-sm font-medium">Pentru autorități contractante</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
+          ePAAP — <span class="text-accent-light">planul și referatele</span> într-un singur flux
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-4">
+          De la nevoia transmisă de un compartiment până la poziția aprobată din programul anual,
+          cu istoricul care rămâne după fiecare modificare.
+        </p>
+        <p class="text-sm text-gray-400 mb-8">
+          {t(locale, 'authoritiesPage.epaapBenefits')}
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center gap-2 px-6 py-3 bg-accent-light hover:bg-mint text-navy font-semibold rounded-xl transition-colors no-underline">
+            {t(locale, 'authoritiesPage.epaapCta')}
+          </a>
+          <a href={`${getLocalizedPath(locale, '/resurse/webinar-paap-2027')}#demo`} class="inline-flex items-center gap-2 px-6 py-3 border border-white/25 hover:border-accent-light hover:text-accent-light text-gray-200 font-semibold rounded-xl transition-colors no-underline">
+            Vezi demonstrația, 12 minute
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CE FACE ===== -->
+  <section class="py-20 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-12">Ce face</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        {functii.map((f, i) => (
+          <div class="flex gap-4 bg-surface border border-gray-200 rounded-xl p-6">
+            <span class="shrink-0 w-9 h-9 rounded-lg bg-accent text-white font-bold text-sm flex items-center justify-center tabular-nums">
+              {i + 1}
+            </span>
+            <div>
+              <h3 class="font-heading font-semibold text-navy mb-1">{t(locale, `epaap.${f.key}`)}</h3>
+              <p class="text-text-light text-sm leading-relaxed m-0">{f.detaliu}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CE VEDE CONTROLUL ===== -->
+  <section class="py-20 lg:py-24 bg-navy text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">Ce vede organul de control</h2>
+      <p class="text-gray-300 text-lg mb-12 max-w-2xl">
+        Controlul parcurge lanțul invers: pleacă de la contract și cere înapoi documentul care l-a
+        justificat. Astea sunt întrebările, și ce răspunde la fiecare.
+      </p>
+      <div class="space-y-4">
+        {laControl.map((c) => (
+          <div class="border border-white/15 rounded-xl p-6">
+            <p class="text-accent-light font-semibold mb-2 m-0">{c.intrebare}</p>
+            <p class="text-gray-300 leading-relaxed m-0">{c.raspuns}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-gray-400 mt-8">
+        Mecanismul, cu un caz real de audit și un exercițiu pe un an întreg de achiziții directe,
+        este detaliat în
+        <a href={getLocalizedPath(locale, '/resurse/webinar-paap-2027')} class="text-accent-light hover:underline">materialul webinarului din 19 noiembrie 2026</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CUM SE ACHIZIȚIONEAZĂ ===== -->
+  <section class="py-20 lg:py-24 bg-surface">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-6">Cum se achiziționează</h2>
+      <p class="text-text text-lg leading-relaxed mb-6">
+        Ca orice achiziție publică, pornește de la un referat de necesitate care are nevoie de o
+        valoare estimată și de metoda prin care a fost determinată. Vă trimitem o ofertă nominală
+        pentru instituția dumneavoastră, pe care o puteți folosi ca sursă a valorii estimate,
+        cu dată și emitent.
+      </p>
+      <div class="rounded-xl bg-white border border-gray-200 p-6 mb-8">
+        <p class="text-text leading-relaxed m-0">
+          Dacă vă ajută, putem trimite și structura referatului pentru acest tip de achiziție.
+          Câmpurile minime, cu temeiul fiecăruia, sunt oricum publice, în
+          <a href={getLocalizedPath(locale, '/resurse/referat-de-necesitate-campuri-minime')} class="text-accent hover:underline">pagina despre referatul de necesitate</a>.
+        </p>
+      </div>
+      <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center gap-2 px-6 py-3 bg-navy hover:bg-navy-light text-white font-semibold rounded-xl transition-colors no-underline">
+        Cereți o ofertă nominală
+      </a>
+    </div>
+  </section>
+</Layout>

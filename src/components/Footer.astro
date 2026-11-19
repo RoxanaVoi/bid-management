@@ -2,7 +2,10 @@
 import { getLocaleFromUrl, t, getLocalizedPath, getNavItems } from '../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
-const navItems = getNavItems(locale);
+const navItems = [
+  ...getNavItems(locale),
+  { label: t(locale, 'nav.analizeaza'), href: getLocalizedPath(locale, '/analizeaza-documentatia') },
+];
 const year = new Date().getFullYear();
 ---
 
@@ -30,7 +33,7 @@ const year = new Date().getFullYear();
           {t(locale, 'footer.quickLinks')}
         </h3>
         <ul class="space-y-3">
-          {navItems.slice(0, 5).map((item) => (
+          {navItems.map((item) => (
             <li>
               <a href={item.href} class="text-gray-300 hover:text-accent-light transition-colors text-sm">
                 {item.label}
