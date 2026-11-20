@@ -1,0 +1,19 @@
+# Tipurile de conținut pentru înregistrarea HLS. Cloudflare Pages ghicește
+# după extensie, iar .m4s ajunge de obicei application/octet-stream — hls.js
+# se descurcă, dar Safari, care redă HLS nativ, are nevoie de tipurile corecte.
+/resurse/webinar-paap-2027/inregistrare/*.m3u8
+  Content-Type: application/vnd.apple.mpegurl
+  Cache-Control: public, max-age=3600
+
+/resurse/webinar-paap-2027/inregistrare/*.m4s
+  Content-Type: video/iso.segment
+  Cache-Control: public, max-age=31536000, immutable
+
+/resurse/webinar-paap-2027/inregistrare/init.mp4
+  Content-Type: video/mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+# Segmentele nu se schimbă niciodată, deci pot fi păstrate de browser la
+# nesfârșit. Asta ține și traficul jos la o a doua vizionare.
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable

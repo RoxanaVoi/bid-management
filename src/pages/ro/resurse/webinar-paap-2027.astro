@@ -39,7 +39,7 @@ const videoSchema = {
   duration: durataISO,
   inLanguage: 'ro-RO',
   isAccessibleForFree: false,
-  thumbnailUrl: [`https://bid-management.ro${base}/slides/slide-01.webp`],
+  thumbnailUrl: [`https://bid-management.ro${base}/poster-inregistrare.webp`],
   publisher: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
   hasPart: capitole.map((c, i) => ({
     '@type': 'Clip',
@@ -184,7 +184,7 @@ const eventSchema = {
       <div class="bg-navy rounded-2xl overflow-hidden">
         <div class="relative aspect-video scroll-mt-24" id="inregStage">
           <img
-            src={`${base}/slides/slide-01.webp`}
+            src={`${base}/poster-inregistrare.webp`}
             alt=""
             width="1600"
             height="900"
@@ -550,13 +550,10 @@ const eventSchema = {
 
       function seek(t) {
         if (!adresa) return false;
-        if (/\.mp4($|\?)/.test(adresa)) {
-          var v = stage.querySelector('video');
-          if (v) { v.currentTime = t; v.play().catch(function () {}); return true; }
-          return false;
-        }
-        randeaza(adresa, t);
-        return true;
+        var v = stage.querySelector('video');
+        if (v) { v.currentTime = t; v.play().catch(function () {}); return true; }
+        if (stage.querySelector('iframe')) { randeaza(adresa, t); return true; }
+        return false;
       }
 
       function cuMinut(url, t) {
@@ -570,12 +567,53 @@ const eventSchema = {
         return url + (url.indexOf('#') > -1 ? '' : '#t=' + t);
       }
 
+      function elementVideo(src, t) {
+        stage.innerHTML =
+          '<video id="inregVideo" controls preload="metadata" playsinline ' +
+          'poster="/resurse/webinar-paap-2027/poster-inregistrare.webp" ' +
+          'class="absolute inset-0 w-full h-full bg-black"></video>';
+        var v = document.getElementById('inregVideo');
+        if (src) v.src = src + (t ? '#t=' + t : '');
+        return v;
+      }
+
+      // HLS. Atenție la ordine: Chrome întoarce „maybe” la canPlayType pentru
+      // playlisturi HLS, deși nu le redă nativ — dacă îl credem, rămâne ecran
+      // negru. Deci întâi hls.js, iar redarea nativă doar acolo unde chiar e
+      // singura, adică pe iPhone, unde nu există MediaSource.
+      function nativ(v, url, t) {
+        v.src = url;
+        if (t) v.addEventListener('loadedmetadata', function () { v.currentTime = t; }, { once: true });
+      }
+
+      function porneșteHls(url, t) {
+        var v = elementVideo(null, 0);
+        var areMse = !!(window.MediaSource || window.ManagedMediaSource);
+        if (!areMse) { nativ(v, url, t); return; }
+
+        function leagă() {
+          if (!window.Hls || !window.Hls.isSupported()) { nativ(v, url, t); return; }
+          var h = new window.Hls({ maxBufferLength: 30 });
+          h.loadSource(url);
+          h.attachMedia(v);
+          if (t) h.on(window.Hls.Events.MANIFEST_PARSED, function () { v.currentTime = t; });
+        }
+
+        if (window.Hls) { leagă(); return; }
+        var s = document.createElement('script');
+        s.src = '/vendor/hls.min.js';
+        s.onload = leagă;
+        s.onerror = function () { nativ(v, url, t); };
+        document.head.appendChild(s);
+      }
+
       function randeaza(url, t) {
         adresa = url;
-        stage.innerHTML = /\.mp4($|\?)/.test(url)
-          ? '<video src="' + url + (t ? '#t=' + t : '') + '" controls preload="metadata" playsinline ' +
-            'class="absolute inset-0 w-full h-full"></video>'
-          : '<iframe src="' + cuMinut(url, t) + '" loading="lazy" allowfullscreen ' +
+        if (/\.m3u8($|\?)/.test(url)) porneșteHls(url, t);
+        else if (/\.mp4($|\?)/.test(url)) elementVideo(url, t);
+        else
+          stage.innerHTML =
+            '<iframe src="' + cuMinut(url, t) + '" loading="lazy" allowfullscreen ' +
             'allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" ' +
             'title="Înregistrarea webinarului din 19 noiembrie 2026" ' +
             'class="absolute inset-0 w-full h-full border-0"></iframe>';
