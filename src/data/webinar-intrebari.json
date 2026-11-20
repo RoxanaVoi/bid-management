@@ -1,0 +1,83 @@
+{
+  "_nota": "Înregistrarea webinarului din 19.11.2026. Capitolele sunt citite din film (momentul fiecărei schimbări de slide), deci sunt exacte. Întrebările au fost scrise în chat pe parcurs și răspunse la final, deci nu au un minut propriu. Numele și adresele participanților nu se păstrează aici.",
+  "durataSecunde": 6421,
+  "capitole": [
+    { "t": 0, "titlu": "Deschiderea și prezentarea grupului de experți" },
+    { "t": 510, "titlu": "Ce acoperim: patru teme din practică, apoi aplicația" },
+    { "t": 600, "titlu": "Trei săptămâni mai târziu, instituția are trei planuri" },
+    { "t": 705, "titlu": "PAAP-ul nu este un tabel, este un instrument de monitorizare" },
+    { "t": 840, "titlu": "Trei convingeri frecvente: câte dintre ele sunt adevărate" },
+    { "t": 960, "titlu": "Harta obligațiilor: lanțul pe care controlul îl parcurge invers" },
+    { "t": 1065, "titlu": "Tema 1: cele trei întrebări la care Excelul nu are răspuns" },
+    { "t": 1170, "titlu": "De ce „final_v7” nu este o dovadă" },
+    { "t": 1290, "titlu": "Ce se cere la control și ce document răspunde" },
+    { "t": 1395, "titlu": "Caz 2026: Camera de Conturi Constanța, audit de conformitate" },
+    { "t": 1545, "titlu": "Tema 2: cine confirmă ce, de la referat până la execuție" },
+    { "t": 1695, "titlu": "Etapa de planificare: ce dovediți la fiecare pas" },
+    { "t": 1830, "titlu": "Când oamenii se schimbă, trasabilitatea rămâne continuitatea" },
+    { "t": 1980, "titlu": "Tema 3: pragul achiziției directe și cele patru trepte" },
+    { "t": 2085, "titlu": "Se cumulează necesitatea, nu factura — și nu doar codul CPV" },
+    { "t": 2295, "titlu": "Exercițiul: ce se vede când aduni un an pe aceeași necesitate" },
+    { "t": 2415, "titlu": "Varianta a doua: urgența care nu era urgență" },
+    { "t": 2610, "titlu": "Consecințele: ce urmează după constatare" },
+    { "t": 2760, "titlu": "Tema 4: cinci cauze pentru care se rescrie PAAP-ul în martie" },
+    { "t": 2940, "titlu": "Aceeași modificare, două interpretări la control" },
+    { "t": 3120, "titlu": "Ce decideți în următoarele șase săptămâni" },
+    { "t": 3240, "titlu": "Ce a dispus Curtea de Conturi, cu termen" },
+    { "t": 3360, "titlu": "Trei poziții pe care le puteți invoca" },
+    { "t": 3495, "titlu": "Cerințe funcționale, nu obligații legale" },
+    { "t": 3630, "titlu": "Exemplu: trei valori diferite pentru aceeași poziție" },
+    { "t": 3765, "titlu": "Demonstrația ePAAP: procesul în aplicație" },
+    { "t": 4650, "titlu": "Cinci lucruri de reținut" },
+    { "t": 4845, "titlu": "Întrebările trimise, tema 1: când nu există istoric pentru estimare" },
+    { "t": 5010, "titlu": "Acordul-cadru multianual într-un buget anual" },
+    { "t": 5160, "titlu": "Formularul standard, SEAP și continuitatea" },
+    { "t": 5700, "titlu": "Întrebările venite din sală" }
+  ],
+  "intrebari": [
+    {
+      "q": "Negocierea fără publicare prevăzută la art. 104: cum se aplică în cazul achizițiilor prin bursa de mărfuri, de pildă combustibil sau îngrășăminte?",
+      "tema": "Proceduri"
+    },
+    {
+      "q": "PAAP-ul pentru proiecte se întocmește anual? Iar dacă achiziția a fost deja efectuată, se mai trece în plan?",
+      "tema": "Proiecte"
+    },
+    {
+      "q": "Un acord-cadru de 12 luni a cărui procedură se inițiază într-un an calendaristic, dar care se derulează și în anul următor: se înscrie în PAAP-ul anului de inițiere cu valoarea întregii durate, iar în anul următor doar contractele subsecvente?",
+      "tema": "Acord-cadru"
+    },
+    {
+      "q": "Cât de strâns trebuie corelat PAAP-ul cu bugetul aprobat, dacă într-un an avem trei sau patru rectificări bugetare? Când se trece o necesitate pentru care fondurile apar abia la rectificare?",
+      "tema": "Buget"
+    },
+    {
+      "q": "Avem nevoie de produse similare atât pentru activitatea curentă, cât și pentru un proiect finanțat din fonduri externe. Cumulăm valorile estimate pentru a stabili procedura, sau estimăm separat, pe sursă de finanțare?",
+      "tema": "Cumularea valorilor"
+    },
+    {
+      "q": "La sfârșitul anului, PAAP-ul se revizuiește cu valorile efective ale achizițiilor realizate, ca să corespundă execuției bugetare?",
+      "tema": "Buget"
+    },
+    {
+      "q": "În aplicația ePAAP apar valori concrete: de unde sunt preluate și cum se leagă aplicația de programul de gestiune al autorității? Presupune o persoană desemnată pe fiecare secție, când referatele vin încă scrise de mână?",
+      "tema": "ePAAP"
+    },
+    {
+      "q": "Pentru achizițiile directe de valori mici, se poate folosi în anexa la PAAP o singură încadrare generică, de tipul „diverse bunuri și servicii”?",
+      "tema": "Achiziții directe"
+    },
+    {
+      "q": "Contractele încheiate prin ONAC trebuie introduse în PAAP?",
+      "tema": "Proceduri"
+    },
+    {
+      "q": "Contractele de furnizare a energiei electrice încheiate prin bursă pe 12 luni: se înscriu o singură dată, în anul inițierii procedurii, chiar dacă furnizarea continuă în anul următor?",
+      "tema": "Acord-cadru"
+    },
+    {
+      "q": "Dacă valorile din PAAP-urile pe proiecte nu se cumulează cu restul, de ce se cere ca la stabilirea procedurii să se țină cont de toate achizițiile de la nivelul instituției, indiferent de sursa de finanțare?",
+      "tema": "Cumularea valorilor"
+    }
+  ]
+}

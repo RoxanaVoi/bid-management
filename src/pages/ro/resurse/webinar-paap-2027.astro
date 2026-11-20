@@ -3,12 +3,51 @@ import Layout from '../../../layouts/Layout.astro';
 import CTASection from '../../../components/CTASection.astro';
 import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
 import slides from '../../../data/webinar-paap-2027.json';
+import intrebariData from '../../../data/webinar-intrebari.json';
 
 const locale = getLocaleFromUrl(Astro.url);
 
 const DEMO_SLIDE = 31;
 const pad = (n: number) => String(n).padStart(2, '0');
 const base = '/resurse/webinar-paap-2027';
+
+// ── Înregistrarea integrală ────────────────────────────────────────────────
+// Capitolele sunt citite din film, la fiecare schimbare de slide.
+const DURATA = intrebariData.durataSecunde;
+
+const ceas = (t: number) =>
+  t >= 3600
+    ? `${Math.floor(t / 3600)}:${pad(Math.floor((t % 3600) / 60))}:${pad(t % 60)}`
+    : `${Math.floor(t / 60)}:${pad(t % 60)}`;
+
+const capitole = intrebariData.capitole.map((c) => ({ ...c, eticheta: ceas(c.t) }));
+const intrebari = intrebariData.intrebari;
+
+const durataISO = `PT${Math.floor(DURATA / 3600)}H${Math.floor((DURATA % 3600) / 60)}M${DURATA % 60}S`;
+const durataText = `1 h ${Math.round((DURATA - 3600) / 60)} min`;
+
+// Înregistrarea nu e publică: adresa vine de la funcție, după formular sau
+// după linkul de participant. Declarăm asta, ca motoarele să nu aștepte un
+// film redabil direct din pagină.
+const videoSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'Webinar: de la referatul de necesitate la planul aprobat — înregistrarea integrală',
+  description:
+    'Înregistrarea webinarului din 19 noiembrie 2026 despre referatul de necesitate și programul anual al achizițiilor publice, cu demonstrația ePAAP și întrebările venite din sală.',
+  uploadDate: '2026-11-20',
+  duration: durataISO,
+  inLanguage: 'ro-RO',
+  isAccessibleForFree: false,
+  thumbnailUrl: [`https://bid-management.ro${base}/slides/slide-01.webp`],
+  publisher: { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' },
+  hasPart: capitole.map((c, i) => ({
+    '@type': 'Clip',
+    name: c.titlu,
+    startOffset: c.t,
+    endOffset: capitole[i + 1]?.t ?? DURATA,
+  })),
+};
 
 type Slide = { n: number; eyebrow: string; title: string };
 const deck = (slides as Slide[]).map((s) => ({
@@ -52,7 +91,7 @@ const eventSchema = {
 };
 ---
 
-<Layout title={title} description={description} ogImage={`${base}/slides/slide-01.webp`} schema={[articleSchema, eventSchema]} noSuffix>
+<Layout title={title} description={description} ogImage={`${base}/slides/slide-01.webp`} schema={[articleSchema, eventSchema, videoSchema]} noSuffix>
   <!-- ─────────────────────────── HERO ─────────────────────────── -->
   <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-14 lg:py-18">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,14 +118,25 @@ const eventSchema = {
       </p>
 
       <p class="text-sm text-gray-400 mb-8">
-        Roxana Voicu, co-fondator Equalys Services · 40 de slide-uri · demonstrație ePAAP, 12 minute
+        Roxana Voicu, co-fondator Equalys Services · înregistrare integrală, {durataText} ·
+        40 de slide-uri · demonstrație ePAAP, 12 minute
       </p>
 
       <div class="flex flex-wrap gap-3">
         <a
+          href="#inregistrare"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-accent-light hover:bg-mint text-navy font-semibold rounded-xl transition-colors no-underline"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <circle cx="12" cy="12" r="9" />
+          </svg>
+          Vezi înregistrarea
+        </a>
+        <a
           href={`${base}/webinar-paap-2027-slide-uri.pdf`}
           download
-          class="inline-flex items-center gap-2 px-6 py-3 bg-accent-light hover:bg-mint text-navy font-semibold rounded-xl transition-colors no-underline"
+          class="inline-flex items-center gap-2 px-6 py-3 border border-white/25 hover:border-accent-light hover:text-accent-light text-gray-200 font-semibold rounded-xl transition-colors no-underline"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
@@ -124,6 +174,105 @@ const eventSchema = {
           aprobarea PAAP 2027 și câmpurile minime ale unui referat apărabil. Mulțumesc grupului pentru
           invitație și pentru calitatea discuției.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── ÎNREGISTRAREA INTEGRALĂ ─────────────── -->
+  <section class="pb-12 lg:pb-16 bg-white" id="inregistrare">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-navy rounded-2xl overflow-hidden">
+        <div class="relative aspect-video scroll-mt-24" id="inregStage">
+          <img
+            src={`${base}/slides/slide-01.webp`}
+            alt=""
+            width="1600"
+            height="900"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover blur-sm brightness-[.3]"
+          />
+          <div class="relative h-full flex flex-col justify-center p-5 sm:p-8 lg:p-12" id="inregGate">
+            <p class="text-accent-light font-semibold tracking-widest uppercase text-[11px] sm:text-xs mb-2">
+              Înregistrarea integrală · {durataText}
+            </p>
+            <h2 class="text-white font-heading font-bold text-xl sm:text-2xl lg:text-3xl leading-tight mb-3">
+              Webinarul, așa cum s-a desfășurat
+            </h2>
+            <p class="hidden sm:block text-gray-300 text-sm lg:text-base max-w-xl mb-6">
+              Cele patru teme, demonstrația ePAAP și răspunsurile la întrebările venite din sală.
+              Slide-urile rămân mai jos, descărcabile fără formular.
+            </p>
+            <form id="inregForm" novalidate class="max-w-xl">
+              <div class="flex flex-wrap gap-2">
+                <label class="sr-only" for="inregEmail">Adresa de e-mail</label>
+                <input
+                  id="inregEmail"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  placeholder="nume@institutie.ro"
+                  class="flex-1 min-w-[200px] px-4 py-2.5 rounded-xl bg-navy/70 border border-white/25 text-white placeholder:text-gray-500 text-sm outline-none focus:border-accent-light focus:ring-2 focus:ring-accent-light/30 transition-all"
+                />
+                <button
+                  type="submit"
+                  class="px-5 py-2.5 rounded-xl bg-accent-light hover:bg-mint text-navy font-semibold text-sm transition-colors"
+                >
+                  Vezi înregistrarea
+                </button>
+              </div>
+              <label class="flex items-start gap-2 mt-3 text-[11px] sm:text-xs text-gray-400 leading-snug">
+                <input type="checkbox" name="consent" required class="mt-0.5 accent-[#08C9AA]" />
+                <span>
+                  Sunt de acord să primesc materialul și informări ocazionale despre achiziții publice.
+                  Mă pot dezabona oricând. Detalii în
+                  <a href={getLocalizedPath(locale, '/politica-confidentialitate')} class="underline hover:text-accent-light">politica de confidențialitate</a>.
+                </span>
+              </label>
+              <p id="inregStatus" role="status" class="mt-2 text-xs text-pivot-light min-h-[1em]"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capitolele: vizibile și indexabile fără deblocare -->
+      <div class="mt-8 grid gap-8 lg:grid-cols-[1.1fr_1fr]">
+        <div>
+          <h3 class="text-lg font-heading font-bold text-navy mb-1">Ce găsiți în înregistrare</h3>
+          <p class="text-text-light text-sm mb-4">
+            Momentele sunt exacte. După deblocare, un clic pe oricare dintre ele deschide filmul direct acolo.
+          </p>
+          <ol class="list-none p-0 m-0 divide-y divide-gray-200 border-y border-gray-200">
+            {capitole.map((c) => (
+              <li>
+                <button
+                  type="button"
+                  data-sari={c.t}
+                  class="w-full flex gap-4 items-baseline text-left py-2.5 px-1 hover:bg-surface transition-colors"
+                >
+                  <span class="text-accent font-semibold text-sm tabular-nums shrink-0 w-14">{c.eticheta}</span>
+                  <span class="text-text text-sm leading-snug">{c.titlu}</span>
+                </button>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-heading font-bold text-navy mb-1">Întrebările venite din sală</h3>
+          <p class="text-text-light text-sm mb-4">
+            Au fost scrise în chat pe parcursul webinarului și au primit răspuns în ultima parte a
+            înregistrării. Le-am reformulat, fără nume și fără date de contact.
+          </p>
+          <ul class="list-none p-0 m-0 space-y-3">
+            {intrebari.map((q) => (
+              <li class="bg-surface border border-gray-200 rounded-xl px-4 py-3">
+                <span class="block text-accent text-[10px] font-semibold tracking-widest uppercase mb-1">{q.tema}</span>
+                <p class="text-text text-sm leading-snug m-0">{q.q}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -389,5 +538,116 @@ const eventSchema = {
     });
 
     dinHash(false);
+
+    // ── Înregistrarea integrală ─────────────────────────────────────────
+    // Două căi: formularul de e-mail, sau linkul ?acces=… trimis
+    // participanților, care sare peste formular.
+    (function () {
+      var CHEIE = 'webinar-inregistrare-url';
+      var stage = document.getElementById('inregStage');
+      if (!stage) return;
+      var adresa = null;
+
+      function seek(t) {
+        if (!adresa) return false;
+        if (/\.mp4($|\?)/.test(adresa)) {
+          var v = stage.querySelector('video');
+          if (v) { v.currentTime = t; v.play().catch(function () {}); return true; }
+          return false;
+        }
+        randeaza(adresa, t);
+        return true;
+      }
+
+      function cuMinut(url, t) {
+        if (!t) return url;
+        if (/youtube|youtu\.be/.test(url)) {
+          return url + (url.indexOf('?') > -1 ? '&' : '?') + 'start=' + t + '&autoplay=1';
+        }
+        if (/vimeo/.test(url)) {
+          return url + (url.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1#t=' + t + 's';
+        }
+        return url + (url.indexOf('#') > -1 ? '' : '#t=' + t);
+      }
+
+      function randeaza(url, t) {
+        adresa = url;
+        stage.innerHTML = /\.mp4($|\?)/.test(url)
+          ? '<video src="' + url + (t ? '#t=' + t : '') + '" controls preload="metadata" playsinline ' +
+            'class="absolute inset-0 w-full h-full"></video>'
+          : '<iframe src="' + cuMinut(url, t) + '" loading="lazy" allowfullscreen ' +
+            'allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" ' +
+            'title="Înregistrarea webinarului din 19 noiembrie 2026" ' +
+            'class="absolute inset-0 w-full h-full border-0"></iframe>';
+        stage.classList.add('bg-black');
+      }
+
+      var salvat = null;
+      try { salvat = localStorage.getItem(CHEIE); } catch (err) {}
+      if (salvat) randeaza(salvat, 0);
+
+      function cere(corp, laReusita) {
+        return fetch('/api/inregistrare-webinar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(corp),
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (d && d.inPregatire) return 'inPregatire';
+            if (!d || !d.embedUrl) throw new Error(d && d.error ? d.error : 'fără adresă');
+            try { localStorage.setItem(CHEIE, d.embedUrl); } catch (err) {}
+            randeaza(d.embedUrl, 0);
+            if (laReusita) laReusita();
+            return 'gata';
+          });
+      }
+
+      // Linkul de participant: ?acces=…
+      var acces = new URLSearchParams(location.search).get('acces');
+      if (acces && !salvat) {
+        cere({ acces: acces }).catch(function () {});
+      }
+
+      var form = document.getElementById('inregForm');
+      if (form) form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var status = document.getElementById('inregStatus');
+        var email = form.email.value.trim();
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+          status.textContent = 'Verificați adresa de e-mail.';
+          return;
+        }
+        if (!form.consent.checked) {
+          status.textContent = 'Bifați acordul pentru a continua.';
+          return;
+        }
+        status.textContent = 'Se pregătește înregistrarea…';
+        cere({ email: email, sursa: 'inregistrare-webinar-19-11-2026' })
+          .then(function (rezultat) {
+            if (rezultat === 'inPregatire') {
+              status.textContent =
+                'Înregistrarea se publică în scurt timp. V-am notat adresa și vă trimitem linkul imediat ce e gata.';
+            }
+          })
+          .catch(function () {
+            status.textContent =
+              'Nu am putut debloca înregistrarea. Scrieți-ne la office@bid-management.ro și v-o trimitem.';
+          });
+      });
+
+      // Capitolele: după deblocare sar în film; înainte, duc la formular.
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-sari]');
+        if (!b) return;
+        e.preventDefault();
+        var t = Number(b.dataset.sari);
+        if (!seek(t)) {
+          var camp = document.getElementById('inregEmail');
+          if (camp) { camp.focus({ preventScroll: true }); }
+        }
+        stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    })();
   })();
 </script>
