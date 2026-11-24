@@ -302,13 +302,18 @@ const serviciiConsultanta = [
 
       <p class="text-xs text-text-light mt-3">
         {isRo
-          ? 'Film fără sunet, 1 min 38 s. Este o demonstrație a instrumentului, pe o documentație de probă — nu o aplicație cu autoservire.'
-          : 'Silent film, 1 min 38 s. It demonstrates the tool on sample documentation — it is not a self-service application.'}
+          ? 'Film fără sunet, 1 min 37 s — explicațiile apar pe ecran. Demonstrație pe o documentație de probă.'
+          : 'Silent film, 1 min 37 s — the explanations appear on screen. Demonstrated on sample documentation.'}
       </p>
 
-      <a href={getLocalizedPath(locale, '/analizeaza-documentatia')} class="inline-flex items-center gap-2 mt-6 text-accent font-semibold hover:text-accent-dark">
-        {isRo ? 'Trimite-ne documentația și o analizăm →' : 'Send us your documentation and we will analyse it →'}
-      </a>
+      <div class="flex flex-wrap gap-x-8 gap-y-3 mt-6">
+        <a href={getLocalizedPath(locale, '/analizeaza-documentatia')} class="inline-flex items-center gap-2 text-accent font-semibold hover:text-accent-dark">
+          {isRo ? 'Trimite-ne documentația și o analizăm →' : 'Send us your documentation and we will analyse it →'}
+        </a>
+        <a href="https://tendercraft.bid-management.ro" rel="noopener" class="inline-flex items-center gap-2 text-text-light font-semibold hover:text-accent">
+          {isRo ? 'Intră în TenderCraft →' : 'Sign in to TenderCraft →'}
+        </a>
+      </div>
     </div>
   </section>
 
