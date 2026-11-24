@@ -17,3 +17,10 @@
 # nesfârșit. Asta ține și traficul jos la o a doua vizionare.
 /vendor/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Filmele de produs au amprenta conținutului în nume
+# (tendercraft-demo-00d899b598.mp4), așa că o versiune nouă înseamnă un
+# nume nou și nicio problemă de cache. Fără asta, înlocuirea unui film sub
+# același nume rămâne blocată în cache, așa cum s-a întâmplat la logo.
+/produse/*
+  Cache-Control: public, max-age=31536000, immutable
