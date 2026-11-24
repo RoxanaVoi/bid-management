@@ -1,8 +1,10 @@
 {
   "nav": {
     "home": "Home",
+    "solutii": "Solutions",
     "solutiiAutoritati": "Contracting authorities",
     "solutiiCompanii": "Economic operators",
+    "solutiiConsultanti": "Funding consultants",
     "analizeaza": "Analyze Documentation",
     "studiiDeCaz": "Case Studies",
     "resurse": "Guides",
@@ -30,6 +32,13 @@
       "bullet2": "Competitive technical and financial bid preparation",
       "bullet3": "Support for clarifications and complaints",
       "cta": "See solutions for companies"
+    },
+    "consultant": {
+      "title": "I am an EU funding consultant",
+      "bullet1": "Each funder’s rules, applied per project",
+      "bullet2": "Versioned procurement plan with change notifications",
+      "bullet3": "Deadlines and files tracked across all beneficiaries",
+      "cta": "See the solution for consultants"
     }
   },
   "howWeWork": {

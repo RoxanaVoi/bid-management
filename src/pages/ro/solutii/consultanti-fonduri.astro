@@ -1,0 +1,238 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLocaleFromUrl, getLocalizedPath } from '../../../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const isRo = locale === 'ro';
+
+const FILM = '/produse/epaap-portfolio-film.mp4';
+const POSTER = '/produse/poster-epaap-portfolio.webp';
+const APP = 'https://portfolio.bid-management.ro';
+
+// Ce se vede în film, descris ca atare — fără promisiuni în plus.
+const capacitati = [
+  {
+    titlu: isRo ? 'Regulile finanțatorului, aplicate pe proiect' : 'Funder rules, applied per project',
+    text: isRo
+      ? 'Fiecare finanțare are propriul regim: praguri, termene, documente obligatorii. Regimul se alege o dată, iar proiectele preiau regulile lui în loc să fie ținute minte de la caz la caz.'
+      : 'Each funding programme has its own regime: thresholds, deadlines, mandatory documents. The regime is set once, and projects inherit its rules instead of being remembered case by case.',
+  },
+  {
+    titlu: isRo ? 'Planul de achiziții are versiuni' : 'The procurement plan is versioned',
+    text: isRo
+      ? 'O modificare pleacă spre finanțator ca notificare, cu data trimiterii și termenul orientativ de răspuns. Aplicația urmărește răspunsul, iar versiunea anterioară rămâne în istoric.'
+      : 'A change goes to the funder as a notification, with the date sent and the expected response deadline. The app tracks the reply, and the previous version stays in history.',
+  },
+  {
+    titlu: isRo ? 'Fiecare achiziție are un responsabil și un termen intern' : 'Every procurement has an owner and an internal deadline',
+    text: isRo
+      ? 'Termenul finanțatorului se calculează din regulă — de pildă zece zile lucrătoare de la semnarea contractului. Peste el puneți termenul vostru intern și omul care răspunde, iar amândouă apar în semnalele de pe tabloul de bord.'
+      : 'The funder deadline is derived from the rule — for instance ten working days from contract signature. On top of it you set your own internal deadline and the person responsible; both show up in the dashboard signals.',
+  },
+  {
+    titlu: isRo ? 'Dosarul stă lângă achiziție, nu pe e-mail' : 'The file sits with the procurement, not in an inbox',
+    text: isRo
+      ? 'Încadrarea, nota de valoare, derularea, dosarul și istoricul sunt pașii aceleiași achiziții. Când finanțatorul cere dosarul, el este deja format.'
+      : 'Classification, value note, execution, file and history are steps of the same procurement. When the funder asks for the file, it is already assembled.',
+  },
+  {
+    titlu: isRo ? 'Mai mulți beneficiari, sub același acoperiș' : 'Several beneficiaries, one roof',
+    text: isRo
+      ? 'Firma de consultanță vede toți beneficiarii și toate proiectele dintr-un singur cont, cu utilizatori separați pe roluri. Fiecare consultant vede ce are de făcut, nu tot.'
+      : 'The consulting firm sees every beneficiary and project from a single account, with users separated by role. Each consultant sees what they have to do, not everything.',
+  },
+];
+
+// Schema urmează limba paginii: altfel varianta EN ar declara motoarelor
+// conținut în română.
+const editor = { '@type': 'Organization', name: 'Equalys Services', url: 'https://bid-management.ro' };
+
+const schemaAplicatie = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'ePAAP Portfolio',
+  applicationCategory: 'BusinessApplication',
+  applicationSubCategory: isRo
+    ? 'Software pentru achiziții pe fonduri europene'
+    : 'Software for procurement under EU funding',
+  operatingSystem: 'Web',
+  url: APP,
+  inLanguage: isRo ? 'ro-RO' : 'en',
+  description: isRo
+    ? 'Aplicație pentru firmele de consultanță în fonduri europene: regimurile fiecărui finanțator, planul de achiziții cu versiuni și notificări, termenele și dosarul fiecărei achiziții, pentru toți beneficiarii dintr-un singur cont.'
+    : 'An application for EU funding consultancies: each funder’s regime, the versioned procurement plan with change notifications, the deadlines and the file of every procurement, for all beneficiaries from a single account.',
+  audience: {
+    '@type': 'Audience',
+    audienceType: isRo ? 'Consultanți de fonduri europene' : 'EU funding consultants',
+  },
+  publisher: editor,
+};
+
+const schemaFilm = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: isRo
+    ? 'ePAAP Portfolio — achiziții pe fonduri europene, sub control'
+    : 'ePAAP Portfolio — procurement under EU funding, under control',
+  description: isRo
+    ? 'Film de prezentare: cum arată regimurile de finanțare, planul de achiziții cu versiuni, notificările către finanțator și termenele interne în ePAAP Portfolio.'
+    : 'Product film: funding regimes, the versioned procurement plan, notifications to the funder and internal deadlines in ePAAP Portfolio.',
+  uploadDate: '2026-11-24',
+  duration: 'PT3M42S',
+  inLanguage: 'ro-RO',
+  isAccessibleForFree: true,
+  thumbnailUrl: [`https://bid-management.ro${POSTER}`],
+  contentUrl: `https://bid-management.ro${FILM}`,
+  publisher: editor,
+};
+---
+
+<Layout
+  title={isRo ? 'ePAAP Portfolio — achiziții pe fonduri europene' : 'ePAAP Portfolio — procurement under EU funding'}
+  description={isRo
+    ? 'Pentru consultanții de fonduri europene: regulile fiecărui finanțator, planul de achiziții cu versiuni, termenele și dosarul fiecărei achiziții, într-un singur loc.'
+    : 'For EU funding consultants: each funder’s rules, the versioned procurement plan, deadlines and the file of every procurement, in one place.'}
+  schema={[schemaAplicatie, schemaFilm]}
+>
+
+  <!-- ===== HERO ===== -->
+  <section class="bg-gradient-to-br from-navy via-navy-800 to-navy text-white py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-light/15 border border-accent-light/30 rounded-full mb-6">
+          <svg class="w-4 h-4 text-accent-light" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span class="text-accent-light text-sm font-medium">
+            {isRo ? 'Pentru consultanți de fonduri europene' : 'For EU funding consultants'}
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
+          {isRo
+            ? 'Un proiect, zeci de achiziții, reguli diferite la fiecare finanțator.'
+            : 'One project, dozens of procurements, different rules at every funder.'}
+        </h1>
+
+        <p class="text-lg text-gray-300 leading-relaxed mb-4">
+          {isRo
+            ? 'Termene în calendare, dosare pe e-mail, praguri în Excel. Iar finanțatorul verifică la sfârșit dacă totul se potrivește.'
+            : 'Deadlines in calendars, files in inboxes, thresholds in spreadsheets. And the funder checks at the end whether it all lines up.'}
+        </p>
+
+        <p class="text-sm text-gray-400 leading-relaxed mb-8 max-w-2xl">
+          {isRo
+            ? 'ePAAP Portfolio este aplicația pe care am construit-o pentru firmele care gestionează achizițiile mai multor beneficiari deodată: regulile finanțatorului, termenele și dosarul fiecărei achiziții, într-un singur loc.'
+            : 'ePAAP Portfolio is the application we built for firms running procurement for several beneficiaries at once: the funder’s rules, the deadlines and the file of every procurement, in one place.'}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#film" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent-light hover:bg-mint text-navy font-semibold rounded-xl transition-all hover:-translate-y-0.5 no-underline">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/></svg>
+            {isRo ? 'Vezi filmul, 3 minute' : 'Watch the film, 3 minutes'}
+          </a>
+          <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all no-underline">
+            {isRo ? 'Programează o discuție' : 'Schedule a discussion'}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FILMUL ===== -->
+  <section id="film" class="py-16 lg:py-20 bg-white scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-3">
+        {isRo ? 'Cum arată, în trei minute' : 'What it looks like, in three minutes'}
+      </h2>
+      <p class="text-text-light mb-6 max-w-2xl">
+        {isRo
+          ? 'Un proiect real de la început până la dosarul predat: regimul finanțatorului, planul de achiziții, o notificare de modificare și termenele care se urmăresc singure.'
+          : 'One project from start to submitted file: the funder regime, the procurement plan, a change notification, and deadlines that track themselves.'}
+      </p>
+
+      <video
+        controls
+        preload="none"
+        playsinline
+        poster={POSTER}
+        class="w-full aspect-video rounded-2xl bg-navy shadow-lg"
+      >
+        <source src={FILM} type="video/mp4" />
+      </video>
+
+      <p class="text-xs text-text-light mt-3">
+        {isRo
+          ? 'Filmul nu are sunet — explicațiile apar pe ecran. Durată: 3 min 42 s. Datele din film sunt dintr-un cont de demonstrație.'
+          : 'The film has no sound — the explanations appear on screen. Length: 3 min 42 s. The data shown comes from a demo account.'}
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CE REZOLVĂ ===== -->
+  <section class="py-20 lg:py-24 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-4">
+        {isRo ? 'Ce ține aplicația în locul vostru' : 'What the application holds for you'}
+      </h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        {isRo
+          ? 'Nu înlocuiește consultantul. Ține evidența pe care altfel o țineți în cap, în calendare și în fișiere separate.'
+          : 'It does not replace the consultant. It keeps the record you would otherwise hold in your head, your calendar and scattered files.'}
+      </p>
+
+      <div class="space-y-5">
+        {capacitati.map((c, i) => (
+          <div class="bg-white border border-gray-200 rounded-2xl p-6 flex gap-5">
+            <span class="shrink-0 w-9 h-9 rounded-xl bg-accent/10 text-accent font-heading font-bold flex items-center justify-center tabular-nums">
+              {i + 1}
+            </span>
+            <div>
+              <h3 class="font-heading font-bold text-navy text-lg mb-1.5">{c.titlu}</h3>
+              <p class="text-text text-sm leading-relaxed m-0">{c.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LEGĂTURA CU ePAAP ===== -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="border-l-4 border-accent-light pl-6">
+        <h2 class="text-2xl sm:text-3xl font-heading font-bold text-navy mb-3">
+          {isRo ? 'Două aplicații, două situații diferite' : 'Two applications, two different situations'}
+        </h2>
+        <p class="text-text leading-relaxed mb-3">
+          {isRo
+            ? 'ePAAP este pentru autoritatea contractantă care își construiește programul anual din referatele de necesitate ale propriilor compartimente. ePAAP Portfolio este pentru firma de consultanță care urmărește achizițiile mai multor beneficiari, fiecare cu finanțatorul și regulile lui.'
+            : 'ePAAP is for the contracting authority building its annual plan from its own departments’ needs. ePAAP Portfolio is for the consulting firm tracking procurement across several beneficiaries, each with its own funder and rules.'}
+        </p>
+        <a href={getLocalizedPath(locale, '/epaap')} class="text-accent font-semibold hover:text-accent-dark">
+          {isRo ? 'Vezi ePAAP, pentru autorități contractante →' : 'See ePAAP, for contracting authorities →'}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="py-20 lg:py-24 bg-gradient-to-br from-navy via-navy-800 to-navy text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">
+        {isRo ? 'Achiziții pe fonduri europene, sub control' : 'Procurement under EU funding, under control'}
+      </h2>
+      <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+        {isRo
+          ? 'Dacă gestionați achizițiile mai multor beneficiari, vă arătăm aplicația pe datele voastre și discutăm cum se potrivește cu finanțatorii cu care lucrați.'
+          : 'If you run procurement for several beneficiaries, we will walk you through the application on your own data and discuss how it fits the funders you work with.'}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getLocalizedPath(locale, '/contact')} class="inline-flex items-center justify-center px-7 py-3.5 bg-accent-light hover:bg-mint text-navy font-semibold rounded-xl transition-colors no-underline">
+          {isRo ? 'Cere o prezentare' : 'Request a walkthrough'}
+        </a>
+        <a href={APP} rel="noopener" class="inline-flex items-center justify-center px-7 py-3.5 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors no-underline">
+          {isRo ? 'Intră în cont' : 'Sign in'}
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

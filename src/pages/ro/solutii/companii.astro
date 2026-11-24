@@ -293,6 +293,43 @@ const serviceSchema = {
     </div>
   </section>
 
+  <!-- ===== TENDERCRAFT ===== -->
+  <section id="tendercraft" class="py-20 lg:py-24 bg-white scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-accent font-semibold tracking-widest uppercase text-xs mb-2">
+        {isRo ? 'Demonstrație' : 'Demo'}
+      </p>
+      <h2 class="text-3xl sm:text-4xl font-heading font-bold text-navy mb-3">
+        {isRo ? 'TenderCraft — de la documentația licitației la oferta tehnică' : 'TenderCraft — from tender documents to the technical offer'}
+      </h2>
+      <p class="text-text-light mb-6 max-w-2xl">
+        {isRo
+          ? 'Instrumentul pe care îl folosim când oferta tehnică trebuie construită din documentația de atribuire: cerințele se extrag din documente, iar răspunsul se redactează pe structura lor, nu de la zero.'
+          : 'The tool we use when a technical offer has to be built from the award documentation: requirements are extracted from the documents, and the response is drafted on their structure rather than from scratch.'}
+      </p>
+
+      <video
+        controls
+        preload="none"
+        playsinline
+        poster="/produse/poster-tendercraft.webp"
+        class="w-full aspect-video rounded-2xl bg-navy shadow-lg"
+      >
+        <source src="/produse/tendercraft-demo.mp4" type="video/mp4" />
+      </video>
+
+      <p class="text-xs text-text-light mt-3">
+        {isRo
+          ? 'Film fără sunet, 1 min 38 s. Este o demonstrație a instrumentului, pe o documentație de probă — nu o aplicație cu autoservire.'
+          : 'Silent film, 1 min 38 s. It demonstrates the tool on sample documentation — it is not a self-service application.'}
+      </p>
+
+      <a href={getLocalizedPath(locale, '/analizeaza-documentatia')} class="inline-flex items-center gap-2 mt-6 text-accent font-semibold hover:text-accent-dark">
+        {isRo ? 'Trimite-ne documentația și o analizăm →' : 'Send us your documentation and we will analyse it →'}
+      </a>
+    </div>
+  </section>
+
   <!-- ===== CTA FINAL ===== -->
 
   <!-- ===== CONSULTANȚĂ ȘI CURSURI =====

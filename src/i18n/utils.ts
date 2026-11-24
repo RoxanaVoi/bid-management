@@ -38,8 +38,17 @@ export function getAlternateLocale(locale: Locale): Locale {
 // leagă din fiecare pagină de audiență și din subsol.
 export function getNavItems(locale: Locale) {
   return [
-    { label: t(locale, 'nav.solutiiAutoritati'), href: getLocalizedPath(locale, '/solutii/autoritati') },
-    { label: t(locale, 'nav.solutiiCompanii'), href: getLocalizedPath(locale, '/solutii/companii') },
+    // Cele trei audiențe stau sub un singur element de meniu: șapte intrări
+    // pe un rând împing butonul principal în afara ecranului la 1440px.
+    {
+      label: t(locale, 'nav.solutii'),
+      href: getLocalizedPath(locale, '/solutii/autoritati'),
+      copii: [
+        { label: t(locale, 'nav.solutiiAutoritati'), href: getLocalizedPath(locale, '/solutii/autoritati') },
+        { label: t(locale, 'nav.solutiiCompanii'), href: getLocalizedPath(locale, '/solutii/companii') },
+        { label: t(locale, 'nav.solutiiConsultanti'), href: getLocalizedPath(locale, '/solutii/consultanti-fonduri') },
+      ],
+    },
     { label: t(locale, 'nav.resurse'), href: getLocalizedPath(locale, '/resurse') },
     { label: t(locale, 'nav.studiiDeCaz'), href: getLocalizedPath(locale, '/studii-de-caz') },
     { label: t(locale, 'nav.despre'), href: getLocalizedPath(locale, '/despre') },

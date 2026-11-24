@@ -1,8 +1,10 @@
 {
   "nav": {
     "home": "Home",
+    "solutii": "Soluții",
     "solutiiAutoritati": "Autorități contractante",
     "solutiiCompanii": "Operatori economici",
+    "solutiiConsultanti": "Consultanți de fonduri",
     "analizeaza": "Analizează documentația",
     "studiiDeCaz": "Studii de caz",
     "resurse": "Ghiduri",
@@ -30,6 +32,13 @@
       "bullet2": "Pregătire oferte tehnice și financiare competitive",
       "bullet3": "Suport pentru clarificări și contestații",
       "cta": "Vezi soluțiile pentru companii"
+    },
+    "consultant": {
+      "title": "Sunt consultant de fonduri europene",
+      "bullet1": "Regulile fiecărui finanțator, aplicate pe proiect",
+      "bullet2": "Plan de achiziții cu versiuni și notificări de modificare",
+      "bullet3": "Termene și dosare urmărite pentru toți beneficiarii",
+      "cta": "Vezi soluția pentru consultanți"
     }
   },
   "howWeWork": {
